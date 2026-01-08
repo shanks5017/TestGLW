@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { Twitter, Linkedin, Github } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 const FOOTER_LINKS = {
   product: [
@@ -26,7 +27,10 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-3 space-y-4">
-            <Link to="/" className="text-2xl font-bold text-slate-900 tracking-tight">GetLanded</Link>
+            <Link to="/" className="flex items-center gap-2 group">
+              <img src={logo} alt="GetLanded Logo" className="w-8 h-8 object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" />
+              <span className="text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors">GetLanded</span>
+            </Link>
             <p className="text-slate-500 text-sm leading-relaxed">
               Your AI copilot for the modern job search. Land your dream role faster.
             </p>
@@ -94,7 +98,7 @@ export function Footer() {
                 placeholder="Enter your email"
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm"
               />
-              <button className="w-full px-4 py-2.5 rounded-lg bg-[#0040C1] text-white font-semibold text-sm hover:bg-blue-700 transition-colors">
+              <button className="w-full px-4 py-2.5 rounded-lg bg-[#0040C1] text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-lg shadow-blue-900/10">
                 Subscribe
               </button>
               <p className="text-xs text-slate-400">
@@ -109,7 +113,7 @@ export function Footer() {
             © {new Date().getFullYear()} GetLanded. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-sm text-slate-500">
-            <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             All systems operational
           </div>
         </div>

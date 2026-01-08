@@ -1,189 +1,251 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
-import { CheckCircle2, Briefcase, FileText, Rocket } from 'lucide-react';
+import { CheckCircle2, Briefcase, FileText, Sparkles, TrendingUp, Users } from 'lucide-react';
 
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.15,
             delayChildren: 0.2,
         },
     },
 };
 
 const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+    hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    },
 };
 
 export function Hero() {
     return (
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white selection:bg-primary-light selection:text-primary">
-            {/* Ambient Background - Electric Blue Orbs */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-white to-white -z-20 opacity-80 pointer-events-none blur-3xl" />
-            <div className="absolute top-[20%] left-[20%] w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 animate-float" />
-            <div className="absolute top-[30%] right-[20%] w-72 h-72 bg-blue-400/10 rounded-full blur-3xl -z-10 animate-pulse-glow" />
+        <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-white selection:bg-primary-light selection:text-primary">
+            {/* Premium Ambient Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[120%] h-[1000px] bg-[radial-gradient(circle_at_center,_var(--color-primary-light)_0%,_transparent_60%)] opacity-70 blur-3xl" />
+                <div className="absolute top-[10%] left-[15%] w-96 h-96 bg-blue-100 rounded-full blur-[100px] animate-pulse-slow mix-blend-multiply" />
+                <div className="absolute top-[20%] right-[15%] w-80 h-80 bg-purple-100 rounded-full blur-[100px] animate-float delay-1000 mix-blend-multiply" />
+            </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="flex flex-col items-center"
+                    className="flex flex-col items-center max-w-5xl mx-auto"
                 >
-                    {/* Pill Badge */}
+                    {/* Badge */}
                     <motion.div
                         variants={itemVariants}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 border border-white/40 shadow-sm backdrop-blur-md text-primary text-sm font-semibold mb-8 hover:bg-white/80 transition-colors cursor-default"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-white/60 shadow-glass text-primary text-sm font-semibold mb-8 hover:bg-white transition-all duration-300 transform hover:scale-105"
                     >
-                        <span className="flex h-2 w-2 relative">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        #1 AI Career Copilot
+                        <Sparkles className="w-4 h-4 fill-current animate-pulse" />
+                        <span>The AI Advantage for Your Career</span>
                     </motion.div>
 
                     {/* Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 mb-8 tracking-tight leading-[1.1]"
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 mb-8 tracking-tight leading-[1.05]"
                     >
-                        Land your <br className="hidden md:block" />
-                        <span className="text-primary relative inline-block">
-                            Dream Job
-                            {/* Underline decoration */}
-                            <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                        Stop applying. <br className="hidden md:block" />
+                        Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-indigo-600 relative inline-block">
+                            Getting Hired.
+                            {/* Hand-drawn underline effect */}
+                            <svg className="absolute w-[110%] h-3 -bottom-2 -left-[5%] text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <motion.path
+                                    d="M0 5 Q 50 10 100 5"
+                                    stroke="currentColor"
+                                    strokeWidth="8"
+                                    fill="none"
+                                    initial={{ pathLength: 0 }}
+                                    animate={{ pathLength: 1 }}
+                                    transition={{ duration: 1, delay: 0.8 }}
+                                />
                             </svg>
                         </span>
-                        <span> faster.</span>
                     </motion.h1>
 
                     <motion.p
                         variants={itemVariants}
                         className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
                     >
-                        The ultimate AI platform to track applications, optimize resumes, and master interviews.
+                        The all-in-one AI platform that optimizes your resume, tracks your applications, and prepares you for interviews.
                     </motion.p>
 
                     <motion.div
                         variants={itemVariants}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24 w-full sm:w-auto"
                     >
-                        <Link to="/waitlist">
-                            <Button variant="primary" size="lg" className="h-14 px-8 text-lg rounded-full shadow-glow hover:shadow-glow-lg transition-all duration-300">
+                        <Link to="/waitlist" className="w-full sm:w-auto">
+                            <Button variant="primary" size="lg" className="h-14 px-10 text-lg rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
                                 Get Started Free
                             </Button>
                         </Link>
-                        <Link to="/pricing">
-                            <Button variant="white" size="lg" className="h-14 px-8 text-lg rounded-full border border-gray-100/50">
+                        <Link to="/pricing" className="w-full sm:w-auto">
+                            <Button variant="white" size="lg" className="h-14 px-10 text-lg rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all w-full sm:w-auto">
                                 View Pricing
                             </Button>
                         </Link>
                     </motion.div>
 
-                    {/* Glass Mockup */}
+                    {/* Active Dashboard Mockup */}
                     <motion.div
                         variants={itemVariants}
-                        className="relative w-full max-w-5xl mx-auto perspective-1000"
+                        className="relative w-full max-w-6xl mx-auto perspective-1000"
                     >
-                        {/* Floating Cards */}
-                        <motion.div
-                            animate={{ y: [-10, 10, -10] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -left-4 md:-left-12 top-20 bg-white/80 backdrop-blur-xl border border-white/40 p-4 rounded-3xl shadow-glass hidden md:block z-30 transform -rotate-6"
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
-                                    <CheckCircle2 className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-bold text-slate-900">Offer Received</div>
-                                    <div className="text-xs text-slate-500">Google Inc.</div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        {/* 3D Tilt Effect Wrapper */}
+                        <div className="relative rounded-[2rem] bg-slate-900 p-2 md:p-3 shadow-2xl ring-1 ring-white/10 mx-auto transform transition-transform hover:scale-[1.01] duration-700 ease-out">
 
-                        <motion.div
-                            animate={{ y: [10, -10, 10] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute -right-4 md:-right-8 top-40 bg-white/80 backdrop-blur-xl border border-white/40 p-4 rounded-3xl shadow-glass hidden md:block z-30 transform rotate-3"
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-primary shadow-sm">
-                                    <Rocket className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-bold text-slate-900">Resume Score</div>
-                                    <div className="text-xs text-slate-500">Optimized to 98%</div>
-                                </div>
-                            </div>
-                        </motion.div>
+                            {/* Top Bar Decoration */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm" />
 
+                            {/* Inner Screen */}
+                            <div className="rounded-[1.5rem] overflow-hidden bg-slate-50 aspect-[16/10] md:aspect-[2/1] relative shadow-inner group cursor-default">
 
-                        {/* Main Interface Window */}
-                        <div className="relative rounded-[32px] md:rounded-[48px] bg-slate-900 p-2 md:p-4 shadow-2xl ring-1 ring-white/10 mx-auto">
-                            <div className="rounded-[24px] md:rounded-[40px] overflow-hidden bg-white aspect-[16/10] relative shadow-inner">
-                                {/* App Header */}
-                                <div className="h-14 border-b border-gray-100 flex items-center justify-between px-6 bg-white/90 backdrop-blur-sm sticky top-0 z-10">
+                                {/* App Top Bar */}
+                                <div className="h-12 border-b border-gray-200/50 flex items-center justify-between px-6 bg-white/80 backdrop-blur-md sticky top-0 z-20">
                                     <div className="flex gap-2">
-                                        <div className="w-3 h-3 rounded-full bg-red-400" />
-                                        <div className="w-3 h-3 rounded-full bg-amber-400" />
-                                        <div className="w-3 h-3 rounded-full bg-green-400" />
+                                        <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                                        <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                                        <div className="w-3 h-3 rounded-full bg-green-400/80" />
                                     </div>
-                                    <div className="hidden md:flex bg-gray-100 px-4 py-1.5 rounded-lg text-xs font-medium text-gray-500">
-                                        app.getlanded.com/dashboard
+                                    <div className="hidden md:flex bg-gray-100/50 px-4 py-1.5 rounded-full border border-gray-200/50 text-[10px] font-medium text-gray-400 uppercase tracking-widest">
+                                        GetLanded Dashboard v2.0
                                     </div>
-                                    <div className="w-8 h-8 rounded-full bg-gray-100" />
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                        <span className="text-xs font-medium text-gray-400">Online</span>
+                                    </div>
                                 </div>
 
-                                {/* App Content - Abstract Representation */}
-                                <div className="p-6 md:p-10 bg-gray-50/50 h-full grid grid-cols-4 gap-6">
-                                    {/* Sidebar */}
-                                    <div className="hidden md:flex flex-col gap-4 col-span-1">
-                                        <div className="h-10 w-full bg-white rounded-xl border border-gray-100 shadow-sm animate-pulse" />
-                                        <div className="h-10 w-3/4 bg-transparent rounded-xl" />
-                                        <div className="h-10 w-full bg-transparent rounded-xl" />
-                                        <div className="h-10 w-5/6 bg-transparent rounded-xl" />
+                                {/* Dashboard Content */}
+                                <div className="p-6 md:p-8 h-full grid grid-cols-12 gap-6 bg-slate-50/50">
+
+                                    {/* Left Sidebar (Desktop) */}
+                                    <div className="hidden md:flex col-span-2 flex-col gap-4">
+                                        <div className="h-10 w-full bg-white rounded-xl border border-gray-100 shadow-sm flex items-center gap-3 px-3">
+                                            <div className="w-5 h-5 rounded bg-primary/10" />
+                                            <div className="h-2 w-1/2 bg-gray-100 rounded-full" />
+                                        </div>
+                                        {[1, 2, 3].map(i => (
+                                            <div key={i} className="h-10 w-full bg-transparent rounded-xl flex items-center gap-3 px-3 opacity-50">
+                                                <div className="w-5 h-5 rounded bg-gray-200" />
+                                                <div className="h-2 w-2/3 bg-gray-200 rounded-full" />
+                                            </div>
+                                        ))}
                                     </div>
 
-                                    {/* Main Area */}
-                                    <div className="col-span-4 md:col-span-3 flex flex-col gap-6">
-                                        {/* Stats Row */}
+                                    {/* Main Content Area */}
+                                    <div className="col-span-12 md:col-span-10 flex flex-col gap-6">
+
+                                        {/* Stats Cards */}
                                         <div className="grid grid-cols-3 gap-4">
-                                            <div className="h-24 bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col justify-between group hover:border-blue-200 transition-colors">
-                                                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center"><Briefcase className="w-4 h-4" /></div>
-                                                <div className="h-2 w-12 bg-gray-100 rounded-full" />
-                                            </div>
-                                            <div className="h-24 bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col justify-between group hover:border-green-200 transition-colors">
-                                                <div className="w-8 h-8 rounded-lg bg-green-50 text-green-500 flex items-center justify-center"><CheckCircle2 className="w-4 h-4" /></div>
-                                                <div className="h-2 w-12 bg-gray-100 rounded-full" />
-                                            </div>
-                                            <div className="h-24 bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col justify-between group hover:border-purple-200 transition-colors">
-                                                <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-500 flex items-center justify-center"><FileText className="w-4 h-4" /></div>
-                                                <div className="h-2 w-12 bg-gray-100 rounded-full" />
-                                            </div>
+                                            {[
+                                                { label: 'Applications', val: '124', icon: Briefcase, color: 'blue' },
+                                                { label: 'Interviews', val: '8', icon: Users, color: 'purple' },
+                                                { label: 'Offers', val: '2', icon: TrendingUp, color: 'green' }
+                                            ].map((stat, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    whileHover={{ y: -5 }}
+                                                    className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between h-24 sm:h-32 group"
+                                                >
+                                                    <div className="flex justify-between items-start">
+                                                        <div className={`p-2 rounded-lg bg-${stat.color}-50 text-${stat.color}-600`}>
+                                                            <stat.icon className="w-5 h-5" />
+                                                        </div>
+                                                        <div className={`text-xs font-bold text-${stat.color}-600 bg-${stat.color}-50 px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity`}>
+                                                            +12%
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-2xl sm:text-3xl font-bold text-slate-900">{stat.val}</div>
+                                                        <div className="text-xs text-slate-500 font-medium">{stat.label}</div>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
                                         </div>
 
-                                        {/* List */}
-                                        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex-1 p-4 space-y-3">
-                                            {[1, 2, 3].map((i) => (
-                                                <div key={i} className="h-16 rounded-xl bg-gray-50 border border-gray-100 flex items-center px-4 gap-4">
-                                                    <div className="w-10 h-10 rounded-lg bg-gray-200" />
-                                                    <div className="flex-1 space-y-2">
-                                                        <div className="h-2 w-1/3 bg-gray-200 rounded-full" />
-                                                        <div className="h-2 w-1/4 bg-gray-100 rounded-full" />
+                                        {/* Activity List */}
+                                        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex-1 p-5 space-y-4 overflow-hidden relative">
+                                            <div className="text-sm font-bold text-slate-900 mb-2">Recent Activity</div>
+
+                                            {[
+                                                { company: 'Netflix', role: 'Senior Frontend Engineer', status: 'Interview Scheduled', time: '2m ago' },
+                                                { company: 'Spotify', role: 'Product Designer', status: 'Application Viewed', time: '1h ago' },
+                                                { company: 'Airbnb', role: 'Software Engineer', status: 'Applied', time: '4h ago' }
+                                            ].map((job, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    initial={{ x: -20, opacity: 0 }}
+                                                    animate={{ x: 0, opacity: 1 }}
+                                                    transition={{ delay: 1.5 + (i * 0.2) }}
+                                                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 cursor-pointer"
+                                                >
+                                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-xs font-bold text-gray-500 shrink-0">
+                                                        {job.company[0]}
                                                     </div>
-                                                </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-semibold text-slate-900 truncate">{job.role}</div>
+                                                        <div className="text-xs text-slate-500">{job.company} • {job.time}</div>
+                                                    </div>
+                                                    <div className="hidden sm:block">
+                                                        <span className="text-xs font-medium px-2 py-1 rounded-full bg-blue-50 text-blue-600">
+                                                            {job.status}
+                                                        </span>
+                                                    </div>
+                                                </motion.div>
                                             ))}
+
+                                            {/* Gradient overlay at bottom */}
+                                            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Floating Elements */}
+                        <motion.div
+                            animate={{ y: [-15, 15, -15] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -left-8 top-1/3 bg-white p-4 rounded-2xl shadow-glass-strong border border-white/50 z-30 hidden lg:block max-w-[200px]"
+                        >
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <CheckCircle2 className="w-5 h-5" />
+                                </div>
+                                <div className="text-sm font-bold text-slate-900">Offer!</div>
+                            </div>
+                            <div className="text-xs text-slate-500 leading-relaxed">
+                                "We'd like to offer you the Senior Developer role..."
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            animate={{ y: [20, -10, 20] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute -right-8 bottom-1/4 bg-white p-4 rounded-2xl shadow-glass-strong border border-white/50 z-30 hidden lg:block"
+                        >
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                    <FileText className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <div className="text-sm font-bold text-slate-900">Resume Score</div>
+                                    <div className="text-xs font-medium text-green-600">98/100 (Excellent)</div>
+                                </div>
+                            </div>
+                        </motion.div>
+
                     </motion.div>
                 </motion.div>
             </div>
