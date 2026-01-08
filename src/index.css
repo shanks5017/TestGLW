@@ -1,5 +1,128 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@theme {
+    --font-sans: 'Inter', 'Poppins', sans-serif;
+
+    --color-primary: #0052FF;
+    --color-primary-hover: #0040C1;
+    --color-primary-light: #EFF4FF;
+    --color-primary-dark: #003091;
+
+    --color-slate-900: #171717;
+    --color-slate-800: #1A1A1A;
+
+    --radius-pill: 1000px;
+    --radius-4xl: 32px;
+    --radius-5xl: 40px;
+
+    --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-fade-in-left: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-fade-in-right: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-scale-in: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-slide-in-down: slideInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-float: float 3s ease-in-out infinite;
+    --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+    --animate-gradient-x: gradient-x 3s ease infinite;
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes slideInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes gradient-x {
+
+        0%,
+        100% {
+            background-size: 200% 200%;
+            background-position: left center;
+        }
+
+        50% {
+            background-size: 200% 200%;
+            background-position: right center;
+        }
+    }
+
+    --backdrop-blur-xs: 2px;
+
+    --shadow-glow: 0 0 20px rgba(0, 82, 255, 0.3);
+    --shadow-glow-lg: 0 0 30px rgba(0, 82, 255, 0.4);
+    --shadow-professional: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-professional-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    --shadow-professional-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+
+    --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+    --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+    --background-image-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
