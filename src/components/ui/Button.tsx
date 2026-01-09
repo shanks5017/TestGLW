@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
-import { cn } from '../../utils/cn'; // Assuming utils/cn exists, if not I will create it. It's standard in these stacks.
-
-// Fallback if cn doesn't exist, I'll assume clsx + tailwind-merge is standard
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+// Simple cn utility if not imported
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'white';
@@ -15,9 +17,9 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', children, ...props }, ref) => {
     const variants = {
-      primary: 'bg-primary text-white hover:bg-primary-hover shadow-lg shadow-primary/30',
-      secondary: 'bg-primary-light text-primary hover:bg-white border border-transparent hover:border-primary/20',
-      outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
+      primary: 'bg-[#0047FF] text-white hover:bg-[#0037CC] shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40',
+      secondary: 'bg-[#EFF6FF] text-[#0047FF] hover:bg-white border border-transparent hover:border-[#0047FF]/20',
+      outline: 'border-2 border-[#0047FF] text-[#0047FF] hover:bg-[#0047FF] hover:text-white',
       ghost: 'bg-transparent text-slate-900 hover:bg-gray-100',
       white: 'bg-white text-slate-900 shadow-lg hover:bg-gray-50'
     };
@@ -35,7 +37,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
         className={cn(
-          'relative inline-flex items-center justify-center font-semibold rounded-pill transition-colors',
+          'relative inline-flex items-center justify-center font-bold rounded-full transition-all duration-200',
           variants[variant],
           sizes[size],
           className

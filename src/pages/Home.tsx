@@ -36,15 +36,17 @@ export function Home() {
       <Hero />
 
       {/* Social Proof Strip - Light */}
-      <Section className="py-12 border-y border-gray-100 bg-gray-50/30" delay={0.2}>
-        <p className="text-center text-sm text-slate-400 mb-8 uppercase tracking-widest font-semibold">Trusted by students from</p>
-        <div className="flex flex-wrap justify-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          {/* Using text for now, should be logos */}
-          <span className="text-xl font-bold text-slate-900">MIT</span>
-          <span className="text-xl font-bold text-slate-900">Stanford</span>
-          <span className="text-xl font-bold text-slate-900">Oxford</span>
-          <span className="text-xl font-bold text-slate-900">UCL</span>
-          <span className="text-xl font-bold text-slate-900">Berkeley</span>
+      <Section className="py-12 border-y border-gray-100 bg-gray-50/30" delay={0.2} width="full">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-slate-400 mb-8 uppercase tracking-widest font-semibold">Trusted by students from</p>
+          <div className="flex flex-wrap justify-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            {/* Using text for now, should be logos */}
+            <span className="text-xl font-bold text-slate-900">MIT</span>
+            <span className="text-xl font-bold text-slate-900">Stanford</span>
+            <span className="text-xl font-bold text-slate-900">Oxford</span>
+            <span className="text-xl font-bold text-slate-900">UCL</span>
+            <span className="text-xl font-bold text-slate-900">Berkeley</span>
+          </div>
         </div>
       </Section>
 

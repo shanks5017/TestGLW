@@ -4,15 +4,18 @@
     --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     /* Premium Corporate Palette */
-    --color-primary: #2563EB;
-    /* Royal Blue */
-    --color-primary-hover: #1D4ED8;
+    --color-primary: #0047FF;
+    /* Action Blue */
+    --color-primary-hover: #0037CC;
     --color-primary-light: #EFF6FF;
-    --color-primary-dark: #1E40AF;
+    --color-primary-dark: #002db3;
 
     --color-secondary: #0F172A;
     /* Slate 900 */
     --color-accent: #3B82F6;
+
+    --color-surface: #F8FAFF;
+    --color-surface-hover: #F1F5F9;
 
     --color-slate-900: #0F172A;
     --color-slate-800: #1E293B;

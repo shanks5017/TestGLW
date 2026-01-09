@@ -1,46 +1,69 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 export const Preloader = () => {
-    const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
+    const [isLoading, setIsLoading] = useState(location.pathname === '/');
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-    // Only show on home page
-    const shouldShow = location.pathname === '/';
+    // Tracks if the component has just mounted (Page Load/Refresh)
+    const isPageLoad = useRef(true);
 
     useEffect(() => {
-        if (!shouldShow) {
+        // Only trigger on Home page
+        if (location.pathname === '/') {
+            setIsLoading(true);
+
+            if (isPageLoad.current) {
+                // Case 1: Refresh or First Visit -> Instant Appearance
+                setIsInitialLoad(true);
+                isPageLoad.current = false;
+            } else {
+                // Case 2: Internal Navigation -> Slide Up Animation
+                setIsInitialLoad(false);
+            }
+
+            // Timer to dismiss preloader - increased to accommodate slower animations
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 4500);
+
+            return () => clearTimeout(timer);
+        } else {
+            // If starting on another page or navigating away
             setIsLoading(false);
-            return;
+            isPageLoad.current = false;
         }
+    }, [location.pathname]);
 
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 3500);
+    // Conditional Variants based on load type
+    const pageVariants = {
+        initial: isInitialLoad
+            ? { x: 0, opacity: 1 } // Standard initial load (just appears)
+            : { y: '100%', opacity: 1 }, // Slide up from bottom on revisit
 
-        return () => clearTimeout(timer);
-    }, [shouldShow]);
+        animate: isInitialLoad
+            ? { x: 0, opacity: 1 }
+            : { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
 
-    if (!shouldShow) return null;
-
-    const letterVariants = {
-        hidden: { opacity: 0, x: -10 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+        exit: {
+            x: '100%', // Always slide out right
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const }
         }
     };
+
+    // Delays for inner content (wait for slide up if not initial load)
+    const contentDelay = isInitialLoad ? 0 : 0.6;
 
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.05,
-                delayChildren: 0.5
+                staggerChildren: 0.1, // Slower stagger
+                delayChildren: contentDelay + 0.5
             }
         }
     };
@@ -50,18 +73,23 @@ export const Preloader = () => {
             {isLoading && (
                 <motion.div
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-primary"
-                    initial={{ opacity: 1 }}
-                    exit={{
-                        y: '-100%',
-                        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] }
-                    }}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={pageVariants}
                 >
                     <div className="flex items-center gap-6 relative px-4">
-                        {/* Logo - Balanced White Circle (p-3) - "Proper" look */}
+                        {/* Logo */}
                         <motion.div
                             initial={{ scale: 0, opacity: 0, rotate: -45 }}
                             animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut", type: "spring", bounce: 0.4 }}
+                            transition={{
+                                duration: 1.5, // Slower icon
+                                ease: "easeOut",
+                                type: "spring",
+                                bounce: 0.4,
+                                delay: contentDelay
+                            }}
                             className="bg-white rounded-full p-3 shadow-2xl z-10 w-24 h-24 flex items-center justify-center"
                         >
                             <img
@@ -71,7 +99,7 @@ export const Preloader = () => {
                             />
                         </motion.div>
 
-                        {/* Text - Large, Bold, Emerging */}
+                        {/* Text */}
                         <motion.div
                             className="flex items-baseline overflow-hidden"
                             variants={containerVariants}
@@ -81,7 +109,17 @@ export const Preloader = () => {
                             {Array.from("GetLanded").map((char, index) => (
                                 <motion.span
                                     key={index}
-                                    variants={letterVariants}
+                                    variants={{
+                                        hidden: { opacity: 0, x: -20 },
+                                        visible: {
+                                            opacity: 1,
+                                            x: 0,
+                                            transition: {
+                                                duration: 0.8, // Slower letters
+                                                ease: [0.22, 1, 0.36, 1] as const,
+                                            }
+                                        }
+                                    }}
                                     className="text-5xl md:text-7xl font-bold text-white tracking-tight"
                                 >
                                     {char}
@@ -94,7 +132,7 @@ export const Preloader = () => {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.6 }}
-                        transition={{ delay: 1.5, duration: 0.5 }}
+                        transition={{ delay: contentDelay + 2.0, duration: 0.5 }}
                         className="absolute bottom-12 text-white/50 font-medium tracking-[0.4em] uppercase text-xs"
                     >
                         Loading Experience
