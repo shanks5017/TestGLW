@@ -22,6 +22,7 @@ export const FloatingNavbar = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
+        { name: 'Product', path: '/product' },
         { name: 'About', path: '/about' },
         { name: 'Pricing', path: '/pricing' },
         { name: 'Blog', path: '/blog' },
