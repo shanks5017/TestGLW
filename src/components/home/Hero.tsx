@@ -189,16 +189,41 @@ export function Hero() {
                 </div>
             </div>
 
-            {/* Bottom Banner Area - "JOB SEARCH" */}
-            <div className="w-full bg-[#0047FF] h-[300px] mt-[-80px] relative overflow-hidden flex items-end justify-center rounded-t-[4rem] z-0">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+            {/* Bottom Banner Area - Infinite Marquee */}
+            <div className="max-w-7xl mx-auto px-6 w-full mt-[-80px] relative z-0">
+                <div className="w-full bg-[#0047FF] h-[280px] relative overflow-hidden flex items-center rounded-t-[3rem]">
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
 
-                {/* Decorative Glows */}
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500 rounded-full blur-[120px] opacity-40 mix-blend-multiply" />
+                    {/* Decorative Glows */}
+                    <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-400 rounded-full blur-[120px] opacity-40 mix-blend-overlay" />
 
-                <h2 className="relative z-10 text-[13vw] font-bold text-white/10 tracking-widest pointer-events-none select-none whitespace-nowrap leading-none text-center transform translate-y-[20%]">
-                    JOB SEARCH
-                </h2>
+                    {/* Marquee Container */}
+                    <div className="relative w-full overflow-hidden py-10">
+                        <motion.div
+                            className="flex whitespace-nowrap"
+                            animate={{ x: "-50%" }}
+                            transition={{
+                                repeat: Infinity,
+                                ease: "linear",
+                                duration: 30
+                            }}
+                        >
+                            {/* Repeated Text Block for Seamless Loop */}
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="flex items-center gap-8 mx-4">
+                                    <span className="text-[10vw] font-bold text-white/10 tracking-wider leading-none select-none">
+                                        GETLANDED
+                                    </span>
+                                    <div className="w-4 h-4 rounded-full bg-white/10" />
+                                    <span className="text-[10vw] font-bold text-white/10 tracking-wider leading-none select-none">
+                                        YOUR AI CAREER COPILOT
+                                    </span>
+                                    <div className="w-4 h-4 rounded-full bg-white/10" />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
             </div>
         </section>
     );
