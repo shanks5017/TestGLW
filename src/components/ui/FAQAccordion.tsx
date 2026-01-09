@@ -34,27 +34,27 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
           viewport={{ once: true }}
           transition={{ delay: i * 0.1 }}
           className={cn(
-            "rounded-3xl border transition-all duration-300 overflow-hidden bg-white",
+            "rounded-2xl border transition-all duration-300 overflow-hidden bg-white",
             openItems.includes(faq.id)
-              ? "border-primary/20 shadow-professional ring-1 ring-primary/5"
-              : "border-gray-100 hover:border-blue-100 hover:bg-gray-50/50"
+              ? "border-[#0047FF] shadow-md ring-1 ring-blue-500/10"
+              : "border-slate-100 hover:border-slate-200 hover:bg-slate-50/50"
           )}
         >
           <button
             onClick={() => toggleItem(faq.id)}
-            className="w-full text-left p-6 md:p-8 focus:outline-none flex items-center justify-between group"
+            className="w-full text-left p-6 focus:outline-none flex items-center justify-between group"
           >
             <h3 className={cn(
-              "text-lg md:text-xl font-bold pr-8 transition-colors",
-              openItems.includes(faq.id) ? "text-primary" : "text-slate-900 group-hover:text-primary"
+              "text-lg font-bold pr-8 transition-colors",
+              openItems.includes(faq.id) ? "text-[#0047FF]" : "text-slate-900 group-hover:text-[#0047FF]"
             )}>
               {faq.question}
             </h3>
             <div className={cn(
-              "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300",
-              openItems.includes(faq.id) ? "bg-primary text-white rotate-180" : "bg-gray-100 text-gray-500 group-hover:bg-primary/10 group-hover:text-primary"
+              "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",
+              openItems.includes(faq.id) ? "bg-[#0047FF] text-white rotate-180" : "bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-[#0047FF]"
             )}>
-              <ChevronDown className="w-5 h-5" />
+              <ChevronDown className="w-4 h-4" />
             </div>
           </button>
 
