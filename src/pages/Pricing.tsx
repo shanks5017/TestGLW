@@ -1,251 +1,524 @@
-import React from 'react';
+import  { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, HelpCircle, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Check, X, Shield, CreditCard, Calendar } from 'lucide-react';
 import { cn } from '../utils/cn';
-import { Button } from '../components/ui/Button';
 
+// 3 Plans matching Fizens structure with GetLanded content
 const plans = [
   {
-    name: "Job Seeker",
-    price: "$0",
-    period: "/mo",
-    description: "Essential tools to start your search.",
+    name: "Free Beta",
+    tag: "Starter Plan",
+    price: { monthly: "$0", yearly: "$0" },
+    period: "/during beta",
+    description: "Perfect for trying things out.",
     features: [
-      "Unlimited Application Tracking",
-      "1 Resume Builder",
-      "3 AI Resume Scans/mo"
+      "Track up to 25 applications",
+      "Resume fit scoring",
+      "Visa sponsorship insights",
+      "One-click job saving",
+      "Basic deadline tracking"
     ],
-    popular: false,
-    btnText: "Start Free",
-    btnVariant: "outline"
+    badge: null,
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    btnStyle: "outlined"
   },
   {
-    name: "Pro Career",
-    price: "$29",
-    period: "/mo",
-    description: "Accelerate your job hunt.",
+    name: "Pro",
+    tag: "Standard Plan",
+    price: { monthly: "$12", yearly: "$10" },
+    originalPrice: "$19",
+    period: "/month",
+    description: "When you're serious about landing something.",
     features: [
-      "Unlimited Resume Builder",
-      "Unlimited AI Scans",
-      "Cover Letter Generator",
-      "LinkedIn Optimization"
+      "Everything in Free",
+      "Unlimited job tracking",
+      "AI resume optimization",
+      "AI cover letter generator",
+      "Priority support"
     ],
-    popular: true,
-    btnText: "Get Pro",
-    btnVariant: "secondary"
+    badge: "Popular",
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    btnStyle: "primary"
   },
   {
-    name: "Coaching",
-    price: "$99",
-    period: "/mo",
-    description: "Expert guidance & mock interviews.",
+    name: "Pro Plus",
+    tag: "Advanced Plan",
+    price: { monthly: "$29", yearly: "$24" },
+    period: "/month",
+    description: "For power users who want it all.",
     features: [
       "Everything in Pro",
-      "Dedicated Career Coach",
-      "2 Mock Interviews/mo",
-      "Priority Support"
+      "Mock interview practice",
+      "Advanced job matching",
+      "Career coach access",
+      "White-glove support"
     ],
-    popular: false,
-    btnText: "Get Coached",
-    btnVariant: "outline"
+    badge: "Best Choice",
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    btnStyle: "outlined"
   }
 ];
 
-const featuresList = [
-  { name: "Application Tracking", starter: "Unlimited", standard: "Unlimited", advanced: "Unlimited" },
-  { name: "Resume Builder", starter: "1 Resume", standard: "Unlimited", advanced: "Unlimited" },
-  { name: "AI Resume Scans", starter: "3/mo", standard: "Unlimited", advanced: "Unlimited" },
-  { name: "Cover Letter Generator", starter: false, standard: true, advanced: true },
-  { name: "LinkedIn Optimization", starter: false, standard: true, advanced: true },
-  { name: "Priority Support", starter: false, standard: true, advanced: true },
-  { name: "Dedicated Coach", starter: false, standard: false, advanced: true },
-  { name: "Mock Interviews", starter: false, standard: false, advanced: "2/mo" },
+// Compare Plans - Grouped categories like Fizens
+const comparisonGroups = [
+  {
+    category: "Core Features",
+    features: [
+      { name: "Job Application Tracking", starter: "25 max", standard: "Unlimited", advance: "Unlimited" },
+      { name: "Resume Fit Scoring", starter: true, standard: true, advance: true },
+      { name: "Visa Sponsorship Insights", starter: true, standard: true, advance: true },
+      { name: "One-Click Job Saving", starter: true, standard: true, advance: true },
+    ]
+  },
+  {
+    category: "Advanced Features",
+    features: [
+      { name: "AI Resume Optimization", starter: false, standard: true, advance: true },
+      { name: "AI Cover Letter Generator", starter: false, standard: true, advance: true },
+      { name: "Mock Interview Practice", starter: false, standard: false, advance: true },
+      { name: "Advanced Job Matching", starter: false, standard: false, advance: true },
+      { name: "Career Coach Access", starter: false, standard: false, advance: true },
+    ]
+  },
+  {
+    category: "Support & Pricing",
+    features: [
+      { name: "Priority Support", starter: false, standard: true, advance: true },
+      { name: "White-Glove Support", starter: false, standard: false, advance: true },
+      { name: "Monthly Price", starter: "$0", standard: "$12", advance: "$29" },
+      { name: "Annually Price", starter: "$0", standard: "$10/mo", advance: "$24/mo" },
+    ]
+  }
+];
+
+// Testimonials
+const testimonials = [
+  { name: "Sarah Chen", uni: "Stanford CS '25", quote: "GetLanded helped me track 47 applications and land 3 offers.", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" },
+  { name: "Marcus Johnson", uni: "MIT EECS '24", quote: "The resume scoring feature boosted my response rate from 2% to 18%.", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus" },
+  { name: "Emma Rodriguez", uni: "UC Berkeley '25", quote: "As an international student, the visa filter is a game-changer.", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma" }
 ];
 
 export function Pricing() {
-  const [isYearly, setIsYearly] = React.useState(false);
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const tableRowReveal = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <div className="bg-white pt-20 pb-20">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <div className="bg-white min-h-screen pt-32 pb-24 relative overflow-hidden">
 
-        {/* Header */}
-        <div className="text-center mb-16 pt-16">
+      {/* Exact Fizens Grid Background */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0, 64, 193, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 64, 193, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          maskImage: 'radial-gradient(ellipse at center, black, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black, transparent 80%)'
+        }}
+      />
+
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+
+        {/* Header - Exact Fizens Replica */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold text-[#171717] mb-6 tracking-tight"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[64px] font-normal leading-tight tracking-[-0.03em] mb-4"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            Invest in your <span className="text-[#0040C1]">Future</span>
+            <span className="text-[#171717]">Pricing</span> <span className="text-[#0040C1]">Plans</span>
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+
+          {/* Blue Plus Icon */}
+          <motion.div
+            variants={fadeInUp}
             transition={{ delay: 0.1 }}
-            className="text-xl text-gray-500 mb-8"
+            className="flex justify-center mb-6"
           >
-            Transparent pricing. No hidden fees. Cancel anytime.
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0040C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </motion.div>
+
+          <motion.p
+            variants={fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="text-[18px] text-[#171717] font-normal mb-10 max-w-2xl mx-auto"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            No hidden fees. No fake discounts. No gotchas.
           </motion.p>
 
-          {/* Toggle */}
-          <div className="flex items-center justify-center gap-4 mb-20">
-            <span className={cn("text-sm font-semibold", !isYearly ? "text-[#171717]" : "text-gray-400")}>Monthly</span>
+          {/* Toggle - Fizens Tab Style */}
+          <motion.div
+            variants={fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-8"
+          >
             <button
-              onClick={() => setIsYearly(!isYearly)}
-              className="w-16 h-8 rounded-full bg-gray-100 p-1 relative transition-colors hover:bg-gray-200"
+              onClick={() => setBillingCycle('monthly')}
+              className={cn(
+                "text-base font-medium pb-2 border-b-2 transition-all duration-300",
+                billingCycle === 'monthly'
+                  ? "text-[#0047FF] border-[#0047FF]"
+                  : "text-[#999] border-transparent hover:text-[#666]"
+              )}
             >
-              <div className={cn(
-                "w-6 h-6 rounded-full bg-white shadow-sm transition-transform duration-300",
-                isYearly ? "translate-x-8" : "translate-x-0"
-              )} />
+              Monthly
             </button>
-            <span className={cn("text-sm font-semibold flex items-center gap-2", isYearly ? "text-[#171717]" : "text-gray-400")}>
+            <button
+              onClick={() => setBillingCycle('yearly')}
+              className={cn(
+                "text-base font-medium pb-2 border-b-2 transition-all duration-300 flex items-center gap-2",
+                billingCycle === 'yearly'
+                  ? "text-[#0047FF] border-[#0047FF]"
+                  : "text-[#999] border-transparent hover:text-[#666]"
+              )}
+            >
               Yearly
-              <span className="bg-pink-100 text-pink-600 text-xs px-2 py-0.5 rounded-full font-bold">-20%</span>
-            </span>
-          </div>
-        </div>
+              <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#FFE1F0', color: '#FF0096' }}>-20%</span>
+            </button>
+          </motion.div>
+        </motion.div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+        {/* 3 Pricing Cards - Fizens Layout */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto mb-32"
+        >
           {plans.map((plan, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className={cn(
-                "relative p-8 rounded-[40px] border flex flex-col items-start min-h-[500px]",
-                plan.popular
-                  ? "bg-gradient-to-b from-[#EFF4FF] to-white border-blue-200 shadow-xl shadow-blue-500/10"
-                  : "bg-white border-gray-100 hover:shadow-lg transition-shadow"
-              )}
+              variants={fadeInUp}
+              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.3 } }}
+              className="flex flex-col overflow-hidden cursor-pointer"
+              style={{
+                borderRadius: '24px',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.05)',
+              }}
             >
-              {plan.popular && (
-                <div className="absolute top-0 right-0 p-8">
-                  <span className="bg-[#0040C1] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
-                </div>
-              )}
+              {/* Gradient Header */}
+              <div
+                className="relative p-8 text-white min-h-[180px] flex flex-col justify-between"
+                style={{ background: plan.gradient }}
+              >
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl translate-x-1/3 -translate-y-1/3" />
 
-              <div className="mb-8 w-full">
-                <h3 className="text-xl font-bold text-[#171717] mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-5xl font-bold text-[#171717]">
-                    {isYearly && plan.price !== "$0"
-                      ? "$" + (parseInt(plan.price.replace("$", "")) * 12 * 0.8).toFixed(0)
-                      : plan.price}
-                  </span>
-                  <span className="text-gray-400 text-lg">{isYearly && plan.price !== "$0" ? "/year" : plan.period}</span>
+                <div className="relative z-10">
+                  {/* Tag/Badge Row */}
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                      <span className="text-sm font-medium opacity-90">{plan.tag}</span>
+                    </div>
+                    {plan.badge && (
+                      <span className="text-[10px] font-bold uppercase tracking-widest bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                        {plan.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Price */}
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-6xl font-bold tracking-tight">
+                      {billingCycle === 'yearly' ? plan.price.yearly : plan.price.monthly}
+                    </span>
+                    {plan.originalPrice && billingCycle === 'monthly' && (
+                      <span className="text-lg text-white/50 line-through">{plan.originalPrice}</span>
+                    )}
+                    <span className="text-base text-white/80">{plan.period}</span>
+                  </div>
                 </div>
-                <p className="text-gray-500 font-medium mb-6">{plan.description}</p>
-                <ul className="space-y-3 mb-8">
+              </div>
+
+              {/* White Body - Fizens #F2F4F8 */}
+              <div className="flex-1 flex flex-col p-8" style={{ backgroundColor: '#F2F4F8' }}>
+                <p className="text-[#666] mb-8 text-[15px] font-medium leading-relaxed">{plan.description}</p>
+
+                <ul className="space-y-4 mb-10 flex-1">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm text-gray-600">
-                      <div className={cn(
-                        "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
-                        plan.popular ? "bg-blue-100 text-[#0040C1]" : "bg-gray-100 text-gray-400"
-                      )}>
-                        <Check className="w-3 h-3" />
+                    <li key={idx} className="flex items-center gap-4">
+                      <div
+                        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: plan.badge === 'Popular' ? '#0040C1' : '#CBD5E1' }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
                       </div>
-                      {feature}
+                      <span className="text-[15px] text-[#374151] font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
 
-              <div className="mt-auto w-full">
-                <Button
-                  variant={plan.btnVariant as any}
-                  className="w-full text-base py-4 mb-4"
+                <button
+                  className={cn(
+                    "w-full h-[56px] font-bold text-[16px] transition-all duration-300",
+                    plan.btnStyle === 'primary'
+                      ? "text-white hover:opacity-95"
+                      : "bg-transparent border-2 text-[#0040C1] hover:bg-[#0040C1] hover:text-white"
+                  )}
+                  style={{
+                    borderRadius: '40px',
+                    backgroundColor: plan.btnStyle === 'primary' ? '#0040C1' : 'transparent',
+                    borderColor: '#0040C1',
+                    boxShadow: plan.btnStyle === 'primary' ? '0px 4px 10px rgba(0, 64, 193, 0.2)' : 'none'
+                  }}
                 >
-                  {plan.btnText}
-                </Button>
-                <div className="text-center text-xs text-gray-400 font-medium">No credit card required</div>
+                  Get Started Now
+                </button>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Comparison Table */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-bold text-[#171717] text-center mb-16">Compare Features</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-gray-100">
-                  <th className="py-6 px-4 text-gray-400 font-medium w-1/3">Features</th>
-                  <th className="py-6 px-4 text-[#171717] font-bold text-center w-1/5">Job Seeker</th>
-                  <th className="py-6 px-4 text-[#0040C1] font-bold text-center w-1/5">Pro Career</th>
-                  <th className="py-6 px-4 text-[#171717] font-bold text-center w-1/5">Coaching</th>
-                </tr>
-              </thead>
-              <tbody>
-                {featuresList.map((row, i) => (
-                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                    <td className="py-6 px-4 font-semibold text-[#171717]">{row.name}</td>
-                    <td className="py-6 px-4 text-center">
-                      {row.starter === true ? <Check className="w-5 h-5 mx-auto text-[#0040C1]" /> : row.starter === false ? <span className="w-4 h-0.5 bg-gray-200 block mx-auto" /> : <span className="font-medium text-gray-600">{row.starter}</span>}
-                    </td>
-                    <td className="py-6 px-4 text-center">
-                      {row.standard === true ? <Check className="w-5 h-5 mx-auto text-[#0040C1]" /> : row.standard === false ? <span className="w-4 h-0.5 bg-gray-200 block mx-auto" /> : <span className="font-medium text-gray-600">{row.standard}</span>}
-                    </td>
-                    <td className="py-6 px-4 text-center">
-                      {row.advanced === true ? <Check className="w-5 h-5 mx-auto text-[#0040C1]" /> : row.advanced === false ? <span className="w-4 h-0.5 bg-gray-200 block mx-auto" /> : <span className="font-medium text-gray-600">{row.advanced}</span>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Compare Plans - Exact Fizens Replication */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-32 max-w-[1296px] mx-auto overflow-hidden"
+          style={{
+            backgroundColor: '#F5FAFF', // Exactly from subagent
+            borderRadius: '24px',
+            padding: '40px'
+          }}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-[56px] font-bold text-[#171717] tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              Compare <span className="text-[#0040C1]">Plans</span>
+            </h2>
+          </div>
+
+          {/* Table Header Capsule */}
+          <div
+            className="grid grid-cols-4 gap-4 mb-4 items-center"
+            style={{
+              backgroundColor: '#D0D9F3', // Exactly from subagent
+              borderRadius: '40px',
+              height: '72px',
+              padding: '0 32px'
+            }}
+          >
+            <div className="text-[#0040C1] opacity-60 font-semibold text-xs uppercase tracking-[0.1em]" style={{ fontFamily: "'Poppins', sans-serif" }}></div>
+            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Starter</div>
+            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Standard</div>
+            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Advance</div>
+          </div>
+
+          <div className="space-y-2">
+            {comparisonGroups.map((group, gi) => (
+              <div key={gi} className="mt-12 first:mt-0">
+                {/* Category Header */}
+                <div className="font-medium text-[20px] text-[#171717] mb-6 px-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  {group.category}
+                </div>
+
+                {/* Features with Staggered Entrance */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={{
+                    visible: { transition: { staggerChildren: 0.05 } }
+                  }}
+                  className="space-y-0"
+                >
+                  {group.features.map((row, ri) => (
+                    <motion.div
+                      key={ri}
+                      variants={tableRowReveal}
+                      className="grid grid-cols-4 gap-4 items-center px-8"
+                      style={{
+                        height: '64px', // Exactly from subagent
+                        borderBottom: '1px solid #E5E7EB'
+                      }}
+                    >
+                      <div className="text-[#374151] text-[18px] leading-[28px] font-normal" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.name}</div>
+
+                      <div className="flex justify-center">
+                        {row.starter === true ? (
+                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
+                          </div>
+                        ) : row.starter === false ? (
+                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
+                        ) : (
+                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.starter}</span>
+                        )}
+                      </div>
+
+                      <div className="flex justify-center">
+                        {row.standard === true ? (
+                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
+                          </div>
+                        ) : row.standard === false ? (
+                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
+                        ) : (
+                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.standard}</span>
+                        )}
+                      </div>
+
+                      <div className="flex justify-center">
+                        {row.advance === true ? (
+                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
+                          </div>
+                        ) : row.advance === false ? (
+                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
+                        ) : (
+                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.advance}</span>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Table Buttons */}
+          <div className="grid grid-cols-4 gap-4 mt-12 px-8">
+            <div />
+            <div className="flex justify-center">
+              <button
+                className="h-[48px] px-8 text-[16px] font-bold border border-[#0040C1] text-[#0040C1] hover:bg-[#0040C1] hover:text-white transition-all"
+                style={{ borderRadius: '40px' }}
+              >
+                Choose Plan
+              </button>
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="h-[48px] px-8 text-[16px] font-bold text-white transition-all hover:opacity-90"
+                style={{ borderRadius: '40px', backgroundColor: '#0040C1', boxShadow: '0 4px 10px rgba(0, 64, 193, 0.2)' }}
+              >
+                Choose Plan
+              </button>
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="h-[48px] px-8 text-[16px] font-bold border border-[#0040C1] text-[#0040C1] hover:bg-[#0040C1] hover:text-white transition-all"
+                style={{ borderRadius: '40px' }}
+              >
+                Choose Plan
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Testimonials - Matching Fizens Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-32 max-w-[1200px] mx-auto"
+        >
+          <h2 className="text-[48px] font-bold text-center mb-4 tracking-tight">
+            What students <span className="text-[#0040C1]">say</span>
+          </h2>
+          <p className="text-center text-[#666] text-xl mb-16">Real stories from students who landed offers.</p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-10 hover:shadow-2xl transition-all duration-500"
+                style={{ borderRadius: '24px', border: '1px solid #F0F0F0' }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full bg-[#F2F4F8]" />
+                  <div>
+                    <h4 className="font-bold text-[18px] text-[#171717]">{t.name}</h4>
+                    <p className="text-sm font-medium text-[#999]">{t.uni}</p>
+                  </div>
+                </div>
+                <p className="text-[#374151] text-[16px] leading-relaxed font-normal">"{t.quote}"</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Trust Badges */}
+        <div className="flex flex-wrap justify-center gap-6 mb-24">
+          <div className="flex items-center gap-3 px-6 py-3" style={{ backgroundColor: '#ECFDF5', borderRadius: '1000px', border: '1px solid #A7F3D0' }}>
+            <Shield className="w-5 h-5 text-[#059669]" />
+            <span className="text-sm font-bold text-[#047857]">Student Discount Available</span>
+          </div>
+          <div className="flex items-center gap-3 px-6 py-3" style={{ backgroundColor: '#EFF6FF', borderRadius: '1000px', border: '1px solid #BFDBFE' }}>
+            <CreditCard className="w-5 h-5 text-[#2563EB]" />
+            <span className="text-sm font-bold text-[#1D4ED8]">No Credit Card Required</span>
+          </div>
+          <div className="flex items-center gap-3 px-6 py-3" style={{ backgroundColor: '#F5F3FF', borderRadius: '1000px', border: '1px solid #DDD6FE' }}>
+            <Calendar className="w-5 h-5 text-[#7C3AED]" />
+            <span className="text-sm font-bold text-[#6D28D9]">Cancel Anytime</span>
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto mb-32">
-          <h2 className="text-3xl font-bold text-[#171717] text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            <div className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 cursor-pointer">
-              <h3 className="font-bold text-[#171717] mb-2 text-lg">Can I cancel my subscription?</h3>
-              <p className="text-gray-500">Yes, you can cancel your subscription at any time. Your access will continue until the end of your current billing period.</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 cursor-pointer">
-              <h3 className="font-bold text-[#171717] mb-2 text-lg">Is there a free trial?</h3>
-              <p className="text-gray-500">We offer a Free Forever plan that gives you access to essential features. You can upgrade to Pro or Coaching anytime without losing your data.</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 cursor-pointer">
-              <h3 className="font-bold text-[#171717] mb-2 text-lg">How does the AI resume scan work?</h3>
-              <p className="text-gray-500">Our AI analyzes your resume against job descriptions to identify keywords, formatting issues, and improvement areas to increase your ATS score.</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 cursor-pointer">
-              <h3 className="font-bold text-[#171717] mb-2 text-lg">Can I switch plans?</h3>
-              <p className="text-gray-500">Absolutely. You can upgrade or downgrade your plan instantly from your dashboard settings. Prorated charges may apply for upgrades.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust Signals */}
-        <div className="text-center mb-24 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 text-green-700 text-sm font-bold mb-6">
-            <CheckCircle2 className="w-4 h-4" />
-            14-Day Money-Back Guarantee
-          </div>
-          <h2 className="text-3xl font-bold text-[#171717] mb-4">Try Pro Career Risk-Free</h2>
-          <p className="text-gray-500 text-lg">
-            We are confident GetLanded will help you speed up your job search. If you are not satisfied with the Pro plan within 14 days, we will refund your payment.
-          </p>
-        </div>
-
-        {/* CTA Banner */}
-        <div className="rounded-[48px] bg-[#0040C1] p-12 md:p-24 text-center relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">Ready to land your dream job?</h2>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-white text-[#0040C1] rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all">Get Started Free</button>
-            </div>
-          </div>
-          {/* Abstract Circles */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        {/* CTA Banner - Full Fizens Style */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="text-center relative overflow-hidden p-24"
+          style={{
+            background: 'linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)',
+            borderRadius: '48px'
+          }}
+        >
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-        </div>
+
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-[64px] font-bold text-white mb-10 leading-tight tracking-tight">
+              Ready to land your dream job?
+            </h2>
+            <button
+              className="text-[#0040C1] px-12 py-5 font-bold text-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '40px',
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              Get Started Free
+            </button>
+          </div>
+        </motion.div>
 
       </div>
     </div>
