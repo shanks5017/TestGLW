@@ -14,6 +14,8 @@ import { Waitlist } from './pages/Waitlist';
 import { Dashboard } from './pages/Dashboard';
 
 // ScrollToTop component to reset scroll on route change
+import { Preloader } from './components/ui/Preloader';
+
 function ScrollToTopWrapper() {
   const { pathname } = useLocation();
 
@@ -27,6 +29,7 @@ function ScrollToTopWrapper() {
 function App() {
   return (
     <Router>
+      <Preloader />
       <ScrollToTopWrapper />
       <Routes>
         {/* Public routes with layout */}

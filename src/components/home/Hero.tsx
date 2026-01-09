@@ -1,181 +1,229 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '../ui/Button';
-import { cn } from '../../utils/cn';
-import { CheckCircle2, Calendar, LayoutDashboard, Briefcase, FileText, Settings } from 'lucide-react';
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-};
+import { Briefcase, ArrowUpRight, Search, FileText, Globe } from 'lucide-react';
 
 export function Hero() {
     return (
-        <section className="relative pt-40 pb-32 overflow-hidden bg-white selection:bg-[#EFF4FF] selection:text-[#0040C1]">
-            {/* Fizens Background Style: Clean white with deeply blurred ambient orbs */}
-            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[100vw] h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/80 via-white to-white -z-20 opacity-70 pointer-events-none" />
+        <section className="relative pt-28 pb-0 overflow-hidden bg-white selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col justify-between">
+            {/* Background Grid - Fizens Style */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
-            <div className="max-w-[1200px] mx-auto px-6 relative z-10 text-center">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="flex flex-col items-center"
-                >
-                    {/* Pill Badge */}
+            {/* Main Content Area */}
+            <div className="max-w-7xl mx-auto px-6 relative z-10 flex-grow w-full">
+
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center h-full pt-10 relative">
+
+                    {/* Left Column: Headline (Span 5) */}
                     <motion.div
-                        variants={itemVariants}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EFF4FF] text-[#0040C1] text-sm font-semibold mb-8"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="lg:col-span-5 flex flex-col items-start text-left relative z-20"
                     >
-                        <span className="w-2 h-2 rounded-full bg-[#0040C1] animate-pulse" />
-                        #1 Career Platform
+                        {/* Reduced Size to Fit: 64px max for longer copy */}
+                        <h1 className="text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mb-8">
+                            Your AI copilot <br />
+                            for the modern <br />
+                            <span className="text-slate-400">student job search</span>
+                        </h1>
+
+                        {/* Decorative Line */}
+                        <div className="h-px w-20 bg-slate-200 mt-2" />
                     </motion.div>
 
-                    {/* Headline - Big, Bold, Tight Tracking */}
-                    <motion.h1
-                        variants={itemVariants}
-                        className="text-6xl md:text-8xl font-bold text-[#171717] mb-8 tracking-tight leading-[1.05]"
-                    >
-                        Land your <br />
-                        <span className="text-[#0040C1]">Dream Job.</span>
-                    </motion.h1>
-
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
-                    >
-                        The ultimate career acceleration platform. Track applications, optimize resumes, and get hired faster.
-                    </motion.p>
-
+                    {/* Center Column: Phone Mockup (Span 3) - Sleeker Frame */}
                     <motion.div
-                        variants={itemVariants}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24"
+                        initial={{ opacity: 0, y: 100, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+                        className="lg:col-span-3 relative flex justify-center z-30 mt-12 lg:mt-0"
                     >
-                        {/* Primary Button */}
-                        {/* Primary Button */}
-                        <Link to="/waitlist">
-                            <Button variant="primary" size="md">
-                                Get Started Free
-                            </Button>
-                        </Link>
+                        <div className="relative w-[280px] md:w-[300px] aspect-[9/19] bg-[#0c0c0c] rounded-[3rem] p-2 shadow-2xl ring-1 ring-black/5 transform rotate-[-6deg] hover:rotate-0 transition-transform duration-700">
+                            {/* Inner Bezel & Screen - Thinner borders for 'Pro' look */}
+                            <div className="w-full h-full bg-slate-900 rounded-[2.5rem] overflow-hidden border-[4px] border-[#1a1a1a] relative ring-1 ring-white/10">
+                                {/* Dynamic Island */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 h-6 w-24 bg-black rounded-b-2xl z-30" />
 
-                        {/* Secondary style */}
-                        {/* Secondary style */}
-                        <Link to="/pricing">
-                            <Button variant="outline" size="md" className="border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
-                                View Pricing
-                            </Button>
-                        </Link>
-                    </motion.div>
-
-                    {/* Device Mockup - Fizens Style: "iPhone" frame with high radius */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="relative w-full max-w-[1000px] mx-auto"
-                    >
-                        {/* Decor Elements */}
-                        <div className="absolute -left-12 top-20 bg-white/90 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-xl shadow-black/5 animate-float hidden md:block z-20">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                    <Calendar className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-bold text-[#171717]">Interview Scheduled</div>
-                                    <div className="text-xs text-gray-400">Tomorrow, 10:00 AM</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="relative rounded-[48px] bg-[#171717] p-3 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] ring-1 ring-white/10 mx-auto border-[4px] border-[#2a2a2a]">
-                            <div className="rounded-[40px] overflow-hidden bg-white aspect-[16/10] relative">
-                                {/* App Header */}
-                                <div className="h-16 border-b border-gray-100 flex items-center justify-between px-8 bg-white/80 backdrop-blur-md sticky top-0 z-10">
-                                    <div className="w-24 h-6 bg-gray-100 rounded-full" />
-                                    <div className="flex gap-4">
-                                        <div className="w-8 h-8 rounded-full bg-gray-100" />
-                                        <div className="w-8 h-8 rounded-full bg-[#0040C1]" />
+                                {/* Screen Content */}
+                                <div className="w-full h-full bg-white flex flex-col overflow-hidden relative font-sans">
+                                    {/* App Header */}
+                                    <div className="pt-10 pb-4 px-6 flex justify-between items-center bg-white z-20">
+                                        <div>
+                                            <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Good Morning</div>
+                                            <div className="font-bold text-slate-900 text-lg">Ashwin</div>
+                                        </div>
+                                        <div className="w-8 h-8 rounded-full bg-gray-100 overflow-hidden border border-gray-200">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ashwin" alt="Profile" />
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* App Content */}
-                                <div className="p-8 grid grid-cols-12 gap-8 bg-gray-50/50 h-full">
-                                    <div className="col-span-3 space-y-4 hidden md:block">
-                                        <div className="h-full bg-white rounded-3xl p-6 border border-gray-100/50 shadow-sm flex flex-col items-center py-8 gap-6">
-                                            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                                                <LayoutDashboard className="w-6 h-6" />
+                                    {/* Main Card */}
+                                    <div className="px-5 mb-5 relative z-10">
+                                        <div className="bg-[#0047FF] rounded-[2rem] p-6 text-white shadow-xl shadow-blue-500/30 relative overflow-hidden h-[160px] flex flex-col justify-between">
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl opacity-60" />
+
+                                            <div className="relative z-10 flex justify-between items-start">
+                                                <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm w-fit border border-white/10">
+                                                    <span className="text-[10px] font-bold tracking-wide">Applied</span>
+                                                </div>
+                                                <div className="flex gap-1">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                                                </div>
                                             </div>
-                                            <div className="w-10 h-10 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-50 flex items-center justify-center transition-colors">
-                                                <Briefcase className="w-6 h-6" />
-                                            </div>
-                                            <div className="w-10 h-10 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-50 flex items-center justify-center transition-colors">
-                                                <FileText className="w-6 h-6" />
-                                            </div>
-                                            <div className="w-10 h-10 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-50 flex items-center justify-center transition-colors">
-                                                <Settings className="w-6 h-6" />
+
+                                            <div className="relative z-10">
+                                                <div className="text-3xl font-bold tracking-tight mb-1">124</div>
+                                                <div className="text-[11px] font-medium opacity-80 tracking-wide">Total Applications</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-span-12 md:col-span-9">
-                                        <div className="bg-white rounded-3xl p-6 border border-gray-100/50 shadow-sm h-full flex flex-col">
-                                            <div className="flex justify-between items-center mb-6">
-                                                <div className="text-lg font-bold text-[#171717]">Active Applications</div>
-                                                <div className="bg-[#EFF4FF] text-[#0040C1] px-3 py-1 rounded-full font-bold text-xs">12 Pending</div>
+
+                                    {/* Action Chips */}
+                                    <div className="px-5 flex gap-4 justify-around mb-6 relative z-10">
+                                        <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                                            <div className="w-11 h-11 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                                <Search size={18} />
                                             </div>
-                                            <div className="space-y-3">
-                                                {/* Item 1 */}
-                                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50/50 border border-gray-100/50 hover:border-blue-200 hover:shadow-sm transition-all cursor-default">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold">T</div>
-                                                        <div>
-                                                            <div className="text-sm font-bold text-[#171717]">Product Designer</div>
-                                                            <div className="text-xs text-gray-500">TechCorp</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-bold">Interview</div>
-                                                </div>
-                                                {/* Item 2 */}
-                                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50/50 border border-gray-100/50 hover:border-blue-200 hover:shadow-sm transition-all cursor-default">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold">S</div>
-                                                        <div>
-                                                            <div className="text-sm font-bold text-[#171717]">Frontend Dev</div>
-                                                            <div className="text-xs text-gray-500">StartupInc</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">Offer</div>
-                                                </div>
-                                                {/* Item 3 */}
-                                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50/50 border border-gray-100/50 hover:border-blue-200 hover:shadow-sm transition-all cursor-default">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">S</div>
-                                                        <div>
-                                                            <div className="text-sm font-bold text-[#171717]">UX Researcher</div>
-                                                            <div className="text-xs text-gray-500">Studio</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="px-3 py-1 rounded-full bg-gray-200 text-gray-600 text-xs font-bold">Applied</div>
-                                                </div>
+                                            <div className="text-[10px] font-medium text-slate-600">Find Jobs</div>
+                                        </div>
+                                        <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                                            <div className="w-11 h-11 rounded-full bg-white border border-slate-100 text-slate-600 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                                <FileText size={18} />
                                             </div>
+                                            <div className="text-[10px] font-medium text-slate-600">Resume</div>
+                                        </div>
+                                        <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                                            <div className="w-11 h-11 rounded-full bg-white border border-slate-100 text-slate-600 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                                <Briefcase size={18} />
+                                            </div>
+                                            <div className="text-[10px] font-medium text-slate-600">Interviews</div>
                                         </div>
                                     </div>
+
+                                    {/* Recent List */}
+                                    <div className="flex-1 bg-white px-5">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <span className="font-bold text-slate-900 text-xs">Recent Activity</span>
+                                            <span className="text-[10px] text-blue-600 font-medium cursor-pointer">View all</span>
+                                        </div>
+                                        <div className="space-y-4">
+                                            {[
+                                                { bg: 'bg-black', name: 'Netflix', role: 'SWE Intern', status: 'Applied' },
+                                                { bg: 'bg-[#1DB954]', name: 'Spotify', role: 'Design', status: 'Viewed' },
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex items-center gap-3">
+                                                    <div className={`w-9 h-9 rounded-full ${item.bg} flex items-center justify-center text-white shrink-0 shadow-sm text-[10px] font-bold`}>
+                                                        {item.name[0]}
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="text-xs font-bold text-slate-900 truncate">{item.name}</div>
+                                                        <div className="text-[10px] text-slate-400 truncate">{item.role}</div>
+                                                    </div>
+                                                    <div className="text-[10px] font-semibold text-slate-600 bg-slate-50 px-2 py-1 rounded-full border border-slate-100">{item.status}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </motion.div>
-                </motion.div>
+
+                    {/* Right Column: Description & CTA (Span 4) */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="lg:col-span-4 flex flex-col justify-center relative z-20 pt-10 lg:pt-0 lg:pl-10"
+                    >
+                        {/* Plus Icon Decoration */}
+                        <div className="mb-6 text-[#0047FF]">
+                            <svg width="32" height="32" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                <path d="M20 0V40M0 20H40" />
+                            </svg>
+                        </div>
+
+                        <p className="text-base text-slate-600 mb-6 leading-relaxed font-normal">
+                            Track every application, optimize your resume, and prepare for interviews all in one dashboard.
+                            Built for students applying across LinkedIn, Indeed, and company career sites.
+                        </p>
+
+                        {/* Visa Badge - Compact */}
+                        <div className="flex items-center gap-2 mb-8 text-xs font-medium text-slate-600 bg-blue-50/50 w-fit px-3 py-1.5 rounded-full border border-blue-100/50">
+                            <Globe size={12} className="text-[#0047FF]" />
+                            <span>Visa sponsorship insights included</span>
+                        </div>
+
+                        {/* Button & Social */}
+                        <div className="mb-10">
+                            <Link to="/waitlist" className="group block w-fit">
+                                <div className="inline-flex items-center bg-[#EFF6FF] rounded-full p-1.5 pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#0047FF]/10">
+                                    <div className="bg-[#0047FF] text-white py-2.5 px-5 rounded-full shadow-lg shadow-blue-500/20">
+                                        <span className="font-bold text-sm">Get Started Free</span>
+                                    </div>
+                                    <div className="w-8 h-8 rounded-full bg-[#0047FF] flex items-center justify-center text-white">
+                                        <ArrowUpRight size={16} />
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <div className="flex -space-x-2">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-100 overflow-hidden relative z-10 shadow-sm">
+                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i * 999}`} alt="User" />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-xl font-bold text-slate-900">2.3M+</span>
+                                <span className="text-xs text-slate-500 font-medium">Trusted Users</span>
+                            </div>
+                        </div>
+
+                    </motion.div>
+
+                </div>
+            </div>
+
+            {/* Bottom Banner Area - Infinite Marquee */}
+            <div className="max-w-7xl mx-auto px-6 w-full mt-[-80px] relative z-0">
+                <div className="w-full bg-[#0047FF] h-[280px] relative overflow-hidden flex items-center rounded-t-[3rem]">
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+
+                    {/* Decorative Glows */}
+                    <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-400 rounded-full blur-[120px] opacity-40 mix-blend-overlay" />
+
+                    {/* Marquee Container */}
+                    <div className="relative w-full overflow-hidden py-10">
+                        <motion.div
+                            className="flex whitespace-nowrap"
+                            animate={{ x: "-50%" }}
+                            transition={{
+                                repeat: Infinity,
+                                ease: "linear",
+                                duration: 30
+                            }}
+                        >
+                            {/* Repeated Text Block for Seamless Loop */}
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="flex items-center gap-8 mx-4">
+                                    <span className="text-[10vw] font-bold text-white/10 tracking-wider leading-none select-none">
+                                        GETLANDED
+                                    </span>
+                                    <div className="w-4 h-4 rounded-full bg-white/10" />
+                                    <span className="text-[10vw] font-bold text-white/10 tracking-wider leading-none select-none">
+                                        YOUR AI CAREER COPILOT
+                                    </span>
+                                    <div className="w-4 h-4 rounded-full bg-white/10" />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
             </div>
         </section>
     );
