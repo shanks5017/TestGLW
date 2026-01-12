@@ -22,7 +22,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
   }
 };
 
@@ -241,14 +241,11 @@ export function About() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col items-center text-center mb-20 space-y-6">
+          <div className="flex flex-col items-center text-center mb-24">
             <h2 className="text-3xl md:text-[44px] font-bold font-heading tracking-tight text-slate-950">Trust, privacy, and boundaries</h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed font-semibold max-w-2xl">
-              Your career data is sensitive. We treat it that way.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-3 gap-16 mb-20">
             {[
               { icon: Shield, title: "No Data Selling", desc: "We do not sell personal data. Not to employers. Not to advertisers. Not ever." },
               { icon: Lock, title: "User-Initiated Access", desc: "The Chrome extension only runs when you choose to save or analyze a job. You stay in control." },
@@ -268,6 +265,18 @@ export function About() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="flex flex-col items-center text-center pt-10 border-t border-slate-100"
+          >
+            <p className="text-slate-500 text-lg md:text-xl leading-relaxed font-medium max-w-2xl italic">
+              "Your career data is sensitive. We treat it that way."
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -331,25 +340,30 @@ export function About() {
         </div>
       </section>
 
-      {/* 7. FINAL CTA */}
+      {/* 7. FINAL CTA - PROFESSIONAL COMPANY LEVEL UI */}
       <section className="py-40 relative bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="flex flex-col md:flex-row items-center justify-between gap-12 text-left"
+            className="space-y-12"
           >
-            <h2 className="text-4xl md:text-[56px] font-bold font-heading tracking-tighter leading-[1.1] text-slate-950 max-w-4xl">
-              If you're navigating your first job search, <br />
-              <span className="text-[#0047FF]">we built this for you.</span>
-            </h2>
-            <div className="shrink-0">
-              <Button className="px-10 py-7 rounded-full bg-slate-950 text-white hover:bg-slate-800 transition-all font-bold text-lg shadow-xl shadow-slate-200">
-                Start free
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-[56px] font-bold font-heading tracking-tight leading-[1.1] text-slate-950 max-w-4xl mx-auto">
+                If you're navigating your first job search, <br />
+                <span className="text-[#0047FF]">we built this for you.</span>
+              </h2>
+              <p className="text-slate-500 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+                Start making intentional applications today. <br />
+                Your first role is closer than you think.
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <Button className="px-12 py-8 rounded-full bg-slate-950 text-white hover:bg-slate-800 transition-all font-bold text-lg shadow-xl shadow-slate-200">
+                Get started for free
               </Button>
             </div>
           </motion.div>
