@@ -25,17 +25,20 @@ const team = [
 
 export function About() {
   return (
-    <div className="bg-white pt-20 pb-20">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <div className="bg-white pt-20 pb-20 relative overflow-hidden">
+      {/* Background Grid - Fizens Style */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
 
         {/* Header Section */}
         <div className="text-center mb-24 pt-16">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold text-[#171717] mb-6 tracking-tight"
+            className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 tracking-tight font-heading"
           >
-            The GetLanded <span className="text-[#0040C1]">Journey</span>
+            The GetLanded <span className="text-primary">Journey</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -66,18 +69,18 @@ export function About() {
         {/* Missions & Values */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32 items-center">
           <div>
-            <span className="text-[#0040C1] font-semibold tracking-wider uppercase text-sm mb-4 block">Our Mission</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#171717] mb-8 leading-tight">
-              We're building the future of <span className="text-[#0040C1]">hiring.</span>
+            <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">Our Mission</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight font-heading">
+              We're building the future of <span className="text-primary">hiring.</span>
             </h2>
             <div className="space-y-6">
               {values.map((item, i) => (
                 <div key={i} className="flex items-start gap-4 group">
-                  <div className="w-6 h-6 rounded-full bg-[#EFF4FF] flex items-center justify-center text-[#0040C1] mt-1 shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-primary mt-1 shrink-0 group-hover:scale-110 transition-transform">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#171717] text-lg">{item.title}</h3>
+                    <h3 className="font-bold text-slate-900 text-lg font-heading">{item.title}</h3>
                     <p className="text-gray-500">{item.description}</p>
                   </div>
                 </div>
@@ -90,18 +93,18 @@ export function About() {
               {/* Floating Stats Pills */}
               <div className="absolute top-8 right-8 bg-white p-4 rounded-3xl shadow-xl animate-float">
                 <div className="text-xs text-gray-400 mb-1">Offers this month</div>
-                <div className="text-2xl font-bold text-[#0040C1]">1,284</div>
+                <div className="text-2xl font-bold text-primary">1,284</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className="bg-[#EFF4FF] rounded-[48px] p-12 mb-32">
+        <div className="bg-blue-50 rounded-[48px] p-12 mb-32">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-blue-200">
             {stats.map((stat, i) => (
               <div key={i} className="py-4 md:py-0">
-                <div className="text-5xl font-bold text-[#0040C1] mb-2">{stat.value}</div>
+                <div className="text-5xl font-bold text-primary mb-2 font-heading">{stat.value}</div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
@@ -110,23 +113,23 @@ export function About() {
 
         {/* Team Section */}
         <div className="mb-20">
-          <h2 className="text-4xl font-bold text-[#171717] mb-12 text-center">Meet the team</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center font-heading">Meet the team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {team.map((member, i) => (
               <div key={i} className="group text-center">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 border-4 border-transparent group-hover:border-[#EFF4FF] transition-all duration-300">
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 border-4 border-transparent group-hover:border-blue-100 transition-all duration-300">
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 </div>
-                <h3 className="text-xl font-bold text-[#171717] mb-1">{member.name}</h3>
-                <p className="text-[#0040C1] font-medium text-sm mb-4">{member.role}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-1 font-heading">{member.name}</h3>
+                <p className="text-primary font-medium text-sm mb-4">{member.role}</p>
                 <div className="flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0040C1] hover:text-white transition-colors">
+                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors">
                     <Linkedin className="w-4 h-4" />
                   </button>
-                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0040C1] hover:text-white transition-colors">
+                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors">
                     <Twitter className="w-4 h-4" />
                   </button>
-                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0040C1] hover:text-white transition-colors">
+                  <button className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors">
                     <Mail className="w-4 h-4" />
                   </button>
                 </div>

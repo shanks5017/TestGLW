@@ -4,28 +4,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap');
 
 @theme {
+    /* Typography */
     --font-heading: 'Poppins', sans-serif;
     --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-    /* Premium Corporate Palette */
+    /* Primary Palette - Hero Section Standard */
     --color-primary: #0047FF;
-    /* Action Blue */
     --color-primary-hover: #0037CC;
     --color-primary-light: #EFF6FF;
     --color-primary-dark: #002db3;
 
-    --color-secondary: #0F172A;
-    /* Slate 900 */
+    /* Secondary Palette */
+    --color-secondary: #0F172A; /* Slate 900 */
     --color-accent: #3B82F6;
 
-    --color-surface: #F8FAFF;
-    --color-surface-hover: #F1F5F9;
-
-    --color-slate-900: #0F172A;
+    /* Neutrals - Consistent Slate Scale */
+    --color-slate-900: #111827; /* Matching Hero Dark Text */
     --color-slate-800: #1E293B;
     --color-slate-600: #475569;
     --color-slate-500: #64748B;
     --color-slate-50: #F8FAFC;
+
+    /* Surfaces */
+    --color-surface: #FFFFFF;
+    --color-surface-hover: #F8FAFC;
+    --color-surface-alt: #F1F5F9;
 
     /* Radii */
     --radius-pill: 9999px;
@@ -34,6 +37,18 @@
     --radius-2xl: 1.5rem;
     --radius-3xl: 2rem;
     --radius-4xl: 2.5rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+    --shadow-glass-strong: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+    --shadow-glow: 0 0 20px rgba(0, 71, 255, 0.2);
+    --shadow-glow-lg: 0 0 40px rgba(0, 71, 255, 0.3);
 
     /* Animations */
     --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -44,110 +59,69 @@
     --animate-shimmer: shimmer 2.5s linear infinite;
 
     @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInDown {
-        0% {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes scaleUp {
-        0% {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
+        0% { opacity: 0; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
     }
 
     @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-15px);
-        }
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
     }
 
     @keyframes pulse-slow {
-
-        0%,
-        100% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: 0.8;
-        }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
     }
 
     @keyframes shimmer {
-        0% {
-            background-position: -1000px 0;
-        }
-
-        100% {
-            background-position: 1000px 0;
-        }
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
     }
-
-    /* Shadows meant for depth */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-    --shadow-glass-strong: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
-    /* Added strong glass shadow */
-    --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.2);
-    --shadow-glow-lg: 0 0 40px rgba(37, 99, 235, 0.3);
 }
 
 body {
     font-family: var(--font-sans);
-    background-color: #FFFFFF;
+    background-color: var(--color-surface);
     color: var(--color-slate-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
-/* Custom Utilities if needed */
+/* --- Global Utility Classes --- */
+
+/* Professional Glass Effect */
 .glass {
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Gradient Text matching Primary Brand */
 .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+
+/* Standard Background Grid Pattern */
+.bg-grid-pattern {
+    background-image: 
+        linear-gradient(to right, rgba(0, 71, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 71, 255, 0.05) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }

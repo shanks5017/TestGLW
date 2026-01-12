@@ -1,8 +1,9 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, X, Shield, CreditCard, Calendar } from 'lucide-react';
 import { cn } from '../utils/cn';
 
+// 3 Plans matching Fizens structure with GetLanded content
 // 3 Plans matching Fizens structure with GetLanded content
 const plans = [
   {
@@ -19,7 +20,7 @@ const plans = [
       "Basic deadline tracking"
     ],
     badge: null,
-    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, var(--color-primary) 100%)",
     btnStyle: "outlined"
   },
   {
@@ -37,7 +38,7 @@ const plans = [
       "Priority support"
     ],
     badge: "Popular",
-    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, var(--color-primary) 100%)",
     btnStyle: "primary"
   },
   {
@@ -54,7 +55,7 @@ const plans = [
       "White-glove support"
     ],
     badge: "Best Choice",
-    gradient: "linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)",
+    gradient: "linear-gradient(135deg, #6B8DFF 0%, var(--color-primary) 100%)",
     btnStyle: "outlined"
   }
 ];
@@ -123,19 +124,8 @@ export function Pricing() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-24 relative overflow-hidden">
 
-      {/* Exact Fizens Grid Background */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0, 64, 193, 0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0, 64, 193, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-          maskImage: 'radial-gradient(ellipse at center, black, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black, transparent 80%)'
-        }}
-      />
+      {/* Background Grid - Fizens Style */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
@@ -149,10 +139,9 @@ export function Pricing() {
           <motion.h1
             variants={fadeInUp}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[64px] font-normal leading-tight tracking-[-0.03em] mb-4"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
+            className="text-[64px] font-normal leading-tight tracking-[-0.03em] mb-4 font-heading"
           >
-            <span className="text-[#171717]">Pricing</span> <span className="text-[#0040C1]">Plans</span>
+            <span className="text-slate-900">Pricing</span> <span className="text-primary">Plans</span>
           </motion.h1>
 
           {/* Blue Plus Icon */}
@@ -161,7 +150,7 @@ export function Pricing() {
             transition={{ delay: 0.1 }}
             className="flex justify-center mb-6"
           >
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0040C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
@@ -170,8 +159,7 @@ export function Pricing() {
           <motion.p
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
-            className="text-[18px] text-[#171717] font-normal mb-10 max-w-2xl mx-auto"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
+            className="text-[18px] text-slate-900 font-normal mb-10 max-w-2xl mx-auto font-heading"
           >
             No hidden fees. No fake discounts. No gotchas.
           </motion.p>
@@ -187,8 +175,8 @@ export function Pricing() {
               className={cn(
                 "text-base font-medium pb-2 border-b-2 transition-all duration-300",
                 billingCycle === 'monthly'
-                  ? "text-[#0047FF] border-[#0047FF]"
-                  : "text-[#999] border-transparent hover:text-[#666]"
+                  ? "text-primary border-primary"
+                  : "text-slate-400 border-transparent hover:text-slate-600"
               )}
             >
               Monthly
@@ -198,8 +186,8 @@ export function Pricing() {
               className={cn(
                 "text-base font-medium pb-2 border-b-2 transition-all duration-300 flex items-center gap-2",
                 billingCycle === 'yearly'
-                  ? "text-[#0047FF] border-[#0047FF]"
-                  : "text-[#999] border-transparent hover:text-[#666]"
+                  ? "text-primary border-primary"
+                  : "text-slate-400 border-transparent hover:text-slate-600"
               )}
             >
               Yearly
@@ -269,11 +257,11 @@ export function Pricing() {
                     <li key={idx} className="flex items-center gap-4">
                       <div
                         className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: plan.badge === 'Popular' ? '#0040C1' : '#CBD5E1' }}
+                        style={{ backgroundColor: plan.badge === 'Popular' ? 'var(--color-primary)' : '#CBD5E1' }}
                       >
                         <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-[15px] text-[#374151] font-medium">{feature}</span>
+                      <span className="text-[15px] text-slate-700 font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -283,13 +271,13 @@ export function Pricing() {
                     "w-full h-[56px] font-bold text-[16px] transition-all duration-300",
                     plan.btnStyle === 'primary'
                       ? "text-white hover:opacity-95"
-                      : "bg-transparent border-2 text-[#0040C1] hover:bg-[#0040C1] hover:text-white"
+                      : "bg-transparent border-2 text-primary hover:bg-primary hover:text-white"
                   )}
                   style={{
                     borderRadius: '40px',
-                    backgroundColor: plan.btnStyle === 'primary' ? '#0040C1' : 'transparent',
-                    borderColor: '#0040C1',
-                    boxShadow: plan.btnStyle === 'primary' ? '0px 4px 10px rgba(0, 64, 193, 0.2)' : 'none'
+                    backgroundColor: plan.btnStyle === 'primary' ? 'var(--color-primary)' : 'transparent',
+                    borderColor: 'var(--color-primary)',
+                    boxShadow: plan.btnStyle === 'primary' ? '0px 4px 10px rgba(0, 71, 255, 0.2)' : 'none'
                   }}
                 >
                   Get Started Now
@@ -300,141 +288,148 @@ export function Pricing() {
         </motion.div>
 
         {/* Compare Plans - Exact Fizens Replication */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-32 max-w-[1296px] mx-auto overflow-hidden"
-          style={{
-            backgroundColor: '#F5FAFF', // Exactly from subagent
-            borderRadius: '24px',
-            padding: '40px'
-          }}
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-[56px] font-bold text-[#171717] tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Compare <span className="text-[#0040C1]">Plans</span>
-            </h2>
-          </div>
+        <div className="bg-white pt-20 pb-20 relative overflow-hidden">
+          {/* Background Grid - Fizens Style */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
-          {/* Table Header Capsule */}
-          <div
-            className="grid grid-cols-4 gap-4 mb-4 items-center"
-            style={{
-              backgroundColor: '#D0D9F3', // Exactly from subagent
-              borderRadius: '40px',
-              height: '72px',
-              padding: '0 32px'
-            }}
-          >
-            <div className="text-[#0040C1] opacity-60 font-semibold text-xs uppercase tracking-[0.1em]" style={{ fontFamily: "'Poppins', sans-serif" }}></div>
-            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Starter</div>
-            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Standard</div>
-            <div className="text-center font-medium text-[20px] text-[#0040C1]" style={{ fontFamily: "'Poppins', sans-serif" }}>Advance</div>
-          </div>
-
-          <div className="space-y-2">
-            {comparisonGroups.map((group, gi) => (
-              <div key={gi} className="mt-12 first:mt-0">
-                {/* Category Header */}
-                <div className="font-medium text-[20px] text-[#171717] mb-6 px-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  {group.category}
-                </div>
-
-                {/* Features with Staggered Entrance */}
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={{
-                    visible: { transition: { staggerChildren: 0.05 } }
-                  }}
-                  className="space-y-0"
-                >
-                  {group.features.map((row, ri) => (
-                    <motion.div
-                      key={ri}
-                      variants={tableRowReveal}
-                      className="grid grid-cols-4 gap-4 items-center px-8"
-                      style={{
-                        height: '64px', // Exactly from subagent
-                        borderBottom: '1px solid #E5E7EB'
-                      }}
-                    >
-                      <div className="text-[#374151] text-[18px] leading-[28px] font-normal" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.name}</div>
-
-                      <div className="flex justify-center">
-                        {row.starter === true ? (
-                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
-                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
-                          </div>
-                        ) : row.starter === false ? (
-                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
-                        ) : (
-                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.starter}</span>
-                        )}
-                      </div>
-
-                      <div className="flex justify-center">
-                        {row.standard === true ? (
-                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
-                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
-                          </div>
-                        ) : row.standard === false ? (
-                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
-                        ) : (
-                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.standard}</span>
-                        )}
-                      </div>
-
-                      <div className="flex justify-center">
-                        {row.advance === true ? (
-                          <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
-                            <Check className="w-4 h-4 text-[#0040C1]" strokeWidth={3} />
-                          </div>
-                        ) : row.advance === false ? (
-                          <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-[#374151]" /></div>
-                        ) : (
-                          <span className="text-[18px] text-[#374151] font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>{row.advance}</span>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-32 max-w-[1296px] mx-auto overflow-hidden"
+              style={{
+                backgroundColor: '#F5FAFF', // Exactly from subagent
+                borderRadius: '24px',
+                padding: '40px'
+              }}
+            >
+              <div className="text-center mb-16">
+                <h2 className="text-[56px] font-bold text-slate-900 tracking-tight font-heading">
+                  Compare <span className="text-primary">Plans</span>
+                </h2>
               </div>
-            ))}
-          </div>
 
-          {/* Bottom Table Buttons */}
-          <div className="grid grid-cols-4 gap-4 mt-12 px-8">
-            <div />
-            <div className="flex justify-center">
-              <button
-                className="h-[48px] px-8 text-[16px] font-bold border border-[#0040C1] text-[#0040C1] hover:bg-[#0040C1] hover:text-white transition-all"
-                style={{ borderRadius: '40px' }}
+              {/* Table Header Capsule */}
+              <div
+                className="grid grid-cols-4 gap-4 mb-4 items-center"
+                style={{
+                  backgroundColor: '#D0D9F3', // Keep exact Fizens color for table header
+                  borderRadius: '40px',
+                  height: '72px',
+                  padding: '0 32px'
+                }}
               >
-                Choose Plan
-              </button>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className="h-[48px] px-8 text-[16px] font-bold text-white transition-all hover:opacity-90"
-                style={{ borderRadius: '40px', backgroundColor: '#0040C1', boxShadow: '0 4px 10px rgba(0, 64, 193, 0.2)' }}
-              >
-                Choose Plan
-              </button>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className="h-[48px] px-8 text-[16px] font-bold border border-[#0040C1] text-[#0040C1] hover:bg-[#0040C1] hover:text-white transition-all"
-                style={{ borderRadius: '40px' }}
-              >
-                Choose Plan
-              </button>
-            </div>
+                <div className="text-primary opacity-60 font-semibold text-xs uppercase tracking-[0.1em] font-heading"></div>
+                <div className="text-center font-medium text-[20px] text-primary font-heading">Starter</div>
+                <div className="text-center font-medium text-[20px] text-primary font-heading">Standard</div>
+                <div className="text-center font-medium text-[20px] text-primary font-heading">Advance</div>
+              </div>
+
+              <div className="space-y-2">
+                {comparisonGroups.map((group, gi) => (
+                  <div key={gi} className="mt-12 first:mt-0">
+                    {/* Category Header */}
+                    <div className="font-medium text-[20px] text-slate-900 mb-6 px-8 font-heading">
+                      {group.category}
+                    </div>
+
+                    {/* Features with Staggered Entrance */}
+                    <motion.div
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      variants={{
+                        visible: { transition: { staggerChildren: 0.05 } }
+                      }}
+                      className="space-y-0"
+                    >
+                      {group.features.map((row, ri) => (
+                        <motion.div
+                          key={ri}
+                          variants={tableRowReveal}
+                          className="grid grid-cols-4 gap-4 items-center px-8"
+                          style={{
+                            height: '64px',
+                            borderBottom: '1px solid #E5E7EB'
+                          }}
+                        >
+                          <div className="text-slate-700 text-[18px] leading-[28px] font-normal font-heading">{row.name}</div>
+
+                          <div className="flex justify-center">
+                            {row.starter === true ? (
+                              <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                                <Check className="w-4 h-4 text-primary" strokeWidth={3} />
+                              </div>
+                            ) : row.starter === false ? (
+                              <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-slate-700" /></div>
+                            ) : (
+                              <span className="text-[18px] text-slate-700 font-medium font-heading">{row.starter}</span>
+                            )}
+                          </div>
+
+                          <div className="flex justify-center">
+                            {row.standard === true ? (
+                              <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                                <Check className="w-4 h-4 text-primary" strokeWidth={3} />
+                              </div>
+                            ) : row.standard === false ? (
+                              <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-slate-700" /></div>
+                            ) : (
+                              <span className="text-[18px] text-slate-700 font-medium font-heading">{row.standard}</span>
+                            )}
+                          </div>
+
+                          <div className="flex justify-center">
+                            {row.advance === true ? (
+                              <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center" style={{ backgroundColor: '#DDE7FF' }}>
+                                <Check className="w-4 h-4 text-primary" strokeWidth={3} />
+                              </div>
+                            ) : row.advance === false ? (
+                              <div className="w-5 h-5 mx-auto opacity-20"><X className="w-full h-full text-slate-700" /></div>
+                            ) : (
+                              <span className="text-[18px] text-slate-700 font-medium font-heading">{row.advance}</span>
+                            )}
+                          </div>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Table Buttons */}
+              <div className="grid grid-cols-4 gap-4 mt-12 px-8">
+                <div />
+                <div className="flex justify-center">
+                  <button
+                    className="h-[48px] px-8 text-[16px] font-bold border border-primary text-primary hover:bg-primary hover:text-white transition-all"
+                    style={{ borderRadius: '40px' }}
+                  >
+                    Choose Plan
+                  </button>
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    className="h-[48px] px-8 text-[16px] font-bold text-white transition-all hover:opacity-90"
+                    style={{ borderRadius: '40px', backgroundColor: 'var(--color-primary)', boxShadow: '0 4px 10px rgba(0, 71, 255, 0.2)' }}
+                  >
+                    Choose Plan
+                  </button>
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    className="h-[48px] px-8 text-[16px] font-bold border border-primary text-primary hover:bg-primary hover:text-white transition-all"
+                    style={{ borderRadius: '40px' }}
+                  >
+                    Choose Plan
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Testimonials - Matching Fizens Cards */}
         <motion.div
@@ -444,10 +439,10 @@ export function Pricing() {
           transition={{ duration: 0.7 }}
           className="mb-32 max-w-[1200px] mx-auto"
         >
-          <h2 className="text-[48px] font-bold text-center mb-4 tracking-tight">
-            What students <span className="text-[#0040C1]">say</span>
+          <h2 className="text-[48px] font-bold text-center mb-4 tracking-tight font-heading">
+            What students <span className="text-primary">say</span>
           </h2>
-          <p className="text-center text-[#666] text-xl mb-16">Real stories from students who landed offers.</p>
+          <p className="text-center text-slate-500 text-xl mb-16">Real stories from students who landed offers.</p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
@@ -463,11 +458,11 @@ export function Pricing() {
                 <div className="flex items-center gap-4 mb-8">
                   <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full bg-[#F2F4F8]" />
                   <div>
-                    <h4 className="font-bold text-[18px] text-[#171717]">{t.name}</h4>
-                    <p className="text-sm font-medium text-[#999]">{t.uni}</p>
+                    <h4 className="font-bold text-[18px] text-slate-900">{t.name}</h4>
+                    <p className="text-sm font-medium text-slate-400">{t.uni}</p>
                   </div>
                 </div>
-                <p className="text-[#374151] text-[16px] leading-relaxed font-normal">"{t.quote}"</p>
+                <p className="text-slate-700 text-[16px] leading-relaxed font-normal">"{t.quote}"</p>
               </motion.div>
             ))}
           </div>
@@ -496,7 +491,7 @@ export function Pricing() {
           viewport={{ once: true }}
           className="text-center relative overflow-hidden p-24"
           style={{
-            background: 'linear-gradient(135deg, #6B8DFF 0%, #0047FF 100%)',
+            background: 'linear-gradient(135deg, #6B8DFF 0%, var(--color-primary) 100%)',
             borderRadius: '48px'
           }}
         >
@@ -508,7 +503,7 @@ export function Pricing() {
               Ready to land your dream job?
             </h2>
             <button
-              className="text-[#0040C1] px-12 py-5 font-bold text-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              className="text-primary px-12 py-5 font-bold text-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
               style={{
                 backgroundColor: 'white',
                 borderRadius: '40px',
@@ -520,7 +515,7 @@ export function Pricing() {
           </div>
         </motion.div>
 
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
