@@ -1,9 +1,39 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Check, X, Shield, CreditCard, Calendar } from 'lucide-react';
 import { cn } from '../utils/cn';
 
-// 3 Plans matching Fizens structure with GetLanded content
+// Floating Particles Component - High Density for Branding
+function FloatingParticles() {
+  const particles = Array.from({ length: 45 });
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+          initial={{
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+          }}
+          animate={{
+            y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)],
+            x: [null, Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)],
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.8, 0.3]
+          }}
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 // 3 Plans matching Fizens structure with GetLanded content
 const plans = [
   {
@@ -101,6 +131,16 @@ const testimonials = [
 
 export function Pricing() {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Parallax and Scale effects to match Product Page exactly
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const gridScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   // Animation variants
   const fadeInUp = {
@@ -122,10 +162,19 @@ export function Pricing() {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-32 pb-24 relative overflow-hidden">
+    <div ref={containerRef} className="bg-white min-h-screen pt-32 pb-24 relative overflow-hidden font-sans">
 
-      {/* Background Grid - Fizens Style */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      {/* GLOBAL DYNAMIC BACKGROUND SYSTEM */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Animated Grid */}
+        <motion.div
+          style={{ opacity: gridOpacity, scale: gridScale }}
+          className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]"
+        />
+
+        {/* Floating Particles */}
+        <FloatingParticles />
+      </div>
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
