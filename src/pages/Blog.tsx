@@ -48,17 +48,20 @@ export function Blog() {
     const [activeCategory, setActiveCategory] = React.useState("All");
 
     return (
-        <div className="bg-white pt-20 pb-20">
-            <div className="max-w-[1200px] mx-auto px-6">
+        <div className="bg-white pt-20 pb-20 relative overflow-hidden">
+            {/* Background Grid - Fizens Style */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+            <div className="max-w-[1000px] mx-auto px-6 relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-16 pt-16">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-5xl md:text-7xl font-bold text-[#171717] mb-6 tracking-tight"
+                        className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 tracking-tight font-heading"
                     >
-                        Career <span className="text-[#0040C1]">Insights</span>
+                        Career <span className="text-primary">Insights</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -77,16 +80,16 @@ export function Blog() {
                     </div>
                     <div className="p-10 lg:p-16 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-6">
-                            <span className="px-3 py-1 rounded-full bg-[#EFF4FF] text-[#0040C1] text-xs font-bold uppercase tracking-wider">Featured</span>
+                            <span className="px-3 py-1 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-wider">Featured</span>
                             <span className="text-gray-400 text-sm">July 1, 2025</span>
                         </div>
-                        <h2 className="text-3xl lg:text-4xl font-bold text-[#171717] mb-6 leading-tight group-hover:text-[#0040C1] transition-colors">
+                        <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight group-hover:text-primary transition-colors font-heading">
                             The complete guide to landing a job at FAANG companies.
                         </h2>
                         <p className="text-gray-500 text-lg mb-8 line-clamp-3">
                             Discover the step-by-step process, from resume screening to the final onsite loop. We break down what recruiters are truly looking for.
                         </p>
-                        <div className="flex items-center text-[#171717] font-semibold group-hover:gap-2 transition-all">
+                        <div className="flex items-center text-slate-900 font-semibold group-hover:gap-2 transition-all">
                             Read Article <ArrowUpRight className="w-5 h-5 ml-2" />
                         </div>
                     </div>
@@ -101,7 +104,7 @@ export function Blog() {
                             className={cn(
                                 "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300",
                                 activeCategory === cat
-                                    ? "bg-[#171717] text-white"
+                                    ? "bg-slate-900 text-white"
                                     : "bg-gray-100 text-gray-500 hover:bg-gray-200"
                             )}
                         >
@@ -123,13 +126,13 @@ export function Blog() {
                         >
                             <div className="rounded-[32px] overflow-hidden mb-6 aspect-[4/3] bg-gray-100 relative">
                                 <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#171717]">
+                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-900">
                                     {article.category}
                                 </div>
                             </div>
                             <div className="space-y-3 px-2">
                                 <div className="text-sm text-gray-400">{article.date}</div>
-                                <h3 className="text-xl font-bold text-[#171717] leading-snug group-hover:text-[#0040C1] transition-colors">
+                                <h3 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors font-heading">
                                     {article.title}
                                 </h3>
                             </div>
@@ -138,7 +141,7 @@ export function Blog() {
                 </div>
 
                 <div className="text-center">
-                    <button className="px-8 py-3 rounded-full border border-gray-200 text-[#171717] font-semibold hover:bg-[#171717] hover:text-white transition-all duration-300">
+                    <button className="px-8 py-3 rounded-full border border-gray-200 text-slate-900 font-semibold hover:bg-slate-900 hover:text-white transition-all duration-300">
                         Load More Insights
                     </button>
                 </div>

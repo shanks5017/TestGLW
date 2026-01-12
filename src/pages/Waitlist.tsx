@@ -4,12 +4,15 @@ import { Button } from '../components/ui/Button';
 
 export function Waitlist() {
   return (
-    <div className="min-h-screen bg-white pt-20 flex items-center justify-center">
-      <div className="max-w-2xl px-6 text-center -mt-20">
+    <div className="min-h-screen bg-white pt-20 flex items-center justify-center relative overflow-hidden">
+      {/* Background Grid - Fizens Style */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+      <div className="max-w-2xl px-6 text-center -mt-20 relative z-10">
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-20 h-20 bg-[#0040C1] rounded-3xl mx-auto flex items-center justify-center text-white text-4xl font-bold mb-8 shadow-2xl shadow-blue-500/20"
+          className="w-20 h-20 bg-primary rounded-3xl mx-auto flex items-center justify-center text-white text-4xl font-bold mb-8 shadow-2xl shadow-primary/20"
         >
           G
         </motion.div>
@@ -17,9 +20,9 @@ export function Waitlist() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold text-[#171717] mb-8 tracking-tight"
+          className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 tracking-tight font-heading"
         >
-          Join the <br /><span className="text-[#0040C1]">Inner Circle</span>
+          Join the <br /><span className="text-primary">Inner Circle</span>
         </motion.h1>
         <motion.p
           initial={{ y: 20, opacity: 0 }}
@@ -39,7 +42,7 @@ export function Waitlist() {
           <input
             type="email"
             placeholder="Enter your email address"
-            className="flex-1 bg-transparent border-none outline-none px-6 text-[#171717] placeholder:text-gray-400"
+            className="flex-1 bg-transparent border-none outline-none px-6 text-slate-900 placeholder:text-gray-400"
           />
           <Button className="rounded-full px-8">Join Waitlist</Button>
         </motion.form>

@@ -1,311 +1,444 @@
-import { Link } from 'react-router-dom';
-import { motion, Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import {
-  Globe,
-  Layout,
-  ArrowRight,
-  CheckCircle2,
-  XCircle,
   Sparkles,
-  Target,
-  BrainCircuit,
-  Mic,
+  Zap,
+  CheckCircle2,
+  ArrowRight,
+  Globe,
   FileSearch,
-  UserCheck
+  Layout,
+  BrainCircuit,
+  Clock,
+  PlayCircle,
+  MessageSquare,
+  FileText,
+  Search,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import { cn } from '../lib/utils';
+import { useRef } from 'react';
 
-const containerVariants = {
+// Animation Variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.15,
+      delayChildren: 0.1
     }
   }
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] // Custom cubic-bezier for smoother feel
-    }
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
-const features = [
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+// Coming Soon Data
+const comingSoonFeatures = [
   {
-    icon: Layout,
-    title: "AI Job Tracker",
-    description: "Never lose track of a deadline again. Automated tracking, status updates, and deadline reminders all in one centralized dashboard.",
-    color: "bg-blue-500",
-    lightColor: "bg-blue-50"
-  },
-  {
-    icon: FileSearch,
-    title: "Resume Fit Score",
-    description: "Know exactly why you're not getting callbacks. Provides match scores, keyword analysis, and tailored suggestions to beat the ATS.",
-    color: "bg-indigo-500",
-    lightColor: "bg-indigo-50"
-  },
-  {
-    icon: Globe,
-    title: "Visa Sponsorship Signal",
-    description: "Stop wasting time on companies that won't sponsor. Real-time detection, H1-B history, and automated filtering for international students.",
-    color: "bg-cyan-500",
-    lightColor: "bg-cyan-50"
+    icon: MessageSquare,
+    title: "AI Mock Interviews",
+    desc: "Practice interviews with AI-powered feedback and company-specific question sets."
   },
   {
     icon: BrainCircuit,
-    title: "AI Copilot Extension",
-    description: "The extension that works where you do. Side-by-side analysis and instant fit scores directly on LinkedIn, Indeed, and more.",
-    color: "bg-violet-500",
-    lightColor: "bg-violet-50"
+    title: "AI Interview Prep",
+    desc: "Personalized interview preparation based on the specific role and company you're applying to."
+  },
+  {
+    icon: CheckCircle2,
+    title: "Plagiarism Checker",
+    desc: "Checks resumes, essays, and written responses for originality to ensure compliance with academic and hiring standards."
+  },
+  {
+    icon: FileText,
+    title: "AI Humanizer",
+    desc: "Refines AI-generated content to sound natural, clear, and human-written. Focuses on clarity and tone, not deception."
+  },
+  {
+    icon: Zap,
+    title: "Advanced Resume Rewriting",
+    desc: "AI-powered resume optimization that goes beyond keyword matching to improve structure and impact."
+  },
+  {
+    icon: Search,
+    title: "Advanced Job Matching",
+    desc: "Improved role recommendations based on resume data, preferences, and application history."
   }
 ];
 
-const roadmapFeatures = [
-  { icon: Mic, title: "AI Mock Interviews" },
-  { icon: Target, title: "Interview Prep" },
-  { icon: FileSearch, title: "Plagiarism Checker" },
-  { icon: UserCheck, title: "AI Humanizer" }
-];
-
 export function Product() {
-  return (
-    <div className="min-h-screen bg-[#F8FAFC] selection:bg-blue-100">
-      {/* Background Gradients */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-100/50 blur-[120px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-indigo-100/30 blur-[100px]" />
-      </div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-      {/* Grid Pattern */}
-      <div className="fixed inset-0 bg-[url('https://framerusercontent.com/images/rR6CH3BheByo8vznuPHT4HfSBo.png')] bg-[size:40px_40px] [mask-image:linear-gradient(to_bottom,white,transparent)] opacity-[0.03] pointer-events-none -z-10" />
+  const heroY = useTransform(scrollYProgress, [0, 0.3], [0, 60]);
+
+  return (
+    <div ref={containerRef} className="min-h-screen bg-white text-slate-900 relative overflow-hidden font-sans">
+      {/* Background Grid - Matching Home Page */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+      {/* Soft Background Gradients */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px]" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[100px]" />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      <motion.section
+        style={{ y: heroY }}
+        className="relative pt-32 pb-20 px-6 z-10"
+      >
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-8"
           >
-            <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-            <span className="text-sm font-semibold text-slate-800 tracking-tight">AI-Powered Career Growth</span>
+            <Sparkles className="w-4 h-4 text-blue-600" />
+            <span className="text-sm font-bold text-blue-600 tracking-wide">AI COPILOT FOR JOB SEARCH</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 tracking-tight mb-8"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-heading tracking-tight leading-[1.1] text-slate-900"
           >
-            AI COPILOT FOR <br />
-            <span className="text-blue-600 italic">JOB SEARCH</span>
+            Track, organize, and<br />
+            apply smarter <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">all in one place</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            Track, organize, and apply smarter all in one place. Specifically built for students and early-career professionals to track applications and understand job requirements.
+            GetLanded is an AI-powered job search copilot built specifically for students and early-career professionals.
+            It helps you track applications, understand job requirements, and focus on roles where you actually have a chance.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16"
           >
-            <Button className="w-full sm:w-auto rounded-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg font-bold shadow-xl shadow-blue-500/20 transition-all hover:-translate-y-1">
-              Check Sponsorship
+            <Button className="group rounded-full bg-primary hover:bg-primary/90 text-white px-10 py-6 text-lg font-bold shadow-lg shadow-blue-500/20 transition-all hover:scale-105">
+              <span className="flex items-center gap-2">
+                Join Free Beta
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Button>
-            <Button variant="ghost" className="w-full sm:w-auto rounded-full px-8 py-6 text-lg font-bold text-slate-600 hover:bg-slate-100">
-              View Roadmap
+            <Button variant="outline" className="rounded-full px-10 py-6 text-lg font-bold border-2 text-slate-700 hover:bg-slate-50 transition-colors">
+              <span className="flex items-center gap-2">
+                <PlayCircle className="w-5 h-5" />
+                Watch Demo
+              </span>
             </Button>
           </motion.div>
-
-          {/* Hero Image Mockup - Fizens Style */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="relative mx-auto max-w-5xl rounded-[32px] border border-white/50 bg-white/50 backdrop-blur-sm p-4 shadow-2xl shadow-blue-900/10"
-          >
-            <div className="rounded-[24px] overflow-hidden border border-slate-200 shadow-inner">
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
-                alt="GetLanded AI Copilot Dashboard"
-                className="w-full h-auto"
-              />
-            </div>
-          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Comparison Section: The Old Way vs The GetLanded Way */}
-      <section className="py-24 px-6 bg-white relative overflow-hidden">
+      {/* Problem / Solution Grid */}
+      <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">The Traditional Job Search is <span className="text-red-500">Broken</span></h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">We've reimagined the process from the ground up to give you a massive competitive advantage.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* The Traditional Way */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="p-8 rounded-[32px] border border-slate-100 bg-slate-50/50"
-            >
-              <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <XCircle className="text-red-500 w-6 h-6" />
-                The Traditional Way
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Manual application tracking in spreadsheets",
-                  "Generic resumes that get lost in ATS",
-                  "Wasting time on companies that don't sponsor",
-                  "Applying blindly without fit analysis"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* The GetLanded Way */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="p-8 rounded-[32px] border border-blue-100 bg-blue-50/30 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-4">
-                <Sparkles className="text-blue-500/20 w-12 h-12" />
-              </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-6 flex items-center gap-2">
-                <CheckCircle2 className="text-blue-500 w-6 h-6" />
-                The GetLanded Way
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Automated tracking and deadline reminders",
-                  "ATS-optimized resumes with fit scores",
-                  "Instant visa sponsorship verification",
-                  "Personalized AI copilot for every application"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-700 font-medium">
-                    <CheckCircle2 className="text-blue-500 w-4 h-4 mt-1 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Powerful Features to <br />Land Your Dream Job</h2>
-              <p className="text-slate-500 text-lg">Every tool you need to navigate the modern job market, powered by cutting-edge AI.</p>
-            </div>
-            <Link to="/waitlist" className="hidden md:flex">
-              <Button variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 font-bold items-center gap-2">
-                Learn more about features <ArrowRight size={20} />
-              </Button>
-            </Link>
-          </div>
-
           <motion.div
-            variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-6"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
           >
-            {features.map((feature, i) => (
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-slate-900">
+              Students don't fail job searches because they're unqualified.
+            </h2>
+            <p className="text-xl text-slate-600">
+              They fail because the process is fragmented, unclear, and overwhelming.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Problems */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={slideInLeft}
+              className="p-10 rounded-[2.5rem] bg-white border border-slate-200 shadow-sm"
+            >
+              <h3 className="text-2xl font-bold mb-8 font-heading text-slate-900">Most students:</h3>
+              <div className="space-y-6">
+                {[
+                  "Apply across multiple job boards",
+                  "Lose track of applications and deadlines",
+                  "Don't know if their resume is a fit",
+                  "Waste time on roles that won't sponsor visas",
+                  "Don't know what to improve next"
+                ].map((item, i) => (
+                  <motion.div key={i} variants={fadeInUp} className="flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-2 h-2 rounded-full bg-red-500" />
+                    </div>
+                    <span className="text-slate-600 text-lg">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Solutions */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={slideInRight}
+              className="p-10 rounded-[2.5rem] bg-slate-900 border border-slate-800 relative overflow-hidden text-white"
+            >
+              <div className="absolute inset-0 bg-blue-600/10 pointer-events-none" />
+              <h3 className="text-2xl font-bold mb-8 font-heading relative text-white">GetLanded fixes these problems first.</h3>
+              <div className="space-y-8 relative">
+                {[
+                  { challenge: "Limited work experience", solution: "Surface projects, coursework, and transferable skills effectively" },
+                  { challenge: "High competition", solution: "Smart targeting finds less competitive opportunities" },
+                  { challenge: "Unclear requirements", solution: "AI analyzes descriptions for specific improvement recommendations" },
+                  { challenge: "Visa hurdles", solution: "Automatic detection of sponsorship-friendly employers" }
+                ].map((item, i) => (
+                  <motion.div key={i} variants={fadeInUp} className="border-l-2 border-blue-500 pl-4">
+                    <div className="text-rose-300 text-sm mb-1">Challenge: {item.challenge}</div>
+                    <div className="text-emerald-300 text-base font-medium">Solution: {item.solution}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works - Steps */}
+      <section className="py-24 px-6 relative z-10 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-bold mb-4 font-heading text-slate-900">How GetLanded works</h2>
+            <p className="text-lg text-slate-500 font-medium">Browser → AI Reads → Insights → Save & Track → Apply</p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-4 gap-6"
+          >
+            {[
+              { num: "1", title: "Browse Jobs", desc: "Use LinkedIn, Indeed, or career pages normally." },
+              { num: "2", title: "AI Analyzes", desc: "Extension captures and analyzes requirements in real-time." },
+              { num: "3", title: "Get Insights", desc: "See fit scores, missing skills, and recommendations." },
+              { num: "4", title: "Save & Track", desc: "One-click save to dashboard with smart reminders." }
+            ].map((step, i) => (
               <motion.div
                 key={i}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                className="group p-8 rounded-[32px] bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
+                variants={scaleIn}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="p-8 rounded-[2rem] bg-white border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all group"
               >
-                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-opacity-80", feature.lightColor)}>
-                  <feature.icon className={cn("w-7 h-7", feature.color.replace('bg-', 'text-'))} strokeWidth={2} />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xl font-bold text-white mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                  {step.num}
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
-                <p className="text-slate-500 text-lg leading-relaxed mb-6">{feature.description}</p>
-                <Link to="/waitlist" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0">
-                  Try it out <ArrowRight size={16} />
-                </Link>
+                <h3 className="text-xl font-bold mb-3 text-slate-900">{step.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Roadmap Section */}
-      <section className="py-24 px-6 bg-slate-900 text-white rounded-[48px] mx-4 md:mx-10 mb-20 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://framerusercontent.com/images/rR6CH3BheByo8vznuPHT4HfSBo.png')] opacity-[0.05] pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-bold border border-blue-500/20 mb-6 inline-block">ROADMAP</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">What's Coming Next</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">We're constantly building new ways to simplify your career journey.</p>
-          </div>
+      {/* Available Now - Feature Cards */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-bold mb-6 font-heading text-slate-900">Available now in the Free Beta</h2>
+            <p className="text-xl text-slate-600">All features listed below are live and included.</p>
+          </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {roadmapFeatures.map((feature, i) => (
+          <div className="space-y-6">
+            {[
+              {
+                icon: Layout,
+                title: "AI Job Tracker",
+                desc: "Centralizes all your job applications into a single dashboard.",
+                color: "green"
+              },
+              {
+                icon: FileSearch,
+                title: "Resume Fit Score",
+                desc: "Shows how closely your resume matches a specific job description.",
+                color: "purple"
+              },
+              {
+                icon: Globe,
+                title: "Visa Sponsorship Signals",
+                desc: "Highlights sponsorship-friendly employers and flags risks early.",
+                color: "blue"
+              },
+              {
+                icon: BrainCircuit,
+                title: "AI Copilot on Job Pages",
+                desc: "Works directly on job boards to analyze roles in real-time.",
+                color: "cyan"
+              }
+            ].map((feature, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.01 }}
+                className="p-10 rounded-[2.5rem] bg-white border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-lg transition-all flex flex-col md:flex-row gap-8 items-start"
               >
-                <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="text-blue-400 w-6 h-6" />
+                <div className={`w-20 h-20 rounded-3xl bg-${feature.color}-50 flex items-center justify-center shrink-0`}>
+                  <feature.icon className={`w-10 h-10 text-${feature.color}-600`} strokeWidth={1.5} />
                 </div>
-                <h4 className="font-bold text-slate-200">{feature.title}</h4>
-                <p className="text-xs text-blue-400 mt-2 font-bold uppercase tracking-wider">Coming Soon</p>
+                <div>
+                  <div className="flex items-center gap-4 mb-3">
+                    <h3 className="text-2xl font-bold text-slate-900">{feature.title}</h3>
+                    <span className={`text-xs font-bold uppercase tracking-wider text-${feature.color}-700 bg-${feature.color}-100 px-3 py-1 rounded-full`}>Available Now</span>
+                  </div>
+                  <p className="text-lg text-slate-600 mb-6 max-w-3xl">{feature.desc}</p>
+                  <div className="flex gap-2">
+                    <CheckCircle2 className={`w-5 h-5 text-${feature.color}-600`} />
+                    <span className="text-slate-500 text-sm font-medium">Included in Free Beta</span>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 tracking-tight">Ready to Land Your <br /><span className="text-blue-600">Dream Career?</span></h2>
-          <p className="text-slate-500 text-xl mb-12">Join thousands of students who are already using GetLanded to accelerate their job search.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button className="w-full sm:w-auto rounded-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-xl font-bold shadow-2xl shadow-blue-500/20 transition-all hover:-translate-y-1">
-              Start Free Trial
-            </Button>
-            <Button variant="outline" className="w-full sm:w-auto rounded-full border-slate-200 px-10 py-6 text-xl font-bold text-slate-700 hover:bg-slate-50">
-              Contact Sales
-            </Button>
-          </div>
+      {/* Coming Soon Section */}
+      <section className="py-24 px-6 relative z-10 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-bold mb-6 font-heading text-slate-900">Coming soon</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              The following features are actively in development and will be released after the initial beta launch.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {comingSoonFeatures.map((feature, i) => (
+              <motion.div
+                key={i}
+                variants={scaleIn}
+                whileHover={{ y: -5, borderColor: '#F59E0B' }}
+                className="group p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center">
+                    <feature.icon className="w-7 h-7 text-amber-500" strokeWidth={2} />
+                  </div>
+                  <div className="px-3 py-1 rounded-full bg-amber-50 border border-amber-100">
+                    <span className="text-xs font-bold text-amber-600 uppercase">Coming Soon</span>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                  {feature.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6 relative z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={scaleIn}
+          className="max-w-5xl mx-auto rounded-[3.5rem] bg-primary p-20 text-center relative overflow-hidden shadow-2xl"
+        >
+          {/* Subtle Grid Pattern Overlay */}
+          <div className="absolute inset-0 bg-white opacity-10 bg-[size:2rem_2rem] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]" />
+
+          <div className="relative z-10">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 font-heading text-white">Start your job search with clarity</h2>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+              <Button className="rounded-full bg-white text-primary hover:bg-slate-50 px-12 py-7 text-xl font-bold shadow-xl transition-transform hover:scale-105">
+                Join Free Beta
+              </Button>
+            </div>
+            <div className="flex items-center justify-center gap-8 text-blue-100 text-base font-medium">
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5" /> No credit card required</span>
+              <span className="flex items-center gap-2"><Clock className="w-5 h-5" /> 2-minute setup</span>
+            </div>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
