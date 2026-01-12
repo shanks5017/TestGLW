@@ -52,13 +52,108 @@ export const FloatingNavbar = () => {
             )}>
                 <div className="w-full max-w-7xl px-6 flex items-center justify-between">
 
-                    {/* Logo */}
+                    {/* Logo & Identity */}
                     <div className="pointer-events-auto">
-                        <Link to="/" className="flex items-center gap-2 group">
-                            <img src={logo} alt="GetLanded" className="w-9 h-9 object-contain" />
-                            <span className="text-[22px] font-bold tracking-tight text-[#0F172A]">
-                                GetLanded
-                            </span>
+                        <Link to="/" className="flex items-center gap-3 group">
+                            <motion.div
+                                whileHover={{ scale: 1.1, rotate: 8 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                                className="relative shrink-0 overflow-hidden"
+                            >
+                                <img src={logo} alt="GetLanded" className="w-9 h-9 object-contain relative z-10" />
+
+                                {/* Production-Grade Logo Shine */}
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -skew-x-20 z-20 pointer-events-none"
+                                    animate={{
+                                        left: ['-100%', '200%'],
+                                    }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        repeatDelay: 5,
+                                        ease: "easeInOut"
+                                    }}
+                                />
+
+                                {/* Interactive Underline */}
+                                <motion.div
+                                    className="absolute inset-x-0 -bottom-1 h-0.5 bg-primary/40 blur-sm rounded-full"
+                                    initial={{ scaleX: 0, opacity: 0 }}
+                                    whileHover={{ scaleX: 1, opacity: 1 }}
+                                />
+                            </motion.div>
+
+                            <motion.div
+                                className="flex"
+                                whileHover="hover"
+                            >
+                                {"GetLanded".split("").map((char, i) => (
+                                    <motion.span
+                                        key={i}
+                                        initial={{ y: 20, opacity: 0, filter: "blur(8px)" }}
+                                        animate={{
+                                            y: [-1.5, 1.5, -1.5],
+                                            opacity: 1,
+                                            filter: "blur(0px)",
+                                        }}
+                                        variants={{
+                                            hover: {
+                                                rotateX: 360,
+                                                scale: 1.15,
+                                                y: -5,
+                                                transition: {
+                                                    type: "spring",
+                                                    stiffness: 400,
+                                                    damping: 15,
+                                                    delay: i * 0.02
+                                                }
+                                            }
+                                        }}
+                                        transition={{
+                                            y: {
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut",
+                                                delay: i * 0.15
+                                            },
+                                            opacity: { duration: 0.8, delay: 0.2 + i * 0.02 },
+                                            filter: { duration: 0.8, delay: 0.2 + i * 0.02 }
+                                        }}
+                                        className={cn(
+                                            "text-xl tracking-tighter inline-block font-heading select-none perspective-1000",
+                                            i < 3 ? "font-semibold text-slate-900" : "font-black"
+                                        )}
+                                        style={{
+                                            transformStyle: "preserve-3d",
+                                            backgroundImage: i < 3
+                                                ? 'none'
+                                                : 'linear-gradient(90deg, #0047FF, #60A5FA, #0047FF)',
+                                            backgroundSize: '200% auto',
+                                            WebkitBackgroundClip: i < 3 ? 'none' : 'text',
+                                            WebkitTextFillColor: i < 3 ? 'currentColor' : 'transparent',
+                                        }}
+                                    >
+                                        <motion.span
+                                            animate={{
+                                                backgroundPosition: ["0% 50%", "200% 50%"]
+                                            }}
+                                            transition={{
+                                                duration: 4,
+                                                repeat: Infinity,
+                                                ease: "linear"
+                                            }}
+                                            style={{
+                                                background: 'inherit',
+                                                WebkitBackgroundClip: 'inherit',
+                                                WebkitTextFillColor: 'inherit',
+                                            }}
+                                        >
+                                            {char}
+                                        </motion.span>
+                                    </motion.span>
+                                ))}
+                            </motion.div>
                         </Link>
                     </div>
 
@@ -143,9 +238,12 @@ export const FloatingNavbar = () => {
                         className="fixed inset-0 z-[60] bg-white flex flex-col p-6 md:hidden"
                     >
                         <div className="flex justify-between items-center mb-8">
-                            <Link to="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                                <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
-                                <span className="text-[22px] font-bold text-[#0F172A]">GetLanded</span>
+                            <Link to="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
+                                <img src={logo} alt="GetLanded" className="w-10 h-10 object-contain" />
+                                <div className="flex">
+                                    <span className="text-xl tracking-tighter font-semibold text-slate-900 font-heading">Get</span>
+                                    <span className="text-xl tracking-tighter font-black text-primary font-heading">Landed</span>
+                                </div>
                             </Link>
                             <button
                                 className="p-3 text-slate-600 hover:text-[#0047FF] rounded-full bg-slate-50"
