@@ -152,3 +152,18 @@ h6 {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* Marquee Animation - Right to Left */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 6s linear infinite;
+}
