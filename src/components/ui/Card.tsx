@@ -16,9 +16,8 @@ export function Card({ children, className = '', hover = false, padding = 'md' }
 
   return (
     <div
-      className={`glass-card rounded-xl ${
-        hover ? 'card-hover' : ''
-      } ${paddingClasses[padding]} ${className}`}
+      className={`glass-card rounded-xl ${hover ? 'card-hover' : ''
+        } ${paddingClasses[padding]} ${className}`}
     >
       {children}
     </div>

@@ -15,21 +15,21 @@ const StepCard = ({
     description: string,
     icon: any,
     className?: string,
-    delay: number
+    delay?: number
 }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay }}
+            transition={{ duration: 0.6, delay: delay || 0 }}
             className={cn(
                 "relative flex gap-6 p-8 rounded-3xl bg-slate-50 border border-slate-100/50 hover:bg-white hover:shadow-lg transition-all duration-300 group",
                 className
             )}
         >
             <div className="flex-shrink-0">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-[#0047FF] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-[#5299E5] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
                     <Icon size={24} />
                 </div>
                 <div className="mt-4 text-center">
@@ -38,7 +38,7 @@ const StepCard = ({
             </div>
 
             <div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#0047FF] transition-colors">{title}</h3>
+                <h3 className="text-xl font-medium text-slate-900 mb-3 group-hover:text-[#5299E5] transition-colors tracking-tight">{title}</h3>
                 <p className="text-slate-600 leading-relaxed text-base">
                     {description}
                 </p>
@@ -62,26 +62,21 @@ export const HowItWorks = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#0047FF] text-xs font-bold uppercase tracking-wider mb-6">
-                                <span className="w-2 h-2 rounded-full bg-[#0047FF] animate-pulse" />
-                                Simple Process
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F3FC] text-[#5299E5] text-xs font-bold uppercase tracking-wider mb-6">
+                                <span className="w-2 h-2 rounded-full bg-[#5299E5] animate-pulse" />
+                                Introduction
                             </div>
 
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-[1.05]">
-                                From job discovery <br />
-                                to offer in <span className="text-[#0047FF]">three steps.</span>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.1]">
+                                Simplifying the <br />
+                                <span className="text-[#5299E5]">job hunt.</span>
                             </h2>
                             <p className="text-lg text-slate-600 max-w-md leading-relaxed">
-                                We've streamlined the chaotic student job search into a linear, predictable workflow.
+                                Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box. <br /><br />
+                                GetLanded was created to simplify this experience by offering an AI‑powered copilot that lives in your browser and integrates with popular job boards. Our tool does the heavy lifting—matching your skills to open roles, optimizing your documents and ensuring you know whether a job can actually hire you.
                             </p>
 
-                            <div className="mt-12 hidden lg:block">
-                                <img
-                                    src="https://cdn.dribbble.com/users/1299330/screenshots/14686082/media/64cc90e2277d079313cb8770d3027783.png?resize=800x600&vertical=center"
-                                    alt="Process Abstract"
-                                    className="rounded-3xl shadow-2xl border border-slate-100 opacity-80"
-                                />
-                            </div>
+
                         </motion.div>
                     </div>
 

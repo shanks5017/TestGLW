@@ -79,7 +79,7 @@ export function TestimonialCarousel({
                     <div className="text-sm text-gray-400">{testimonial.role}</div>
                     <div className="text-sm text-gray-500">{testimonial.company}</div>
                     {testimonial.badge && (
-                      <span className="inline-block mt-1 px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full">{testimonial.badge}</span>
+                      <span className="inline-block mt-1 px-2 py-1 bg-[#5299E5]/20 text-[#70ADEF] text-xs rounded-full">{testimonial.badge}</span>
                     )}
                   </div>
                 </div>

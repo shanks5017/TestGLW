@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -11,8 +11,6 @@ import {
   MoreHorizontal,
   TrendingUp,
   Clock,
-  CheckCircle2,
-  XCircle
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { Button } from '../components/ui/Button';
@@ -35,7 +33,7 @@ const applications = [
 
 const statusColors = {
   Interview: "bg-purple-100 text-purple-700",
-  Applied: "bg-blue-100 text-blue-700",
+  Applied: "bg-[#D6EAFF] text-[#2A74C9]",
   Rejected: "bg-red-100 text-red-700",
   Offer: "bg-green-100 text-green-700"
 };
@@ -47,7 +45,7 @@ export function Dashboard() {
       {/* Sidebar */}
       <div className="w-64 bg-white border-r border-gray-100 p-6 flex-col hidden md:flex sticky top-0 h-screen">
         <div className="flex items-center gap-3 mb-12 px-2">
-          <div className="w-8 h-8 bg-[#0040C1] rounded-lg flex items-center justify-center text-white font-bold">G</div>
+          <div className="w-8 h-8 bg-[#5299E5] rounded-lg flex items-center justify-center text-white font-bold">G</div>
           <span className="font-bold text-xl">GetLanded</span>
         </div>
 
@@ -64,7 +62,7 @@ export function Dashboard() {
               className={cn(
                 "w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm font-medium",
                 item.active
-                  ? "bg-[#EFF4FF] text-[#0040C1]"
+                  ? "bg-[#EFF4FF] text-[#5299E5]"
                   : "text-gray-500 hover:bg-gray-50 hover:text-[#171717]"
               )}
             >
@@ -74,10 +72,10 @@ export function Dashboard() {
           ))}
         </nav>
 
-        <div className="p-4 bg-blue-50 rounded-2xl">
-          <h4 className="font-bold text-[#0040C1] mb-2 text-sm">Pro Plan</h4>
-          <p className="text-xs text-blue-600 mb-3">You have 5 premium scans remaining.</p>
-          <button className="text-xs font-bold text-[#0040C1] hover:underline">Upgrade Now</button>
+        <div className="p-4 bg-[#E8F3FC] rounded-2xl">
+          <h4 className="font-bold text-[#5299E5] mb-2 text-sm">Pro Plan</h4>
+          <p className="text-xs text-[#5299E5] mb-3">You have 5 premium scans remaining.</p>
+          <button className="text-xs font-bold text-[#5299E5] hover:underline">Upgrade Now</button>
         </div>
       </div>
 
@@ -140,7 +138,7 @@ export function Dashboard() {
             <div className="lg:col-span-2 bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden">
               <div className="p-6 border-b border-gray-50 flex items-center justify-between">
                 <h2 className="font-bold text-lg text-[#171717]">Recent Applications</h2>
-                <button className="text-sm font-semibold text-[#0040C1] hover:underline">View All</button>
+                <button className="text-sm font-semibold text-[#5299E5] hover:underline">View All</button>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
@@ -181,11 +179,11 @@ export function Dashboard() {
                   <div className="text-3xl font-bold mb-2">12/15</div>
                   <div className="text-sm text-gray-400 mb-6">Applications sent this week. Keep it up!</div>
                   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#0040C1] w-[80%]" />
+                    <div className="h-full bg-[#5299E5] w-[80%]" />
                   </div>
                 </div>
                 {/* Decor */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#0040C1] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 opacity-50" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#5299E5] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 opacity-50" />
               </div>
 
               {/* Upcomming Events */}
@@ -206,7 +204,7 @@ export function Dashboard() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 flex flex-col items-center justify-center text-[#0040C1] shrink-0">
+                    <div className="w-12 h-12 rounded-2xl bg-[#E8F3FC] flex flex-col items-center justify-center text-[#5299E5] shrink-0">
                       <span className="text-xs font-bold uppercase">Oct</span>
                       <span className="text-lg font-bold">26</span>
                     </div>

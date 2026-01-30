@@ -2,16 +2,16 @@ import React from 'react';
 
 const companies = [
   { name: 'Google', bgColor: 'bg-white', textColor: 'text-gray-800', icon: '🔍' },
-  { name: 'Microsoft', bgColor: 'bg-blue-600', textColor: 'text-white', icon: '⊞' },
-  { name: 'Meta', bgColor: 'bg-blue-600', textColor: 'text-white', icon: 'f' },
+  { name: 'Microsoft', bgColor: 'bg-[#3D84D8]', textColor: 'text-white', icon: '⊞' },
+  { name: 'Meta', bgColor: 'bg-[#3D84D8]', textColor: 'text-white', icon: 'f' },
   { name: 'Apple', bgColor: 'bg-gray-800', textColor: 'text-white', icon: '' },
   { name: 'Netflix', bgColor: 'bg-red-600', textColor: 'text-white', icon: '▶' },
   { name: 'Spotify', bgColor: 'bg-green-500', textColor: 'text-white', icon: '♫' },
   { name: 'Uber', bgColor: 'bg-black', textColor: 'text-white', icon: '🚗' },
   { name: 'Airbnb', bgColor: 'bg-pink-500', textColor: 'text-white', icon: '🏠' },
-  { name: 'LinkedIn', bgColor: 'bg-blue-700', textColor: 'text-white', icon: 'in' },
+  { name: 'LinkedIn', bgColor: 'bg-[#2A74C9]', textColor: 'text-white', icon: 'in' },
   { name: 'GitHub', bgColor: 'bg-gray-900', textColor: 'text-white', icon: '⚡' },
-  { name: 'Twitter', bgColor: 'bg-blue-400', textColor: 'text-white', icon: '🐦' },
+  { name: 'Twitter', bgColor: 'bg-[#70ADEF]', textColor: 'text-white', icon: '🐦' },
   { name: 'Stripe', bgColor: 'bg-purple-600', textColor: 'text-white', icon: 'S' }
 ];
 

@@ -12,7 +12,7 @@ function FloatingParticles() {
             {particles.map((_, i) => (
                 <motion.div
                     key={i}
-                    className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+                    className="absolute w-2 h-2 bg-[#70ADEF]/30 rounded-full"
                     initial={{
                         x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
                         y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
@@ -130,7 +130,7 @@ export function Blog() {
                     </div>
                     <div className="p-10 lg:p-16 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-6">
-                            <span className="px-3 py-1 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-wider">Featured</span>
+                            <span className="px-3 py-1 rounded-full bg-[#E8F3FC] text-primary text-xs font-bold uppercase tracking-wider">Featured</span>
                             <span className="text-gray-400 text-sm">July 1, 2025</span>
                         </div>
                         <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight group-hover:text-primary transition-colors font-heading">

@@ -1,6 +1,7 @@
 import { Hero } from '../components/home/Hero';
+import { ValueProp } from '../components/home/ValueProp';
 import { Features } from '../components/home/Features';
-import { Pricing } from '../components/home/Pricing';
+import { ToolsSection } from '../components/home/ToolsSection';
 import { Stats } from '../components/home/Stats';
 import { HowItWorks } from '../components/home/HowItWorks';
 import { FAQAccordion } from '../components/ui/FAQAccordion';
@@ -37,6 +38,9 @@ export function Home() {
       {/* Hero Section */}
       <Hero />
 
+      {/* Value Proposition Section */}
+      <ValueProp />
+
       {/* Stats / Receipts */}
       <Stats />
 
@@ -46,16 +50,17 @@ export function Home() {
       {/* How It Works (Three Steps) */}
       <HowItWorks />
 
-      {/* Pricing */}
-      <Pricing />
+      {/* AI Tools Suite */}
+      <ToolsSection />
 
       {/* FAQ Section */}
-      <Section className="py-32 max-w-4xl mx-auto bg-white">
-        <FadeIn>
+      {/* FAQ Section */}
+      <Section width="full" className="py-24 bg-white">
+        <FadeIn className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6 tracking-tight">Frequently Asked Questions</h2>
           <p className="text-xl text-slate-500 text-center mb-16 max-w-2xl mx-auto">Everything you need to know about GetLanded.</p>
         </FadeIn>
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full">
           <FAQAccordion faqs={faqs} />
         </div>
       </Section>

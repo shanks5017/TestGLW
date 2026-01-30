@@ -1,234 +1,408 @@
-import { motion } from "framer-motion";
-import { Bookmark, Sparkles, Globe, Target, ArrowRight, CheckCircle2, FileText, Zap } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Bookmark, Sparkles, Globe, ArrowRight, CheckCircle2, Zap, Target, Play, Search } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-// --- Rich Visual Components for Bento Cards ---
 
-const ResumeScoreVisual = () => (
-    <div className="relative w-full h-full min-h-[160px] bg-slate-50/50 rounded-xl border border-slate-100 flex items-center justify-center overflow-hidden group-hover:bg-blue-50/30 transition-colors">
-        <div className="relative z-10 flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full border-[6px] border-slate-200 border-t-[#0047FF] border-r-[#0047FF] rotate-45 flex items-center justify-center bg-white shadow-sm">
-                <div className="text-2xl font-bold text-slate-900 -rotate-45">98</div>
-            </div>
-            <div className="mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-green-100/80 text-green-700 text-xs font-bold border border-green-200">
-                <CheckCircle2 size={12} />
-                <span>Match Found</span>
-            </div>
-        </div>
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(#0047FF_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.03]" />
-    </div>
-);
+
+
 
 const JobSaveVisual = () => (
-    <div className="relative w-full h-full min-h-[160px] flex flex-col gap-3 p-4">
-        {['Netflix', 'Spotify'].map((company, i) => (
+    <div className="w-full h-full flex flex-col justify-center gap-3 p-4">
+        {['Netflix', 'Spotify', 'Google'].map((company, i) => (
             <motion.div
                 key={company}
-                initial={{ x: i * 20, opacity: 0.8 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ delay: i * 0.2 }}
-                className="bg-white p-3 rounded-lg border border-slate-100 shadow-sm flex items-center justify-between group-hover:translate-x-1 transition-transform"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between"
             >
                 <div className="flex items-center gap-3">
-                    <div className={cn("w-8 h-8 rounded-md flex items-center justify-center text-white text-xs font-bold", i === 0 ? "bg-black" : "bg-[#1DB954]")}>
+                    <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold",
+                        i === 0 ? "bg-black" : i === 1 ? "bg-[#1DB954]" : "bg-[#4285F4]")}>
                         {company[0]}
                     </div>
-                    <div className="text-xs font-bold text-slate-700">{company}</div>
+                    <div>
+                        <div className="text-xs font-bold text-slate-900">{company}</div>
+                        <div className="text-[10px] text-slate-400">Software Engineer</div>
+                    </div>
                 </div>
-                <div className="text-[#0047FF]">
-                    <Bookmark size={16} fill="currentColor" />
+                <div className="text-[#5299E5] bg-[#E8F3FC] p-1.5 rounded-lg">
+                    <Bookmark size={14} fill="currentColor" />
                 </div>
             </motion.div>
         ))}
-        <div className="absolute bottom-4 right-4">
-            <div className="w-10 h-10 bg-[#0047FF] rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/30 animate-pulse">
-                <Bookmark size={18} />
-            </div>
-        </div>
     </div>
 );
 
 const AnalysisVisual = () => (
-    <div className="w-full h-full min-h-[140px] bg-slate-900 rounded-xl p-4 overflow-hidden relative border border-slate-800">
-        <div className="flex flex-wrap gap-2 relative z-10">
-            {['React', 'TypeScript', 'Node.js'].map((skill) => (
-                <div key={skill} className="px-2 py-1 rounded-md bg-white/10 text-white/90 text-[10px] border border-white/5 flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                    {skill}
-                </div>
-            ))}
-            <div className="px-2 py-1 rounded-md bg-red-500/20 text-red-200 text-[10px] border border-red-500/20 flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-                Missing: Docker
+    <div className="w-full h-full flex items-center justify-center p-4">
+        <div className="space-y-3 w-full max-w-[200px]">
+            <div className="flex items-center gap-2 mb-4 opacity-60">
+                <div className="w-2 h-2 rounded-full bg-red-400" />
+                <div className="w-2 h-2 rounded-full bg-amber-400" />
+                <div className="w-2 h-2 rounded-full bg-green-400" />
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+                {['React', 'TS', 'Node'].map((skill) => (
+                    <span key={skill} className="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-medium">
+                        ✓ {skill}
+                    </span>
+                ))}
+                <span className="px-2 py-1 rounded-md bg-red-500/20 text-red-300 text-[10px] font-medium animate-pulse">
+                    ✗ Docker
+                </span>
             </div>
         </div>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#0047FF] rounded-full blur-[60px] opacity-20" />
     </div>
 );
 
 const VisaVisual = () => (
-    <div className="w-full h-full min-h-[140px] flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center">
         <div className="relative">
-            <div className="absolute inset-0 bg-[#0047FF] blur-2xl opacity-10 rounded-full" />
-            <div className="relative bg-white border border-slate-100 rounded-2xl p-4 shadow-xl flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[#0047FF]">
+            <div className="bg-white/90 backdrop-blur-sm border border-slate-100 rounded-2xl p-4 shadow-lg flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#E8F3FC] flex items-center justify-center text-[#5299E5]">
                     <Globe size={20} />
                 </div>
                 <div>
-                    <div className="text-xs font-bold text-slate-900">Visa Sponsored</div>
-                    <div className="text-[10px] text-slate-400">H1B Eligible</div>
+                    <div className="text-xs font-bold text-slate-900">H1B Eligible</div>
+                    <div className="text-[10px] text-slate-500">Visa Sponsored</div>
                 </div>
-                <div className="absolute -top-2 -right-2 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center text-white">
-                    <CheckCircle2 size={10} />
-                </div>
+            </div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center text-white shadow-lg">
+                <CheckCircle2 size={12} strokeWidth={3} />
             </div>
         </div>
     </div>
 );
 
+// --- New Visuals ---
 
-const BentoItem = ({
+const InterviewVisual = () => (
+    <div className="w-full h-full flex flex-col justify-center p-4">
+        <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative">
+            <h4 className="text-slate-900 text-xs font-bold mb-3">Interview Questions</h4>
+            <div className="space-y-2">
+                {[1, 2].map((i) => (
+                    <div key={i} className="flex items-center gap-3 bg-slate-50 rounded-lg p-2">
+                        <div className="w-6 h-6 rounded-full bg-[#D6EAFF] flex items-center justify-center shrink-0">
+                            <Play size={10} className="text-[#5299E5] ml-0.5" fill="currentColor" />
+                        </div>
+                        <div className="h-1.5 w-full bg-slate-200 rounded-full" />
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+);
+
+const AnalyticsVisual = () => (
+    <div className="w-full h-full flex items-end justify-center px-4 overflow-hidden">
+        <div className="w-full bg-white rounded-t-xl border-x border-t border-slate-100 shadow-sm p-4">
+            <div className="flex items-center gap-8 mb-4 border-b border-slate-50 pb-2">
+                <div className="flex items-center gap-2">
+                    <Search size={12} className="text-slate-300" />
+                    <div className="h-1.5 w-16 bg-slate-50 rounded-full" />
+                </div>
+                <div className="h-4 w-4 rounded-full bg-slate-100 ml-auto" />
+            </div>
+            <div className="space-y-2 relative">
+                {[1, 2, 3].map(i => (
+                    <div key={i} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-100" />
+                        <div className="h-1.5 w-20 bg-slate-50 rounded-full" />
+                        <div className="h-1.5 w-12 bg-blue-50 rounded-full ml-auto" />
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+);
+
+// Feature Card Component with hover effects
+const FeatureCard = ({
     title,
     description,
+    Visual,
     className,
-    delay = 0,
-    visual: Visual
+    visualBg = "bg-slate-50",
+    index,
+    customCardClass = "",
+    customVisualClass = ""
 }: {
     title: string;
     description: string;
+    Visual: React.ComponentType;
     className?: string;
-    delay?: number;
-    visual: React.ComponentType;
-}) => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay }}
-            className={cn(
-                "group relative overflow-hidden rounded-[2.5rem] bg-white p-8 border border-slate-100 hover:border-blue-100/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 flex flex-col justify-between",
-                className
-            )}
-        >
-            <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed max-w-[90%]">
+    visualBg?: string;
+    index: number;
+    customCardClass?: string;
+    customVisualClass?: string;
+}) => (
+    <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className={cn(
+            "group relative rounded-[2rem] border border-slate-200/80 overflow-hidden",
+            "hover:border-slate-300 hover:shadow-2xl hover:shadow-slate-200/50",
+            "transition-all duration-500 ease-out",
+            customCardClass,
+            className
+        )}
+    >
+        {/* Hover Glow Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#5299E5]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Content */}
+        <div className={cn("relative z-10 h-full flex flex-col", customCardClass.includes('#e8efff') ? 'bg-[#e8efff]' : '')}>
+            {/* Visual Section */}
+            <div className={cn(
+                "flex-1 min-h-[180px] md:min-h-[220px] rounded-t-[2rem] overflow-hidden relative",
+                visualBg,
+                customVisualClass
+            )}>
+                <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <Visual />
+                </div>
+                {/* Subtle pattern overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(#5299E5_0.5px,transparent_0.5px)] [background-size:16px_16px] opacity-[0.02]" />
+            </div>
+
+            {/* Text Section */}
+            <div className="p-6 md:p-8">
+                <div className={cn("inline-flex items-center gap-2 px-2.5 py-1 rounded-full mb-4",
+                    customCardClass.includes('#e8efff') ? 'bg-white/50 border border-white/80' : 'bg-slate-50 border border-slate-100'
+                )}>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#5299E5]" />
+                    <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Feature 0{index + 1}</span>
+                </div>
+                <h3 className="text-xl md:text-2xl mb-3 leading-tight tracking-tight group-hover:text-[#5299E5] transition-colors duration-300">
+                    {title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
                     {description}
                 </p>
             </div>
+        </div>
 
-            <div className="mt-auto relative w-full rounded-2xl overflow-hidden min-h-[140px] bg-slate-50/50 group-hover:scale-[1.02] transition-transform duration-500 ease-out border border-slate-100/50">
-                <Visual />
+        {/* Corner accent on hover */}
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#5299E5] flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+            <ArrowRight size={14} />
+        </div>
+    </motion.div>
+);
+
+// Hero Feature Card (larger, for first feature)
+const HeroFeatureCard = ({
+    title,
+    description,
+    Visual
+}: {
+    title: string;
+    description: string;
+    Visual: React.ComponentType;
+}) => (
+    <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.7 }}
+        className="group relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[2.5rem] overflow-hidden col-span-1 md:col-span-2 row-span-1 border border-[#5299E5]"
+    >
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#5299E5]/20 via-transparent to-[#5299E5]/10 opacity-50" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#5299E5] rounded-full blur-[120px] opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
+
+        <div className="relative z-10 h-full flex flex-col md:flex-row">
+            {/* Text Section */}
+            <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 w-fit mb-6">
+                    <Zap size={12} className="text-[#5299E5]" fill="currentColor" />
+                    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Core Feature</span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-normal text-white mb-4 leading-tight tracking-tight">
+                    {title}
+                </h3>
+                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-md">
+                    {description}
+                </p>
+
+                {/* CTA Button */}
+                <button className="mt-8 flex items-center gap-2 text-[#5299E5] bg-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-[#E8F3FC] transition-all w-fit group/btn">
+                    <span>Learn more</span>
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                </button>
             </div>
 
-            {/* Hover Glow Effect */}
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-t from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-        </motion.div>
-    );
-};
+            {/* Visual Section */}
+            <div className="flex-1 min-h-[250px] md:min-h-0 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-slate-900/50 z-10" />
+                <div className="absolute inset-0 p-6 md:p-8">
+                    <div className="w-full h-full bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+                        <Visual />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </motion.div>
+);
+
+const features = [
+    {
+        title: "Smart Job Discovery & Auto‑Apply",
+        description: "Scan thousands of job listings, surface roles that match your skills and goals and even autofill applications with your information.",
+        Visual: JobSaveVisual,
+        visualBg: "bg-gradient-to-br from-slate-50 to-slate-100"
+    },
+    {
+        title: "AI Resume & Cover Letter Builder",
+        description: "Create ATS‑optimized resumes and personalized cover letters in minutes. Our AI analyzes the job description and tailors your application for maximum fit.",
+        Visual: AnalysisVisual,
+        visualBg: "bg-[#0F172A]",
+        customCardClass: "!bg-[#e8efff]"
+    },
+    {
+        title: "Visa Sponsorship & Resume Fit Analyzer",
+        description: "Quickly verify if a posting offers visa sponsorship and see how well your profile matches each role.",
+        Visual: VisaVisual,
+        visualBg: "!bg-[#e8efff]",
+        customCardClass: "!bg-[#e8efff]",
+        customVisualClass: ""
+    },
+    {
+        title: "AI Mock Interviews & Coaching",
+        description: "Practice with realistic AI interviews that include role‑specific questions, STAR‑method feedback and video recordings.",
+        Visual: InterviewVisual,
+        visualBg: "!bg-[#e8efff]",
+        customCardClass: "!bg-[#e8efff]",
+        customVisualClass: ""
+    },
+    {
+        title: "Progress Tracking & Analytics",
+        description: "Monitor applications, track interview performance and visualize your job‑search journey with success metrics.",
+        Visual: AnalyticsVisual,
+        visualBg: "!bg-[#e8efff]",
+        customCardClass: "!bg-[#e8efff]",
+        customVisualClass: ""
+    }
+];
 
 export const Features = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const width = useTransform(scrollYProgress, [0, 0.5, 1], ["75%", "95%", "75%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
     return (
-        <section className="py-32 bg-slate-50 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none opacity-[0.4]" />
+        <section className="bg-slate-100/50 relative overflow-hidden py-24 md:py-32">
+            {/* Background decorations */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#5299E5] rounded-full blur-[200px] opacity-[0.03]" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#5299E5] rounded-full blur-[150px] opacity-[0.02]" />
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-                    <div className="max-w-2xl">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-600 mb-6 uppercase tracking-wider"
-                        >
-                            <Sparkles size={12} className="text-[#0047FF]" />
-                            <span>Why Students Choose Us</span>
-                        </motion.div>
-
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight leading-[1.05]"
-                        >
-                            Built for the <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0047FF] to-blue-400">modern job search.</span>
-                        </motion.h2>
-                    </div>
-
+            <div className="max-w-7xl mx-auto px-6">
+                {/* Header */}
+                <div className="text-center mb-16 md:mb-20">
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="max-w-xs text-slate-500 leading-relaxed"
-                    >
-                        Traditional job boards weren't built for students. We repackage your experience into something companies instantly recognize.
-                    </motion.div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[420px]">
-
-                    {/* Feature 1: One-Click Save */}
-                    <BentoItem
-                        title="One-click job saving"
-                        description="Stop keeping 50 tabs open. Save jobs from LinkedIn, Indeed, and company sites to your central dashboard."
-                        className="md:col-span-1"
-                        visual={JobSaveVisual}
-                    />
-
-                    {/* Feature 2: AI Analysis */}
-                    <BentoItem
-                        title="Instant AI Analysis"
-                        description="We read the job description for you and tell you exactly what skills are missing from your profile."
-                        visual={AnalysisVisual}
-                        delay={0.1}
-                    />
-
-                    {/* Feature 3: Visa Detection */}
-                    <BentoItem
-                        title="Visa Sponsorship Detection"
-                        description="International student? We automatically flag roles that have sponsored visas in the past."
-                        visual={VisaVisual}
-                        delay={0.2}
-                    />
-
-                    {/* Feature 4: Resume Match (Span 2) */}
-                    <BentoItem
-                        title="Resume Match Scoring"
-                        description="Get a 0-100 score on how well your resume fits the role, with actionable tips to increase your interview chances."
-                        className="md:col-span-2 md:flex-row md:items-center md:gap-12"
-                        visual={ResumeScoreVisual}
-                        delay={0.3}
-                    />
-
-                    {/* Feature Highlight Box */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
-                        className="md:col-span-1 bg-[#0047FF] rounded-[2.5rem] p-10 flex flex-col justify-between text-white relative overflow-hidden group"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-[#5299E5] mb-6 uppercase tracking-wider"
                     >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
-                        <div>
-                            <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
-                                <Zap size={24} fill="currentColor" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-2">Ready to start?</h3>
-                            <p className="text-white/80 text-sm">Join 2.3M+ students getting hired today.</p>
-                        </div>
-
-                        <button className="flex items-center justify-between w-full bg-white text-[#0047FF] p-4 rounded-xl font-bold text-sm mt-8 hover:bg-blue-50 transition-colors group-hover:scale-105 duration-300">
-                            <span>Get Template</span>
-                            <ArrowRight size={16} />
-                        </button>
+                        <Sparkles size={12} fill="currentColor" />
+                        <span>Why Students Choose Us</span>
                     </motion.div>
-
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl md:text-6xl tracking-tight leading-[1.1] max-w-3xl mx-auto"
+                    >
+                        Built for the <span className="text-[#5299E5]">modern job search.</span>
+                    </motion.h2>
                 </div>
+
+                {/* Bento Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    {/* Row 1: Item 1 (2 cols) + Item 2 (1 col) */}
+                    <HeroFeatureCard
+                        title={features[0].title}
+                        description={features[0].description}
+                        Visual={features[0].Visual}
+                    />
+
+                    <FeatureCard
+                        title={features[1].title}
+                        description={features[1].description}
+                        Visual={features[1].Visual}
+                        visualBg={features[1].visualBg}
+                        customCardClass={features[1].customCardClass}
+                        index={1}
+                        className="md:col-span-1"
+                    />
+
+                    {/* Row 2: Item 3, 4, 5 */}
+                    <FeatureCard
+                        title={features[2].title}
+                        description={features[2].description}
+                        Visual={features[2].Visual}
+                        visualBg={features[2].visualBg}
+                        customCardClass={features[2].customCardClass}
+                        customVisualClass={features[2].customVisualClass}
+                        index={2}
+                    />
+                    <FeatureCard
+                        title={features[3].title}
+                        description={features[3].description}
+                        Visual={features[3].Visual}
+                        visualBg={features[3].visualBg}
+                        customCardClass={features[3].customCardClass}
+                        customVisualClass={features[3].customVisualClass}
+                        index={3}
+                    />
+                    <FeatureCard
+                        title={features[4].title}
+                        description={features[4].description}
+                        Visual={features[4].Visual}
+                        visualBg={features[4].visualBg}
+                        customCardClass={features[4].customCardClass}
+                        customVisualClass={features[4].customVisualClass}
+                        index={4}
+                    />
+                </div>
+            </div>
+
+            {/* CTA Section - Full Screen Width Transition */}
+            <div className="w-full mt-24 md:mt-32 flex justify-end overflow-hidden" ref={containerRef}>
+                <motion.div
+                    style={{ width, opacity }}
+                    className="bg-[#5299E5] rounded-l-[15rem] rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group ml-auto"
+                >
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
+
+                    <div className="relative z-10">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-8">
+                            <Target size={14} />
+                            <span className="text-sm font-medium">Join 2.3M+ students</span>
+                        </div>
+                        <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Ready to take control of your career?</h3>
+                        <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-10">
+                            Join our early‑access waitlist and be among the first to experience the future of AI‑powered job search.
+                        </p>
+
+                        <button className="flex items-center gap-3 bg-white text-[#5299E5] px-8 py-4 rounded-4xl font-bold text-lg hover:bg-[#E8F3FC] transition-all hover:scale-105 hover:shadow-xl duration-300 mx-auto">
+                            <span>Join Waitlist</span>
+                            <ArrowRight size={20} />
+                        </button>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -1,127 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap');
-
 @theme {
-    /* Typography */
-    --font-heading: 'Poppins', sans-serif;
-    --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* Typography - Instrument Sans for that clean, Swiss-tech feel */
+    --font-heading: 'Instrument Sans', sans-serif;
+    --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-    /* Primary Palette - Hero Section Standard */
-    --color-primary: #0047FF;
-    --color-primary-hover: #0037CC;
-    --color-primary-light: #EFF6FF;
-    --color-primary-dark: #002db3;
+    /* 
+       Brand Color Palette - #5299E5
+       - Primary brand blue with consistent shade system
+       - Optimized for backgrounds, text, and interactive elements
+    */
+    --color-primary: #5299E5;
+    --color-primary-hover: #3D84D8;
+    --color-primary-light: #E8F3FC;
+    --color-primary-dark: #2A74C9;
 
-    /* Secondary Palette */
-    --color-secondary: #0F172A; /* Slate 900 */
-    --color-accent: #3B82F6;
+    /* Additional blue shades for various use cases */
+    --color-blue-50: #EBF5FF;
+    --color-blue-100: #D6EAFF;
+    --color-blue-400: #70ADEF;
+    --color-blue-500: #5299E5;
+    --color-blue-600: #3D84D8;
+    --color-blue-700: #2A74C9;
 
-    /* Neutrals - Consistent Slate Scale */
-    --color-slate-900: #111827; /* Matching Hero Dark Text */
-    --color-slate-800: #1E293B;
-    --color-slate-600: #475569;
-    --color-slate-500: #64748B;
-    --color-slate-50: #F8FAFC;
+    --color-dark-bg: #050505;
+    --color-dark-surface: #0A0A0A;
 
-    /* Surfaces */
-    --color-surface: #FFFFFF;
-    --color-surface-hover: #F8FAFC;
-    --color-surface-alt: #F1F5F9;
+    /* Neutrals - Cooler, tech-focused greys */
+    --color-slate-900: #111113;
+    --color-slate-800: #1C1C1F;
+    --color-slate-500: #787880;
+    --color-slate-50: #FAFAFA;
 
-    /* Radii */
-    --radius-pill: 9999px;
-    --radius-lg: 0.75rem;
+    /* Glass Tokens */
+    --color-glass-border: rgba(255, 255, 255, 0.08);
+    --color-glass-surface: rgba(255, 255, 255, 0.6);
+
+    /* Radii - Smoother "Squircle" feeling */
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
     --radius-3xl: 2rem;
     --radius-4xl: 2.5rem;
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    
-    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-    --shadow-glass-strong: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
-    --shadow-glow: 0 0 20px rgba(0, 71, 255, 0.2);
-    --shadow-glow-lg: 0 0 40px rgba(0, 71, 255, 0.3);
+    /* Shadows - Softer, ambient glows */
+    --shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(82, 153, 229, 0.3);
 
-    /* Animations */
-    --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    --animate-fade-in-down: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    --animate-scale-up: scaleUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    --animate-float: float 6s ease-in-out infinite;
-    --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
-    --animate-shimmer: shimmer 2.5s linear infinite;
+    /* Keyframes */
+    @keyframes fade-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-    @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
-    @keyframes fadeInDown {
-        0% { opacity: 0; transform: translateY(-20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes aurora {
+        0% {
+            background-position: 50% 50%, 50% 50%;
+        }
 
-    @keyframes scaleUp {
-        0% { opacity: 0; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-    }
-
-    @keyframes pulse-slow {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.8; }
-    }
-
-    @keyframes shimmer {
-        0% { background-position: -1000px 0; }
-        100% { background-position: 1000px 0; }
+        100% {
+            background-position: 350% 50%, 350% 50%;
+        }
     }
 }
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--color-surface);
+    background-color: #FAFAFA;
+    /* Very light grey, not pure white */
     color: var(--color-slate-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
-/* --- Global Utility Classes --- */
 
-/* Professional Glass Effect */
-.glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+/* --- Global Utility Classes for Framer Feel --- */
+
+.font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    /* Tight tracking for modern feel */
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-/* Gradient Text matching Primary Brand */
-.text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+.glass-panel-dark {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Standard Background Grid Pattern */
-.bg-grid-pattern {
-    background-image: 
-        linear-gradient(to right, rgba(0, 71, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 71, 255, 0.05) 1px, transparent 1px);
-    background-size: 4rem 4rem;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+/* Mesh Gradient Background */
+.bg-aurora {
+    background-color: #ffffff;
+    background-image:
+        radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
+    background-size: 100% 100%;
+}
+
+/* Subtle Grain Texture */
+.texture-grain {
+    position: relative;
+}
+
+.texture-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 10;
+    mix-blend-mode: overlay;
+}
+
+/* Hide Scrollbar for clean look */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

@@ -12,7 +12,7 @@ function FloatingParticles() {
       {particles.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+          className="absolute w-2 h-2 bg-[#70ADEF]/30 rounded-full"
           initial={{
             x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
             y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),

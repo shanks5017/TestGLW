@@ -1,63 +1,148 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import { Trophy, CheckCircle2, Building2, Calendar, ArrowUpRight, Users } from "lucide-react";
+import { cn } from "../../lib/utils";
 
-const StatItem = ({ label, value, subtext, delay }: { label: string, value: string, subtext: string, delay: number }) => {
-    return (
+// --- Visual Components ---
+
+const OffersVisual = () => (
+    <div className="relative w-full h-[300px] flex items-center justify-center">
+        {/* Central Card */}
+        <div className="relative z-10 w-64 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-[#5299E5] p-5 flex flex-col gap-4">
+            <div className="flex items-center gap-3 border-b border-slate-50 pb-3">
+                <div className="w-10 h-10 rounded-full bg-[#3D84D8] flex items-center justify-center text-white">
+                    <Building2 size={20} />
+                </div>
+                <div>
+                    <div className="text-sm font-medium text-slate-900">Tech Giant Inc.</div>
+                    <div className="text-[10px] text-slate-500">Software Engineer</div>
+                </div>
+            </div>
+            <div className="space-y-2">
+                <div className="h-2 w-3/4 bg-slate-100 rounded-full" />
+                <div className="h-2 w-1/2 bg-slate-100 rounded-full" />
+            </div>
+            <div className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-50 text-green-700 text-xs font-medium border border-green-100 w-fit">
+                <CheckCircle2 size={12} />
+                <span>Offer Received</span>
+            </div>
+        </div>
+
+        {/* Floating Nodes */}
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center text-center p-8 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-10 right-10 w-12 h-12 bg-white rounded-xl shadow-lg border border-slate-50 flex items-center justify-center text-blue-600"
         >
-            <div className="text-5xl md:text-7xl font-bold text-[#0047FF] mb-2 tracking-tight">
-                {value}
-            </div>
-            <div className="text-lg font-bold text-slate-900 mb-2">
-                {label}
-            </div>
-            <div className="text-sm text-slate-500 max-w-[200px]">
-                {subtext}
-            </div>
+            <Building2 size={20} />
         </motion.div>
-    );
-};
+        <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-20 left-10 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-50 flex items-center justify-center text-indigo-500"
+        >
+            <ArrowUpRight size={18} />
+        </motion.div>
+
+        {/* Orbit Lines */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(59,130,246,0.05)_70%)] rounded-[2.5rem]" />
+    </div>
+);
+
+const InterviewVisual = () => (
+    <div className="relative w-full h-[300px] flex flex-col items-center justify-end pb-24 gap-4">
+        {[
+            { company: "StartupX", date: "Tomorrow, 2:00 PM", color: "bg-indigo-500" },
+            { company: "BigData Co", date: "Fri, 10:00 AM", color: "bg-[#E8F3FC]0" },
+        ].map((item, i) => (
+            <motion.div
+                key={i}
+                className={cn(
+                    "w-[80%] bg-white rounded-2xl shadow-lg shadow-blue-900/5 border border-slate-50 p-4 flex items-center gap-4",
+                    i === 0 ? "scale-100 z-10" : "scale-95 opacity-60 -translate-y-2 z-0"
+                )}
+            >
+                <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-sm", item.color)}>
+                    <Calendar size={20} />
+                </div>
+                <div>
+                    <div className="text-sm font-medium text-slate-900">Interview Scheduled</div>
+                    <div className="text-xs text-slate-500">{item.company} • {item.date}</div>
+                </div>
+            </motion.div>
+        ))}
+        {/* Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-[0.3] [mask-image:linear-gradient(to_top,#000_50%,transparent_100%)] pointer-events-none" />
+    </div>
+);
+
+// --- Section Component ---
 
 export const Stats = () => {
     return (
-        <section className="py-24 bg-white relative">
+        <section className="pt-0 pb-32 bg-white relative">
             <div className="max-w-7xl mx-auto px-6">
 
-                <div className="text-center mb-16">
+                {/* Header */}
+                <div className="flex flex-col items-center text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#5299E5] text-xs font-bold uppercase tracking-wider mb-8"
+                    >
+                        <Trophy size={14} />
+                        <span>Proven Results</span>
+                    </motion.div>
+
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
+                        className="text-5xl md:text-[64px] font-normal text-[#5299E5] leading-[1.1] tracking-tight"
                     >
-                        Receipts? We've got <span className="text-[#0047FF]">plenty.</span>
+                        <span className="text-slate-900">Receipts? </span>We've got plenty.
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <StatItem
-                        value="500+"
-                        label="Offers Landed"
-                        subtext="By students using our tools to track and apply."
-                        delay={0}
-                    />
-                    <StatItem
-                        value="89%"
-                        label="Got Interviews"
-                        subtext="After optimizing their resumes with our AI."
-                        delay={0.1}
-                    />
-                    <StatItem
-                        value="50%"
-                        label="Faster Search"
-                        subtext="Less time guessing, more time preparing."
-                        delay={0.2}
-                    />
+                {/* 2-Column Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    {/* Card 1: Offers Landed (Text Bottom, Visual Top) */}
+                    <div className="bg-[#eff3ff] rounded-[2.5rem] p-10 h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
+                        {/* Visual Area */}
+                        <div className="flex-1 flex items-center justify-center relative">
+                            <OffersVisual />
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="mt-8 relative z-10">
+
+                            <h3 className="text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">500+ Offers Landed</h3>
+                            <p className="text-slate-500 text-lg leading-relaxed max-w-sm">
+                                Students securing offers at top tech companies using our automated tracking.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Card 2: Interview Rate (Text Top, Visual Bottom) */}
+                    <div className="bg-[#eff3ff] rounded-[2.5rem] p-10 h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
+                        {/* Text Content */}
+                        <div className="mb-8 relative z-10">
+                            <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
+                                <Users size={24} />
+                            </div>
+                            <h3 className="text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">89% Interview Rate</h3>
+                            <p className="text-slate-500 text-lg leading-relaxed max-w-sm">
+                                Success rate increase for users maximizing AI resume optimization.
+                            </p>
+                        </div>
+
+                        {/* Visual Area */}
+                        <div className="flex-1 flex items-end justify-center relative">
+                            <InterviewVisual />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

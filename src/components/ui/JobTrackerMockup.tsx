@@ -9,7 +9,7 @@ export function JobTrackerMockup() {
       <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold text-gray-900">My job search</h3>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-blue-700 transition-colors">
+          <button className="bg-[#3D84D8] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-[#2A74C9] transition-colors">
             <Plus className="w-4 h-4" />
             <span>Add More</span>
           </button>
@@ -56,7 +56,7 @@ export function JobTrackerMockup() {
         <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#3D84D8] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">IBM</span>
               </div>
               <div>
@@ -78,7 +78,7 @@ export function JobTrackerMockup() {
         <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
-              <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#5299E5] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">Meta</span>
               </div>
               <div>
@@ -151,8 +151,8 @@ export function JobTrackerMockup() {
           
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
-                <span className="text-blue-600 text-xs font-medium">5</span>
+              <div className="w-6 h-6 bg-[#D6EAFF] rounded flex items-center justify-center">
+                <span className="text-[#5299E5] text-xs font-medium">5</span>
               </div>
               <span className="text-sm text-gray-600">Wishlist</span>
             </div>

@@ -10,7 +10,7 @@ export function Support() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
       {/* Header */}
-      <div className="bg-blue-50 py-24 mb-20 relative z-10">
+      <div className="bg-[#E8F3FC] py-24 mb-20 relative z-10">
         <div className="max-w-[800px] mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-heading">How can we help?</h1>
           <div className="relative max-w-lg mx-auto">
@@ -18,7 +18,7 @@ export function Support() {
             <input
               type="text"
               placeholder="Search for answers..."
-              className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 outline-none focus:border-primary focus:ring-4 focus:ring-blue-50 transition-all shadow-sm"
+              className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 outline-none focus:border-primary focus:ring-4 focus:ring-[#E8F3FC] transition-all shadow-sm"
             />
           </div>
         </div>

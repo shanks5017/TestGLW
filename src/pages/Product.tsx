@@ -144,7 +144,7 @@ function FloatingParticles() {
       {particles.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+          className="absolute w-2 h-2 bg-[#70ADEF]/30 rounded-full"
           initial={{
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -298,15 +298,15 @@ export function Product() {
       {/* Animated Background Gradients with Parallax - Professional Blue Theme */}
       <motion.div
         style={{ y: bgY1 }}
-        className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-blue-400/20 rounded-full blur-[140px]"
+        className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#70ADEF]/20 rounded-full blur-[140px]"
       />
       <motion.div
         style={{ y: bgY2 }}
-        className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-blue-500/15 rounded-full blur-[140px]"
+        className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-[#5299E5]/15 rounded-full blur-[140px]"
       />
       <motion.div
         style={{ y: bgY1 }}
-        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-blue-300/20 rounded-full blur-[120px]"
+        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-[#5299E5]/20 rounded-full blur-[120px]"
       />
 
       {/* Hero Section with Explosive Entry */}
@@ -326,15 +326,15 @@ export function Product() {
                   damping: 20,
                   duration: 0.8
                 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 mb-8 shadow-lg"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] mb-8 shadow-lg"
               >
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 >
-                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <Sparkles className="w-4 h-4 text-[#5299E5]" />
                 </motion.div>
-                <span className="text-sm font-bold text-blue-700 tracking-wide">AI COPILOT FOR JOB SEARCH</span>
+                <span className="text-sm font-bold text-[#2A74C9] tracking-wide">AI COPILOT FOR JOB SEARCH</span>
               </motion.div>
 
               <motion.h1
@@ -354,7 +354,7 @@ export function Product() {
                   initial={{ backgroundPosition: "0% 50%" }}
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto]"
+                  className="bg-gradient-to-r from-[#3D84D8] via-[#2A74C9] to-[#3D84D8] bg-clip-text text-transparent bg-[length:200%_auto]"
                 >
                   apply smarter all in one place
                 </motion.span>
@@ -385,7 +385,7 @@ export function Product() {
                   whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0] }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button className="group rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-10 py-6 text-lg font-bold shadow-2xl shadow-blue-500/40 transition-all relative overflow-hidden">
+                  <Button className="group rounded-full bg-gradient-to-r from-[#3D84D8] to-[#2A74C9] hover:from-[#2A74C9] hover:to-[#1D5FA3] text-white px-10 py-6 text-lg font-bold shadow-2xl shadow-[#5299E5]/40 transition-all relative overflow-hidden">
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                       initial={{ x: "-100%" }}
@@ -403,7 +403,7 @@ export function Product() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button variant="outline" className="rounded-full px-10 py-6 text-lg font-bold border-2 border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors shadow-lg">
+                  <Button variant="outline" className="rounded-full px-10 py-6 text-lg font-bold border-2 border-[#5299E5] text-[#2A74C9] hover:bg-[#E8F3FC] transition-colors shadow-lg">
                     <span className="flex items-center gap-2">
                       <PlayCircle className="w-5 h-5" />
                       Watch Demo
@@ -425,14 +425,14 @@ export function Product() {
               }}
               className="relative flex justify-center lg:justify-end"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-100 w-80 h-80">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#D6EAFF] w-80 h-80">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
                   alt="Team collaboration"
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#3D84D8]/20 to-transparent" />
               </div>
 
               {/* Floating stats card - smaller */}
@@ -440,10 +440,10 @@ export function Product() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-2xl border-2 border-blue-100"
+                className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-2xl border-2 border-[#D6EAFF]"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5299E5] to-[#2A74C9] flex items-center justify-center">
                     <CheckCircle2 className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -535,10 +535,10 @@ export function Product() {
                 rotate: 1,
                 boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)"
               }}
-              className="p-10 rounded-3xl bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-blue-500 relative overflow-hidden text-white shadow-2xl"
+              className="p-10 rounded-3xl bg-gradient-to-br from-[#3D84D8] to-[#2A74C9] border-2 border-[#5299E5] relative overflow-hidden text-white shadow-2xl"
             >
               <motion.div
-                className="absolute inset-0 bg-blue-400/10 pointer-events-none"
+                className="absolute inset-0 bg-[#70ADEF]/10 pointer-events-none"
                 animate={{
                   opacity: [0.1, 0.2, 0.1]
                 }}
@@ -563,7 +563,7 @@ export function Product() {
                     variants={cascadeReveal}
                     custom={i}
                     whileHover={{ x: 10, borderLeftWidth: "4px" }}
-                    className="border-l-2 border-blue-300 pl-4 transition-all"
+                    className="border-l-2 border-[#5299E5]/40 pl-4 transition-all"
                   >
                     <div className="text-blue-100 text-sm mb-1">Challenge: {item.challenge}</div>
                     <div className="text-white text-base font-medium">Solution: {item.solution}</div>
@@ -576,7 +576,7 @@ export function Product() {
       </section>
 
       {/* How it Works - Deck of Cards Animation */}
-      <section className="py-24 px-6 relative z-10 bg-blue-50/30">
+      <section className="py-24 px-6 relative z-10 bg-[#E8F3FC]/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -611,10 +611,10 @@ export function Product() {
                   boxShadow: "0 30px 60px rgba(59, 130, 246, 0.3)"
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="p-8 rounded-3xl bg-white border-2 border-blue-100 hover:border-blue-300 shadow-lg group cursor-pointer"
+                className="p-8 rounded-3xl bg-white border-2 border-[#D6EAFF] hover:border-[#5299E5]/40 shadow-lg group cursor-pointer"
               >
                 <motion.div
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-xl font-bold text-white mb-6 shadow-xl"
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#5299E5] to-[#2A74C9] flex items-center justify-center text-xl font-bold text-white mb-6 shadow-xl"
                   whileHover={{
                     scale: 1.2,
                     rotate: 360,
@@ -653,7 +653,7 @@ export function Product() {
               </span>
             </motion.div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 font-heading text-slate-900">
-              Available now in the <span className="bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">Free Beta</span>
+              Available now in the <span className="bg-gradient-to-r from-[#3D84D8] to-[#2A74C9] bg-clip-text text-transparent">Free Beta</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               All features listed below are live, usable, and included in the Free Beta plan.
@@ -682,7 +682,7 @@ export function Product() {
                 className="relative"
               >
                 {/* Card - Image on Left, Content on Right */}
-                <div className="bg-white rounded-3xl shadow-2xl border-2 border-blue-100 overflow-hidden hover:shadow-3xl hover:border-blue-200 transition-shadow duration-500">
+                <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#D6EAFF] overflow-hidden hover:shadow-3xl hover:border-[#D6EAFF] transition-shadow duration-500">
                   <div className="grid md:grid-cols-2 gap-0">
                     {/* Left: Image */}
                     <div className="relative h-64 md:h-auto bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-8">
@@ -692,7 +692,7 @@ export function Product() {
                         className="w-full h-full object-contain"
                       />
                       {/* Decorative gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#5299E5]/5 to-transparent pointer-events-none" />
                     </div>
 
                     {/* Right: Content */}
@@ -729,7 +729,7 @@ export function Product() {
                                 key={idx}
                                 className="flex items-start gap-3 text-slate-700"
                               >
-                                <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                                <CheckCircle2 className="w-5 h-5 text-[#5299E5] shrink-0 mt-0.5" />
                                 <span>{capability}</span>
                               </li>
                             ))}
@@ -758,13 +758,13 @@ export function Product() {
                       )}
 
                       {/* Primary User Value */}
-                      <div className="mt-auto pt-6 border-t-2 border-blue-100">
+                      <div className="mt-auto pt-6 border-t-2 border-[#D6EAFF]">
                         <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3D84D8] to-[#2A74C9] flex items-center justify-center shrink-0">
                             <Zap className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-blue-700 uppercase tracking-wide mb-1">Value</h4>
+                            <h4 className="text-sm font-bold text-[#2A74C9] uppercase tracking-wide mb-1">Value</h4>
                             <p className="text-slate-900 font-medium">{feature.value}</p>
                           </div>
                         </div>
@@ -815,7 +815,7 @@ export function Product() {
               >
                 <div className="flex items-start justify-between mb-6">
                   <motion.div
-                    className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center shadow-md"
+                    className="w-14 h-14 rounded-2xl bg-[#E8F3FC] flex items-center justify-center shadow-md"
                     whileHover={{
                       scale: 1.2,
                       rotate: 360,
@@ -823,17 +823,17 @@ export function Product() {
                     }}
                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                   >
-                    <feature.icon className="w-7 h-7 text-blue-600" strokeWidth={2} />
+                    <feature.icon className="w-7 h-7 text-[#5299E5]" strokeWidth={2} />
                   </motion.div>
                   <motion.div
-                    className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200"
+                    className="px-3 py-1 rounded-full bg-[#E8F3FC] border border-[#D6EAFF]"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <span className="text-xs font-bold text-blue-600 uppercase">Coming Soon</span>
+                    <span className="text-xs font-bold text-[#5299E5] uppercase">Coming Soon</span>
                   </motion.div>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#5299E5] transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-slate-600 text-sm leading-relaxed font-medium">
@@ -853,7 +853,7 @@ export function Product() {
           viewport={{ once: true, margin: "-100px" }}
           variants={explosiveEntry}
           whileHover={{ scale: 1.02 }}
-          className="max-w-5xl mx-auto rounded-[3.5rem] bg-gradient-to-br from-blue-600 to-blue-700 p-20 text-center relative overflow-hidden shadow-2xl"
+          className="max-w-5xl mx-auto rounded-[3.5rem] bg-gradient-to-br from-[#3D84D8] to-[#2A74C9] p-20 text-center relative overflow-hidden shadow-2xl"
         >
           {/* Animated Grid Pattern Overlay */}
           <motion.div
@@ -902,7 +902,7 @@ export function Product() {
                 whileHover={{ scale: 1.15, rotate: [0, -3, 3, 0] }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Button className="rounded-full bg-white text-blue-700 hover:bg-slate-50 px-12 py-7 text-xl font-bold shadow-2xl transition-all relative overflow-hidden group">
+                <Button className="rounded-full bg-white text-[#2A74C9] hover:bg-slate-50 px-12 py-7 text-xl font-bold shadow-2xl transition-all relative overflow-hidden group">
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100 to-transparent"
                     initial={{ x: "-100%" }}

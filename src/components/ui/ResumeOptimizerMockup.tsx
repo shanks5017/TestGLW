@@ -135,7 +135,7 @@ export function ResumeOptimizerMockup() {
                 <span className="text-2xl font-bold text-gray-800">95%</span>
               </div>
             </div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+            <button className="bg-[#3D84D8] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#2A74C9] transition-colors">
               TAILOR TO JOB
             </button>
           </div>
@@ -143,7 +143,7 @@ export function ResumeOptimizerMockup() {
       </div>
 
       {/* Floating AI Badge */}
-      <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+      <div className="absolute top-4 right-4 bg-[#3D84D8] text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
         <Sparkles className="w-3 h-3" />
         <span>AI Optimized</span>
       </div>

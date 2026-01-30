@@ -121,7 +121,7 @@ export function Header() {
                     transformStyle: "preserve-3d",
                     backgroundImage: i < 3
                       ? 'none'
-                      : 'linear-gradient(90deg, #0047FF, #60A5FA, #0047FF)',
+                      : 'linear-gradient(90deg, #5299E5, #70ADEF, #5299E5)',
                     backgroundSize: '200% auto',
                     WebkitBackgroundClip: i < 3 ? 'none' : 'text',
                     WebkitTextFillColor: i < 3 ? 'currentColor' : 'transparent',
