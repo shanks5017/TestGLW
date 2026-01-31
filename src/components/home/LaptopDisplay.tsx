@@ -96,7 +96,7 @@ export const LaptopDisplay = () => {
                                         <span className="font-bold text-slate-800 text-sm">GetLanded</span>
                                     </div>
                                     {['Dashboard', 'Applications', 'Documents', 'Settings'].map((item, i) => (
-                                        <div key={item} className={`px-3 py-1.5 rounded-md text-xs font-medium cursor-pointer ${i === 0 ? 'bg-[#E8F3FC] text-[#5299E5]' : 'text-slate-500 hover:bg-slate-100'}`}>
+                                        <div key={item} className={`px-3 py-1.5 rounded-md text-xs font-medium cursor-pointer ${i === 0 ? 'bg-[#E8F3FC] text-[#0463c7]' : 'text-slate-500 hover:bg-slate-100'}`}>
                                             {item}
                                         </div>
                                     ))}
@@ -119,7 +119,7 @@ export const LaptopDisplay = () => {
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-4 mb-6">
-                                        <div className="bg-[#5299E5] rounded-2xl p-5 text-white shadow-lg relative overflow-hidden h-32 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-shadow">
+                                        <div className="bg-[#0463c7] rounded-2xl p-5 text-white shadow-lg relative overflow-hidden h-32 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-shadow">
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
                                             <div className="flex justify-between items-start z-10">
                                                 <div className="bg-white/20 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold">Updated</div>
@@ -146,7 +146,7 @@ export const LaptopDisplay = () => {
                                     {/* Action row that matches user request specifically */}
                                     <div className="grid grid-cols-3 gap-3">
                                         {[
-                                            { icon: Search, label: "Find Jobs", color: "text-[#5299E5]", bg: "bg-[#E8F3FC]" },
+                                            { icon: Search, label: "Find Jobs", color: "text-[#0463c7]", bg: "bg-[#E8F3FC]" },
                                             { icon: FileText, label: "Resume", color: "text-orange-600", bg: "bg-orange-50" },
                                             { icon: Briefcase, label: "Interviews", color: "text-purple-600", bg: "bg-purple-50" },
                                         ].map((action, i) => (

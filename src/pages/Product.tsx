@@ -102,13 +102,13 @@ function ComingSoonCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#5299E5] hover:shadow-xl transition-all duration-300"
+      className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center">
           <feature.icon className="w-6 h-6 text-black" />
         </div>
-        <span className="px-3 py-1 rounded-full bg-white/60 group-hover:bg-white/20 text-xs font-medium text-[#5299E5] group-hover:text-white transition-colors">
+        <span className="px-3 py-1 rounded-full bg-white/60 group-hover:bg-white/20 text-xs font-medium text-[#0463c7] group-hover:text-white transition-colors">
           Coming Soon
         </span>
       </div>
@@ -140,17 +140,17 @@ export function Product() {
       {/* Hero Section */}
       <section className="relative pt-28 pb-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
             {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6 flex flex-col items-start"
+              className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px]"
             >
-              <h1 className="text-5xl lg:text-[56px] font-normal tracking-tight text-[#111827] leading-[1.1] mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-normal tracking-tight text-[#111827] leading-[1.1] mb-6">
                 Track, organize, and{' '}
-                <span className="text-[#5299E5]">apply smarter</span>{' '}
+                <span className="text-[#0463c7]">apply smarter</span>{' '}
                 all in one place
               </h1>
 
@@ -162,15 +162,62 @@ export function Product() {
               <div className="flex items-center gap-4">
                 <div className="w-16 h-px bg-slate-300" />
                 <Link to="/waitlist" className="group block w-fit">
-                  <div className="inline-flex items-center bg-[#EFF6FF] rounded-full p-1.5 pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#5299E5]/10">
-                    <div className="bg-[#5299E5] text-white py-2.5 px-5 rounded-full shadow-lg shadow-[#5299E5]/20">
+                  <div className="inline-flex items-center bg-[#EFF6FF] rounded-full p-1.5 pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#0463c7]/10">
+                    <div className="bg-[#0463c7] text-white py-2.5 px-5 rounded-full shadow-lg shadow-[#0463c7]/20">
                       <span className="font-medium text-sm tracking-tight">Join Free Beta</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#5299E5] flex items-center justify-center text-white">
+                    <div className="w-8 h-8 rounded-full bg-[#0463c7] flex items-center justify-center text-white">
                       <ArrowUpRight size={16} />
                     </div>
                   </div>
                 </Link>
+              </div>
+
+              {/* Company Logos Marquee Section */}
+              <div className="mt-24 w-full max-w-2xl mx-auto lg:mx-0">
+                <div className="bg-[#0463c7] rounded-[2.5rem] p-10 shadow-xl shadow-blue-200 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group overflow-hidden">
+                  {/* Title & Line */}
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="text-blue-100/90 font-semibold tracking-[0.2em] text-lg uppercase">Powering next-gen careers</span>
+                    <div className="h-px bg-gradient-to-r from-blue-200/40 to-transparent flex-1" />
+                  </div>
+
+                  {/* Logos */}
+                  <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)' }}>
+                    <div className="flex gap-12 animate-marquee whitespace-nowrap pr-12" style={{ animationDuration: '10s' }}>
+                      {[
+                        { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
+                        { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
+                        { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
+                        { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
+                        { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
+                        { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
+                        { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
+                        { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
+                        { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
+                        { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
+                        { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
+                        { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
+                        { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
+                        { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
+                        { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
+                        { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
+                        { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
+                        { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
+                        { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
+                        { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
+                      ].map((logo, index) => (
+                        <div key={index} className="flex-shrink-0 flex items-center justify-center">
+                          <img
+                            src={logo.src}
+                            alt={`${logo.name} logo`}
+                            className="h-8 w-auto hover:opacity-80 transition-opacity"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -192,7 +239,7 @@ export function Product() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl tracking-tight mb-4">
-              How <span className="text-[#5299E5]">GetLanded</span> works
+              How <span className="text-[#0463c7]">GetLanded</span> works
             </h2>
             <p className="text-slate-500">Browse → AI Reads → Insights → Save & Track</p>
           </motion.div>
@@ -205,7 +252,7 @@ export function Product() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#5299E5] hover:shadow-xl transition-all duration-300"
+                className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
                   {step.num}
@@ -242,7 +289,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Get Matched Now
               </Link>
@@ -393,7 +440,7 @@ export function Product() {
                     </div>
                     {/* GetLanded Extension Icon */}
                     <div className="ml-auto flex items-center gap-2">
-                      <div className="px-3 py-1.5 rounded-lg bg-[#5299E5] text-white text-xs font-medium flex items-center gap-1">
+                      <div className="px-3 py-1.5 rounded-lg bg-[#0463c7] text-white text-xs font-medium flex items-center gap-1">
                         <Zap size={12} />
                         GetLanded
                       </div>
@@ -437,8 +484,8 @@ export function Product() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium">AI Copilot Extension</span>
+                <Zap className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Analyze jobs and track applications instantly
@@ -451,13 +498,13 @@ export function Product() {
               <div className="flex items-center gap-4 mb-8">
                 <Link
                   to="/waitlist"
-                  className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
                 >
                   Add to Chrome
                 </Link>
                 <Link
                   to="/product"
-                  className="inline-flex items-center gap-2 bg-white text-slate-700 px-6 py-3.5 rounded-full font-medium border border-slate-200 hover:border-[#5299E5] hover:text-[#5299E5] transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-white text-slate-700 px-6 py-3.5 rounded-full font-medium border border-slate-200 hover:border-[#0463c7] hover:text-[#0463c7] transition-all duration-300"
                 >
                   Learn More
                 </Link>
@@ -489,8 +536,8 @@ export function Product() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium">AI Resume Analyzer</span>
+                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Craft the perfect tailored resume for every job
@@ -502,7 +549,7 @@ export function Product() {
               {/* CTA Button */}
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Analyze Your Resume
               </Link>
@@ -520,7 +567,7 @@ export function Product() {
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-sm font-medium text-slate-700">Tailor Resumes</span>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-[#5299E5] flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-[#0463c7] flex items-center justify-center">
                     <CheckCircle2 size={10} className="text-white" />
                   </div>
                   <span className="text-sm text-slate-500">Identify missing keywords</span>
@@ -559,7 +606,7 @@ export function Product() {
                         <BrainCircuit size={12} />
                         Keyword Match
                       </div>
-                      <div className="w-8 h-8 rounded-lg bg-[#5299E5] flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-[#0463c7] flex items-center justify-center">
                         <ArrowRight size={14} className="text-white" />
                       </div>
                     </div>
@@ -624,13 +671,13 @@ export function Product() {
                     <h3 className="text-lg font-semibold text-slate-900">My Job Tracker</h3>
                     <div className="flex gap-2">
                       <div className="h-8 w-20 rounded-full bg-[#e8efff]" />
-                      <div className="h-8 w-16 rounded-full bg-[#5299E5]" />
+                      <div className="h-8 w-16 rounded-full bg-[#0463c7]" />
                     </div>
                   </div>
 
                   {/* Progress Bar */}
                   <div className="h-2 w-full bg-slate-100 rounded-full mb-6 overflow-hidden">
-                    <div className="h-full w-3/5 bg-gradient-to-r from-[#5299E5] to-[#3D84D8] rounded-full" />
+                    <div className="h-full w-3/5 bg-gradient-to-r from-[#0463c7] to-[#0352a8] rounded-full" />
                   </div>
 
                   {/* Kanban Columns */}
@@ -715,7 +762,7 @@ export function Product() {
                   <span className="text-green-500">↗</span>
                 </div>
                 <div className="text-xs text-slate-500 mb-2">Applications: <span className="font-semibold text-slate-700">156</span></div>
-                <div className="h-12 bg-gradient-to-r from-[#5299E5]/20 via-[#5299E5]/40 to-[#5299E5]/60 rounded-lg" />
+                <div className="h-12 bg-gradient-to-r from-[#0463c7]/20 via-[#0463c7]/40 to-[#0463c7]/60 rounded-lg" />
               </div>
             </motion.div>
 
@@ -727,8 +774,8 @@ export function Product() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium">Job Tracker</span>
+                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">Job Tracker</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Bookmark jobs and track your search
@@ -740,7 +787,7 @@ export function Product() {
               {/* CTA Button */}
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Track Your Applications
               </Link>
@@ -775,7 +822,7 @@ export function Product() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group flex items-center gap-4 p-5 rounded-[2rem] bg-[#e8efff] hover:bg-[#5299E5] hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="group flex items-center gap-4 p-5 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300 cursor-pointer"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-black">
                   <cat.icon size={22} />
@@ -804,8 +851,8 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium text-sm">Resume Builder</span>
+                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium text-sm">Resume Builder</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
                 Quickly tailor your resume for each job with AI
@@ -815,7 +862,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Build a Resume with AI
               </Link>
@@ -823,7 +870,7 @@ export function Product() {
           </div>
 
           {/* Right Visual - Gradient Background */}
-          <div className="bg-gradient-to-br from-[#5299E5]/10 via-[#e8efff] to-[#5299E5]/20 py-16 px-8 flex items-center justify-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#0463c7]/10 via-[#e8efff] to-[#0463c7]/20 py-16 px-8 flex items-center justify-center relative overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -845,7 +892,7 @@ export function Product() {
                     <span className="text-sm font-medium text-slate-900">WeWork</span>
                     <div className="flex items-center gap-2">
                       <div className="w-12 h-12 rounded-full bg-[#e8efff] flex items-center justify-center">
-                        <span className="text-[#5299E5] font-bold text-sm">32%</span>
+                        <span className="text-[#0463c7] font-bold text-sm">32%</span>
                       </div>
                     </div>
                   </div>
@@ -862,7 +909,7 @@ export function Product() {
               {/* Floating Card */}
               <div className="absolute -bottom-4 -right-4 bg-white rounded-lg border border-slate-200 shadow-lg p-3 w-40">
                 <p className="text-[10px] text-slate-500 mb-1">True Match</p>
-                <div className="h-8 bg-gradient-to-r from-[#5299E5]/30 to-[#5299E5]/60 rounded" />
+                <div className="h-8 bg-gradient-to-r from-[#0463c7]/30 to-[#0463c7]/60 rounded" />
               </div>
             </motion.div>
           </div>
@@ -871,7 +918,7 @@ export function Product() {
         {/* Feature 2: Job Tracker - Right Content, Left Visual */}
         <div className="grid lg:grid-cols-2">
           {/* Left Visual */}
-          <div className="bg-gradient-to-bl from-[#e8efff] via-[#5299E5]/10 to-[#e8efff]/50 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
+          <div className="bg-gradient-to-bl from-[#e8efff] via-[#0463c7]/10 to-[#e8efff]/50 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -924,8 +971,8 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Layout className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium text-sm">Job Tracker</span>
+                <Layout className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium text-sm">Job Tracker</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
                 One place to organize and manage your job search
@@ -935,7 +982,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Start Organizing Now
               </Link>
@@ -955,8 +1002,8 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <BrainCircuit className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium text-sm">Job Insights</span>
+                <BrainCircuit className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium text-sm">Job Insights</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
                 Companies have recruiters, and you have GetLanded
@@ -966,7 +1013,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Start Getting Insights
               </Link>
@@ -974,7 +1021,7 @@ export function Product() {
           </div>
 
           {/* Right Visual */}
-          <div className="bg-gradient-to-br from-[#e8efff]/50 via-[#5299E5]/15 to-[#e8efff] py-16 px-8 flex items-center justify-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#e8efff]/50 via-[#0463c7]/15 to-[#e8efff] py-16 px-8 flex items-center justify-center relative overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -999,19 +1046,19 @@ export function Product() {
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium text-slate-900">$131,000 - $170,000</p>
-                      <p className="text-xs text-[#5299E5]">Jobs in profile</p>
+                      <p className="text-xs text-[#0463c7]">Jobs in profile</p>
                     </div>
                   </div>
                   <div className="flex gap-2 mb-4">
-                    <span className="px-2 py-1 rounded bg-[#e8efff] text-xs text-[#5299E5]">Sponsorship</span>
+                    <span className="px-2 py-1 rounded bg-[#e8efff] text-xs text-[#0463c7]">Sponsorship</span>
                     <span className="px-2 py-1 rounded bg-slate-100 text-xs text-slate-600">Full-time</span>
                   </div>
                   <div className="p-3 bg-slate-50 rounded-lg">
                     <p className="text-xs font-medium text-slate-700 mb-2">Hard Skills</p>
                     <div className="flex gap-1">
-                      <div className="h-2 w-16 bg-[#5299E5] rounded-full" />
-                      <div className="h-2 w-12 bg-[#5299E5]/60 rounded-full" />
-                      <div className="h-2 w-8 bg-[#5299E5]/30 rounded-full" />
+                      <div className="h-2 w-16 bg-[#0463c7] rounded-full" />
+                      <div className="h-2 w-12 bg-[#0463c7]/60 rounded-full" />
+                      <div className="h-2 w-8 bg-[#0463c7]/30 rounded-full" />
                     </div>
                   </div>
                 </div>
@@ -1023,7 +1070,7 @@ export function Product() {
         {/* Feature 4: Bookmark Jobs - Right Content, Left Visual */}
         <div className="grid lg:grid-cols-2">
           {/* Left Visual */}
-          <div className="bg-gradient-to-bl from-[#5299E5]/10 via-[#e8efff]/80 to-[#5299E5]/5 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
+          <div className="bg-gradient-to-bl from-[#0463c7]/10 via-[#e8efff]/80 to-[#0463c7]/5 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1039,7 +1086,7 @@ export function Product() {
                     <div className="w-3 h-3 rounded-full bg-yellow-400" />
                     <div className="w-3 h-3 rounded-full bg-green-400" />
                   </div>
-                  <div className="ml-3 flex items-center gap-2 bg-[#5299E5] text-white text-xs px-3 py-1 rounded-lg">
+                  <div className="ml-3 flex items-center gap-2 bg-[#0463c7] text-white text-xs px-3 py-1 rounded-lg">
                     <span>getlanded</span>
                   </div>
                 </div>
@@ -1061,7 +1108,7 @@ export function Product() {
                     <div className="h-2 w-full bg-[#e8efff] rounded-full" />
                     <div className="h-2 w-4/5 bg-[#e8efff] rounded-full" />
                     <div className="flex gap-2 mt-3">
-                      <div className="h-6 w-24 bg-[#5299E5] rounded-full" />
+                      <div className="h-6 w-24 bg-[#0463c7] rounded-full" />
                       <div className="h-6 w-20 bg-slate-100 rounded-full" />
                     </div>
                   </div>
@@ -1080,8 +1127,8 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Globe className="w-5 h-5 text-[#5299E5]" />
-                <span className="text-[#5299E5] font-medium text-sm">Bookmark Jobs</span>
+                <Globe className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium text-sm">Bookmark Jobs</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
                 Save Jobs From over 40 Popular Job Boards
@@ -1091,7 +1138,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#5299E5] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#3D84D8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
               >
                 Bookmark Jobs Now
               </Link>
@@ -1127,7 +1174,7 @@ export function Product() {
       <section className="py-20 relative z-10" ref={ctaRef}>
         <motion.div
           style={{ width: ctaWidth, opacity: ctaOpacity }}
-          className="bg-[#5299E5] rounded-l-none rounded-r-[15rem] p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group"
+          className="bg-[#0463c7] rounded-l-none rounded-r-[15rem] p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group"
         >
           {/* Background Glows */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />

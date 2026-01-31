@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Linkedin, Chrome, MessageSquare, Users, User, FileText, Brain, Target, Zap } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Linkedin, Chrome, MessageSquare, Users, User, FileText, Zap } from 'lucide-react';
 import { Card } from './Card';
-import { Button } from './Button';
+
 import { ResumeOptimizerMockup } from './ResumeOptimizerMockup';
 
 interface AITool {
@@ -27,11 +27,11 @@ export function AIToolsCarousel() {
       mockupContent: (
         <div className="bg-black rounded-lg p-4 shadow-sm">
           <div className="flex items-center space-x-3 mb-3">
-            <div className="w-12 h-12 bg-[#5299E5] rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-[#0463c7] rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-white" />
             </div>
             <div>
-              <div className="h-3 bg-[#5299E5] rounded w-24 mb-1"></div>
+              <div className="h-3 bg-[#0463c7] rounded w-24 mb-1"></div>
               <div className="h-2 bg-gray-600 rounded w-16"></div>
             </div>
             <div className="ml-auto bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium flex items-center">
@@ -60,15 +60,15 @@ export function AIToolsCarousel() {
         <div className="bg-black rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-2">
-              <Chrome className="w-4 h-4 text-[#5299E5]" />
+              <Chrome className="w-4 h-4 text-[#0463c7]" />
               <span className="text-xs font-medium text-white">Chrome Extension</span>
             </div>
-            <div className="w-2 h-2 bg-[#5299E5] rounded-full"></div>
+            <div className="w-2 h-2 bg-[#0463c7] rounded-full"></div>
           </div>
           <div className="space-y-2">
             <div className="h-2 bg-gray-700 rounded w-full"></div>
             <div className="h-2 bg-gray-700 rounded w-2/3"></div>
-            <div className="h-2 bg-[#3D84D8] rounded w-1/2"></div>
+            <div className="h-2 bg-[#0352a8] rounded w-1/2"></div>
           </div>
         </div>
       )
@@ -84,13 +84,13 @@ export function AIToolsCarousel() {
           <div className="text-sm font-medium mb-3 text-white">Interview Questions</div>
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-[#5299E5] rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-[#0463c7] rounded-full flex items-center justify-center">
                 <span className="text-white text-xs">1</span>
               </div>
               <div className="h-2 bg-gray-700 rounded flex-1"></div>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-[#5299E5] rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-[#0463c7] rounded-full flex items-center justify-center">
                 <span className="text-white text-xs">2</span>
               </div>
               <div className="h-2 bg-gray-700 rounded flex-1"></div>
@@ -108,10 +108,10 @@ export function AIToolsCarousel() {
       mockupContent: (
         <div className="bg-black rounded-lg p-4 shadow-sm">
           <div className="flex items-center space-x-2 mb-3">
-            <FileText className="w-4 h-4 text-[#5299E5]" />
+            <FileText className="w-4 h-4 text-[#0463c7]" />
             <span className="text-sm font-medium text-white">Your Cover Letter</span>
             <div className="ml-auto w-8 h-8 bg-[#D6EAFF] rounded-full flex items-center justify-center">
-              <Zap className="w-4 h-4 text-[#5299E5]" />
+              <Zap className="w-4 h-4 text-[#0463c7]" />
             </div>
           </div>
           <div className="text-xs text-gray-300 mb-2">Dear Recruiter,</div>
@@ -169,7 +169,7 @@ export function AIToolsCarousel() {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === aiTools.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000);
@@ -205,7 +205,7 @@ export function AIToolsCarousel() {
     <div className="relative">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {getVisibleTools().map((tool, index) => (
-          <Card 
+          <Card
             key={`${tool.id}-${currentIndex}-${index}`}
             className={`${tool.bgColor} border-0 overflow-hidden transition-all duration-500 hover:scale-105`}
             padding="lg"
@@ -232,17 +232,16 @@ export function AIToolsCarousel() {
         >
           <ChevronLeft className="w-5 h-5 text-white" />
         </button>
-        
+
         <div className="flex space-x-2">
           {aiTools.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex 
-                  ? 'bg-white' 
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
+              className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex
+                ? 'bg-white'
+                : 'bg-white/30 hover:bg-white/50'
+                }`}
             />
           ))}
         </div>

@@ -25,7 +25,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
   };
 
   return (
-    <div className="w-full border-t border-[#5299E5]/30">
+    <div className="w-full border-t border-[#0463c7]/30">
       {faqs.map((faq, i) => (
         <motion.div
           key={faq.id}
@@ -35,7 +35,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
           transition={{ delay: i * 0.1 }}
           onMouseEnter={() => setOpenItems([faq.id])}
           className={cn(
-            "w-full border-b border-[#5299E5]/30 transition-colors duration-300 bg-white",
+            "w-full border-b border-[#0463c7]/30 transition-colors duration-300 bg-white",
             openItems.includes(faq.id) ? "bg-slate-50/30" : "hover:bg-slate-50/30"
           )}
         >
@@ -46,13 +46,13 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
             <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
               <h3 className={cn(
                 "text-lg font-bold pr-8 transition-colors",
-                openItems.includes(faq.id) ? "text-[#5299E5]" : "text-slate-900 group-hover:text-[#5299E5]"
+                openItems.includes(faq.id) ? "text-[#0463c7]" : "text-slate-900 group-hover:text-[#0463c7]"
               )}>
                 {faq.question}
               </h3>
               <div className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0",
-                openItems.includes(faq.id) ? "bg-[#5299E5] text-white rotate-180" : "bg-slate-100 text-slate-400 group-hover:bg-[#E8F3FC] group-hover:text-[#5299E5]"
+                openItems.includes(faq.id) ? "bg-[#0463c7] text-white rotate-180" : "bg-slate-100 text-slate-400 group-hover:bg-[#E8F3FC] group-hover:text-[#0463c7]"
               )}>
                 <ChevronDown className="w-4 h-4" />
               </div>

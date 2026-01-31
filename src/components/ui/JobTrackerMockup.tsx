@@ -9,12 +9,12 @@ export function JobTrackerMockup() {
       <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold text-gray-900">My job search</h3>
-          <button className="bg-[#3D84D8] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-[#2A74C9] transition-colors">
+          <button className="bg-[#0352a8] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-[#2A74C9] transition-colors">
             <Plus className="w-4 h-4" />
             <span>Add More</span>
           </button>
         </div>
-        
+
         {/* Search and Filter */}
         <div className="flex items-center space-x-4 mt-4">
           <div className="relative flex-1 max-w-md">
@@ -56,7 +56,7 @@ export function JobTrackerMockup() {
         <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
-              <div className="w-12 h-12 bg-[#3D84D8] rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#0352a8] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">IBM</span>
               </div>
               <div>
@@ -78,7 +78,7 @@ export function JobTrackerMockup() {
         <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
-              <div className="w-12 h-12 bg-[#5299E5] rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#0463c7] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">Meta</span>
               </div>
               <div>
@@ -148,22 +148,22 @@ export function JobTrackerMockup() {
             <span className="text-sm font-medium text-gray-700">Pipeline</span>
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
           </div>
-          
+
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 bg-[#D6EAFF] rounded flex items-center justify-center">
-                <span className="text-[#5299E5] text-xs font-medium">5</span>
+                <span className="text-[#0463c7] text-xs font-medium">5</span>
               </div>
               <span className="text-sm text-gray-600">Wishlist</span>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 bg-yellow-100 rounded flex items-center justify-center">
                 <span className="text-yellow-600 text-xs font-medium">3</span>
               </div>
               <span className="text-sm text-gray-600">Applied</span>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 bg-green-100 rounded flex items-center justify-center">
                 <span className="text-green-600 text-xs font-medium">2</span>

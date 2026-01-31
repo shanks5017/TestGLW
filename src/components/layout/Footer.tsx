@@ -35,13 +35,13 @@ export function Footer() {
               Your AI copilot for the modern job search. Land your dream role faster.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#5299E5] hover:bg-[#E8F3FC] transition-all">
+              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#0463c7] hover:bg-[#E8F3FC] transition-all">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#5299E5] hover:bg-[#E8F3FC] transition-all">
+              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#0463c7] hover:bg-[#E8F3FC] transition-all">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#5299E5] hover:bg-[#E8F3FC] transition-all">
+              <a href="#" className="p-2 bg-gray-50 rounded-lg text-slate-400 hover:text-[#0463c7] hover:bg-[#E8F3FC] transition-all">
                 <Github className="w-5 h-5" />
               </a>
             </div>
@@ -52,7 +52,7 @@ export function Footer() {
             <ul className="space-y-3">
               {FOOTER_LINKS.product.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="text-slate-500 hover:text-[#5299E5] text-sm transition-colors">
+                  <Link to={link.href} className="text-slate-500 hover:text-[#0463c7] text-sm transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -65,7 +65,7 @@ export function Footer() {
             <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="text-slate-500 hover:text-[#5299E5] text-sm transition-colors">
+                  <Link to={link.href} className="text-slate-500 hover:text-[#0463c7] text-sm transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -78,7 +78,7 @@ export function Footer() {
             <ul className="space-y-3">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="text-slate-500 hover:text-[#5299E5] text-sm transition-colors">
+                  <Link to={link.href} className="text-slate-500 hover:text-[#0463c7] text-sm transition-colors">
                     {link.name}
                   </Link>
                 </li>

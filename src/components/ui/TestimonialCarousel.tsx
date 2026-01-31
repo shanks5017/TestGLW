@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Card } from './Card';
 
@@ -19,10 +19,10 @@ interface TestimonialCarouselProps {
   interval?: number;
 }
 
-export function TestimonialCarousel({ 
-  testimonials, 
-  autoPlay = true, 
-  interval = 5000 
+export function TestimonialCarousel({
+  testimonials,
+  autoPlay = true,
+  interval = 5000
 }: TestimonialCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -30,7 +30,7 @@ export function TestimonialCarousel({
     if (!autoPlay) return;
 
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       );
     }, interval);
@@ -53,7 +53,7 @@ export function TestimonialCarousel({
   return (
     <div className="relative max-w-4xl mx-auto">
       <div className="testimonial-carousel">
-        <div 
+        <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
@@ -79,7 +79,7 @@ export function TestimonialCarousel({
                     <div className="text-sm text-gray-400">{testimonial.role}</div>
                     <div className="text-sm text-gray-500">{testimonial.company}</div>
                     {testimonial.badge && (
-                      <span className="inline-block mt-1 px-2 py-1 bg-[#5299E5]/20 text-[#70ADEF] text-xs rounded-full">{testimonial.badge}</span>
+                      <span className="inline-block mt-1 px-2 py-1 bg-[#0463c7]/20 text-[#70ADEF] text-xs rounded-full">{testimonial.badge}</span>
                     )}
                   </div>
                 </div>
@@ -109,11 +109,10 @@ export function TestimonialCarousel({
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentIndex 
-                ? 'bg-gradient-to-r from-cyan-400 to-purple-500' 
-                : 'bg-gray-600 hover:bg-gray-500'
-            }`}
+            className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex
+              ? 'bg-gradient-to-r from-cyan-400 to-purple-500'
+              : 'bg-gray-600 hover:bg-gray-500'
+              }`}
           />
         ))}
       </div>

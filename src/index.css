@@ -7,12 +7,12 @@
     --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
     /* 
-       Brand Color Palette - #5299E5
+       Brand Color Palette - #0463c7
        - Primary brand blue with consistent shade system
        - Optimized for backgrounds, text, and interactive elements
     */
-    --color-primary: #5299E5;
-    --color-primary-hover: #3D84D8;
+    --color-primary: #0463c7;
+    --color-primary-hover: #0352a8;
     --color-primary-light: #E8F3FC;
     --color-primary-dark: #2A74C9;
 
@@ -20,8 +20,8 @@
     --color-blue-50: #EBF5FF;
     --color-blue-100: #D6EAFF;
     --color-blue-400: #70ADEF;
-    --color-blue-500: #5299E5;
-    --color-blue-600: #3D84D8;
+    --color-blue-500: #0463c7;
+    --color-blue-600: #0352a8;
     --color-blue-700: #2A74C9;
 
     --color-dark-bg: #050505;
@@ -45,7 +45,7 @@
 
     /* Shadows - Softer, ambient glows */
     --shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(82, 153, 229, 0.3);
+    --shadow-glow: 0 0 20px rgba(4, 99, 199, 0.3);
 
     /* Keyframes */
     @keyframes fade-in-up {
@@ -166,4 +166,137 @@ h6 {
 
 .animate-marquee {
     animation: marquee 6s linear infinite;
+}
+
+/* ===== Premium Phone Display Animations ===== */
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(4, 99, 199, 0.3);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(4, 99, 199, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Shimmer effect for premium glass surfaces */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* Smooth float animation */
+@keyframes float-smooth {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float-smooth 4s ease-in-out infinite;
+}
+
+/* Gradient shift for dynamic backgrounds */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+}
+
+/* Screen glow ambient effect */
+@keyframes screen-glow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        filter: blur(60px);
+    }
+
+    50% {
+        opacity: 0.6;
+        filter: blur(80px);
+    }
+}
+
+.animate-screen-glow {
+    animation: screen-glow 4s ease-in-out infinite;
+}
+
+/* Notification slide-in */
+@keyframes slide-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(50px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dot pulse for notifications */
+@keyframes dot-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.7;
+    }
+}
+
+.animate-dot-pulse {
+    animation: dot-pulse 1.5s ease-in-out infinite;
 }

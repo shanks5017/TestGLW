@@ -105,7 +105,7 @@ export function About() {
             variants={staggerContainer}
             className="space-y-10"
           >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 text-[#5299E5] font-bold tracking-[0.2em] text-sm md:text-base uppercase">
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 text-[#0463c7] font-bold tracking-[0.2em] text-sm md:text-base uppercase">
               <Minus className="w-5 h-5" />
               Our Mission
             </motion.div>
@@ -157,7 +157,7 @@ export function About() {
               <div className="pt-12 border-t border-slate-200">
                 <p className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
                   The problem wasn't effort. <br />
-                  <span className="text-[#5299E5] font-heading underline decoration-blue-100 underline-offset-8 decoration-4">It was the system.</span>
+                  <span className="text-[#0463c7] font-heading underline decoration-blue-100 underline-offset-8 decoration-4">It was the system.</span>
                 </p>
               </div>
             </motion.div>
@@ -178,9 +178,9 @@ export function About() {
                 <motion.div
                   key={i}
                   variants={fadeInUp}
-                  className="p-10 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-[2.5rem] shadow-sm flex gap-6 items-center group hover:border-[#5299E5]/20 hover:shadow-xl transition-all duration-500"
+                  className="p-10 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-[2.5rem] shadow-sm flex gap-6 items-center group hover:border-[#0463c7]/20 hover:shadow-xl transition-all duration-500"
                 >
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#5299E5] group-hover:scale-150 transition-transform shrink-0" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#0463c7] group-hover:scale-150 transition-transform shrink-0" />
                   <span className="text-slate-800 text-lg font-semibold leading-snug">{item}</span>
                 </motion.div>
               ))}
@@ -201,7 +201,7 @@ export function About() {
               className="space-y-4"
             >
               <h2 className="text-4xl md:text-5xl font-bold font-heading tracking-tight text-slate-950">Our approach</h2>
-              <div className="h-1.5 w-24 bg-[#5299E5] mx-auto rounded-full" />
+              <div className="h-1.5 w-24 bg-[#0463c7] mx-auto rounded-full" />
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 w-full">
@@ -232,7 +232,7 @@ export function About() {
               className="max-w-4xl"
             >
               <p className="text-3xl md:text-[42px] font-bold text-slate-900 leading-[1.15] tracking-tight">
-                Instead, it helps you understand <span className="text-[#5299E5]">where you stand</span>, what's missing, and what to do next — so every application is <span className="underline decoration-blue-100 underline-offset-[16px] decoration-4">intentional.</span>
+                Instead, it helps you understand <span className="text-[#0463c7]">where you stand</span>, what's missing, and what to do next — so every application is <span className="underline decoration-blue-100 underline-offset-[16px] decoration-4">intentional.</span>
               </p>
             </motion.div>
           </div>
@@ -243,7 +243,7 @@ export function About() {
       <section className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-slate-950 text-white rounded-[3rem] overflow-hidden p-16 lg:p-24 relative shadow-3xl">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3D84D8]/20 rounded-full blur-[120px]" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0352a8]/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />
 
             <div className="relative z-10">
@@ -267,7 +267,7 @@ export function About() {
                     variants={fadeInUp}
                     className="space-y-8 group"
                   >
-                    <div className="w-14 h-14 border border-slate-800 rounded-2xl flex items-center justify-center text-[#70ADEF] group-hover:bg-[#5299E5] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(0,71,255,0.4)] transition-all duration-500">
+                    <div className="w-14 h-14 border border-slate-800 rounded-2xl flex items-center justify-center text-[#70ADEF] group-hover:bg-[#0463c7] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(0,71,255,0.4)] transition-all duration-500">
                       <item.icon strokeWidth={1.5} className="w-7 h-7" />
                     </div>
                     <div className="space-y-4">
@@ -305,7 +305,7 @@ export function About() {
                 className="space-y-8"
               >
                 <div className="w-16 h-16 rounded-2xl bg-[#E8F3FC] flex items-center justify-center">
-                  <item.icon strokeWidth={1.2} className="w-9 h-9 text-[#5299E5]" />
+                  <item.icon strokeWidth={1.2} className="w-9 h-9 text-[#0463c7]" />
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold font-heading uppercase tracking-widest text-slate-950 leading-snug">{item.title}</h3>
@@ -333,14 +333,14 @@ export function About() {
       <section className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col items-center text-center space-y-10 mb-24">
-            <div className="px-5 py-2.5 rounded-full border border-blue-100 bg-white/80 backdrop-blur shadow-sm flex items-center gap-2 text-[#5299E5] text-sm font-bold tracking-tight">
+            <div className="px-5 py-2.5 rounded-full border border-blue-100 bg-white/80 backdrop-blur shadow-sm flex items-center gap-2 text-[#0463c7] text-sm font-bold tracking-tight">
               <Users className="w-4 h-4" />
               Team
             </div>
             <div>
               <h2 className="text-5xl md:text-7xl font-bold font-heading tracking-tight text-slate-950 leading-[1.05]">
                 Our Talented <br />
-                <span className="text-[#5299E5]">Team Members</span>
+                <span className="text-[#0463c7]">Team Members</span>
               </h2>
             </div>
           </div>
@@ -373,12 +373,12 @@ export function About() {
 
                 <div className="space-y-3">
                   <h3 className="font-bold text-3xl font-heading text-slate-950 tracking-tight">{member.name}</h3>
-                  <p className="text-[#5299E5] text-xl font-bold tracking-tight uppercase">{member.role}</p>
+                  <p className="text-[#0463c7] text-xl font-bold tracking-tight uppercase">{member.role}</p>
                 </div>
 
                 <div className="flex gap-5">
                   {[Mail, Linkedin, Github].map((Icon, idx) => (
-                    <button key={idx} className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-slate-600 border border-slate-100 hover:bg-[#5299E5] hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <button key={idx} className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-slate-600 border border-slate-100 hover:bg-[#0463c7] hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
                       <Icon className="w-6 h-6" strokeWidth={1.5} />
                     </button>
                   ))}
@@ -402,7 +402,7 @@ export function About() {
             <div className="space-y-8">
               <h2 className="text-5xl md:text-[72px] font-bold font-heading tracking-tight leading-[1] text-slate-950 max-w-5xl mx-auto">
                 If you're navigating your first job search, <br />
-                <span className="text-[#5299E5]">we built this for you.</span>
+                <span className="text-[#0463c7]">we built this for you.</span>
               </h2>
               <p className="text-slate-500 text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
                 Start making intentional applications today. <br />

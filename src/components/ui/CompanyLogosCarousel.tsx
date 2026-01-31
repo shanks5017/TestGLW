@@ -1,9 +1,9 @@
-import React from 'react';
+
 
 const companies = [
   { name: 'Google', bgColor: 'bg-white', textColor: 'text-gray-800', icon: '🔍' },
-  { name: 'Microsoft', bgColor: 'bg-[#3D84D8]', textColor: 'text-white', icon: '⊞' },
-  { name: 'Meta', bgColor: 'bg-[#3D84D8]', textColor: 'text-white', icon: 'f' },
+  { name: 'Microsoft', bgColor: 'bg-[#0352a8]', textColor: 'text-white', icon: '⊞' },
+  { name: 'Meta', bgColor: 'bg-[#0352a8]', textColor: 'text-white', icon: 'f' },
   { name: 'Apple', bgColor: 'bg-gray-800', textColor: 'text-white', icon: '' },
   { name: 'Netflix', bgColor: 'bg-red-600', textColor: 'text-white', icon: '▶' },
   { name: 'Spotify', bgColor: 'bg-green-500', textColor: 'text-white', icon: '♫' },
@@ -23,7 +23,7 @@ export function CompanyLogosCarousel() {
     <div className="relative overflow-hidden">
       <div className="flex animate-scroll-left space-x-6">
         {duplicatedCompanies.map((company, index) => (
-          <div 
+          <div
             key={`${company.name}-${index}`}
             className={`flex items-center space-x-3 px-4 py-2 rounded-full ${company.bgColor} flex-shrink-0 hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg`}
           >
