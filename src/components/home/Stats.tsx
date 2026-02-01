@@ -7,9 +7,9 @@ import { cn } from "../../lib/utils";
 const OffersVisual = () => (
     <div className="relative w-full h-[300px] flex items-center justify-center">
         {/* Central Card */}
-        <div className="relative z-10 w-64 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-[#0463c7] p-5 flex flex-col gap-4">
+        <div className="relative z-10 w-64 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-[#5299E5] p-5 flex flex-col gap-4">
             <div className="flex items-center gap-3 border-b border-slate-50 pb-3">
-                <div className="w-10 h-10 rounded-full bg-[#0352a8] flex items-center justify-center text-white">
+                <div className="w-10 h-10 rounded-full bg-[#3D84D8] flex items-center justify-center text-white">
                     <Building2 size={20} />
                 </div>
                 <div>
@@ -27,18 +27,18 @@ const OffersVisual = () => (
             </div>
         </div>
 
-        {/* Floating Nodes */}
+        {/* Floating Nodes - Hidden on mobile for performance */}
         <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-10 right-10 w-12 h-12 bg-white rounded-xl shadow-lg border border-slate-50 flex items-center justify-center text-blue-600"
+            className="hidden md:flex absolute top-10 right-10 w-12 h-12 bg-white rounded-xl shadow-lg border border-slate-50 items-center justify-center text-blue-600"
         >
             <Building2 size={20} />
         </motion.div>
         <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-20 left-10 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-50 flex items-center justify-center text-indigo-500"
+            className="hidden md:flex absolute bottom-20 left-10 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-50 items-center justify-center text-indigo-500"
         >
             <ArrowUpRight size={18} />
         </motion.div>
@@ -88,7 +88,7 @@ export const Stats = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#0463c7] text-xs font-bold uppercase tracking-wider mb-8"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#5299E5] text-xs font-bold uppercase tracking-wider mb-8"
                     >
                         <Trophy size={14} />
                         <span>Proven Results</span>
@@ -98,41 +98,40 @@ export const Stats = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl md:text-[64px] font-normal text-[#0463c7] leading-[1.1] tracking-tight"
+                        className="text-5xl md:text-[64px] font-normal text-[#5299E5] leading-[1.1] tracking-tight"
                     >
                         <span className="text-slate-900">Receipts? </span>We've got plenty.
                     </motion.h2>
                 </div>
 
                 {/* 2-Column Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
                     {/* Card 1: Offers Landed (Text Bottom, Visual Top) */}
-                    <div className="bg-[#eff3ff] rounded-[2.5rem] p-10 h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#0463c7]">
+                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
                         {/* Visual Area */}
-                        <div className="flex-1 flex items-center justify-center relative">
+                        <div className="flex-1 flex items-center justify-center relative min-h-[250px]">
                             <OffersVisual />
                         </div>
 
                         {/* Text Content */}
-                        <div className="mt-8 relative z-10">
-
-                            <h3 className="text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">500+ Offers Landed</h3>
-                            <p className="text-slate-500 text-lg leading-relaxed max-w-sm">
+                        <div className="mt-6 md:mt-8 relative z-10 text-center md:text-left">
+                            <h3 className="text-3xl md:text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">500+ Offers Landed</h3>
+                            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm mx-auto md:mx-0">
                                 Students securing offers at top tech companies using our automated tracking.
                             </p>
                         </div>
                     </div>
 
                     {/* Card 2: Interview Rate (Text Top, Visual Bottom) */}
-                    <div className="bg-[#eff3ff] rounded-[2.5rem] p-10 h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#0463c7]">
+                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
                         {/* Text Content */}
-                        <div className="mb-8 relative z-10">
-                            <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
-                                <Users size={24} />
+                        <div className="mb-6 md:mb-8 relative z-10 text-center md:text-left">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-indigo-500/20 mx-auto md:mx-0">
+                                <Users size={20} className="md:w-6 md:h-6" />
                             </div>
-                            <h3 className="text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">89% Interview Rate</h3>
-                            <p className="text-slate-500 text-lg leading-relaxed max-w-sm">
+                            <h3 className="text-3xl md:text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">89% Interview Rate</h3>
+                            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm mx-auto md:mx-0">
                                 Success rate increase for users maximizing AI resume optimization.
                             </p>
                         </div>

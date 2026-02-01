@@ -29,7 +29,7 @@ const StepCard = ({
             )}
         >
             <div className="flex-shrink-0">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-[#0463c7] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-[#5299E5] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
                     <Icon size={24} />
                 </div>
                 <div className="mt-4 text-center">
@@ -38,7 +38,7 @@ const StepCard = ({
             </div>
 
             <div>
-                <h3 className="text-xl font-medium text-slate-900 mb-3 group-hover:text-[#0463c7] transition-colors tracking-tight">{title}</h3>
+                <h3 className="text-xl font-medium text-slate-900 mb-3 group-hover:text-[#5299E5] transition-colors tracking-tight">{title}</h3>
                 <p className="text-slate-600 leading-relaxed text-base">
                     {description}
                 </p>
@@ -62,14 +62,14 @@ export const HowItWorks = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F3FC] text-[#0463c7] text-xs font-bold uppercase tracking-wider mb-6">
-                                <span className="w-2 h-2 rounded-full bg-[#0463c7] animate-pulse" />
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F3FC] text-[#5299E5] text-xs font-bold uppercase tracking-wider mb-6">
+                                <span className="w-2 h-2 rounded-full bg-[#5299E5] animate-pulse" />
                                 Introduction
                             </div>
 
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.1]">
                                 Simplifying the <br />
-                                <span className="text-[#0463c7]">job hunt.</span>
+                                <span className="text-[#5299E5]">job hunt.</span>
                             </h2>
                             <p className="text-lg text-slate-600 max-w-md leading-relaxed">
                                 Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box. <br /><br />

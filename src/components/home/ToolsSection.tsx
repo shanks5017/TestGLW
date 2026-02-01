@@ -18,7 +18,7 @@ const Card = ({
         className={cn(
             "rounded-[2rem] p-6 flex flex-col overflow-hidden relative group transition-all duration-300 hover:shadow-xl",
             "bg-[#e8efff]", // Default state
-            hoverBlue && "hover:bg-[#0463c7] hover:text-white", // Hover state
+            hoverBlue && "hover:bg-[#5299E5] hover:text-white", // Hover state
             className
         )}
     >
@@ -70,7 +70,7 @@ const ExtensionVisual = () => (
                 <div className="w-2 h-2 rounded-full bg-green-400" />
             </div>
             <div className="space-y-2">
-                <div className="h-6 w-8 bg-[#D6EAFF] rounded mx-auto mb-2 flex items-center justify-center text-[#0463c7]">
+                <div className="h-6 w-8 bg-[#D6EAFF] rounded mx-auto mb-2 flex items-center justify-center text-[#5299E5]">
                     <Bot size={14} />
                 </div>
                 <div className="h-2 w-full bg-slate-50 rounded-full" />
@@ -93,7 +93,7 @@ const InterviewVisual = () => (
                 {[1, 2].map((i) => (
                     <div key={i} className="flex items-center gap-3 bg-slate-50 rounded-lg p-2">
                         <div className="w-6 h-6 rounded-full bg-[#D6EAFF] flex items-center justify-center shrink-0">
-                            <Play size={10} className="text-[#0463c7] ml-0.5" fill="currentColor" />
+                            <Play size={10} className="text-[#5299E5] ml-0.5" fill="currentColor" />
                         </div>
                         <div className="h-1.5 w-full bg-slate-200 rounded-full" />
                     </div>
@@ -107,7 +107,7 @@ const CoverLetterVisual = () => (
     <div className="w-full h-full flex items-center justify-center p-2">
         <div className="bg-white w-full max-w-[240px] h-32 rounded-xl shadow-sm border border-slate-100 p-4 relative">
             <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded bg-[#E8F3FC] flex items-center justify-center text-[#0463c7]">
+                <div className="w-6 h-6 rounded bg-[#E8F3FC] flex items-center justify-center text-[#5299E5]">
                     <FileText size={14} />
                 </div>
                 <div className="text-[10px] font-bold text-slate-700">Your Cover Letter</div>
@@ -174,7 +174,7 @@ const ElevatorVisual = () => (
                 <div className="h-1 w-full bg-slate-50 rounded-full" />
                 <div className="h-1 w-2/3 bg-slate-50 rounded-full" />
                 <div className="border-t border-slate-50 mt-2 pt-2 flex justify-end">
-                    <div className="text-[8px] text-[#0463c7] font-medium">expert in Js</div>
+                    <div className="text-[8px] text-[#5299E5] font-medium">expert in Js</div>
                 </div>
             </div>
         </div>
@@ -185,7 +185,7 @@ const SkillGapVisual = () => (
     <div className="w-full h-full flex flex-col justify-center items-center gap-2 p-2">
         <div className="flex gap-2 w-full">
             <div className="bg-white rounded px-2 py-1 shadow-sm border border-slate-100 flex items-center gap-1">
-                <Sparkles size={10} className="text-[#0463c7]" />
+                <Sparkles size={10} className="text-[#5299E5]" />
                 <span className="text-[8px] font-bold text-slate-700">Top skills</span>
             </div>
             <div className="bg-green-50 rounded px-2 py-1 border border-green-100 flex items-center gap-1">
@@ -237,7 +237,7 @@ export function ToolsSection() {
                         className="text-4xl md:text-[54px] tracking-tight leading-[1.1] mb-4"
                     >
                         Explore our full suite of <br />
-                        <span className="text-[#0463c7]">AI tools & features</span>
+                        <span className="text-[#5299E5]">AI tools & features</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
