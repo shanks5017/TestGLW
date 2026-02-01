@@ -5,7 +5,7 @@ import { cn } from '../utils/cn';
 
 // Floating Particles Component - High Density for Branding
 function FloatingParticles() {
-  const particles = Array.from({ length: 45 });
+  const particles = Array.from({ length: 15 });
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
