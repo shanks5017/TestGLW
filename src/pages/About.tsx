@@ -1,387 +1,788 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import {
-  Users,
-  GraduationCap,
   Globe,
-  UserCircle,
-  Shield,
-  Lock,
-  CircleDollarSign,
-  Minus,
-  Mail,
+  Target,
+  ArrowRight,
+  Sparkles,
   Linkedin,
-  Github
+  Github,
+  Mail,
+  Scale,
+  Lightbulb,
+  Lock,
+  Heart,
+  Chrome,
+  Rocket,
+  Bot,
+  Cpu,
+  Network,
+  Code,
+  Database,
+  Briefcase,
+  Trophy
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 
-// PROFESSIONAL MOTION VARIANTS
-const fadeInUp = {
-  hidden: { opacity: 0, y: 15 },
+// --- Animation Variants ---
+const fadeUp: any = {
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
-const staggerContainer = {
+const staggerChildren: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+    transition: { staggerChildren: 0.15 }
   }
 };
 
-// Floating Particles Component - High Density
-function FloatingParticles() {
-  const particles = Array.from({ length: 45 });
+const scaleIn: any = {
+  hidden: { scale: 0.9, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
 
+// --- Timeline Phase Data ---
+const timelinePhases = [
+  {
+    id: 1,
+    title: "The Spark",
+    description: "A minimalist browser extension to help students save jobs from any site.",
+    highlightWords: ["browser extension", "save jobs"],
+    icon: Chrome,
+    color: "bg-[#0463c7]"
+  },
+  {
+    id: 2,
+    title: "The Expansion",
+    description: "Demystifying job applications and visa sponsorship policies for international students.",
+    highlightWords: ["job applications", "visa sponsorship"],
+    icon: Rocket,
+    color: "bg-[#0463c7]"
+  },
+  {
+    id: 3,
+    title: "The Co-Pilot",
+    description: "A full AI-driven platform supporting every step of the job search journey.",
+    highlightWords: ["AI-driven platform", "job search journey"],
+    icon: Bot,
+    color: "bg-[#0463c7]"
+  }
+];
+
+// --- Core Pillars Data ---
+const corePillars = [
+  {
+    title: "Fairness & Transparency",
+    description: "We prioritize equal opportunity by clearly indicating visa sponsorship options and avoiding hidden algorithms. Our tools are built to foster trust and clarity in the hiring process.",
+    icon: Scale,
+    color: "text-blue-600",
+    bg: "bg-blue-50"
+  },
+  {
+    title: "Innovation",
+    description: "Combining the latest advancements in natural language processing and machine learning, we continually iterate to improve resume optimization, job matching, and interview preparation.",
+    icon: Lightbulb,
+    color: "text-amber-600",
+    bg: "bg-amber-50"
+  },
+  {
+    title: "Privacy & Security",
+    description: "Personal data and documents are never sold to third parties and are used solely to support your job search.",
+    icon: Lock,
+    color: "text-emerald-600",
+    bg: "bg-emerald-50"
+  },
+  {
+    title: "Empathy",
+    description: "We have experienced the challenges of job hunting first-hand. This understanding drives our design of intuitive, supportive tools that reduce stress and increase confidence.",
+    icon: Heart,
+    color: "text-rose-600",
+    bg: "bg-rose-50"
+  },
+  {
+    title: "True Clarity",
+    description: "Know exactly where you stand. No more guessing games or black holes.",
+    icon: Target,
+    color: "text-indigo-600",
+    bg: "bg-indigo-50"
+  },
+  {
+    title: "Global Reach",
+    description: "Empowering candidates worldwide to focus on presenting their best selves.",
+    icon: Globe,
+    color: "text-teal-600",
+    bg: "bg-teal-50"
+  }
+];
+
+// --- Team Data ---
+const teamMembers = [
+  {
+    name: "Nivin Vincent Raj",
+    role: "Founder & CEO",
+    expertise: "Software Engineering & Product Vision",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600&h=600",
+    links: { mail: "#", linkedin: "#", github: "#" }
+  },
+  {
+    name: "Shameer B",
+    role: "Chief Technology Officer",
+    expertise: "AI/ML & Backend Architecture",
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600&h=600",
+    links: { mail: "#", linkedin: "#", github: "#" }
+  }
+];
+
+// --- Floating Particles for Global Impact ---
+function GlobalParticles() {
+  const particles = Array.from({ length: 30 });
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+          className="absolute w-2 h-2 rounded-full bg-blue-400/40"
           initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+            x: `${Math.random() * 100}%`,
+            y: `${Math.random() * 100}%`,
+            scale: Math.random() * 0.5 + 0.5
           }}
           animate={{
-            y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)],
-            x: [null, Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)],
-            scale: [1, 1.5, 1],
+            x: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
+            y: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
             opacity: [0.3, 0.8, 0.3]
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: Math.random() * 15 + 15,
             repeat: Infinity,
             ease: "linear"
           }}
         />
       ))}
+      {/* Connection Lines */}
+      <svg className="absolute inset-0 w-full h-full opacity-20">
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0463c7" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#0463c7" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {[...Array(8)].map((_, i) => (
+          <motion.line
+            key={i}
+            x1={`${20 + i * 10}%`}
+            y1={`${30 + (i % 3) * 20}%`}
+            x2={`${50 + i * 5}%`}
+            y2={`${50 + (i % 2) * 30}%`}
+            stroke="url(#lineGradient)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.5 }}
+            transition={{ duration: 2, delay: i * 0.2, repeat: Infinity, repeatType: "reverse" }}
+          />
+        ))}
+      </svg>
     </div>
   );
 }
 
 export function About() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const genesisRef = useRef<HTMLDivElement>(null);
+  const manifestoRef = useRef<HTMLDivElement>(null);
+
+  const isManifestoInView = useInView(manifestoRef, { once: true, margin: "-20%" });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Grid effects synced with Product Page
-  const gridOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
-  const gridScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.05]);
-  const heroY = useTransform(scrollYProgress, [0, 0.4], [0, 100]);
+  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, 100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
-    <div ref={containerRef} className="bg-white text-slate-900 font-sans selection:bg-[#E8F3FC] selection:text-blue-700 relative overflow-hidden">
+    <div ref={containerRef} className="bg-white text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 overflow-hidden relative">
 
-      {/* GLOBAL DYNAMIC BACKGROUND SYSTEM - SYNCED WITH PRODUCT PAGE */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {/* Animated Grid - Matching Product Page Scroll Effects */}
+      {/* Background Grid - Matching Home Page */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0" />
+
+      {/* ========== SECTION 1: HERO ========== */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 z-10">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
+          <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
+        </div>
+
         <motion.div
-          style={{ opacity: gridOpacity, scale: gridScale }}
-          className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]"
-        />
-
-        {/* Floating Particles - 1:1 Parity */}
-        <FloatingParticles />
-      </div>
-
-      {/* 1. HERO SECTION */}
-      <motion.section
-        style={{ y: heroY }}
-        className="relative pt-48 pb-24 min-h-[85vh] flex flex-col justify-center z-10"
-      >
-        <div className="max-w-7xl mx-auto px-6 relative w-full">
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 max-w-5xl mx-auto text-center space-y-12"
+        >
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={staggerContainer}
-            className="space-y-10"
+            variants={staggerChildren}
+            className="space-y-6"
           >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 text-[#0463c7] font-bold tracking-[0.2em] text-sm md:text-base uppercase">
-              <Minus className="w-5 h-5" />
-              Our Mission
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-semibold tracking-wide uppercase mx-auto">
+              <Sparkles className="w-4 h-4 text-blue-500 fill-blue-500/20" />
+              <span>Our Mission</span>
             </motion.div>
 
-            <motion.h1
-              variants={fadeInUp}
-              className="text-5xl lg:text-[72px] font-normal tracking-tight text-[#111827] leading-[1.05] max-w-4xl"
-            >
-              We built GetLanded because <br />
-              job searching as a student <br />
-              is <span className="text-slate-400">broken.</span>
+            <motion.h1 variants={fadeUp} className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-slate-950 leading-[0.9]">
+              Built for the <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">underdog.</span>
             </motion.h1>
 
-            <motion.p
-              variants={fadeInUp}
-              className="text-lg md:text-2xl text-slate-500 max-w-2xl leading-relaxed font-normal"
-            >
-              Not because students aren't capable — but because the tools weren't built for them.
+            <motion.p variants={fadeUp} className="text-xl md:text-3xl text-slate-500 max-w-3xl mx-auto font-medium leading-relaxed tracking-tight">
+              We're rewriting the rules of job searching for students, new grads, and career switchers.
             </motion.p>
-
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-5 pt-4">
-              <Button className="rounded-full px-12 py-7 bg-slate-950 text-white hover:bg-slate-800 transition-all font-bold text-lg shadow-2xl shadow-slate-200">
-                Start free
-              </Button>
-              <Button variant="ghost" className="rounded-full px-10 py-7 text-slate-600 hover:text-slate-950 font-bold text-lg transition-all underline decoration-slate-200 underline-offset-8 decoration-2">
-                How it works
-              </Button>
-            </motion.div>
           </motion.div>
-        </div>
-      </motion.section>
 
-      {/* 2. THE PROBLEM GRID */}
-      <section className="py-40 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-5"
+          >
+            <Button className="h-14 px-10 rounded-full bg-slate-950 text-white hover:bg-slate-800 text-lg font-semibold shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] transition-all">
+              Join the movement
+            </Button>
+            <Button variant="ghost" className="h-14 px-10 rounded-full text-slate-600 hover:text-slate-900 text-lg font-medium hover:bg-slate-100">
+              Read our story <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ========== SECTION 2: THE GENESIS (Split Scroll) ========== */}
+      <section ref={genesisRef} className="py-40 lg:py-60 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+            {/* Left: Sticky Text */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="space-y-10"
+              variants={staggerChildren}
+              className="lg:sticky lg:top-32 space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-950 tracking-tight leading-[1.1]">Why GetLanded exists</h2>
-              <p className="text-slate-600 text-lg md:text-xl leading-relaxed font-normal">
-                We were students too. We watched smart, capable people get rejected—not because they lacked skill, but because the process was chaotic, opaque, and designed for experienced professionals.
-              </p>
-
-              <div className="pt-12 border-t border-slate-200">
-                <p className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
-                  The problem wasn't effort. <br />
-                  <span className="text-[#0463c7] font-heading underline decoration-blue-100 underline-offset-8 decoration-4">It was the system.</span>
-                </p>
-              </div>
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <span className="w-8 h-px bg-slate-300" />
+                Our Origin
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight leading-[1.1]">
+                The Genesis
+              </motion.h2>
+              <motion.p variants={fadeUp} className="text-xl md:text-2xl text-slate-600 leading-relaxed">
+                GetLanded was born from the frustration of job seekers who struggled to navigate complex hiring requirements and unclear visa policies. Based in <span className="font-semibold text-blue-600">Liverpool, U.K.</span>, our small team set out to build an AI-driven platform that demystifies job applications and empowers candidates worldwide.
+              </motion.p>
+              <motion.p variants={fadeUp} className="text-lg text-slate-500 leading-relaxed">
+                What started as a browser extension to check sponsorship status has evolved into a comprehensive co-pilot that supports every step of the job search.
+              </motion.p>
             </motion.div>
 
+            {/* Right: Morphing Graphic (Liverpool Map Dot) */}
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="grid gap-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative aspect-square lg:aspect-auto lg:h-[600px] rounded-[3rem] overflow-hidden bg-slate-100"
             >
-              {[
-                "Applications spread across dozens of job boards",
-                "No clear way to know if a resume actually fits a role",
-                "Silence after applying, with no feedback",
-                "International students left guessing about sponsorship"
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  className="p-10 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-[2.5rem] shadow-sm flex gap-6 items-center group hover:border-[#0463c7]/20 hover:shadow-xl transition-all duration-500"
-                >
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#0463c7] group-hover:scale-150 transition-transform shrink-0" />
-                  <span className="text-slate-800 text-lg font-semibold leading-snug">{item}</span>
-                </motion.div>
-              ))}
+              {/* Abstract Map Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50" />
+              <div className="absolute inset-0 opacity-20">
+                <svg viewBox="0 0 400 400" className="w-full h-full">
+                  <path d="M50,200 Q100,100 200,150 T350,200 T200,350 T50,200" fill="none" stroke="#0463c7" strokeWidth="0.5" opacity="0.5" />
+                  <path d="M100,50 Q200,100 250,200 T300,350" fill="none" stroke="#0463c7" strokeWidth="0.5" opacity="0.3" />
+                  <path d="M350,100 Q300,200 200,250 T50,300" fill="none" stroke="#0463c7" strokeWidth="0.5" opacity="0.4" />
+                </svg>
+              </div>
+
+              {/* Liverpool Dot */}
+              <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="relative">
+                  <motion.div
+                    className="w-6 h-6 rounded-full bg-blue-600"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 w-6 h-6 rounded-full bg-blue-600"
+                    animate={{ scale: [1, 3], opacity: [0.6, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <span className="text-sm font-bold text-blue-600 bg-white px-3 py-1 rounded-full shadow-lg">Liverpool, UK</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quote Overlay */}
+              <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-blue-100">
+                <p className="text-slate-700 italic text-lg">"We built the tool we wished we had."</p>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 3. OUR APPROACH */}
-      <section className="py-40 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center text-center space-y-24">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="space-y-4"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold font-heading tracking-tight text-slate-950">Our approach</h2>
-              <div className="h-1.5 w-24 bg-[#0463c7] mx-auto rounded-full" />
-            </motion.div>
+      {/* ========== SECTION 3: EVOLUTION TIMELINE ========== */}
+      <section className="py-40 lg:py-60 px-6 bg-slate-50/80 relative overflow-hidden z-10">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-24 space-y-4"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight">The Evolution</h2>
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+              What started as a browser extension evolved into a comprehensive co-pilot for your job search journey.
+            </p>
+          </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 w-full">
-              {[
-                "Doesn't apply for jobs on your behalf.",
-                "Doesn't spam recruiters.",
-                "Doesn't promise shortcuts."
-              ].map((text, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className="p-10 rounded-[2.5rem] bg-slate-50/50 backdrop-blur-sm border border-slate-100 shadow-sm text-slate-500 text-xl font-medium leading-relaxed"
-                >
-                  <span className="text-slate-950 font-bold block mb-2">GetLanded</span>
-                  {text}
-                </motion.div>
-              ))}
+          {/* Vertical Timeline */}
+          <div className="relative">
+            {/* Animated Center Line - SVG for smooth animation */}
+            <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 hidden md:block w-px">
+              <motion.div
+                className="w-full bg-gradient-to-b from-slate-200 via-[#0463c7] to-[#0463c7]"
+                initial={{ height: "0%" }}
+                whileInView={{ height: "100%" }}
+                viewport={{ once: true, margin: "-20%" }}
+                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+              />
             </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="max-w-4xl"
-            >
-              <p className="text-3xl md:text-[42px] font-bold text-slate-900 leading-[1.15] tracking-tight">
-                Instead, it helps you understand <span className="text-[#0463c7]">where you stand</span>, what's missing, and what to do next — so every application is <span className="underline decoration-blue-100 underline-offset-[16px] decoration-4">intentional.</span>
-              </p>
-            </motion.div>
+            <div className="space-y-32 md:space-y-40">
+              {timelinePhases.map((phase, i) => {
+                // Function to highlight keywords in blue
+                const renderDescription = () => {
+                  let text = phase.description;
+                  const highlights = phase.highlightWords || [];
+                  const parts: React.ReactNode[] = [];
+                  let lastIndex = 0;
+
+                  // Simple matching for highlighting (case-insensitive)
+                  const lowerText = text.toLowerCase();
+
+                  // Find the first occurrence of any highlight word
+                  // Note: This simple implementation assumes non-overlapping highlights
+                  // for a improved version, we would need a more complex regex approach
+                  // But for this specific content, it should work fine.
+
+                  // Let's iterate through the text to find matches
+                  const allMatches: { word: string; index: number; length: number }[] = [];
+                  highlights.forEach(word => {
+                    const index = lowerText.indexOf(word.toLowerCase());
+                    if (index !== -1) {
+                      allMatches.push({ word, index, length: word.length });
+                    }
+                  });
+
+                  // Sort matches by index
+                  allMatches.sort((a, b) => a.index - b.index);
+
+                  if (allMatches.length === 0) return text;
+
+                  allMatches.forEach((match) => {
+                    if (match.index > lastIndex) {
+                      parts.push(text.substring(lastIndex, match.index));
+                    }
+                    parts.push(
+                      <span key={match.index} className="text-[#0463c7] font-semibold">
+                        {text.substring(match.index, match.index + match.length)}
+                      </span>
+                    );
+                    lastIndex = match.index + match.length;
+                  });
+
+                  if (lastIndex < text.length) {
+                    parts.push(text.substring(lastIndex));
+                  }
+
+                  return parts;
+                };
+
+                return (
+                  <motion.div
+                    key={phase.id}
+                    initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                    className={`relative flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                  >
+                    {/* Content Card */}
+                    <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right md:pr-20' : 'md:text-left md:pl-20'}`}>
+                      <motion.div
+                        className="group bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 inline-block relative overflow-hidden cursor-default"
+                        whileHover={{ y: -8, scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        {/* Glassmorphism hover overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* Glow effect on hover */}
+                        <div className={`absolute -inset-1 ${phase.color} opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500 rounded-3xl`} />
+
+                        <div className="relative z-10">
+                          <motion.div
+                            className={`w-14 h-14 ${phase.color} rounded-2xl flex items-center justify-center mb-6 ${i % 2 === 0 ? 'md:ml-auto' : ''} shadow-lg`}
+                            whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <phase.icon className="w-7 h-7 text-white" />
+                          </motion.div>
+                          <h3 className="text-2xl font-bold text-slate-900 mb-3">{phase.title}</h3>
+                          <p className="text-slate-600 text-lg leading-relaxed">{renderDescription()}</p>
+                        </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Center Node - Enhanced with pulse animation */}
+                    <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center">
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 + i * 0.1, type: "spring", stiffness: 200 }}
+                        className="relative"
+                      >
+                        {/* Outer pulsing ring */}
+                        <motion.div
+                          className={`absolute inset-0 w-8 h-8 rounded-full ${phase.color}`}
+                          animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                          style={{ left: "-6px", top: "-6px" }}
+                        />
+                        {/* Main node */}
+                        <div className={`w-5 h-5 rounded-full ${phase.color} ring-4 ring-white shadow-lg relative z-10`} />
+                      </motion.div>
+                    </div>
+
+                    {/* Spacer */}
+                    <div className="flex-1 hidden md:block" />
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 4. WHO IT'S BUILT FOR */}
-      <section className="py-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-slate-950 text-white rounded-[3rem] overflow-hidden p-16 lg:p-24 relative shadow-3xl">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0352a8]/20 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />
+      {/* ========== SECTION 4: MANIFESTO (Full Screen Dark) ========== */}
+      <section ref={manifestoRef} className="relative py-60 lg:py-80 px-6 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
+        {/* Aura / Pulse Background */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(4,99,199,0.3) 0%, transparent 70%)'
+          }}
+          animate={isManifestoInView ? { scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] } : {}}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-            <div className="relative z-10">
-              <div className="mb-24 space-y-6 max-w-2xl">
-                <h2 className="text-4xl md:text-[52px] font-bold font-heading tracking-tight leading-tight">Who GetLanded is built for</h2>
-                <p className="text-slate-400 text-xl font-medium">Four groups, one common goal: Clarity.</p>
-              </div>
+        <div className="relative z-10 max-w-6xl mx-auto text-center space-y-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter leading-[0.95]"
+          >
+            Democratizing access <br />
+            to career opportunities.
+          </motion.h2>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16">
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-xl md:text-2xl text-blue-200/80 max-w-3xl mx-auto font-medium leading-relaxed"
+          >
+            We believe that everyone deserves a fair chance at their dream job, regardless of background or location. By automating tedious tasks and providing actionable insights, we help candidates focus on what matters: presenting their best selves and making meaningful connections with employers.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ========== SECTION 5: THE INTELLIGENCE (Tech Stack) ========== */}
+      <section className="py-32 lg:py-48 px-6 bg-slate-950 relative z-10 overflow-hidden">
+        {/* Tech Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerChildren}
+              className="space-y-8"
+            >
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest uppercase">
+                <Cpu className="w-3 h-3" />
+                <span>The Intelligence</span>
+              </motion.div>
+
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+                Engineered for <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Precision.</span>
+              </motion.h2>
+
+              <motion.p variants={fadeUp} className="text-xl text-slate-400 leading-relaxed">
+                Our platform isn't just a database—it's a living, breathing neural network that learns from thousands of successful applications to guide you toward your best career move.
+              </motion.p>
+
+              <div className="grid grid-cols-2 gap-4 pt-4">
                 {[
-                  { title: "Students", desc: "Navigating internships, campus hiring, and first roles without insider knowledge.", icon: GraduationCap },
-                  { title: "New Graduates", desc: "Turning academic experience into applications that make sense to employers.", icon: UserCircle },
-                  { title: "International Students", desc: "Searching with visa constraints, sponsorship filters, and higher stakes.", icon: Globe },
-                  { title: "Career Switchers", desc: "Repositioning skills without starting from zero.", icon: Users }
+                  { icon: Database, label: "Real-time Data" },
+                  { icon: Network, label: "Neural Matching" },
+                  { icon: Code, label: "Automated Analysis" },
+                  { icon: Lock, label: "Enterprise Security" }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeInUp}
-                    className="space-y-8 group"
+                    variants={fadeUp}
+                    className="flex items-center gap-3 p-4 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 transition-colors group"
                   >
-                    <div className="w-14 h-14 border border-slate-800 rounded-2xl flex items-center justify-center text-[#70ADEF] group-hover:bg-[#0463c7] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(0,71,255,0.4)] transition-all duration-500">
-                      <item.icon strokeWidth={1.5} className="w-7 h-7" />
+                    <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-500/20 transition-all">
+                      <item.icon className="w-5 h-5" />
                     </div>
-                    <div className="space-y-4">
-                      <h3 className="font-bold text-2xl text-white tracking-tight">{item.title}</h3>
-                      <p className="text-slate-400 text-lg leading-relaxed">{item.desc}</p>
-                    </div>
+                    <span className="text-slate-300 font-medium">{item.label}</span>
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
+
+            {/* Right: Abstract Tech Visualization */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative aspect-square bg-gradient-to-br from-slate-900 to-slate-800 rounded-[3rem] border border-slate-800 p-8 overflow-hidden shadow-2xl shadow-black/50"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(4,99,199,0.1),transparent_70%)]" />
+
+              {/* Floating Tech Nodes */}
+              <div className="absolute inset-0">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute flex flex-col items-center gap-2"
+                    initial={{
+                      x: Math.random() * 300,
+                      y: Math.random() * 300
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      x: [0, 10, 0]
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.5
+                    }}
+                    style={{
+                      top: `${20 + Math.random() * 40}%`,
+                      left: `${20 + Math.random() * 40}%`
+                    }}
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center shadow-lg relative z-10 group cursor-pointer hover:border-blue-500 transition-colors">
+                      <div className="absolute inset-0 bg-blue-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-3 h-3 bg-blue-500 rounded-full" />
+                    </div>
+                    <div className="h-20 w-px bg-gradient-to-b from-blue-500/50 to-transparent absolute top-12" />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 5. TRUST & PRIVACY */}
-      <section className="py-40 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="flex flex-col items-center text-center mb-28">
-            <h2 className="text-4xl md:text-[52px] font-bold font-heading tracking-tight text-slate-950">Trust, privacy, and boundaries</h2>
-            <div className="h-1.5 w-24 bg-[#D6EAFF] mt-6 rounded-full" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-20 mb-20">
+      {/* ========== SECTION 6: IMPACT BY THE NUMBERS ========== */}
+      <section className="py-24 bg-white border-y border-slate-100 relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-12 divide-y md:divide-y-0 md:divide-x divide-slate-100">
             {[
-              { icon: Shield, title: "No Data Selling", desc: "We do not sell personal data. Not to employers. Not to advertisers. Not ever." },
-              { icon: Lock, title: "User-Initiated Access", desc: "The Chrome extension only runs when you choose to save or analyze a job. You stay in control." },
-              { icon: CircleDollarSign, title: "Clear Pricing", desc: "No hidden fees. No fake discounts. You can cancel anytime, in one click." }
-            ].map((item, i) => (
+              { number: "50+", label: "Universities Partnered", icon: Briefcase },
+              { number: "10k+", label: "Resumes Analyzed", icon: Code },
+              { number: "95%", label: "Success Rate", icon: Trophy },
+              { number: "24/7", label: "AI Availability", icon: Bot }
+            ].map((stat, i) => (
               <motion.div
                 key={i}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                variants={fadeInUp}
-                className="space-y-8"
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="text-center pt-8 md:pt-0 pl-0 md:pl-8 first:pl-0"
               >
-                <div className="w-16 h-16 rounded-2xl bg-[#E8F3FC] flex items-center justify-center">
-                  <item.icon strokeWidth={1.2} className="w-9 h-9 text-[#0463c7]" />
+                <div className="w-12 h-12 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center text-[#0463c7] mb-6">
+                  <stat.icon className="w-6 h-6" />
                 </div>
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold font-heading uppercase tracking-widest text-slate-950 leading-snug">{item.title}</h3>
-                  <p className="text-slate-600 text-lg leading-relaxed">{item.desc}</p>
-                </div>
+                <div className="text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">{stat.number}</div>
+                <div className="text-slate-500 font-medium uppercase tracking-wider text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
+      {/* ========== SECTION 7: CORE PILLARS (Enhanced Bento Grid) ========== */}
+      <section className="py-40 lg:py-60 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
-            className="flex flex-col items-center text-center pt-16 border-t border-slate-100"
+            variants={fadeUp}
+            className="text-center mb-24 space-y-4"
           >
-            <p className="text-slate-500 text-2xl leading-relaxed font-medium max-w-3xl italic">
-              "Your career data is sensitive. We treat it that way."
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight">Our Core Pillars</h2>
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto">The values that guide every decision we make.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {corePillars.map((pillar, i) => (
+              <motion.div
+                key={pillar.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={scaleIn}
+                transition={{ delay: i * 0.1 }}
+                className="group relative p-8 rounded-[2rem] bg-white border border-slate-100 shadow-lg shadow-slate-100/50 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 hover:-translate-y-2"
+              >
+                {/* Glass Hover Effect */}
+                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className={`w-14 h-14 ${pillar.bg} rounded-2xl flex items-center justify-center mb-6 ${pillar.color} relative z-10`}>
+                  <pillar.icon className="w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10">{pillar.title}</h3>
+                <p className="text-slate-600 leading-relaxed relative z-10">{pillar.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== SECTION 8: GLOBAL IMPACT ========== */}
+      <section className="py-40 lg:py-60 px-6 bg-slate-50 relative z-10 overflow-hidden">
+        <GlobalParticles />
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-16">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerChildren}
+            className="space-y-6"
+          >
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight">
+              A Global Movement
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Empowering candidates worldwide to focus on presenting their best selves—making meaningful connections between talent and opportunity.
+            </motion.p>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerChildren}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {[
+              { value: "50+", label: "Countries Reached" },
+              { value: "10K+", label: "Applications Tracked" },
+              { value: "95%", label: "User Satisfaction" }
+            ].map((stat, i) => (
+              <motion.div key={i} variants={fadeUp} className="p-8 bg-white rounded-3xl shadow-xl shadow-slate-200/30 border border-slate-100">
+                <div className="text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
+                <div className="text-slate-600 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========== SECTION 9: THE COLLECTIVE (Enhanced Team) ========== */}
+      <section className="py-40 lg:py-60 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Wide Intro Statement */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-24 space-y-6"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight">The Collective</h2>
+            <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              GetLanded is a diverse collective of software engineers, data scientists, and career coaches. Our founding team has experience at top tech companies and recruitment agencies. We partner closely with immigration specialists to ensure our visa checks remain up to date.
             </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* 6. TEAM */}
-      <section className="py-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center text-center space-y-10 mb-24">
-            <div className="px-5 py-2.5 rounded-full border border-blue-100 bg-white/80 backdrop-blur shadow-sm flex items-center gap-2 text-[#0463c7] text-sm font-bold tracking-tight">
-              <Users className="w-4 h-4" />
-              Team
-            </div>
-            <div>
-              <h2 className="text-5xl md:text-7xl font-bold font-heading tracking-tight text-slate-950 leading-[1.05]">
-                Our Talented <br />
-                <span className="text-[#0463c7]">Team Members</span>
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 justify-center max-w-5xl mx-auto w-full">
-            {[
-              {
-                name: "Nivin Vincent Raj",
-                role: "Founder & CEO",
-                img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300&h=300"
-              },
-              {
-                name: "Shameer B",
-                role: "Chief Technology Officer",
-                img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=300&h=300"
-              }
-            ].map((member, i) => (
+          {/* Team Grid */}
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto">
+            {teamMembers.map((member, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={fadeInUp}
-                className="group p-16 bg-white/40 backdrop-blur-sm border border-slate-200 rounded-[3.5rem] flex flex-col items-center text-center space-y-10 hover:bg-white/70 transition-all duration-700 hover:shadow-2xl hover:border-blue-100"
+                variants={fadeUp}
+                className="group relative"
               >
-                <div className="w-44 h-44 rounded-full overflow-hidden border-8 border-white shadow-2xl relative transition-transform duration-700 group-hover:scale-105">
-                  <div className="absolute inset-0 bg-[#D6EAFF] group-hover:bg-blue-200 transition-colors" />
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700" />
+                <div className="aspect-[4/5] rounded-[3rem] overflow-hidden bg-slate-100 mb-8 relative">
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
+                  />
+                  {/* Hover Overlay with Expertise */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                    <div className="space-y-4">
+                      <div className="text-sm font-bold text-blue-400 uppercase tracking-wider">Expertise</div>
+                      <div className="text-white text-lg">{member.expertise}</div>
+                      <div className="flex gap-4 pt-4">
+                        <a href={member.links.mail} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                          <Mail className="w-5 h-5" />
+                        </a>
+                        <a href={member.links.linkedin} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                          <Linkedin className="w-5 h-5" />
+                        </a>
+                        <a href={member.links.github} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                          <Github className="w-5 h-5" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="space-y-3">
-                  <h3 className="font-bold text-3xl font-heading text-slate-950 tracking-tight">{member.name}</h3>
-                  <p className="text-[#0463c7] text-xl font-bold tracking-tight uppercase">{member.role}</p>
-                </div>
-
-                <div className="flex gap-5">
-                  {[Mail, Linkedin, Github].map((Icon, idx) => (
-                    <button key={idx} className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-slate-600 border border-slate-100 hover:bg-[#0463c7] hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
-                      <Icon className="w-6 h-6" strokeWidth={1.5} />
-                    </button>
-                  ))}
+                <div className="space-y-2 text-center md:text-left">
+                  <h3 className="text-3xl font-bold text-slate-900">{member.name}</h3>
+                  <p className="text-[#0463c7] font-semibold tracking-widest uppercase text-sm">{member.role}</p>
                 </div>
               </motion.div>
             ))}
@@ -389,33 +790,26 @@ export function About() {
         </div>
       </section>
 
-      {/* 7. FINAL CTA */}
-      <section className="py-48 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="space-y-16"
-          >
-            <div className="space-y-8">
-              <h2 className="text-5xl md:text-[72px] font-bold font-heading tracking-tight leading-[1] text-slate-950 max-w-5xl mx-auto">
-                If you're navigating your first job search, <br />
-                <span className="text-[#0463c7]">we built this for you.</span>
-              </h2>
-              <p className="text-slate-500 text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
-                Start making intentional applications today. <br />
-                Your first role is closer than you think.
-              </p>
-            </div>
+      {/* ========== SECTION 10: FOOTER CTA ========== */}
+      <section className="py-20 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-32 text-center">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+          <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[150px] opacity-20" />
 
+          <div className="relative z-10 space-y-10">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">
+              Ready to land <br />
+              your dream job?
+            </h2>
+            <p className="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto font-medium">
+              Everything you need to organize, optimize, and track your applications. In one place.
+            </p>
             <div className="pt-8">
-              <Button className="px-16 py-8 rounded-full bg-slate-950 text-white hover:bg-slate-800 transition-all font-bold text-xl shadow-[0_20px_50px_rgba(15,23,42,0.15)] hover:shadow-[0_25px_60px_rgba(15,23,42,0.25)]">
-                Get started for free
+              <Button className="h-20 px-12 rounded-full bg-white text-[#0463c7] hover:bg-blue-50 text-xl font-bold border-2 border-transparent shadow-xl transition-all transform hover:scale-105">
+                Get Started for Free
               </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
