@@ -297,6 +297,32 @@ h6 {
     }
 }
 
-.animate-dot-pulse {
-    animation: dot-pulse 1.5s ease-in-out infinite;
+
+/* Slow Marquee for Testimonials */
+.animate-marquee-slow {
+    animation: marquee 40s linear infinite;
+}
+
+/* Medium Marquee for Trust Badges */
+.animate-marquee-medium {
+    animation: marquee 20s linear infinite;
+}
+
+/* Slow Bounce for decorative elements */
+.animate-bounce-slow {
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
 }

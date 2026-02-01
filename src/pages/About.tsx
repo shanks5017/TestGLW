@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import {
   Globe,
   Target,
@@ -23,6 +23,7 @@ import {
   Trophy
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { TabletDisplay } from '../components/home/TabletDisplay';
 
 // --- Animation Variants ---
 const fadeUp: any = {
@@ -203,13 +204,9 @@ export function About() {
 
   const isManifestoInView = useInView(manifestoRef, { once: true, margin: "-20%" });
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
-  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, 100]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
+
 
   return (
     <div ref={containerRef} className="bg-white text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 overflow-hidden relative">
@@ -218,55 +215,67 @@ export function About() {
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0" />
 
       {/* ========== SECTION 1: HERO ========== */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 z-10">
+      <section className="relative pt-16 pb-12 lg:pt-20 lg:pb-20 px-6 overflow-hidden z-10 flex flex-col justify-center min-h-[70vh]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
-          <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
+          <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
         </div>
 
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 max-w-5xl mx-auto text-center space-y-12"
-        >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerChildren}
-            className="space-y-6"
-          >
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-semibold tracking-wide uppercase mx-auto">
-              <Sparkles className="w-4 h-4 text-blue-500 fill-blue-500/20" />
-              <span>Our Mission</span>
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+            {/* Left Column: 3D Tablet Visualization */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-7 flex justify-center lg:justify-start relative order-2 lg:order-1 pt-10 lg:pt-0"
+            >
+              <div className="transform scale-[0.6] sm:scale-[0.8] md:scale-[0.9] lg:scale-100 transition-transform duration-500">
+                <TabletDisplay />
+              </div>
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-slate-950 leading-[0.9]">
-              Built for the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">underdog.</span>
-            </motion.h1>
+            {/* Right Column: Content */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerChildren}
+              className="lg:col-span-5 space-y-8 text-left order-1 lg:order-2"
+            >
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-semibold tracking-wide uppercase">
+                <Sparkles className="w-4 h-4 text-blue-500 fill-blue-500/20" />
+                <span>Our Mission</span>
+              </motion.div>
 
-            <motion.p variants={fadeUp} className="text-xl md:text-3xl text-slate-500 max-w-3xl mx-auto font-medium leading-relaxed tracking-tight">
-              We're rewriting the rules of job searching for students, new grads, and career switchers.
-            </motion.p>
-          </motion.div>
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1]">
+                Built for the <br />
+                <span className="text-slate-400">Underdog.</span>
+              </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-5"
-          >
-            <Button className="h-14 px-10 rounded-full bg-slate-950 text-white hover:bg-slate-800 text-lg font-semibold shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] transition-all">
-              Join the movement
-            </Button>
-            <Button variant="ghost" className="h-14 px-10 rounded-full text-slate-600 hover:text-slate-900 text-lg font-medium hover:bg-slate-100">
-              Read our story <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </motion.div>
-        </motion.div>
+              <motion.p variants={fadeUp} className="text-xl text-slate-500 font-medium leading-relaxed tracking-tight max-w-lg">
+                We're rewriting the rules of job searching for students, new grads, and career switchers.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-col sm:flex-row items-start gap-5 pt-2"
+              >
+                <Button className="h-14 px-8 rounded-full bg-[#0463c7] text-white hover:bg-[#0352a8] text-lg font-medium shadow-lg shadow-blue-500/20 transition-all">
+                  Join the movement
+                </Button>
+                <Button variant="ghost" className="h-14 px-8 rounded-full text-slate-600 hover:text-slate-900 text-lg font-medium hover:bg-slate-100 border border-slate-200">
+                  Read our story <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </motion.div>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* ========== SECTION 2: THE GENESIS (Split Scroll) ========== */}
-      <section ref={genesisRef} className="py-40 lg:py-60 px-6 relative">
+      <section ref={genesisRef} className="py-24 lg:py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
             {/* Left: Sticky Text */}
@@ -339,7 +348,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 3: EVOLUTION TIMELINE ========== */}
-      <section className="py-40 lg:py-60 px-6 bg-slate-50/80 relative overflow-hidden z-10">
+      <section className="py-24 lg:py-32 px-6 bg-slate-50/80 relative overflow-hidden z-10">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial="hidden"
@@ -485,7 +494,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 4: MANIFESTO (Full Screen Dark) ========== */}
-      <section ref={manifestoRef} className="relative py-60 lg:py-80 px-6 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
+      <section ref={manifestoRef} className="relative py-32 lg:py-48 px-6 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
         {/* Aura / Pulse Background */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
@@ -521,7 +530,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 5: THE INTELLIGENCE (Tech Stack) ========== */}
-      <section className="py-32 lg:py-48 px-6 bg-slate-950 relative z-10 overflow-hidden">
+      <section className="py-20 lg:py-32 px-6 bg-slate-950 relative z-10 overflow-hidden">
         {/* Tech Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none" />
 
@@ -618,7 +627,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 6: IMPACT BY THE NUMBERS ========== */}
-      <section className="py-24 bg-white border-y border-slate-100 relative z-10">
+      <section className="py-16 bg-white border-y border-slate-100 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 divide-y md:divide-y-0 md:divide-x divide-slate-100">
             {[
@@ -647,7 +656,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 7: CORE PILLARS (Enhanced Bento Grid) ========== */}
-      <section className="py-40 lg:py-60 px-6 relative z-10">
+      <section className="py-24 lg:py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -686,7 +695,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 8: GLOBAL IMPACT ========== */}
-      <section className="py-40 lg:py-60 px-6 bg-slate-50 relative z-10 overflow-hidden">
+      <section className="py-24 lg:py-32 px-6 bg-slate-50 relative z-10 overflow-hidden">
         <GlobalParticles />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-16">
@@ -728,7 +737,7 @@ export function About() {
       </section>
 
       {/* ========== SECTION 9: THE COLLECTIVE (Enhanced Team) ========== */}
-      <section className="py-40 lg:py-60 px-6 relative z-10">
+      <section className="py-24 lg:py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Wide Intro Statement */}
           <motion.div
@@ -791,8 +800,8 @@ export function About() {
       </section>
 
       {/* ========== SECTION 10: FOOTER CTA ========== */}
-      <section className="py-20 px-4 relative z-10">
-        <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-32 text-center">
+      <section className="py-16 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-20 text-center">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
           <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[150px] opacity-20" />
 

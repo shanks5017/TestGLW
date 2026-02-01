@@ -7,9 +7,9 @@ import { cn } from "../../lib/utils";
 const OffersVisual = () => (
     <div className="relative w-full h-[300px] flex items-center justify-center">
         {/* Central Card */}
-        <div className="relative z-10 w-64 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-[#5299E5] p-5 flex flex-col gap-4">
+        <div className="relative z-10 w-64 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-[#0463c7] p-5 flex flex-col gap-4">
             <div className="flex items-center gap-3 border-b border-slate-50 pb-3">
-                <div className="w-10 h-10 rounded-full bg-[#3D84D8] flex items-center justify-center text-white">
+                <div className="w-10 h-10 rounded-full bg-[#0463c7] flex items-center justify-center text-white">
                     <Building2 size={20} />
                 </div>
                 <div>
@@ -88,7 +88,7 @@ export const Stats = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#5299E5] text-xs font-bold uppercase tracking-wider mb-8"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#0463c7] text-xs font-bold uppercase tracking-wider mb-8"
                     >
                         <Trophy size={14} />
                         <span>Proven Results</span>
@@ -98,7 +98,7 @@ export const Stats = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl md:text-[64px] font-normal text-[#5299E5] leading-[1.1] tracking-tight"
+                        className="text-5xl md:text-[64px] font-normal text-[#0463c7] leading-[1.1] tracking-tight"
                     >
                         <span className="text-slate-900">Receipts? </span>We've got plenty.
                     </motion.h2>
@@ -108,7 +108,7 @@ export const Stats = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
                     {/* Card 1: Offers Landed (Text Bottom, Visual Top) */}
-                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
+                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#0463c7]">
                         {/* Visual Area */}
                         <div className="flex-1 flex items-center justify-center relative min-h-[250px]">
                             <OffersVisual />
@@ -124,7 +124,7 @@ export const Stats = () => {
                     </div>
 
                     {/* Card 2: Interview Rate (Text Top, Visual Bottom) */}
-                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#5299E5]">
+                    <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 min-h-[450px] md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#0463c7]">
                         {/* Text Content */}
                         <div className="mb-6 md:mb-8 relative z-10 text-center md:text-left">
                             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-indigo-500/20 mx-auto md:mx-0">
