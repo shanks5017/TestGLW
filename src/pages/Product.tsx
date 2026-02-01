@@ -15,6 +15,7 @@ import {
   Target,
 } from 'lucide-react';
 import { PhoneDisplay } from '../components/product/PhoneDisplay';
+import { ProductLaptop } from '../components/product/ProductLaptop';
 import { cn } from '../lib/utils';
 import { FAQAccordion } from '../components/ui/FAQAccordion';
 import { Section, FadeIn } from '../components/ui/Section';
@@ -173,57 +174,59 @@ export function Product() {
                 </Link>
               </div>
 
-              {/* Company Logos Marquee Section */}
-              <div className="mt-24 w-full max-w-2xl mx-auto lg:mx-0">
-                <div className="bg-[#0463c7] rounded-[2.5rem] p-10 shadow-xl shadow-blue-200 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group overflow-hidden">
-                  {/* Title & Line */}
-                  <div className="flex items-center gap-4 mb-8">
-                    <span className="text-blue-100/90 font-semibold tracking-[0.2em] text-lg uppercase">Powering next-gen careers</span>
-                    <div className="h-px bg-gradient-to-r from-blue-200/40 to-transparent flex-1" />
-                  </div>
 
-                  {/* Logos */}
-                  <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)' }}>
-                    <div className="flex gap-12 animate-marquee whitespace-nowrap pr-12" style={{ animationDuration: '10s' }}>
-                      {[
-                        { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
-                        { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
-                        { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
-                        { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
-                        { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
-                        { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
-                        { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
-                        { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
-                        { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
-                        { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
-                        { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
-                        { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
-                        { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
-                        { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
-                        { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
-                        { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
-                        { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
-                        { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
-                        { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
-                        { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
-                      ].map((logo, index) => (
-                        <div key={index} className="flex-shrink-0 flex items-center justify-center">
-                          <img
-                            src={logo.src}
-                            alt={`${logo.name} logo`}
-                            className="h-8 w-auto hover:opacity-80 transition-opacity"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
             </motion.div>
 
-            {/* Right: Phone Display */}
-            <div className="lg:col-span-6 flex justify-center lg:justify-end">
-              <PhoneDisplay />
+            {/* Right: Laptop Display */}
+            <div className="lg:col-span-6 flex justify-center lg:justify-end relative perspective-[2000px] z-20 lg:translate-y-17">
+              <ProductLaptop />
+            </div>
+          </div>
+
+          {/* Company Logos Marquee Section (Moved Down and Full Width) */}
+          <div className="mt-32 w-full max-w-7xl mx-auto">
+            <div className="bg-[#0463c7] rounded-[2.5rem] p-12 shadow-xl shadow-blue-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group overflow-hidden">
+              {/* Title & Line */}
+              <div className="flex items-center gap-6 mb-10">
+                <span className="text-blue-100/90 font-semibold tracking-[0.2em] text-lg uppercase whitespace-nowrap">Powering next-gen careers</span>
+                <div className="h-px bg-gradient-to-r from-blue-200/40 to-transparent flex-1" />
+              </div>
+
+              {/* Logos */}
+              <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10rem, black calc(100% - 10rem), transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10rem, black calc(100% - 10rem), transparent)' }}>
+                <div className="flex gap-16 animate-marquee whitespace-nowrap pr-16" style={{ animationDuration: '40s' }}>
+                  {[
+                    { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
+                    { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
+                    { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
+                    { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
+                    { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
+                    { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
+                    { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
+                    { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
+                    { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
+                    { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
+                    { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
+                    { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
+                    { name: "Netflix", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8faaba964c83a21f0_netflix%20logo.svg" },
+                    { name: "Amazon", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8c9137787965280b0_Amazon%20logo.svg" },
+                    { name: "Airbnb", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8d0de636763a1eb11_airbnb%20logo.svg" },
+                    { name: "Spotify", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e9ecc95379c6f5706a_spotify%20logo.svg" },
+                    { name: "Tesla", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8dbafd8468a1132a6_Tesla%20logo.svg" },
+                    { name: "Bloomberg", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e8a27aa6ba0cf2f078_Bloomberg%20logo.svg" },
+                    { name: "Microsoft", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e94fc9e5207a9b7823_microsoft%20logo.svg" },
+                    { name: "Adobe", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e87ca320857f7eb230_adobe-logo.svg" },
+                  ].map((logo, index) => (
+                    <div key={index} className="flex-shrink-0 flex items-center justify-center">
+                      <img
+                        src={logo.src}
+                        alt={`${logo.name} logo`}
+                        className="h-9 w-auto hover:opacity-80 transition-opacity brightness-0 invert"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -263,11 +266,11 @@ export function Product() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
 
       {/* Resume Builder Features Section - Simplify Style */}
-      <section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10">
+      < section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -385,10 +388,10 @@ export function Product() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* AI Copilot Extension Section - Simplify Style */}
-      <section className="py-20 px-6 bg-white relative z-10">
+      < section className="py-20 px-6 bg-white relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Browser Mockup */}
@@ -522,10 +525,10 @@ export function Product() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* AI Resume Builder Section - Simplify Style (Reversed Layout) */}
-      <section className="py-20 px-6 bg-[#fafbfc] relative z-10">
+      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -635,10 +638,10 @@ export function Product() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Job Tracker Section - Simplify Style */}
-      <section className="py-20 px-6 bg-[#fafbfc] relative z-10">
+      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Job Tracker Mockup */}
@@ -794,55 +797,77 @@ export function Product() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Categories Section */}
-      <section className="py-20 px-6 bg-white relative z-10">
+      < section className="py-20 px-6 bg-white relative z-10 overflow-hidden" >
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl tracking-tight mb-12"
-          >
-            Categories
-          </motion.h2>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            {/* Left: Phone Display (Moved from Hero) */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-5 flex justify-center items-center relative order-2 lg:order-1"
+            >
+              <div className="w-full max-w-[380px] scale-[0.75] origin-center transform hover:scale-[0.8] transition-transform duration-500">
+                <PhoneDisplay />
+              </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { icon: FileText, title: "Resume Builder", subtitle: "Features" },
-              { icon: Layout, title: "Job Application Tracker", subtitle: "Features" },
-              { icon: Globe, title: "Networking Tracker", subtitle: "Features" },
-              { icon: Zap, title: "LinkedIn Optimizer", subtitle: "Features" },
-              { icon: MessageSquare, title: "AI Mock Interview", subtitle: "Features" },
-            ].map((cat, i) => (
-              <motion.div
-                key={i}
+              {/* Decorative blob behind phone */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl -z-10 mix-blend-multiply" />
+            </motion.div>
+
+            {/* Right: Categories */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group flex items-center gap-4 p-5 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="text-4xl md:text-5xl tracking-tight mb-12 text-slate-900"
               >
-                <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-black">
-                  <cat.icon size={22} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-slate-900 group-hover:text-white transition-colors">{cat.title}</h3>
-                  <p className="text-sm text-slate-400 group-hover:text-white/70 transition-colors">{cat.subtitle}</p>
-                </div>
-              </motion.div>
-            ))}
+                Explore <span className="text-[#0463c7]">Features</span>
+              </motion.h2>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  { icon: FileText, title: "Resume Builder", subtitle: "AI-Powered Tailoring" },
+                  { icon: Layout, title: "Job Application Tracker", subtitle: "Kanban Board" },
+                  { icon: Globe, title: "Networking Tracker", subtitle: "Manage Connections" },
+                  { icon: Zap, title: "LinkedIn Optimizer", subtitle: "Profile Enhancement" },
+                  { icon: MessageSquare, title: "AI Mock Interview", subtitle: "Practice & Feedback" },
+                ].map((cat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="group flex items-start gap-4 p-6 rounded-[2rem] bg-[#f8fafc] border border-slate-100 hover:border-[#0463c7]/20 hover:bg-[#e8efff] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
+                      <cat.icon size={22} className="transform group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg text-slate-900 mb-1">{cat.title}</h3>
+                      <p className="text-sm text-slate-500 group-hover:text-slate-600 transition-colors">{cat.subtitle}</p>
+                    </div>
+                  </motion.div>
+                ))
+                }
+              </div >
+            </div>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       {/* Teal-Style Features Section */}
-      <section className="relative z-10">
+      < section className="relative z-10" >
         {/* Feature 1: Resume Builder - Left Content, Right Visual */}
-        <div className="grid lg:grid-cols-2">
+        < div className="grid lg:grid-cols-2" >
           {/* Left Content */}
-          <div className="py-20 px-6 lg:px-16 flex items-center">
+          < div className="py-20 px-6 lg:px-16 flex items-center" >
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -867,10 +892,10 @@ export function Product() {
                 Build a Resume with AI
               </Link>
             </motion.div>
-          </div>
+          </div >
 
           {/* Right Visual - Gradient Background */}
-          <div className="bg-gradient-to-br from-[#0463c7]/10 via-[#e8efff] to-[#0463c7]/20 py-16 px-8 flex items-center justify-center relative overflow-hidden">
+          < div className="bg-gradient-to-br from-[#0463c7]/10 via-[#e8efff] to-[#0463c7]/20 py-16 px-8 flex items-center justify-center relative overflow-hidden" >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -912,13 +937,13 @@ export function Product() {
                 <div className="h-8 bg-gradient-to-r from-[#0463c7]/30 to-[#0463c7]/60 rounded" />
               </div>
             </motion.div>
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Feature 2: Job Tracker - Right Content, Left Visual */}
-        <div className="grid lg:grid-cols-2">
+        < div className="grid lg:grid-cols-2" >
           {/* Left Visual */}
-          <div className="bg-gradient-to-bl from-[#e8efff] via-[#0463c7]/10 to-[#e8efff]/50 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
+          < div className="bg-gradient-to-bl from-[#e8efff] via-[#0463c7]/10 to-[#e8efff]/50 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1" >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -959,10 +984,10 @@ export function Product() {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </div >
 
           {/* Right Content */}
-          <div className="py-20 px-6 lg:px-16 flex items-center order-1 lg:order-2">
+          < div className="py-20 px-6 lg:px-16 flex items-center order-1 lg:order-2" >
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -987,13 +1012,13 @@ export function Product() {
                 Start Organizing Now
               </Link>
             </motion.div>
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Feature 3: Job Insights - Left Content, Right Visual */}
-        <div className="grid lg:grid-cols-2">
+        < div className="grid lg:grid-cols-2" >
           {/* Left Content */}
-          <div className="py-20 px-6 lg:px-16 flex items-center">
+          < div className="py-20 px-6 lg:px-16 flex items-center" >
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -1018,10 +1043,10 @@ export function Product() {
                 Start Getting Insights
               </Link>
             </motion.div>
-          </div>
+          </div >
 
           {/* Right Visual */}
-          <div className="bg-gradient-to-br from-[#e8efff]/50 via-[#0463c7]/15 to-[#e8efff] py-16 px-8 flex items-center justify-center relative overflow-hidden">
+          < div className="bg-gradient-to-br from-[#e8efff]/50 via-[#0463c7]/15 to-[#e8efff] py-16 px-8 flex items-center justify-center relative overflow-hidden" >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1064,13 +1089,13 @@ export function Product() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Feature 4: Bookmark Jobs - Right Content, Left Visual */}
-        <div className="grid lg:grid-cols-2">
+        < div className="grid lg:grid-cols-2" >
           {/* Left Visual */}
-          <div className="bg-gradient-to-bl from-[#0463c7]/10 via-[#e8efff]/80 to-[#0463c7]/5 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
+          < div className="bg-gradient-to-bl from-[#0463c7]/10 via-[#e8efff]/80 to-[#0463c7]/5 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1" >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1115,10 +1140,10 @@ export function Product() {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </div >
 
           {/* Right Content */}
-          <div className="py-20 px-6 lg:px-16 flex items-center order-1 lg:order-2">
+          < div className="py-20 px-6 lg:px-16 flex items-center order-1 lg:order-2" >
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -1143,12 +1168,12 @@ export function Product() {
                 Bookmark Jobs Now
               </Link>
             </motion.div>
-          </div>
-        </div>
-      </section>
+          </div >
+        </div >
+      </section >
 
       {/* Coming Soon Section */}
-      <section className="py-20 px-6 bg-slate-50/50 relative z-10">
+      < section className="py-20 px-6 bg-slate-50/50 relative z-10" >
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1168,10 +1193,10 @@ export function Product() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* CTA Section */}
-      <section className="py-20 relative z-10" ref={ctaRef}>
+      < section className="py-20 relative z-10" ref={ctaRef} >
         <motion.div
           style={{ width: ctaWidth, opacity: ctaOpacity }}
           className="bg-[#0463c7] rounded-l-none rounded-r-[15rem] p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group"
@@ -1201,10 +1226,10 @@ export function Product() {
             </Link>
           </div>
         </motion.div>
-      </section>
+      </section >
 
       {/* FAQ Section */}
-      <Section width="full" className="py-24 bg-white">
+      < Section width="full" className="py-24 bg-white" >
         <FadeIn className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6 tracking-tight">Frequently Asked Questions</h2>
           <p className="text-xl text-slate-500 text-center mb-16 max-w-2xl mx-auto">Everything you need to know about GetLanded.</p>
@@ -1212,7 +1237,7 @@ export function Product() {
         <div className="w-full">
           <FAQAccordion faqs={faqs} />
         </div>
-      </Section>
-    </div>
+      </Section >
+    </div >
   );
 }
