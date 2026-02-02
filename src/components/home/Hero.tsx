@@ -22,7 +22,7 @@ export function Hero() {
                         className="lg:col-span-5 flex flex-col items-start text-left relative z-20 mt-8 lg:mt-20"
                     >
                         {/* Reduced Size to Fit: 64px max for longer copy */}
-                        <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mb-6 lg:mb-8">
+                        <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
                             GetLanded – Your <br />
                             AI Career <br />
                             <span className="text-slate-400">Co‑Pilot</span>
@@ -51,8 +51,8 @@ export function Hero() {
                     </motion.div>
 
                     {/* Right Column: 3D Laptop Animation */}
-                    <div className="lg:col-span-7 relative flex justify-center lg:justify-start items-center h-auto py-12 sm:py-20 lg:py-0 z-20 perspective-[3000px] w-full">
-                        <div className="transform scale-[0.55] sm:scale-[0.7] md:scale-[0.75] lg:scale-[0.85] xl:scale-100 origin-center lg:origin-left transition-transform duration-500 will-change-transform">
+                    <div className="lg:col-span-7 relative flex justify-center lg:justify-start items-center w-screen ml-[calc(50%-50vw)] lg:w-full lg:ml-0 z-20 perspective-[3000px] h-[280px] min-[400px]:h-[320px] sm:h-[400px] lg:h-auto py-0 lg:py-0 -mt-27 lg:mt-0">
+                        <div className="w-[640px] flex justify-center items-center transform scale-[0.45] min-[375px]:scale-[0.52] sm:scale-[0.65] md:scale-[0.75] lg:scale-[0.85] xl:scale-100 origin-center lg:origin-left transition-transform duration-500 will-change-transform translate-y-12 lg:translate-y-0">
                             <LaptopDisplay />
                         </div>
                     </div>
