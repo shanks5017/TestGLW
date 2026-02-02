@@ -28,13 +28,7 @@ function useMediaQuery(query: string) {
 const JobSaveVisual = () => (
     <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-slate-900 rounded-xl">
         {/* Background - Job List */}
-        <div className="absolute inset-0 top-8 px-4 opacity-40 blur-[1px]">
-            <img
-                src={jobListBg}
-                alt="Job Listings"
-                className="w-full h-auto rounded-lg shadow-lg"
-            />
-        </div>
+
 
         {/* Overlay - Extension Popup */}
         <motion.div
@@ -249,7 +243,7 @@ const HeroFeatureCard = ({
                 </p>
 
                 {/* CTA Button */}
-                <button className="mt-8 flex items-center gap-2 text-[#0463c7] bg-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-[#E8F3FC] transition-all w-fit group/btn">
+                <button className="mt-8 flex items-center gap-2 text-[#0463c7] bg-white px-5 py-2.5 rounded-[50px] font-medium text-sm hover:bg-[#E8F3FC] transition-all w-fit group/btn">
                     <span>Learn more</span>
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                 </button>
