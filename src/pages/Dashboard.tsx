@@ -144,7 +144,7 @@ export function Dashboard() {
                 <div className="space-y-4">
                   {applications.map((app, i) => (
                     <div key={i} className="flex items-center gap-4 p-4 hover:bg-gray-50 rounded-2xl transition-colors group cursor-pointer">
-                      <div className="w-12 h-12 rounded-xl bg-gray-50 p-2 border border-gray-100">
+                      <div className="w-12 h-12 rounded-[50px] bg-gray-50 p-2 border border-gray-100">
                         <img src={app.logo} alt={app.company} className="w-full h-full object-contain" />
                       </div>
                       <div className="flex-1">
@@ -191,7 +191,7 @@ export function Dashboard() {
                 <h3 className="font-bold text-lg text-[#171717] mb-6">Upcoming</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 pb-4 border-b border-gray-50">
-                    <div className="w-12 h-12 rounded-2xl bg-purple-50 flex flex-col items-center justify-center text-purple-600 shrink-0">
+                    <div className="w-12 h-12 rounded-[50px] bg-purple-50 flex flex-col items-center justify-center text-purple-600 shrink-0">
                       <span className="text-xs font-bold uppercase">Oct</span>
                       <span className="text-lg font-bold">24</span>
                     </div>
@@ -204,7 +204,7 @@ export function Dashboard() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-[#E8F3FC] flex flex-col items-center justify-center text-[#0463c7] shrink-0">
+                    <div className="w-12 h-12 rounded-[50px] bg-[#E8F3FC] flex flex-col items-center justify-center text-[#0463c7] shrink-0">
                       <span className="text-xs font-bold uppercase">Oct</span>
                       <span className="text-lg font-bold">26</span>
                     </div>

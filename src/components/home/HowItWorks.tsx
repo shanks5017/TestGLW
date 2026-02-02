@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download, Sparkles, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 const StepCard = ({
@@ -7,13 +7,15 @@ const StepCard = ({
     title,
     description,
     icon: Icon,
+    faIcon,
     className,
     delay
 }: {
     number: string,
     title: string,
     description: string,
-    icon: any,
+    icon?: any,
+    faIcon?: string,
     className?: string,
     delay?: number
 }) => {
@@ -29,8 +31,8 @@ const StepCard = ({
             )}
         >
             <div className="flex-shrink-0">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-[#0463c7] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                    <Icon size={24} />
+                <div className="w-14 h-14 rounded-[50px] bg-white border border-slate-200 text-[#0463c7] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    {faIcon ? <i className={`${faIcon} text-2xl`}></i> : (Icon && <Icon size={24} />)}
                 </div>
                 <div className="mt-4 text-center">
                     <span className="text-sm font-bold text-slate-300 tracking-widest">{number}</span>
@@ -62,9 +64,10 @@ export const HowItWorks = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F3FC] text-[#0463c7] text-xs font-bold uppercase tracking-wider mb-6">
-                                <span className="w-2 h-2 rounded-full bg-[#0463c7] animate-pulse" />
-                                Introduction
+                            <div className="flex items-center gap-2 mb-6">
+                                <div className="h-px w-8 bg-[#0463c7]/30"></div>
+                                <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Introduction</span>
+                                <div className="h-px w-8 bg-[#0463c7]/30"></div>
                             </div>
 
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.1]">
@@ -86,14 +89,14 @@ export const HowItWorks = () => {
                             number="01"
                             title="Install the extension"
                             description="Add GetLanded to your browser in seconds. Browse LinkedIn, Indeed, or handshake as you normally would."
-                            icon={Download}
+                            faIcon="fa-solid fa-download"
                             delay={0.1}
                         />
                         <StepCard
                             number="02"
                             title="AI analyzes every role"
                             description="We automatically scan the JD, check for visa sponsorship, and score your resume against the requirements."
-                            icon={Sparkles}
+                            faIcon="fa-solid fa-magnifying-glass-chart"
                             delay={0.2}
                         />
                         <StepCard

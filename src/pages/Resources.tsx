@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { FileText, Download, PlayCircle, BookOpen } from 'lucide-react';
 
@@ -38,7 +38,7 @@ export function Resources() {
               transition={{ delay: i * 0.1 }}
               className="group bg-white rounded-[32px] border border-gray-100 p-8 hover:shadow-xl transition-all cursor-pointer"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[#E8F3FC] flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-[50px] bg-[#E8F3FC] flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
                 <res.icon className="w-6 h-6" />
               </div>
               <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{res.type}</div>
