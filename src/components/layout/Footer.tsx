@@ -6,6 +6,7 @@ import logo from '../../assets/logo.png';
 const FOOTER_LINKS = {
   product: [
     { name: 'Features', href: '/#features' },
+    { name: 'Extension', href: '/extension' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Waitlist', href: '/waitlist' },
   ],
@@ -23,10 +24,10 @@ const FOOTER_LINKS = {
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-gray-200 pt-20 pb-10 relative z-50">
+    <footer className="bg-slate-50 border-t border-gray-200 pt-10 md:pt-20 pb-10 relative z-50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          <div className="lg:col-span-3 space-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 mb-8 md:mb-16">
+          <div className="col-span-2 lg:col-span-3 space-y-4">
             <Link to="/" className="flex items-center gap-2 group">
               <img src={logo} alt="GetLanded Logo" className="w-8 h-8 object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" />
               <span className="text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors">GetLanded</span>
@@ -48,7 +49,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="font-semibold text-slate-900 mb-6">Product</h4>
+            <h4 className="font-semibold text-slate-900 mb-4 md:mb-6">Product</h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.product.map((link) => (
                 <li key={link.name}>
@@ -61,7 +62,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="font-semibold text-slate-900 mb-6">Company</h4>
+            <h4 className="font-semibold text-slate-900 mb-4 md:mb-6">Company</h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.name}>
@@ -74,7 +75,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="font-semibold text-slate-900 mb-6">Legal</h4>
+            <h4 className="font-semibold text-slate-900 mb-4 md:mb-6">Legal</h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.name}>
@@ -87,18 +88,18 @@ export function Footer() {
           </div>
 
 
-          <div className="lg:col-span-3">
-            <h4 className="font-semibold text-slate-900 mb-6">Stay Updated</h4>
+          <div className="col-span-2 lg:col-span-3">
+            <h4 className="font-semibold text-slate-900 mb-4 md:mb-6">Stay Updated</h4>
             <p className="text-slate-500 text-sm mb-4 leading-relaxed">
               Subscribe to our newsletter for career tips and platform updates.
             </p>
             <div className="flex flex-col gap-3">
               <input
                 type="email"
-                placeholder="Enter your email"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm"
+                placeholder="buddy@gmail.com"
+                className="w-full px-4 py-2.5 rounded-full border border-gray-200 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm"
               />
-              <button className="w-full px-4 py-2.5 rounded-lg bg-[#0040C1] text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-lg shadow-blue-900/10">
+              <button className="w-fit self-center px-8 py-2 rounded-full bg-[#0040C1] text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-lg shadow-blue-900/10">
                 Subscribe
               </button>
               <p className="text-xs text-slate-400">
