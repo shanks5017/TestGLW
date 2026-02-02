@@ -52,16 +52,16 @@ const InterviewVisual = () => (
     <div className="relative w-full h-auto md:h-[300px] flex flex-col items-center justify-end pb-0 md:pb-24 gap-4">
         {[
             { company: "StartupX", date: "Tomorrow, 2:00 PM", color: "bg-indigo-500" },
-            { company: "BigData Co", date: "Fri, 10:00 AM", color: "bg-[#E8F3FC]0" },
+            { company: "BigData Co", date: "Fri, 10:00 AM", color: "bg-indigo-500" },
         ].map((item, i) => (
             <motion.div
                 key={i}
                 className={cn(
                     "w-[80%] bg-white rounded-2xl shadow-lg shadow-blue-900/5 border border-slate-50 p-4 flex items-center gap-4",
-                    i === 0 ? "scale-100 z-10" : "scale-95 opacity-60 -translate-y-2 z-0"
+                    "scale-100 z-10"
                 )}
             >
-                <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-sm", item.color)}>
+                <div className={cn("w-12 h-12 rounded-[50px] flex items-center justify-center text-white shadow-sm", item.color)}>
                     <Calendar size={20} />
                 </div>
                 <div>
