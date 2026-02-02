@@ -139,9 +139,9 @@ export function Product() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+      <section className="relative pt-24 lg:pt-32 pb-0 md:pb-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-4 items-start relative pt-4">
             {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -149,9 +149,9 @@ export function Product() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px]"
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-normal tracking-tight text-[#111827] leading-[1.1] mb-6">
+              <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
                 Track, organize, and{' '}
-                <span className="text-[#0463c7]">apply smarter</span>{' '}
+                <span className="text-[#0463c7] block sm:inline">apply smarter</span>{' '}
                 all in one place
               </h1>
 
@@ -178,21 +178,23 @@ export function Product() {
             </motion.div>
 
             {/* Right: Laptop Display */}
-            <div className="lg:col-span-6 flex justify-center lg:justify-end relative perspective-[2000px] z-20 
-              scale-[0.45] xs:scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100 
-              -translate-y-16 sm:-translate-y-12 lg:translate-y-17 
-              h-[300px] sm:h-[400px] lg:h-auto origin-top lg:origin-center
-              pointer-events-none lg:pointer-events-auto">
-              <ProductLaptop />
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-end items-center 
+              w-screen ml-[calc(50%-50vw)] lg:w-full lg:ml-0 
+              z-20 perspective-[2000px] 
+              h-[280px] min-[400px]:h-[320px] sm:h-[400px] lg:h-auto 
+              -mt-12 lg:mt-0 lg:translate-y-17 origin-top lg:origin-center pointer-events-none lg:pointer-events-auto">
+              <div className="w-[640px] flex justify-center items-center transform scale-[0.45] min-[375px]:scale-[0.52] sm:scale-[0.65] md:scale-[0.85] lg:scale-100 origin-center lg:origin-right transition-transform duration-500 will-change-transform">
+                <ProductLaptop />
+              </div>
             </div>
           </div>
 
           {/* Company Logos Marquee Section (Moved Down and Full Width) */}
-          <div className="mt-32 w-full max-w-7xl mx-auto">
-            <div className="bg-[#0463c7] rounded-[2.5rem] p-12 shadow-xl shadow-blue-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group overflow-hidden">
+          <div className="mt-20 md:mt-32 w-full max-w-7xl mx-auto">
+            <div className="bg-[#0463c7] rounded-[1.5rem] md:rounded-[2.5rem] p-6 md:p-12 shadow-xl shadow-blue-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group overflow-hidden">
               {/* Title & Line */}
-              <div className="flex items-center gap-6 mb-10">
-                <span className="text-blue-100/90 font-semibold tracking-[0.2em] text-lg uppercase whitespace-nowrap">Powering next-gen careers</span>
+              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-10 text-center md:text-left">
+                <span className="text-blue-100/90 font-semibold tracking-[0.2em] text-sm md:text-lg uppercase whitespace-nowrap">Powering next-gen careers</span>
                 <div className="h-px bg-gradient-to-r from-blue-200/40 to-transparent flex-1" />
               </div>
 
@@ -237,7 +239,7 @@ export function Product() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-12 md:py-20 px-6 bg-slate-50/50 relative z-10">
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-slate-50/50 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,7 +276,7 @@ export function Product() {
 
 
       {/* Resume Builder Features Section - Simplify Style */}
-      < section className="py-12 md:py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
+      < section className="py-12 md:py-20 px-4 sm:px-6 bg-[hsl(220,10%,98%)] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -308,9 +310,9 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative w-full max-w-lg mx-auto lg:max-w-none"
             >
-              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-4 md:p-6">
+              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-4 md:p-6 w-full">
                 {/* Floating Company Logos */}
                 <div className="relative h-24 mb-6">
                   {[
@@ -447,8 +449,8 @@ export function Product() {
                     </div>
                     {/* GetLanded Extension Icon */}
                     <div className="ml-auto flex items-center gap-2">
-                      <div className="px-3 py-1.5 rounded-lg bg-[#0463c7] text-white text-xs font-medium flex items-center gap-1">
-                        <Zap size={12} />
+                      <div className="px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-[#0463c7] text-white text-[10px] md:text-xs font-medium flex items-center gap-1">
+                        <Zap size={10} className="md:w-3 md:h-3" />
                         GetLanded
                       </div>
                     </div>
@@ -569,7 +571,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative w-full max-w-lg mx-auto lg:max-w-none"
             >
               {/* Tab Header */}
               <div className="flex items-center gap-4 mb-4">
@@ -689,72 +691,74 @@ export function Product() {
                   </div>
 
                   {/* Kanban Columns */}
-                  <div className="grid grid-cols-4 gap-3 min-w-[600px] overflow-x-auto pb-2">
-                    {/* SCREEN Column */}
-                    <div>
-                      <div className="text-xs font-medium text-slate-500 mb-2">SCREEN (5)</div>
-                      <div className="space-y-2">
-                        {[
-                          { color: "bg-blue-500", name: "Business to Business Sale..." },
-                          { color: "bg-emerald-500", name: "Product Manager" },
-                          { color: "bg-violet-500", name: "Design Engineer" },
-                        ].map((job, i) => (
-                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                            <div className="flex items-center gap-2">
-                              <div className={`w-5 h-5 rounded ${job.color}`} />
-                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                  <div className="w-full overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
+                    <div className="grid grid-cols-4 gap-2 md:gap-3 min-w-[500px] md:min-w-[600px]">
+                      {/* SCREEN Column */}
+                      <div>
+                        <div className="text-xs font-medium text-slate-500 mb-2">SCREEN (5)</div>
+                        <div className="space-y-2">
+                          {[
+                            { color: "bg-blue-500", name: "Business to Business Sale..." },
+                            { color: "bg-emerald-500", name: "Product Manager" },
+                            { color: "bg-violet-500", name: "Design Engineer" },
+                          ].map((job, i) => (
+                            <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-5 h-5 rounded ${job.color}`} />
+                                <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* INTERVIEWING Column */}
-                    <div>
-                      <div className="text-xs font-medium text-slate-500 mb-2">INTERVIEWING (4)</div>
-                      <div className="space-y-2">
-                        {[
-                          { color: "bg-teal-500", name: "Product Design Intern" },
-                          { color: "bg-blue-600", name: "Ingineer" },
-                          { color: "bg-indigo-500", name: "Product Designer" },
-                        ].map((job, i) => (
-                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                            <div className="flex items-center gap-2">
-                              <div className={`w-5 h-5 rounded ${job.color}`} />
-                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                      {/* INTERVIEWING Column */}
+                      <div>
+                        <div className="text-xs font-medium text-slate-500 mb-2">INTERVIEWING (4)</div>
+                        <div className="space-y-2">
+                          {[
+                            { color: "bg-teal-500", name: "Product Design Intern" },
+                            { color: "bg-blue-600", name: "Ingineer" },
+                            { color: "bg-indigo-500", name: "Product Designer" },
+                          ].map((job, i) => (
+                            <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-5 h-5 rounded ${job.color}`} />
+                                <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* OFFER Column */}
-                    <div>
-                      <div className="text-xs font-medium text-slate-500 mb-2">OFFER</div>
-                      <div className="space-y-2">
-                        {[
-                          { color: "bg-pink-500", name: "Product Mana..." },
-                          { color: "bg-cyan-500", name: "Product Designer" },
-                          { color: "bg-rose-500", name: "Software En..." },
-                        ].map((job, i) => (
-                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                            <div className="flex items-center gap-2">
-                              <div className={`w-5 h-5 rounded ${job.color}`} />
-                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                      {/* OFFER Column */}
+                      <div>
+                        <div className="text-xs font-medium text-slate-500 mb-2">OFFER</div>
+                        <div className="space-y-2">
+                          {[
+                            { color: "bg-pink-500", name: "Product Mana..." },
+                            { color: "bg-cyan-500", name: "Product Designer" },
+                            { color: "bg-rose-500", name: "Software En..." },
+                          ].map((job, i) => (
+                            <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-5 h-5 rounded ${job.color}`} />
+                                <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Empty Column for spacing */}
-                    <div className="opacity-50">
-                      <div className="text-xs font-medium text-slate-400 mb-2">REJECTED</div>
-                      <div className="space-y-2">
-                        <div className="bg-slate-50 rounded-lg p-2 border border-slate-100 opacity-60">
-                          <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded bg-slate-300" />
-                            <span className="text-[10px] text-slate-400">---</span>
+                      {/* Empty Column for spacing */}
+                      <div className="opacity-50">
+                        <div className="text-xs font-medium text-slate-400 mb-2">REJECTED</div>
+                        <div className="space-y-2">
+                          <div className="bg-slate-50 rounded-lg p-2 border border-slate-100 opacity-60">
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 rounded bg-slate-300" />
+                              <span className="text-[10px] text-slate-400">---</span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -806,7 +810,7 @@ export function Product() {
       </section >
 
       {/* Categories Section */}
-      < section className="py-20 px-6 bg-white relative z-10 overflow-hidden" >
+      < section className="py-12 md:py-20 px-4 sm:px-6 bg-white relative z-10 overflow-hidden" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: Phone Display (Moved from Hero) */}
@@ -817,7 +821,7 @@ export function Product() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-5 flex justify-center items-center relative order-2 lg:order-1"
             >
-              <div className="w-full max-w-[380px] scale-[0.75] origin-center transform hover:scale-[0.8] transition-transform duration-500">
+              <div className="w-full max-w-[320px] md:max-w-[380px] scale-[0.65] sm:scale-[0.75] origin-center transform hover:scale-[0.7] sm:hover:scale-[0.8] transition-transform duration-500">
                 <PhoneDisplay />
               </div>
 
@@ -907,10 +911,9 @@ export function Product() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
             >
               {/* Browser Window Mockup */}
-              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-80">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-full max-w-[300px] md:max-w-xs mx-auto">
                 <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -947,7 +950,7 @@ export function Product() {
         </div >
 
         {/* Feature 2: Job Tracker - Right Content, Left Visual */}
-        < div className="grid lg:grid-cols-2" >
+        < div className="grid lg:grid-cols-2 gap-0" >
           {/* Left Visual */}
           < div className="bg-gradient-to-bl from-[#e8efff] via-[#0463c7]/10 to-[#e8efff]/50 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1" >
             <motion.div
@@ -958,7 +961,7 @@ export function Product() {
               className="relative"
             >
               {/* Browser Mockup */}
-              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-80">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-full max-w-[300px] md:max-w-xs mx-auto">
                 <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -1022,9 +1025,9 @@ export function Product() {
         </div >
 
         {/* Feature 3: Job Insights - Left Content, Right Visual */}
-        < div className="grid lg:grid-cols-2" >
+        < div className="grid lg:grid-cols-2 gap-0" >
           {/* Left Content */}
-          < div className="py-20 px-6 lg:px-16 flex items-center" >
+          < div className="py-12 px-6 lg:py-20 lg:px-16 flex items-center" >
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -1061,7 +1064,7 @@ export function Product() {
               className="relative"
             >
               {/* Browser Mockup */}
-              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-80">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-full max-w-[300px] md:max-w-xs mx-auto">
                 <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -1099,7 +1102,7 @@ export function Product() {
         </div >
 
         {/* Feature 4: Bookmark Jobs - Right Content, Left Visual */}
-        < div className="grid lg:grid-cols-2" >
+        < div className="grid lg:grid-cols-2 gap-0" >
           {/* Left Visual */}
           < div className="bg-gradient-to-bl from-[#0463c7]/10 via-[#e8efff]/80 to-[#0463c7]/5 py-16 px-8 flex items-center justify-center relative overflow-hidden order-2 lg:order-1" >
             <motion.div
@@ -1110,7 +1113,7 @@ export function Product() {
               className="relative"
             >
               {/* Browser Mockup */}
-              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-80">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden w-full max-w-[300px] md:max-w-xs mx-auto">
                 <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -1179,7 +1182,7 @@ export function Product() {
       </section >
 
       {/* Coming Soon Section */}
-      < section className="py-20 px-6 bg-slate-50/50 relative z-10" >
+      < section className="py-12 md:py-20 px-4 sm:px-6 bg-slate-50/50 relative z-10" >
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1205,7 +1208,7 @@ export function Product() {
       < section className="py-20 relative z-10" ref={ctaRef} >
         <motion.div
           style={{ width: ctaWidth, opacity: ctaOpacity }}
-          className="bg-[#0463c7] rounded-l-none rounded-r-[15rem] p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group"
+          className="bg-[#0463c7] rounded-l-none rounded-r-[3rem] md:rounded-r-[15rem] p-8 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group"
         >
           {/* Background Glows */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
