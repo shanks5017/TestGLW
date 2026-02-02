@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { HamburgerButton } from '../ui/HamburgerButton';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/logo.png'; // Import the logo
@@ -184,13 +184,12 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-slate-900 hover:bg-gray-100/50 rounded-full transition-colors"
+          {/* Mobile Menu Button - Magnetic & Animated */}
+          <HamburgerButton
+            isOpen={isMenuOpen}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            className="md:hidden z-50 relative"
+          />
         </div>
       </nav>
 

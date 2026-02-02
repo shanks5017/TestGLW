@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/utils';
 import logo from '../../assets/logo.png';
 import { RollingText3D } from '../ui/RollingText';
+import { AnimatedHamburger } from '../ui/AnimatedHamburger';
 
 export const FloatingNavbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -61,7 +61,7 @@ export const FloatingNavbar = () => {
 
                     {/* Center: Fizens-style Sliding Pill Nav */}
                     <nav
-                        className="hidden md:flex items-center pointer-events-auto bg-white/80 backdrop-blur-2xl rounded-full p-1 shadow-sm border border-black/[0.04]"
+                        className="hidden min-[1100px]:flex items-center pointer-events-auto bg-white/80 backdrop-blur-2xl rounded-full p-1 shadow-sm border border-black/[0.04]"
                         onMouseLeave={() => setHoveredTab(null)}
                     >
                         {navLinks.map((link) => {
@@ -127,7 +127,7 @@ export const FloatingNavbar = () => {
 
                     {/* Right: CTA */}
                     <div className="flex items-center justify-end w-[200px] gap-3 pointer-events-auto">
-                        <div className="hidden md:block">
+                        <div className="hidden min-[1100px]:block">
                             <Link to="/waitlist">
                                 <Button className="rounded-full font-semibold h-[48px] px-8 text-[15px] bg-[#0047FF] text-white shadow-lg shadow-blue-600/20 hover:bg-[#0037CC] hover:shadow-blue-600/30 transition-all hover:-translate-y-0.5">
                                     Get Template
@@ -135,58 +135,107 @@ export const FloatingNavbar = () => {
                             </Link>
                         </div>
 
-                        <button
-                            className="md:hidden p-3 bg-white text-slate-600 hover:text-[#0047FF] rounded-full shadow-sm border border-gray-100"
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        >
-                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
+                        <div className="min-[1100px]:hidden">
+                            <AnimatedHamburger
+                                isOpen={mobileMenuOpen}
+                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                className="text-slate-900"
+                            />
+                        </div>
                     </div>
                 </div>
             </header>
 
-            {/* Mobile Menu Overlay */}
+            {/* Cinematic Mobile Menu Overlay */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: -20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                        transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-                        className="fixed inset-0 z-[60] bg-white flex flex-col p-6 md:hidden"
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-[45] bg-[#FAFAFA]/95 backdrop-blur-3xl flex flex-col min-[1100px]:hidden"
                     >
-                        <div className="flex justify-between items-center mb-8">
-                            <Link to="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                                <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
-                                <span className="text-xl font-bold text-slate-900 font-heading">GetLanded</span>
-                            </Link>
-                            <button
-                                className="p-3 text-slate-600 hover:text-[#0047FF] rounded-full bg-slate-50"
-                                onClick={() => setMobileMenuOpen(false)}
+                        {/* Background Grain Texture */}
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                            }}
+                        />
+
+                        {/* Menu Content Container */}
+                        <div className="flex flex-col h-full relative z-10 p-6 pt-32">
+
+                            {/* Navigation Links */}
+                            <nav className="flex flex-col gap-2">
+                                {navLinks.map((link, i) => {
+                                    const isActive = location.pathname === link.path;
+                                    return (
+                                        <motion.div
+                                            key={link.name}
+                                            initial={{ opacity: 0, y: 40 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{
+                                                duration: 0.5,
+                                                delay: 0.1 + (i * 0.1),
+                                                ease: [0.22, 1, 0.36, 1]
+                                            }}
+                                        >
+                                            <Link
+                                                to={link.path}
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className={cn(
+                                                    "block text-[32px] leading-[1.2] tracking-tight transition-all origin-left hover:scale-[1.02] duration-300 font-heading",
+                                                    isActive
+                                                        ? "text-[#0463c7] font-semibold"
+                                                        : "text-slate-900 font-medium hover:text-[#0463c7]"
+                                                )}
+                                            >
+                                                <span className="flex items-center gap-3">
+                                                    {link.name}
+                                                    {isActive && (
+                                                        <motion.div
+                                                            layoutId="mobile-active-dot"
+                                                            className="w-2.5 h-2.5 rounded-full bg-[#0463c7]"
+                                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                                        />
+                                                    )}
+                                                </span>
+                                            </Link>
+                                        </motion.div>
+                                    );
+                                })}
+                            </nav>
+
+                            {/* Divider */}
+                            <motion.div
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                exit={{ scaleX: 0 }}
+                                transition={{ duration: 0.8, delay: 0.4, ease: "circOut" }}
+                                className="h-[1px] bg-slate-200 w-full my-8 origin-left"
+                            />
+
+                            {/* Secondary Actions / CTA */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
+                                className="mt-auto pb-8"
                             >
-                                <X size={24} />
-                            </button>
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    to={link.path}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="text-2xl font-bold text-slate-900 py-4 border-b border-gray-100"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-
-                        <div className="mt-auto">
-                            <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                                <Button className="w-full rounded-full py-4 text-[16px] font-bold bg-[#0047FF] text-white">
-                                    Get Template
-                                </Button>
-                            </Link>
+                                <div className="flex flex-col gap-4">
+                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest pl-1">
+                                        Get Started
+                                    </p>
+                                    <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                                        <Button className="w-full rounded-full py-6 text-xl font-medium bg-[#0463c7] text-white shadow-xl shadow-blue-600/20 active:scale-95 transition-all">
+                                            Get Template
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
