@@ -62,7 +62,7 @@ export function Hero() {
 
             {/* Bottom Banner Area - Infinite Marquee */}
             <div className="max-w-7xl mx-auto px-6 w-full mt-[-60px] md:mt-[-80px] lg:mt-[-110px] relative z-0">
-                <div className="w-full bg-[#0463c7] h-[450px] relative overflow-hidden flex flex-col justify-center items-center rounded-[3rem]">
+                <div className="w-full bg-[#0463c7] h-[250px] sm:h-[350px] md:h-[450px] relative overflow-hidden flex flex-col justify-center items-center rounded-[3rem]">
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
 
                     {/* Decorative Glows */}
@@ -99,7 +99,7 @@ export function Hero() {
                     <div className="w-96 h-px bg-white/30 rounded-full mb-6 backdrop-blur-md" />
 
                     {/* Subtitle */}
-                    <p className="text-white/90 text-2xl font-medium tracking-wide">
+                    <p className="text-white/90 text-base sm:text-xl md:text-2xl font-medium tracking-wide text-center px-4">
                         Revolutionizing your career path.
                     </p>
                 </div>

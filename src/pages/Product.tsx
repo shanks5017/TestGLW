@@ -178,7 +178,11 @@ export function Product() {
             </motion.div>
 
             {/* Right: Laptop Display */}
-            <div className="lg:col-span-6 flex justify-center lg:justify-end relative perspective-[2000px] z-20 lg:translate-y-17">
+            <div className="lg:col-span-6 flex justify-center lg:justify-end relative perspective-[2000px] z-20 
+              scale-[0.45] xs:scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100 
+              -translate-y-16 sm:-translate-y-12 lg:translate-y-17 
+              h-[300px] sm:h-[400px] lg:h-auto origin-top lg:origin-center
+              pointer-events-none lg:pointer-events-auto">
               <ProductLaptop />
             </div>
           </div>
@@ -233,7 +237,7 @@ export function Product() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 px-6 bg-slate-50/50 relative z-10">
+      <section className="py-12 md:py-20 px-6 bg-slate-50/50 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -241,13 +245,13 @@ export function Product() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl tracking-tight mb-4">
               How <span className="text-[#0463c7]">GetLanded</span> works
             </h2>
-            <p className="text-slate-500">Browse → AI Reads → Insights → Save & Track</p>
+            <p className="text-slate-500 text-sm md:text-base">Browse → AI Reads → Insights → Save & Track</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {howItWorksSteps.map((step, i) => (
               <motion.div
                 key={i}
@@ -270,7 +274,7 @@ export function Product() {
 
 
       {/* Resume Builder Features Section - Simplify Style */}
-      < section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
+      < section className="py-12 md:py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -284,10 +288,10 @@ export function Product() {
                 <Search className="w-5 h-5 text-slate-600" />
                 <span className="text-slate-600 font-medium">Job Matches</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Get matched to relevant jobs, personalized to you
               </h2>
-              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-500 text-base md:text-lg mb-8 leading-relaxed">
                 Forget endlessly scrolling on job boards. Tell us your preferences & dealbreakers and we'll match you with jobs that fit.
               </p>
               <Link
@@ -306,7 +310,7 @@ export function Product() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6">
+              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-4 md:p-6">
                 {/* Floating Company Logos */}
                 <div className="relative h-24 mb-6">
                   {[
@@ -391,7 +395,7 @@ export function Product() {
       </section >
 
       {/* AI Copilot Extension Section - Simplify Style */}
-      < section className="py-20 px-6 bg-white relative z-10" >
+      < section className="py-12 md:py-20 px-6 bg-white relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Browser Mockup */}
@@ -400,7 +404,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative order-2 lg:order-1"
             >
               {/* Works On Badges */}
               <div className="flex items-center gap-2 mb-6 flex-wrap">
@@ -485,29 +489,30 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
                 <Zap className="w-5 h-5 text-[#0463c7]" />
                 <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Analyze jobs and track applications instantly
               </h2>
-              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-500 text-base md:text-lg mb-8 leading-relaxed">
                 Install the GetLanded Chrome extension to see resume fit scores, missing keywords, and sponsorship signals right on job pages.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
                 <Link
                   to="/waitlist"
-                  className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+                  className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
                 >
                   Add to Chrome
                 </Link>
                 <Link
                   to="/product"
-                  className="inline-flex items-center gap-2 bg-white text-slate-700 px-6 py-3.5 rounded-full font-medium border border-slate-200 hover:border-[#0463c7] hover:text-[#0463c7] transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white text-slate-700 px-6 py-3.5 rounded-full font-medium border border-slate-200 hover:border-[#0463c7] hover:text-[#0463c7] transition-all duration-300"
                 >
                   Learn More
                 </Link>
@@ -528,7 +533,7 @@ export function Product() {
       </section >
 
       {/* AI Resume Builder Section - Simplify Style (Reversed Layout) */}
-      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+      < section className="py-12 md:py-20 px-6 bg-[#fafbfc] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -542,10 +547,10 @@ export function Product() {
                 <FileText className="w-5 h-5 text-[#0463c7]" />
                 <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
                 Craft the perfect tailored resume for every job
               </h2>
-              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-500 text-base md:text-lg mb-8 leading-relaxed">
                 Use AI to tailor your resume to fit the job description, see your resume ATS score, and identify missing keywords, all in a few clicks.
               </p>
 
@@ -641,7 +646,7 @@ export function Product() {
       </section >
 
       {/* Job Tracker Section - Simplify Style */}
-      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+      < section className="py-12 md:py-20 px-6 bg-[#fafbfc] relative z-10" >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Job Tracker Mockup */}
@@ -650,7 +655,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative order-2 lg:order-1"
             >
               {/* Main Browser Window */}
               <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
@@ -684,7 +689,7 @@ export function Product() {
                   </div>
 
                   {/* Kanban Columns */}
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-4 gap-3 min-w-[600px] overflow-x-auto pb-2">
                     {/* SCREEN Column */}
                     <div>
                       <div className="text-xs font-medium text-slate-500 mb-2">SCREEN (5)</div>
@@ -775,6 +780,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="w-5 h-5 text-[#0463c7]" />

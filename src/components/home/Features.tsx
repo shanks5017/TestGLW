@@ -3,7 +3,24 @@ import { Sparkles, Globe, ArrowRight, CheckCircle2, Zap, Target, Play, Search } 
 import { cn } from "../../lib/utils";
 import jobListBg from '../../assets/job-list-bg.png';
 import extensionPopup from '../../assets/extension-popup.png';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+
+function useMediaQuery(query: string) {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+        // Hydration mismatch fix: only run on client
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) {
+            setMatches(media.matches);
+        }
+        const listener = () => setMatches(media.matches);
+        window.addEventListener("resize", listener);
+        return () => window.removeEventListener("resize", listener);
+    }, [matches, query]);
+
+    return matches;
+}
 
 
 
@@ -239,10 +256,10 @@ const HeroFeatureCard = ({
             </div>
 
             {/* Visual Section */}
-            <div className="flex-1 min-h-[250px] md:min-h-0 relative overflow-hidden">
+            <div className="flex-1 min-h-[250px] h-auto md:h-full md:min-h-0 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-slate-900/50 z-10" />
-                <div className="absolute inset-0 p-6 md:p-8">
-                    <div className="w-full h-full bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+                <div className="relative md:absolute inset-0 p-6 md:p-8 h-full">
+                    <div className="w-full min-h-[250px] md:min-h-0 h-auto md:h-full bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
                         <Visual />
                     </div>
                 </div>
@@ -293,13 +310,20 @@ const features = [
 
 export const Features = () => {
     const ctaRef = useRef<HTMLDivElement>(null);
+    const isMobile = useMediaQuery("(max-width: 768px)"); // Define breakpoint
+
     const { scrollYProgress } = useScroll({
         target: ctaRef,
         offset: ["start end", "end start"]
     });
 
-    const ctaWidth = useTransform(scrollYProgress, [0, 0.5, 1], ["75%", "100%", "75%"]);
-    const ctaOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    // Mobile: Static 100% width, no animation. Desktop: 75% -> 100% -> 75%
+    const ctaWidthRaw = useTransform(scrollYProgress, [0, 0.5, 1], ["75%", "100%", "75%"]);
+    const ctaWidth = isMobile ? "100%" : ctaWidthRaw;
+
+    // Mobile: Static opacity 1 (no fade). Desktop: Fade in/out
+    const ctaOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    const ctaOpacity = isMobile ? 1 : ctaOpacityRaw;
 
     return (
         <section className="bg-slate-100/50 relative overflow-hidden py-24 md:py-32">
@@ -384,7 +408,7 @@ export const Features = () => {
             <div className="w-full mt-24 md:mt-32 flex justify-end overflow-hidden" ref={ctaRef}>
                 <motion.div
                     style={{ width: ctaWidth, opacity: ctaOpacity }}
-                    className="w-[95%] md:w-full max-w-[1400px] bg-[#0463c7] rounded-l-[5rem] md:rounded-l-[15rem] rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group ml-auto shadow-2xl shadow-blue-900/20"
+                    className="w-full max-w-[1400px] bg-[#0463c7] rounded-none md:rounded-l-[15rem] md:rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group mx-auto md:ml-auto md:mr-0 shadow-2xl shadow-blue-900/20"
                 >
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
                     <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
