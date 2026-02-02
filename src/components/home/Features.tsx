@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkles, Globe, ArrowRight, CheckCircle2, Zap, Target, Play, Search } from "lucide-react";
 import { cn } from "../../lib/utils";
-import jobListBg from '../../assets/job-list-bg.png';
+
 import extensionPopup from '../../assets/extension-popup.png';
 import { useRef, useState, useEffect } from 'react';
 
