@@ -231,9 +231,10 @@ const HeroFeatureCard = ({
         <div className="relative z-10 h-full flex flex-col md:flex-row">
             {/* Text Section */}
             <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 w-fit mb-6">
-                    <Zap size={12} className="text-[#0463c7]" fill="currentColor" />
-                    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Core Feature</span>
+                <div className="flex items-center gap-2 mb-6">
+                    <div className="h-px w-8 bg-white/30"></div>
+                    <span className="text-white font-bold text-xs tracking-widest uppercase">Core Feature</span>
+                    <div className="h-px w-8 bg-white/30"></div>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-normal text-white mb-4 leading-tight tracking-tight">
                     {title}
@@ -332,10 +333,11 @@ export const Features = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-[#0463c7] mb-6 uppercase tracking-wider"
+                        className="flex items-center justify-center gap-2 mb-8"
                     >
-                        <Sparkles size={12} fill="currentColor" />
-                        <span>Why Students Choose Us</span>
+                        <div className="h-px w-8 bg-[#0463c7]/30"></div>
+                        <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Why Students Choose Us</span>
+                        <div className="h-px w-8 bg-[#0463c7]/30"></div>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -408,9 +410,10 @@ export const Features = () => {
                     <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
 
                     <div className="relative z-10">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-8 backdrop-blur-sm">
-                            <Target size={14} />
-                            <span className="text-sm font-medium">Join 2.3M+ students</span>
+                        <div className="flex items-center justify-center gap-2 mb-8">
+                            <div className="h-px w-8 bg-white/30"></div>
+                            <span className="text-white font-bold text-xs tracking-widest uppercase">Join 2.3M+ students</span>
+                            <div className="h-px w-8 bg-white/30"></div>
                         </div>
                         <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Ready to take control of your career?</h3>
                         <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-10">

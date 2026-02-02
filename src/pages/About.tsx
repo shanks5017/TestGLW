@@ -4,7 +4,6 @@ import {
   Globe,
   Target,
   ArrowRight,
-  Sparkles,
   Linkedin,
   Github,
   Mail,
@@ -13,7 +12,6 @@ import {
   Lock,
   Heart,
   Chrome,
-  Rocket,
   Bot,
   Cpu,
   Network,
@@ -67,7 +65,7 @@ const timelinePhases = [
     title: "The Expansion",
     description: "Demystifying job applications and visa sponsorship policies for international students.",
     highlightWords: ["job applications", "visa sponsorship"],
-    icon: Rocket,
+    faIcon: "fa-solid fa-maximize",
     color: "bg-[#0463c7]"
   },
   {
@@ -243,9 +241,10 @@ export function About() {
               variants={staggerChildren}
               className="lg:col-span-5 space-y-8 text-left order-1 lg:order-2"
             >
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-semibold tracking-wide uppercase">
-                <Sparkles className="w-4 h-4 text-blue-500 fill-blue-500/20" />
-                <span>Our Mission</span>
+              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8">
+                <div className="h-px w-8 bg-[#0463c7]/30"></div>
+                <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Our Mission</span>
+                <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1]">
@@ -286,9 +285,10 @@ export function About() {
               variants={staggerChildren}
               className="lg:sticky lg:top-32 space-y-8"
             >
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
-                <span className="w-8 h-px bg-slate-300" />
-                Our Origin
+              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-6">
+                <div className="h-px w-8 bg-[#0463c7]/30"></div>
+                <span className="text-[#0463c7] font-bold text-sm tracking-widest uppercase">Our Origin</span>
+                <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight leading-[1.1]">
                 The Genesis
@@ -450,11 +450,18 @@ export function About() {
 
                         <div className="relative z-10">
                           <motion.div
-                            className={`w-14 h-14 ${phase.color} rounded-2xl flex items-center justify-center mb-6 ${i % 2 === 0 ? 'md:ml-auto' : ''} shadow-lg`}
+                            className={`w-14 h-14 ${phase.color} rounded-[50px] flex items-center justify-center mb-6 ${i % 2 === 0 ? 'md:ml-auto' : ''} shadow-lg`}
                             whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                             transition={{ duration: 0.5 }}
                           >
-                            <phase.icon className="w-7 h-7 text-white" />
+                            {((phase as any).faIcon) ? (
+                              <i className={`${(phase as any).faIcon} text-xl text-white`}></i>
+                            ) : (
+                              (() => {
+                                const Icon = (phase as any).icon;
+                                return Icon ? <Icon className="w-7 h-7 text-white" /> : null;
+                              })()
+                            )}
                           </motion.div>
                           <h3 className="text-2xl font-bold text-slate-900 mb-3">{phase.title}</h3>
                           <p className="text-slate-600 text-lg leading-relaxed">{renderDescription()}</p>
@@ -683,7 +690,7 @@ export function About() {
                 {/* Glass Hover Effect */}
                 <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className={`w-14 h-14 ${pillar.bg} rounded-2xl flex items-center justify-center mb-6 ${pillar.color} relative z-10`}>
+                <div className={`w-14 h-14 ${pillar.bg} rounded-[50px] flex items-center justify-center mb-6 ${pillar.color} relative z-10`}>
                   <pillar.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10">{pillar.title}</h3>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Trophy, CheckCircle2, Building2, Calendar, ArrowUpRight, Users } from "lucide-react";
+import { CheckCircle2, Building2, ArrowUpRight, Users } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 // --- Visual Components ---
@@ -31,14 +31,14 @@ const OffersVisual = () => (
         <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="hidden md:flex absolute top-10 right-10 w-12 h-12 bg-white rounded-xl shadow-lg border border-slate-50 items-center justify-center text-blue-600"
+            className="hidden md:flex absolute top-10 right-10 w-12 h-12 bg-white rounded-[50px] shadow-lg border border-slate-50 items-center justify-center text-blue-600"
         >
             <Building2 size={20} />
         </motion.div>
         <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="hidden md:flex absolute bottom-20 left-10 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-50 items-center justify-center text-indigo-500"
+            className="hidden md:flex absolute bottom-20 left-10 w-10 h-10 bg-white rounded-[50px] shadow-lg border border-slate-50 items-center justify-center text-indigo-500"
         >
             <ArrowUpRight size={18} />
         </motion.div>
@@ -62,7 +62,7 @@ const InterviewVisual = () => (
                 )}
             >
                 <div className={cn("w-12 h-12 rounded-[50px] flex items-center justify-center text-white shadow-sm", item.color)}>
-                    <Calendar size={20} />
+                    <i className="fa-solid fa-hourglass-end text-xl"></i>
                 </div>
                 <div>
                     <div className="text-sm font-medium text-slate-900">Interview Scheduled</div>
@@ -88,10 +88,11 @@ export const Stats = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F3FC] border border-[#D6EAFF] text-[#0463c7] text-xs font-bold uppercase tracking-wider mb-8"
+                        className="flex items-center justify-center gap-2 mb-8"
                     >
-                        <Trophy size={14} />
-                        <span>Proven Results</span>
+                        <div className="h-px w-8 bg-[#0463c7]/30"></div>
+                        <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Proven Results</span>
+                        <div className="h-px w-8 bg-[#0463c7]/30"></div>
                     </motion.div>
 
                     <motion.h2
@@ -127,7 +128,7 @@ export const Stats = () => {
                     <div className="bg-[#eff3ff] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 h-auto md:h-[500px] flex flex-col relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 border border-[#0463c7]">
                         {/* Text Content */}
                         <div className="mb-6 md:mb-8 relative z-10 text-center md:text-left">
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-indigo-500/20 mx-auto md:mx-0">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-[50px] md:rounded-[50px] bg-indigo-600 text-white flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-indigo-500/20 mx-auto md:mx-0">
                                 <Users size={20} className="md:w-6 md:h-6" />
                             </div>
                             <h3 className="text-3xl md:text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">89% Interview Rate</h3>

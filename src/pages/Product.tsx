@@ -11,8 +11,6 @@ import {
   Zap,
   Search,
   Layout,
-  Globe,
-  Target,
 } from 'lucide-react';
 import { PhoneDisplay } from '../components/product/PhoneDisplay';
 import { ProductLaptop } from '../components/product/ProductLaptop';
@@ -55,6 +53,7 @@ const comingSoonFeatures = [
   },
   {
     icon: BrainCircuit,
+    faIcon: "fa-solid fa-chalkboard-user",
     title: "AI Interview Prep",
     desc: "Personalized preparation based on the role and company.",
   },
@@ -65,16 +64,19 @@ const comingSoonFeatures = [
   },
   {
     icon: Zap,
+    faIcon: "fa-regular fa-pen-to-square",
     title: "Advanced Resume Rewriting",
     desc: "AI-powered optimization beyond keyword matching.",
   },
   {
     icon: Search,
+    faIcon: "fa-brands fa-searchengin",
     title: "Advanced Job Matching",
     desc: "Improved recommendations based on your history.",
   },
   {
     icon: CheckCircle2,
+    faIcon: "fa-solid fa-list-check",
     title: "Plagiarism Checker",
     desc: "Ensure originality in resumes and written responses.",
   },
@@ -106,8 +108,12 @@ function ComingSoonCard({
       className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
     >
       <div className="flex items-start justify-between mb-4">
-        <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center">
-          <feature.icon className="w-6 h-6 text-black" />
+        <div className="w-12 h-12 rounded-[50px] bg-white/80 flex items-center justify-center">
+          {feature.faIcon ? (
+            <i className={`${feature.faIcon} text-xl text-black`}></i>
+          ) : (
+            <feature.icon className="w-6 h-6 text-black" />
+          )}
         </div>
         <span className="px-3 py-1 rounded-full bg-white/60 group-hover:bg-white/20 text-xs font-medium text-[#0463c7] group-hover:text-white transition-colors">
           Coming Soon
@@ -332,7 +338,7 @@ export function Product() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                       className={cn(
-                        "absolute rounded-xl flex items-center justify-center shadow-md bg-white p-1.5",
+                        "absolute rounded-[50px] flex items-center justify-center shadow-md bg-white p-1.5",
                         logo.size,
                         logo.pos
                       )}
@@ -494,7 +500,9 @@ export function Product() {
               className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-8 h-8 rounded-[50px] bg-[#E8F3FC] flex items-center justify-center border border-[#D6EAFF]">
+                  <i className="fa-solid fa-meteor text-[#0463c7] text-sm"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
               <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
@@ -546,7 +554,9 @@ export function Product() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-8 h-8 rounded-[50px] bg-[#E8F3FC] flex items-center justify-center border border-[#D6EAFF]">
+                  <i className="fa-solid fa-magnifying-glass-chart text-[#0463c7] text-sm"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
               <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
@@ -787,7 +797,9 @@ export function Product() {
               className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-8 h-8 rounded-[50px] bg-[#E8F3FC] flex items-center justify-center border border-[#D6EAFF]">
+                  <i className="fa-solid fa-right-to-bracket text-[#0463c7] text-sm"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium">Job Tracker</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
@@ -842,10 +854,10 @@ export function Product() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
-                  { icon: FileText, title: "Resume Builder", subtitle: "AI-Powered Tailoring" },
+                  { faIcon: "fa-regular fa-file", title: "Resume Builder", subtitle: "AI-Powered Tailoring" },
                   { icon: Layout, title: "Job Application Tracker", subtitle: "Kanban Board" },
-                  { icon: Globe, title: "Networking Tracker", subtitle: "Manage Connections" },
-                  { icon: Zap, title: "LinkedIn Optimizer", subtitle: "Profile Enhancement" },
+                  { faIcon: "fa-solid fa-wifi", title: "Networking Tracker", subtitle: "Manage Connections" },
+                  { faIcon: "fa-brands fa-linkedin", title: "LinkedIn Optimizer", subtitle: "Profile Enhancement" },
                   { icon: MessageSquare, title: "AI Mock Interview", subtitle: "Practice & Feedback" },
                 ].map((cat, i) => (
                   <motion.div
@@ -856,8 +868,12 @@ export function Product() {
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                     className="group flex items-start gap-4 p-6 rounded-[2rem] bg-[#f8fafc] border border-slate-100 hover:border-[#0463c7]/20 hover:bg-[#e8efff] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
                   >
-                    <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
-                      <cat.icon size={22} className="transform group-hover:scale-110 transition-transform duration-300" />
+                    <div className="w-12 h-12 flex-shrink-0 rounded-[50px] bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
+                      {cat.faIcon ? (
+                        <i className={`${cat.faIcon} text-lg transform group-hover:scale-110 transition-transform duration-300`}></i>
+                      ) : (
+                        cat.icon && <cat.icon size={22} className="transform group-hover:scale-110 transition-transform duration-300" />
+                      )}
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg text-slate-900 mb-1">{cat.title}</h3>
@@ -866,7 +882,7 @@ export function Product() {
                   </motion.div>
                 ))
                 }
-              </div >
+              </div>
             </div>
           </div>
         </div >
@@ -886,7 +902,9 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-12 h-12 flex-shrink-0 rounded-[50px] bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
+                  <i className="fa-regular fa-file text-lg transform group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium text-sm">Resume Builder</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
@@ -1036,7 +1054,9 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <BrainCircuit className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-12 h-12 flex-shrink-0 rounded-[50px] bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
+                  <i className="fa-solid fa-magnifying-glass-arrow-right text-lg transform group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium text-sm">Job Insights</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
@@ -1161,7 +1181,9 @@ export function Product() {
               className="max-w-lg"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Globe className="w-5 h-5 text-[#0463c7]" />
+                <div className="w-12 h-12 flex-shrink-0 rounded-[50px] bg-white shadow-sm flex items-center justify-center text-[#0463c7] group-hover:bg-[#0463c7] group-hover:text-white transition-colors duration-300">
+                  <i className="fa-solid fa-bookmark text-lg transform group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
                 <span className="text-[#0463c7] font-medium text-sm">Bookmark Jobs</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
@@ -1215,9 +1237,10 @@ export function Product() {
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
 
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-8">
-              <Target size={14} />
-              <span className="text-sm font-medium">Join 2.3M+ students</span>
+            <div className="flex items-center justify-center gap-2 mb-8">
+              <div className="h-px w-8 bg-white/30"></div>
+              <span className="text-white font-bold text-xs tracking-widest uppercase">Join 2.3M+ students</span>
+              <div className="h-px w-8 bg-white/30"></div>
             </div>
             <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">
               Start your job search with clarity
