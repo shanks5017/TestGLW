@@ -1,5 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Briefcase, TrendingUp, CheckCircle, Star, Zap, Bell, User } from 'lucide-react';
 
 // Floating particle component
@@ -151,42 +150,10 @@ function AnimatedJobCard({ index, delay }: { index: number; delay: number }) {
 }
 
 export function PhoneDisplay() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isHovered, setIsHovered] = useState(false);
-
-    // Mouse tracking for 3D tilt effect
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    // Smooth spring for rotation
-    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 20 });
-    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 20 });
-
-
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        mouseX.set(x);
-        mouseY.set(y);
-    };
-
-    const handleMouseLeave = () => {
-        mouseX.set(0);
-        mouseY.set(0);
-        setIsHovered(false);
-    };
 
     return (
         <div
-            ref={containerRef}
             className="relative w-full max-w-[320px] sm:max-w-[380px] mx-auto py-8 lg:py-12"
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={handleMouseLeave}
-            style={{ perspective: "1200px" }}
         >
             {/* Floating Particles Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -211,19 +178,14 @@ export function PhoneDisplay() {
                     ease: [0.16, 1, 0.3, 1],
                     delay: 0.2
                 }}
-                style={{
-                    rotateX: isHovered ? rotateX : 0,
-                    rotateY: isHovered ? rotateY : 0,
-                    transformStyle: "preserve-3d",
-                }}
                 className="relative"
             >
                 {/* Ambient Glow Behind Phone */}
                 <motion.div
                     className="absolute -inset-8 bg-gradient-to-br from-[#0463c7]/40 via-[#0463c7]/20 to-transparent rounded-[4rem] blur-[60px]"
                     animate={{
-                        opacity: isHovered ? 0.8 : 0.5,
-                        scale: isHovered ? 1.1 : 1,
+                        opacity: 0.5,
+                        scale: 1,
                     }}
                     transition={{ duration: 0.4 }}
                 />
@@ -259,7 +221,7 @@ export function PhoneDisplay() {
                                             className="w-28 h-7 bg-slate-950 rounded-full flex items-center justify-center gap-2"
                                             initial={{ width: "7rem" }}
                                             animate={{
-                                                width: isHovered ? "8rem" : "7rem",
+                                                width: "7rem",
                                             }}
                                             transition={{ duration: 0.3 }}
                                         >
@@ -273,7 +235,10 @@ export function PhoneDisplay() {
                                     </div>
 
                                     {/* Screen Content */}
-                                    <div className="absolute inset-0 p-4 pt-12 pb-6 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+                                    <div
+                                        className="absolute inset-0 p-4 pt-12 pb-6 overflow-hidden bg-gradient-to-b from-slate-50 to-white antialiased"
+                                        style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                                    >
                                         {/* Status Bar */}
                                         <div className="flex items-center justify-between mb-4 px-1">
                                             <span className="text-[10px] font-semibold text-slate-800">9:41</span>
@@ -468,6 +433,6 @@ export function PhoneDisplay() {
                 }}
                 transition={{ duration: 5, repeat: Infinity, delay: 1 }}
             />
-        </div>
+        </div >
     );
 }

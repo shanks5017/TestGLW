@@ -8,11 +8,16 @@ import { RollingText3D } from '../ui/RollingText';
 import { AnimatedHamburger } from '../ui/AnimatedHamburger';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
+import { useLenis } from 'lenis/react';
+
 export const FloatingNavbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredTab, setHoveredTab] = useState<string | null>(null);
     const location = useLocation();
+
+    // Access Lenis for manual scroll control
+    const lenis = useLenis();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,6 +26,10 @@ export const FloatingNavbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleLogoClick = () => {
+        lenis?.scrollTo(0, { immediate: true });
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },

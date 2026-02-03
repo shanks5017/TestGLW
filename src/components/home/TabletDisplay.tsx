@@ -1,6 +1,7 @@
-
 import { motion } from 'framer-motion';
-import { Wifi, Battery } from 'lucide-react';
+import { Wifi, Battery, Signal, Menu } from 'lucide-react';
+import dashboardNew from '../../assets/dashboard-new.png';
+import sidebarNew from '../../assets/sidebar-new.png';
 
 export const TabletDisplay = () => {
     return (
@@ -47,36 +48,81 @@ export const TabletDisplay = () => {
                     </div>
 
                     {/* Screen Area (Inset matches border thickness) */}
-                    <div className="absolute inset-0 bg-white rounded-[2.5rem] overflow-hidden flex flex-col relative z-20 border-[4px] border-black shadow-inner">
+                    <div className="absolute inset-0 bg-white rounded-[2.5rem] overflow-hidden flex flex-col z-20 border-[4px] border-black shadow-inner">
 
                         {/* Dynamic Island */}
-                        <div className="absolute top-3 left-1/2 -translate-x-1/2 h-6 w-24 bg-black rounded-full z-50 flex items-center justify-between px-2 shadow-md transition-all duration-300 hover:w-28 hover:scale-105 cursor-pointer">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a] shadow-inner ring-1 ring-white/10" />
-                            <div className="w-1 h-1 rounded-full bg-green-500/30 shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
+                        <div className="absolute top-3 left-1/2 -translate-x-1/2 h-7 w-24 bg-black rounded-full z-50 flex items-center justify-between px-2 shadow-md transition-all duration-300 hover:w-28 hover:scale-105 cursor-pointer">
+                            <div className="w-2 h-2 rounded-full bg-[#1a1a1a] shadow-inner ring-1 ring-white/10" />
+                            <div className="flex gap-1">
+                                <div className="w-1 h-1 rounded-full bg-orange-500/50" />
+                                <div className="w-1 h-1 rounded-full bg-green-500/50" />
+                            </div>
                         </div>
 
                         {/* Status Bar */}
-                        <div className="absolute top-0 w-full h-8 z-40 flex justify-between items-center px-4 text-[10px] font-bold text-slate-800 mix-blend-darken">
-                            <span>9:41</span>
-                            <div className="flex gap-1.5 opacity-80">
+                        <div className="absolute top-0 w-full h-10 z-40 flex justify-between items-center px-5 pt-2 text-[10px] font-bold text-slate-800">
+                            <span className="w-12 text-center text-[12px]">9:41</span>
+                            <div className="flex gap-1.5 opacity-80 w-12 justify-end">
+                                <Signal size={12} strokeWidth={2.5} />
                                 <Wifi size={12} strokeWidth={2.5} />
                                 <Battery size={12} strokeWidth={2.5} />
                             </div>
                         </div>
 
-                        {/* Main Content (Image) */}
-                        <div className="w-full h-full bg-white relative">
-                            <img
-                                src="/tablet.png"
-                                alt="App Interface"
-                                className="w-full h-full object-cover object-top"
-                            />
-                            {/* Inner Shadow for Screen Depth */}
-                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.05)]" />
+                        {/* --- MAIN CONTENT UI --- */}
+                        <div className="w-full h-full bg-slate-50 flex flex-col pt-10 relative overflow-hidden">
+
+                            {/* App Header */}
+                            <div className="px-6 pb-4 flex justify-between items-center border-b border-slate-100 bg-white">
+                                <div>
+                                    <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-0.5">Dashboard</div>
+                                    <h2 className="text-xl font-bold text-slate-900 leading-none">Hello, Alex</h2>
+                                </div>
+                                <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                                    <Menu size={16} />
+                                </div>
+                            </div>
+
+                            {/* Split View Content */}
+                            <div className="flex-1 flex overflow-hidden">
+                                {/* Sidebar (Mini) */}
+                                <div className="w-16 bg-white border-r border-slate-100 flex flex-col items-center py-4 gap-4 relative overflow-hidden">
+                                    <div className="absolute inset-0">
+                                        <img src={sidebarNew} alt="Menu" className="w-full h-full object-cover opacity-50 grayscale" />
+                                    </div>
+                                </div>
+
+                                {/* Main Dashboard Image Area */}
+                                <div className="flex-1 bg-slate-50 p-4 overflow-hidden relative">
+                                    <div className="w-full h-full rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white relative">
+                                        {/* Use the dashboard image but crop/fit it nicely */}
+                                        <img
+                                            src={dashboardNew}
+                                            alt="Dashboard"
+                                            className="w-full h-full object-cover object-left-top scale-110 -translate-y-2 -translate-x-2"
+                                        />
+
+                                        {/* Floating UI Card Overlay for depth */}
+                                        <motion.div
+                                            initial={{ y: 20, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ delay: 1.5, duration: 0.8 }}
+                                            className="absolute bottom-4 right-4 bg-white p-3 rounded-xl shadow-lg border border-slate-100 max-w-[140px]"
+                                        >
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                                <div className="text-[10px] font-bold text-slate-700">Resume Match</div>
+                                            </div>
+                                            <div className="text-2xl font-bold text-slate-900">98%</div>
+                                            <div className="text-[9px] text-slate-400">Top 5% of applicants</div>
+                                        </motion.div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Home Indicator */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-black/20 rounded-full z-30 backdrop-blur-sm" />
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-black/20 rounded-full z-30" />
                     </div>
 
                     {/* Glass Reflection Overlay (Global) */}

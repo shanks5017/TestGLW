@@ -73,6 +73,15 @@
 
 html {
     overflow-x: hidden;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome/Safari/Opera */
+html::-webkit-scrollbar {
+    display: none;
 }
 
 body {
@@ -85,6 +94,12 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     /* Ensure standard scrolling */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 
