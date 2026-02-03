@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Check, Star, Shield, CreditCard, Calendar, CheckCircle2, ArrowRight, Sparkles, Globe } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { FAQAccordion } from '../components/ui/FAQAccordion';
+import { Section, FadeIn } from '../components/ui/Section';
 
 // Types
 interface Plan {
@@ -315,8 +316,6 @@ export function Pricing() {
           style={{ y: gridY }}
           className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]"
         />
-        <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-white to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 pt-32 pb-24">
@@ -345,9 +344,6 @@ export function Pricing() {
             Simple, transparent <br />
             <span className="text-[#0463c7] relative inline-block">
               pricing
-              <svg className="absolute -top-6 -right-8 w-12 h-12 text-[#70ADEF] animate-bounce-slow opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
             </span> for everyone.
           </motion.h1>
 
@@ -572,17 +568,23 @@ export function Pricing() {
           </div>
         </div>
 
-        {/* FAQ */}
-        <div className="max-w-3xl mx-auto mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-medium text-slate-900">FAQ</h2>
-          </div>
+      </div>
+
+      {/* FAQ - Full Width */}
+      <Section width="full" className="py-24 bg-white relative z-10">
+        <FadeIn className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6 tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-xl text-slate-500 text-center mb-16 max-w-2xl mx-auto">Everything you need to know about our plans.</p>
+        </FadeIn>
+        <div className="w-full">
           <FAQAccordion faqs={faqs} />
         </div>
+      </Section>
 
+      <div className="max-w-7xl mx-auto px-6 relative z-10 pb-24">
         {/* Footer CTA */}
         <div className="relative rounded-[3rem] overflow-hidden p-12 md:p-24 text-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#6B8DFF] to-[#0463c7]" />
+          <div className="absolute inset-0 bg-[#0463c7]" />
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
             <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-700" />

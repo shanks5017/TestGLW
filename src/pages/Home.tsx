@@ -33,7 +33,7 @@ const faqs = [
 
 export function Home() {
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden">
+    <div className="bg-white">
 
       {/* Hero Section */}
       <Hero />

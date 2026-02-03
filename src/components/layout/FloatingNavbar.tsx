@@ -31,17 +31,7 @@ export const FloatingNavbar = () => {
 
     return (
         <React.Fragment>
-            {/* "Mist" Gradient Backdrop Blur Layer - tuned for visibility */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: scrolled ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
-                className="fixed top-0 left-0 right-0 h-[140px] z-40 pointer-events-none backdrop-blur-2xl bg-white/10"
-                style={{
-                    maskImage: 'linear-gradient(to bottom, black 0%, black 20%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 20%, transparent 100%)'
-                }}
-            />
+
 
             <header className={cn(
                 "fixed left-0 right-0 z-50 transition-all duration-300 pointer-events-none",
@@ -93,7 +83,7 @@ export const FloatingNavbar = () => {
                                         {isActive && (
                                             <motion.div
                                                 layoutId="active-dot"
-                                                className="w-1.5 h-1.5 rounded-full bg-[#0047FF]"
+                                                className="w-1.5 h-1.5 rounded-full bg-[#0463c7]"
                                                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                             />
                                         )}
@@ -103,7 +93,7 @@ export const FloatingNavbar = () => {
                                             text={link.name}
                                             className={cn(
                                                 "text-[16px] tracking-wide",
-                                                isActive ? "text-[#0047FF] font-medium" : "text-black font-normal"
+                                                isActive ? "text-[#0463c7] font-medium" : "text-black font-normal"
                                             )}
                                         />
                                     </div>
@@ -129,7 +119,7 @@ export const FloatingNavbar = () => {
                     <div className="flex items-center justify-end w-[200px] gap-3 pointer-events-auto">
                         <div className="hidden min-[1100px]:block">
                             <Link to="/waitlist">
-                                <Button className="rounded-full font-semibold h-[48px] px-8 text-[15px] bg-[#0047FF] text-white shadow-lg shadow-blue-600/20 hover:bg-[#0037CC] hover:shadow-blue-600/30 transition-all hover:-translate-y-0.5">
+                                <Button className="rounded-full font-semibold h-[48px] px-8 text-[15px] bg-[#0463c7] text-white shadow-lg shadow-[#0463c7]/20 hover:bg-[#0352a8] hover:shadow-[#0463c7]/30 transition-all hover:-translate-y-0.5">
                                     Get Template
                                 </Button>
                             </Link>

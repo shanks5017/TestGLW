@@ -140,7 +140,7 @@ export function Product() {
   const ctaOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="bg-white">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 

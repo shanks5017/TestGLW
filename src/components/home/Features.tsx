@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Sparkles, Globe, ArrowRight, CheckCircle2, Zap, Target, Play, Search } from "lucide-react";
+import { Globe, ArrowRight, CheckCircle2, Play, Search } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 import extensionPopup from '../../assets/extension-popup.png';

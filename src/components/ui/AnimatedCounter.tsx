@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface AnimatedCounterProps {
   end: number;
@@ -9,11 +9,11 @@ interface AnimatedCounterProps {
   decimals?: number;
 }
 
-export function AnimatedCounter({ 
-  end, 
-  duration = 2000, 
-  suffix = '', 
-  prefix = '', 
+export function AnimatedCounter({
+  end,
+  duration = 2000,
+  suffix = '',
+  prefix = '',
   className = '',
   decimals = 0
 }: AnimatedCounterProps) {
@@ -47,13 +47,13 @@ export function AnimatedCounter({
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      
+
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const currentCount = easeOutQuart * end;
-      
-      setCount(decimals > 0 ? 
-        parseFloat(currentCount.toFixed(decimals)) : 
+
+      setCount(decimals > 0 ?
+        parseFloat(currentCount.toFixed(decimals)) :
         Math.floor(currentCount)
       );
 
