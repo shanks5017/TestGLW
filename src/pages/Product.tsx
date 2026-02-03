@@ -316,7 +316,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full max-w-lg mx-auto lg:max-w-none"
+              className="relative w-full max-w-lg mx-auto lg:max-w-none min-w-0 max-w-full"
             >
               <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-4 md:p-6 w-full">
                 {/* Floating Company Logos */}
@@ -412,7 +412,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative order-2 lg:order-1"
+              className="relative order-2 lg:order-1 min-w-0 w-full max-w-full"
             >
               {/* Works On Badges */}
               <div className="flex items-center gap-2 mb-6 flex-wrap">
@@ -497,7 +497,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="order-1 lg:order-2"
+              className="order-1 lg:order-2 min-w-0 w-full max-w-full"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-[50px] bg-[#E8F3FC] flex items-center justify-center border border-[#D6EAFF]">
@@ -505,10 +505,10 @@ export function Product() {
                 </div>
                 <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
-              <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-3xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words w-full max-w-full">
                 Analyze jobs and track applications instantly
               </h2>
-              <p className="text-slate-500 text-base md:text-lg mb-8 leading-relaxed">
+              <p className="text-slate-500 text-base md:text-lg mb-8 leading-relaxed max-w-full">
                 Install the GetLanded Chrome extension to see resume fit scores, missing keywords, and sponsorship signals right on job pages.
               </p>
 
@@ -581,7 +581,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full max-w-lg mx-auto lg:max-w-none"
+              className="relative w-full max-w-lg mx-auto lg:max-w-none min-w-0 max-w-full"
             >
               {/* Tab Header */}
               <div className="flex items-center gap-4 mb-4">
@@ -667,7 +667,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative order-2 lg:order-1"
+              className="relative order-2 lg:order-1 min-w-0 w-full max-w-full"
             >
               {/* Main Browser Window */}
               <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">

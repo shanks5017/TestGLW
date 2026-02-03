@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils';
 import logo from '../../assets/logo.png';
 import { RollingText3D } from '../ui/RollingText';
 import { AnimatedHamburger } from '../ui/AnimatedHamburger';
+import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
 export const FloatingNavbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -34,13 +35,14 @@ export const FloatingNavbar = () => {
 
 
             <header className={cn(
-                "fixed left-0 right-0 z-50 transition-all duration-300 pointer-events-none",
-                scrolled ? "top-4" : "top-6"
+                "fixed left-0 right-0 transition-all duration-300 pointer-events-none",
+                scrolled ? "top-4" : "top-6",
+                mobileMenuOpen ? "z-[61]" : "z-50"
             )}>
                 <div className="w-full px-6 md:px-12 flex items-center justify-between mx-auto">
 
                     {/* Left: Static Logo (No Effects) */}
-                    <div className="pointer-events-auto flex w-[200px]">
+                    <div className={cn("pointer-events-auto flex w-[200px] transition-opacity duration-200", mobileMenuOpen ? "opacity-0" : "opacity-100")}>
                         <Link to="/" className="flex items-center gap-2.5">
                             <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
                             <span className="text-xl font-bold text-slate-900 tracking-tight font-heading">
@@ -129,7 +131,7 @@ export const FloatingNavbar = () => {
                             <AnimatedHamburger
                                 isOpen={mobileMenuOpen}
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="text-slate-900"
+                                className={mobileMenuOpen ? "text-white" : "text-slate-900"}
                             />
                         </div>
                     </div>
@@ -140,96 +142,100 @@ export const FloatingNavbar = () => {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[45] bg-[#FAFAFA]/95 backdrop-blur-3xl flex flex-col min-[1100px]:hidden"
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed top-4 left-4 right-4 bottom-auto z-[60] flex flex-col min-[1100px]:hidden rounded-[24px] overflow-hidden min-h-[70vh]"
+                        style={{
+                            background: 'linear-gradient(180deg, #1A56DB 0%, #3B82F6 100%)', // Blue gradient
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                        }}
                     >
-                        {/* Background Grain Texture */}
-                        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                            style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-                            }}
-                        />
+                        {/* Background Grain Texture - Optional, keeping minimal for now to match reference */}
+                        {/* <div className="absolute inset-0 pointer-events-none opacity-[0.03]" ... /> */}
+
+                        {/* Top Bar with Logo and Close Button */}
+                        <div className="flex items-center justify-between p-6">
+                            <div className="flex items-center gap-2.5 text-white">
+                                <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain brightness-0 invert" />
+                                <span className="text-xl font-bold tracking-tight font-heading">
+                                    GetLanded
+                                </span>
+                            </div>
+
+                        </div>
 
                         {/* Menu Content Container */}
-                        <div className="flex flex-col h-full relative z-10 p-6 pt-32">
+                        <div className="flex flex-col h-full relative z-10 px-6 pb-6 items-center justify-center text-center">
 
                             {/* Navigation Links */}
-                            <nav className="flex flex-col gap-2">
+                            <nav className="flex flex-col gap-5 items-center w-full">
                                 {navLinks.map((link, i) => {
-                                    const isActive = location.pathname === link.path;
                                     return (
                                         <motion.div
                                             key={link.name}
-                                            initial={{ opacity: 0, y: 40 }}
+                                            initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 20 }}
+                                            exit={{ opacity: 0, y: 10 }}
                                             transition={{
                                                 duration: 0.5,
-                                                delay: 0.1 + (i * 0.1),
+                                                delay: 0.1 + (i * 0.05),
                                                 ease: [0.22, 1, 0.36, 1]
                                             }}
                                         >
                                             <Link
                                                 to={link.path}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className={cn(
-                                                    "block text-[32px] leading-[1.2] tracking-tight transition-all origin-left hover:scale-[1.02] duration-300 font-heading",
-                                                    isActive
-                                                        ? "text-[#0463c7] font-semibold"
-                                                        : "text-slate-900 font-medium hover:text-[#0463c7]"
-                                                )}
+                                                className="block text-[24px] font-medium text-white hover:text-white/80 transition-colors"
                                             >
-                                                <span className="flex items-center gap-3">
-                                                    {link.name}
-                                                    {isActive && (
-                                                        <motion.div
-                                                            layoutId="mobile-active-dot"
-                                                            className="w-2.5 h-2.5 rounded-full bg-[#0463c7]"
-                                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                                        />
-                                                    )}
-                                                </span>
+                                                {link.name}
                                             </Link>
                                         </motion.div>
                                     );
                                 })}
                             </nav>
 
-                            {/* Divider */}
-                            <motion.div
-                                initial={{ scaleX: 0 }}
-                                animate={{ scaleX: 1 }}
-                                exit={{ scaleX: 0 }}
-                                transition={{ duration: 0.8, delay: 0.4, ease: "circOut" }}
-                                className="h-[1px] bg-slate-200 w-full my-8 origin-left"
-                            />
+                            {/* Spacer */}
+                            <div className="flex-1" />
 
-                            {/* Secondary Actions / CTA */}
+                            {/* Divider Line */}
+                            <div className="w-full h-[1px] bg-white/20 mb-8" />
+
+                            {/* Social Icons */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 10 }}
-                                transition={{ duration: 0.5, delay: 0.5 }}
-                                className="mt-auto pb-8"
+                                transition={{ delay: 0.4 }}
+                                className="flex items-center gap-6 mb-8"
                             >
-                                <div className="flex flex-col gap-4">
-                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest pl-1">
-                                        Get Started
-                                    </p>
-                                    <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                                        <Button className="w-full rounded-full py-6 text-xl font-medium bg-[#0463c7] text-white shadow-xl shadow-blue-600/20 active:scale-95 transition-all">
-                                            Get Template
-                                        </Button>
-                                    </Link>
-                                </div>
+                                {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+                                    <div key={i} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors cursor-pointer">
+                                        <Icon size={18} />
+                                    </div>
+                                ))}
+                            </motion.div>
+
+                            {/* CTA */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="w-full max-w-sm"
+                            >
+                                <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                                    <Button className="w-full rounded-full py-4 text-lg bg-white hover:bg-gray-50 border-none shadow-xl flex items-center justify-center">
+                                        <RollingText3D
+                                            text="Get Template now"
+                                            className="text-[18px] font-medium text-[#0040C1]"
+                                        />
+                                    </Button>
+                                </Link>
                             </motion.div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </React.Fragment>
+        </React.Fragment >
     );
 };
