@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { FloatingNavbar } from './FloatingNavbar';
+import { GradientBlur } from '../ui/GradientBlur';
 import { Footer } from './Footer';
 
 interface LayoutProps {
@@ -15,6 +16,8 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-[#D6EAFF] selection:text-[#2A74C9]">
+      <GradientBlur position="top" />
+      <GradientBlur position="bottom" />
       <FloatingNavbar />
       <main className="flex-1 relative z-10 w-full">
         {children}
