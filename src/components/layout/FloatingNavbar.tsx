@@ -155,7 +155,7 @@ export const FloatingNavbar = () => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed top-4 left-4 right-4 bottom-auto z-[60] flex flex-col min-[1100px]:hidden rounded-[24px] overflow-hidden min-h-[70vh]"
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-screen overflow-hidden"
                         style={{
                             background: 'linear-gradient(180deg, #1A56DB 0%, #3B82F6 100%)', // Blue gradient
                             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
@@ -172,6 +172,7 @@ export const FloatingNavbar = () => {
                                     GetLanded
                                 </span>
                             </div>
+
 
                         </div>
 
