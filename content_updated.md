@@ -1,4 +1,4 @@
-# Content of Landing Page
+# changed Content of Landing Page 
 
 # GetLanded Website Content Documentation
 

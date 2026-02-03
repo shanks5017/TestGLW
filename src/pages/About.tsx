@@ -63,15 +63,15 @@ const timelinePhases = [
   {
     id: 2,
     title: "The Expansion",
-    description: "Demystifying job applications and visa sponsorship policies for international students.",
-    highlightWords: ["job applications", "visa sponsorship"],
+    description: "Adding visa sponsorship insights to level the playing field.",
+    highlightWords: ["visa sponsorship"],
     faIcon: "fa-solid fa-maximize",
     color: "bg-[#0463c7]"
   },
   {
     id: 3,
     title: "The Co-Pilot",
-    description: "A full AI-driven platform supporting every step of the job search journey.",
+    description: "A full AI platform to guide candidates from application to offer.",
     highlightWords: ["AI-driven platform", "job search journey"],
     icon: Bot,
     color: "bg-[#0463c7]"
@@ -89,35 +89,35 @@ const corePillars = [
   },
   {
     title: "Innovation",
-    description: "Combining the latest advancements in natural language processing and machine learning, we continually iterate to improve resume optimization, job matching, and interview preparation.",
+    description: "We’re constantly pushing the boundaries of what’s possible with AI to give candidates a competitive edge.",
     icon: Lightbulb,
     color: "text-amber-600",
     bg: "bg-amber-50"
   },
   {
     title: "Privacy & Security",
-    description: "Personal data and documents are never sold to third parties and are used solely to support your job search.",
+    description: "Your career data is personal. We treat it with the highest level of security and never sell your data.",
     icon: Lock,
     color: "text-emerald-600",
     bg: "bg-emerald-50"
   },
   {
     title: "Empathy",
-    description: "We have experienced the challenges of job hunting first-hand. This understanding drives our design of intuitive, supportive tools that reduce stress and increase confidence.",
+    description: "We understand the stress of job hunting. Every feature we build is designed to reduce anxiety.",
     icon: Heart,
     color: "text-rose-600",
     bg: "bg-rose-50"
   },
   {
     title: "True Clarity",
-    description: "Know exactly where you stand. No more guessing games or black holes.",
+    description: "Cutting through the noise to give you actionable insights and clear next steps.",
     icon: Target,
     color: "text-indigo-600",
     bg: "bg-indigo-50"
   },
   {
     title: "Global Reach",
-    description: "Empowering candidates worldwide to focus on presenting their best selves.",
+    description: "Helping talent cross borders. We specialize in international career mobility.",
     icon: Globe,
     color: "text-teal-600",
     bg: "bg-teal-50"
@@ -257,12 +257,12 @@ export function About() {
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0">
-                Built for the <br />
-                <span className="text-slate-400">Underdog.</span>
+                Empowering every student to <br />
+                <span className="text-slate-400">launch their dream career.</span>
               </motion.h1>
 
               <motion.p variants={fadeUp} className="text-xl text-slate-500 font-medium leading-relaxed tracking-tight max-w-lg">
-                We're rewriting the rules of job searching for students, new grads, and career switchers.
+                We’re building the co-pilot for the modern job search—transparent, intelligent, and fair.
               </motion.p>
 
               <motion.div
@@ -300,13 +300,10 @@ export function About() {
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight leading-[1.1]">
-                The Genesis
+                It started with a simple problem.
               </motion.h2>
               <motion.p variants={fadeUp} className="text-xl md:text-2xl text-slate-600 leading-relaxed">
-                GetLanded was born from the frustration of job seekers who struggled to navigate complex hiring requirements and unclear visa policies. Based in <span className="font-semibold text-blue-600">Liverpool, U.K.</span>, our small team set out to build an AI-driven platform that demystifies job applications and empowers candidates worldwide.
-              </motion.p>
-              <motion.p variants={fadeUp} className="text-lg text-slate-500 leading-relaxed">
-                What started as a browser extension to check sponsorship status has evolved into a comprehensive co-pilot that supports every step of the job search.
+                Applying to jobs was a mess of spreadsheets, 50 open tabs, and forgotten passwords. We wanted a way to save jobs from anywhere and see real insights instantly.
               </motion.p>
             </motion.div>
 
@@ -342,7 +339,7 @@ export function About() {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <span className="text-sm font-bold text-blue-600 bg-white px-3 py-1 rounded-full shadow-lg">Liverpool, UK</span>
+                    <span className="text-sm font-bold text-blue-600 bg-white px-3 py-1 rounded-full shadow-lg">Built in Liverpool, UK</span>
                   </div>
                 </div>
               </div>
@@ -529,8 +526,8 @@ export function About() {
             transition={{ duration: 1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter leading-[0.95]"
           >
-            Democratizing access <br />
-            to career opportunities.
+            The job search is broken. <br />
+            We’re fixing it.
           </motion.h2>
 
           <motion.p
@@ -540,7 +537,7 @@ export function About() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-xl md:text-2xl text-blue-200/80 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            We believe that everyone deserves a fair chance at their dream job, regardless of background or location. By automating tedious tasks and providing actionable insights, we help candidates focus on what matters: presenting their best selves and making meaningful connections with employers.
+            We believe that finding a job shouldn’t be a full-time job. The current system is opaque, inefficient, and often unfair. We’re using AI not to replace the human element, but to empower candidates with the insights and tools they need to tell their story effectively.
           </motion.p>
         </div>
       </section>

@@ -41,7 +41,7 @@ export function ValueProp() {
                     >
                         Your all-in-one <br className="hidden md:block" />
                         solution for managing <br className="hidden md:block" />
-                        your job search <br className="hidden md:block" />
+                        job search <br className="hidden md:block" />
                         and career goals.
                     </motion.h2>
 
