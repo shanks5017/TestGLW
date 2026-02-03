@@ -225,12 +225,21 @@ export function About() {
             {/* Left Column: 3D Tablet Visualization */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-7 flex justify-center lg:justify-start relative order-2 lg:order-1 pt-10 lg:pt-0"
+              animate={{
+                opacity: 1,
+                x: 0
+              }}
+              transition={{
+                duration: 1,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="lg:col-span-7 flex justify-center items-center relative order-2 lg:order-1 -mt-10 md:-mt-6 lg:mt-10"
             >
-              <div className="transform scale-[0.6] sm:scale-[0.8] md:scale-[0.9] lg:scale-100 transition-transform duration-500">
-                <TabletDisplay />
+              {/* Responsive Container to enforce layout size */}
+              <div className="relative w-[216px] h-[312px] sm:w-[288px] sm:h-[416px] md:w-[324px] md:h-[468px] lg:w-[360px] lg:h-[520px] transition-[width,height] duration-500">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform scale-[0.6] sm:scale-[0.8] md:scale-[0.9] lg:scale-100 transition-transform duration-500">
+                  <TabletDisplay />
+                </div>
               </div>
             </motion.div>
 
@@ -241,13 +250,13 @@ export function About() {
               variants={staggerChildren}
               className="lg:col-span-5 space-y-8 text-left order-1 lg:order-2"
             >
-              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8">
+              <motion.div variants={fadeUp} className="hidden lg:flex items-center gap-2 mb-8">
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
                 <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Our Mission</span>
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1]">
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0">
                 Built for the <br />
                 <span className="text-slate-400">Underdog.</span>
               </motion.h1>

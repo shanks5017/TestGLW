@@ -8,9 +8,12 @@ export const LaptopDisplay = () => {
     // Animation Config
     // Preloader takes ~4.5s + 0.8s exit. We start after that.
     const START_DELAY = 5.5;
-    const ROTATION_DURATION = 1.8;
-    const OPEN_DELAY = START_DELAY + 1.0; // Starts opening mid-spin
-    const OPEN_DURATION = 1.5;
+    const CINEMATIC_DURATION = 1.5; // Longer for the full effect
+
+    // OPEN_DELAY: Start opening the lid during the "Slow Showcase" phase
+    // 25% of 3.5s is ~0.9s. So consistent opening starts around there.
+    const OPEN_DELAY = START_DELAY + 0.5;
+    const OPEN_DURATION = 2.0;
 
     return (
         <div className="relative w-[640px] perspective-[2000px] group flex flex-col items-center justify-center">
@@ -18,11 +21,17 @@ export const LaptopDisplay = () => {
             {/* 3D Container - Handles the Spin */}
             {/* Added flex flex-col items-center to fix screen/base misalignment */}
             <motion.div
-                initial={{ rotateY: -180, scale: 0.5, opacity: 0 }}
-                animate={{ rotateY: 0, scale: 1, opacity: 1 }}
+                initial={{ rotateY: 360, scale: 0.5, opacity: 0, z: -500 }} // Scale 0.5 = CLOSER start
+                animate={{
+                    rotateY: [360, 180, 150, 0],   // 1. Fast (180deg) -> 2. Slow (30deg) -> 3. Fast (150deg)
+                    scale: [0.5, 0.9, 1.05, 1],    // Zoom from closer start
+                    opacity: [0, 1, 1, 1],
+                    z: [-500, 0, 50, 0]
+                }}
                 transition={{
-                    duration: ROTATION_DURATION,
-                    ease: [0.22, 1, 0.36, 1], // Heavy, premium friction ease
+                    duration: CINEMATIC_DURATION,
+                    times: [0, 0.3, 0.75, 1],      // 30% first half, 45% slow drift, 25% snap
+                    ease: "easeInOut",
                     delay: START_DELAY
                 }}
                 className="relative transition-transform duration-500 transform-style-3d group-hover:rotate-x-2 flex flex-col items-center will-change-transform translate-z-0"

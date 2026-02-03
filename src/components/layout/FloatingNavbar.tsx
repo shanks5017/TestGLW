@@ -7,11 +7,16 @@ import logo from '../../assets/logo.png';
 import { RollingText3D } from '../ui/RollingText';
 import { AnimatedHamburger } from '../ui/AnimatedHamburger';
 
+import { useLenis } from 'lenis/react';
+
 export const FloatingNavbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredTab, setHoveredTab] = useState<string | null>(null);
     const location = useLocation();
+
+    // Access Lenis for manual scroll control
+    const lenis = useLenis();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,6 +25,10 @@ export const FloatingNavbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleLogoClick = () => {
+        lenis?.scrollTo(0, { immediate: true });
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -41,7 +50,7 @@ export const FloatingNavbar = () => {
 
                     {/* Left: Static Logo (No Effects) */}
                     <div className="pointer-events-auto flex w-[200px]">
-                        <Link to="/" className="flex items-center gap-2.5">
+                        <Link to="/" className="flex items-center gap-2.5" onClick={handleLogoClick}>
                             <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
                             <span className="text-xl font-bold text-slate-900 tracking-tight font-heading">
                                 GetLanded

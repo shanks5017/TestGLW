@@ -404,7 +404,7 @@ export const Features = () => {
             <div className="w-full mt-24 md:mt-32 flex justify-end overflow-hidden" ref={ctaRef}>
                 <motion.div
                     style={{ width: ctaWidth, opacity: ctaOpacity }}
-                    className="w-full max-w-[1400px] bg-[#0463c7] rounded-none md:rounded-l-[15rem] md:rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group mx-auto md:ml-auto md:mr-0 shadow-2xl shadow-blue-900/20"
+                    className="w-full max-w-[1400px] bg-[#0463c7] rounded-none md:rounded-l-[15rem] md:rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group mx-auto md:ml-auto md:mr-0"
                 >
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
                     <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
