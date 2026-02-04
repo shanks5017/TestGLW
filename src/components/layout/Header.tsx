@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
-import { HamburgerButton } from '../ui/HamburgerButton';
+import { AnimatedHamburger } from '../ui/AnimatedHamburger';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
@@ -187,7 +187,7 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Button - Magnetic & Animated */}
-          <HamburgerButton
+          <AnimatedHamburger
             isOpen={isMenuOpen}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden z-50 relative"
@@ -203,7 +203,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="fixed inset-2 bg-white/60 backdrop-blur-3xl rounded-[24px] overflow-hidden z-50 flex flex-col pointer-events-auto border border-white/40 shadow-2xl"
+            className="fixed inset-2 bg-white/80 backdrop-blur-xl rounded-[24px] overflow-hidden overflow-y-auto z-50 flex flex-col pointer-events-auto border border-white/40 shadow-xl"
           >
             {/* Background Grid - Centered & Subtle on Glass */}
             <div
