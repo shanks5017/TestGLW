@@ -40,14 +40,8 @@ export function ValueProp() {
                         className="text-4xl md:text-[64px] font-normal text-[#0463c7] leading-[1.1] tracking-tight mb-10 md:mb-16"
                     >
                         Your all-in-one <br className="hidden md:block" />
-<<<<<<< HEAD
-                        solution for managing <br className="hidden md:block" />
-                        job search <br className="hidden md:block" />
-                        and career goals.
-=======
                         solution for modern <br className="hidden md:block" />
                         job search <br className="hidden md:block" />
->>>>>>> origin/divya02-backup
                     </motion.h2>
 
                     <motion.div
