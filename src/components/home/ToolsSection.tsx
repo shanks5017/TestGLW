@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
-import { Bot, Check, FileText, Play, Sparkles, UserCircle2, BarChart3 } from 'lucide-react';
+import { Bot, Check, FileText, Play, Sparkles, UserCircle2, Mic, Clock } from 'lucide-react';
 
 const Card = ({
     title,
@@ -11,7 +11,7 @@ const Card = ({
     delay = 0
 }: {
     title: string;
-    description: string;
+    description?: string;
     children: React.ReactNode;
     className?: string;
     delay?: number;
@@ -31,7 +31,7 @@ const Card = ({
     >
         <div className="z-10 mb-4 transition-colors">
             <h3 className={cn("text-xl font-semibold mb-2", hoverBlue && "group-hover:text-white")}>{title}</h3>
-            <p className={cn("text-sm text-slate-600 leading-relaxed", hoverBlue && "group-hover:text-blue-100")}>{description}</p>
+            {description && <p className={cn("text-sm text-slate-600 leading-relaxed", hoverBlue && "group-hover:text-blue-100")}>{description}</p>}
         </div>
         <div className="flex-1 relative z-10 w-full transition-colors flex items-center justify-center">
             {children}
@@ -138,6 +138,57 @@ const CoverLetterVisual = () => (
     </div>
 );
 
+const NetworkingVisual = () => (
+    <div className="w-full h-full flex items-center justify-center p-2">
+        <div className="grid grid-cols-2 gap-3 w-full max-w-[280px]">
+            {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white rounded-lg p-3 shadow-sm border border-slate-100 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
+                        <UserCircle2 size={16} className="text-slate-300" />
+                    </div>
+                    <div className="flex-1 space-y-1.5">
+                        <div className="h-1.5 w-3/4 bg-slate-200 rounded-full" />
+                        <div className="h-1.5 w-1/2 bg-green-100 rounded-full" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+);
+
+const ElevatorVisual = () => (
+    <div className="w-full h-full flex items-center justify-center p-4">
+        <div className="relative">
+            <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 w-48 relative z-10">
+                <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-full bg-[#E8F3FC] flex items-center justify-center text-[#0463c7]">
+                        <Mic size={16} />
+                    </div>
+                    <div className="flex-1">
+                        <div className="h-1.5 w-full bg-slate-100 rounded-full mb-1" />
+                        <div className="h-1.5 w-2/3 bg-slate-100 rounded-full" />
+                    </div>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-500 font-medium">
+                    <Clock size={12} />
+                    <span>00:30</span>
+                    <div className="flex-1 h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: "100%" }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="h-full bg-[#0463c7]"
+                        />
+                    </div>
+                </div>
+            </div>
+            {/* Background elements */}
+            <div className="absolute -top-2 -right-2 w-12 h-12 bg-blue-50 rounded-full -z-0" />
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-amber-50 rounded-full -z-0" />
+        </div>
+    </div>
+);
+
 const SkillGapVisual = () => (
     <div className="w-full h-full flex flex-col justify-center items-center gap-2 p-2">
         <div className="flex gap-2 w-full">
@@ -161,24 +212,27 @@ const SkillGapVisual = () => (
     </div>
 );
 
-const SalaryVisual = () => (
-    <div className="w-full h-full flex items-center justify-center p-4">
-        <div className="w-full bg-white rounded-xl shadow-sm border border-slate-100 p-4 relative">
-            <div className="flex items-center gap-2 mb-4">
-                <div className="w-6 h-6 rounded bg-green-50 flex items-center justify-center text-green-600">
-                    <BarChart3 size={14} />
+const TemplateVisual = () => (
+    <div className="w-full h-full flex items-center justify-center p-2 gap-3">
+        {[0, 1, 2].map((i) => (
+            <motion.div
+                key={i}
+                initial={{ y: 0 }}
+                whileHover={{ y: -5 }}
+                className="w-16 h-20 bg-white rounded shadow-sm border border-slate-200 p-2 flex flex-col gap-1.5"
+            >
+                <div className="w-full h-2 bg-slate-100 rounded-sm" />
+                <div className="space-y-1">
+                    <div className="w-full h-1 bg-slate-50 rounded-sm" />
+                    <div className="w-full h-1 bg-slate-50 rounded-sm" />
+                    <div className="w-2/3 h-1 bg-slate-50 rounded-sm" />
                 </div>
-                <div className="text-[10px] font-bold text-slate-700">Market Rate</div>
-            </div>
-            <div className="flex items-end justify-between gap-1.5 h-12">
-                <div className="w-full bg-slate-50 rounded-t-sm h-[40%]" />
-                <div className="w-full bg-slate-100 rounded-t-sm h-[60%]" />
-                <div className="w-full bg-[#0463c7] rounded-t-sm h-[80%] relative">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] font-bold text-[#0463c7]">$120k</div>
+                <div className="flex gap-1 mt-auto">
+                    <div className="w-1/2 h-8 bg-slate-50 rounded-sm" />
+                    <div className="w-1/2 h-8 bg-slate-50 rounded-sm" />
                 </div>
-                <div className="w-full bg-slate-50 rounded-t-sm h-[50%]" />
-            </div>
-        </div>
+            </motion.div>
+        ))}
     </div>
 );
 
@@ -207,57 +261,35 @@ export function ToolsSection() {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[280px]">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[240px]">
                     {/* Row 1 */}
-                    <Card
-                        title="LinkedIn Profile Optimizer"
-                        description="Stand out to recruiters with AI-enhanced headlines and summaries."
-                        className="md:col-span-6"
-                        delay={0.1}
-                    >
+                    <Card title="Linkedin Profile Optimizer" className="md:col-span-6" delay={0.1}>
                         <LinkedInVisual />
                     </Card>
-                    <Card
-                        title="Chrome Extension"
-                        description="Save jobs and get insights while you browse."
-                        className="md:col-span-3"
-                        delay={0.2}
-                    >
+                    <Card title="Chrome Extension" className="md:col-span-3" delay={0.2}>
                         <ExtensionVisual />
                     </Card>
-                    <Card
-                        title="Interview Prep"
-                        description="Practice questions specific to the company and role."
-                        className="md:col-span-3"
-                        delay={0.3}
-                    >
+                    <Card title="Interview Preparation" className="md:col-span-3" delay={0.3}>
                         <InterviewVisual />
                     </Card>
 
                     {/* Row 2 */}
-                    <Card
-                        title="Cover Letter Generator"
-                        description="Write personalized cover letters in seconds."
-                        className="md:col-span-4"
-                        delay={0.4}
-                    >
+                    <Card title="AI Cover Letter Generator" className="md:col-span-5" delay={0.4}>
                         <CoverLetterVisual />
                     </Card>
-                    <Card
-                        title="Resume Scanner"
-                        description="Check your resume against ATS systems."
-                        className="md:col-span-4"
-                        delay={0.5}
-                    >
+                    <Card title="Networking Tracker" className="md:col-span-7" delay={0.5}>
+                        <NetworkingVisual />
+                    </Card>
+
+                    {/* Row 3 */}
+                    <Card title="Elevator Pitch" className="md:col-span-4" delay={0.6}>
+                        <ElevatorVisual />
+                    </Card>
+                    <Card title="Skill gap analyzer" className="md:col-span-4" delay={0.7}>
                         <SkillGapVisual />
                     </Card>
-                    <Card
-                        title="Salary Insights"
-                        description="Real-time compensation data for your target roles."
-                        className="md:col-span-4"
-                        delay={0.6}
-                    >
-                        <SalaryVisual />
+                    <Card title="Resume Templates" className="md:col-span-4" delay={0.8}>
+                        <TemplateVisual />
                     </Card>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { cn } from '../lib/utils';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -76,6 +77,30 @@ const comingSoonFeatures = [
     title: "Plagiarism Checker",
     desc: "Ensure your content is unique.",
   },
+];
+
+// How It Works data
+const howItWorksSteps = [
+  {
+    num: "01",
+    title: "Browse",
+    desc: "Install our Chrome extension and browse your favorite job boards like LinkedIn, Indeed, and more."
+  },
+  {
+    num: "02",
+    title: "AI Analysis",
+    desc: "Our AI instantly analyzes the job description to understand the requirements and skills needed."
+  },
+  {
+    num: "03",
+    title: "Get Insights",
+    desc: "See your match score, missing keywords, and salary insights directly on the job page."
+  },
+  {
+    num: "04",
+    title: "Save & Track",
+    desc: "One-click save to your dashboard and track your application progress in our Kanban view."
+  }
 ];
 
 
@@ -233,8 +258,570 @@ export function Product() {
 
 
 
+      {/* How It Works Section */}
+      <section className="py-20 px-6 bg-slate-50/50 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl tracking-tight mb-4">
+              How <span className="text-[#0463c7]">GetLanded</span> works
+            </h2>
+            <p className="text-slate-500">Browse → AI Reads → Insights → Save & Track</p>
+          </motion.div>
 
+          <div className="grid md:grid-cols-4 gap-4">
+            {howItWorksSteps.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
+                  {step.num}
+                </div>
+                <h3 className="text-lg font-medium text-slate-900 group-hover:text-white mb-2 transition-colors">{step.title}</h3>
+                <p className="text-sm text-slate-500 group-hover:text-white/80 transition-colors">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section >
+      {/* Resume Builder Features Section - Simplify Style */}
+      < section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Search className="w-5 h-5 text-slate-600" />
+                <span className="text-slate-600 font-medium">Job Matches</span>
+              </div>
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+                Get matched to relevant jobs, personalized to you
+              </h2>
+              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+                Forget endlessly scrolling on job boards. Tell us your preferences & dealbreakers and we'll match you with jobs that fit.
+              </p>
+              <Link
+                to="/waitlist"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+              >
+                Get Matched Now
+              </Link>
+            </motion.div>
 
+            {/* Right Visual - Job Matches Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6">
+                {/* Floating Company Logos */}
+                <div className="relative h-24 mb-6">
+                  {[
+                    { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", pos: "top-0 left-[5%]", size: "w-10 h-10" },
+                    { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg", pos: "top-2 left-[25%]", size: "w-9 h-9" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", pos: "top-0 left-[45%]", size: "w-10 h-6" },
+                    { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg", pos: "top-4 left-[65%]", size: "w-9 h-9" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", pos: "top-0 right-[5%]", size: "w-9 h-9" },
+                    { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg", pos: "top-12 left-[15%]", size: "w-8 h-8" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", pos: "top-14 left-[38%]", size: "w-12 h-4" },
+                    { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg", pos: "top-12 right-[20%]", size: "w-8 h-8" },
+                  ].map((logo, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                      className={cn(
+                        "absolute rounded-xl flex items-center justify-center shadow-md bg-white p-1.5",
+                        logo.size,
+                        logo.pos
+                      )}
+                    >
+                      <img src={logo.src} alt="Company logo" className="w-full h-full object-contain" />
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Personalized Job Matches Label */}
+                <div className="text-center mb-4">
+                  <span className="text-sm text-slate-400">Personalized Job Matches</span>
+                </div>
+
+                {/* Job Category Cards - Marquee Animation */}
+                <div className="relative overflow-hidden">
+                  <div className="flex gap-4 animate-marquee">
+                    {[
+                      { title: "Entry Level Work from Home Jobs", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"] },
+                      { title: "Senior Roles in Digital Marketing", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg", "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"] },
+                      { title: "New Grad Product Management Jobs", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg", "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"] },
+                      { title: "Internships at US Startups", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"] },
+                      { title: "Entry Level Work from Home Jobs", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"] },
+                      { title: "Senior Roles in Digital Marketing", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg", "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"] },
+                      { title: "New Grad Product Management Jobs", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg", "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"] },
+                      { title: "Internships at US Startups", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"] },
+                    ].map((card, i) => (
+                      <div
+                        key={i}
+                        className="flex-shrink-0 w-40 bg-[hsl(220,10%,98%)] rounded-xl p-3 border border-[hsl(220,10%,92%)]"
+                      >
+                        <p className="text-[11px] text-slate-700 font-medium mb-3 line-clamp-2 h-9">
+                          {card.title}
+                        </p>
+                        <div className="flex gap-3">
+                          {/* Logo Icons */}
+                          <div className="flex flex-col gap-2">
+                            {card.logos.map((logo, j) => (
+                              <div key={j} className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center p-1">
+                                <img src={logo} alt="" className="w-full h-full object-contain" />
+                              </div>
+                            ))}
+                          </div>
+                          {/* Skeleton Text Bars */}
+                          <div className="w-20 flex flex-col gap-2 py-1">
+                            <div className="h-2 w-full bg-[#e8efff] rounded-full" />
+                            <div className="h-2 w-3/4 bg-[#e8efff] rounded-full" />
+                            <div className="h-2 w-full bg-[#e8efff] rounded-full" />
+                            <div className="h-2 w-2/3 bg-[#e8efff] rounded-full" />
+                            <div className="h-2 w-5/6 bg-[#e8efff] rounded-full" />
+                            <div className="h-2 w-1/2 bg-[#e8efff] rounded-full" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section >
+
+      {/* AI Copilot Extension Section - Simplify Style */}
+      < section className="py-20 px-6 bg-white relative z-10" >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Visual - Browser Mockup */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              {/* Works On Badges */}
+              <div className="flex items-center gap-2 mb-6 flex-wrap">
+                <span className="text-sm text-slate-500">Works on</span>
+                {["LinkedIn", "Indeed", "Glassdoor", "Lever", "+5 more"].map((platform, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600"
+                  >
+                    {platform}
+                  </span>
+                ))}
+              </div>
+
+              {/* Browser Window */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                {/* Browser Header */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
+                  <div className="flex-1 flex items-center gap-2 ml-4">
+                    <div className="h-6 w-6 rounded bg-slate-200" />
+                    <div className="h-5 flex-1 max-w-xs rounded bg-slate-100" />
+                  </div>
+                </div>
+
+                {/* Browser Content */}
+                <div className="p-6">
+                  {/* Job Card Preview */}
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-lg bg-[#0077b5] flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">in</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-slate-900">Software Engineer</p>
+                      <p className="text-sm text-slate-500">LinkedIn • San Francisco, CA</p>
+                    </div>
+                    {/* GetLanded Extension Icon */}
+                    <div className="ml-auto flex items-center gap-2">
+                      <div className="px-3 py-1.5 rounded-lg bg-[#0463c7] text-white text-xs font-medium flex items-center gap-1">
+                        <Zap size={12} />
+                        GetLanded
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Skeleton Content */}
+                  <div className="space-y-3">
+                    <div className="flex gap-3">
+                      <div className="h-3 w-24 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-32 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-20 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-40 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-16 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-28 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-36 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-20 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-24 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-16 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-32 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-28 bg-[#e8efff] rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Zap className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
+              </div>
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+                Analyze jobs and track applications instantly
+              </h2>
+              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+                Install the GetLanded Chrome extension to see resume fit scores, missing keywords, and sponsorship signals right on job pages.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex items-center gap-4 mb-8">
+                <Link
+                  to="/waitlist"
+                  className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+                >
+                  Add to Chrome
+                </Link>
+                <Link
+                  to="/product"
+                  className="inline-flex items-center gap-2 bg-white text-slate-700 px-6 py-3.5 rounded-full font-medium border border-slate-200 hover:border-[#0463c7] hover:text-[#0463c7] transition-all duration-300"
+                >
+                  Learn More
+                </Link>
+              </div>
+
+              {/* Stats */}
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <span key={i} className="text-yellow-400 text-lg">★</span>
+                  ))}
+                </div>
+                <span className="text-slate-500 text-sm">2,000+ students already using GetLanded</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section >
+
+      {/* AI Resume Builder Section - Simplify Style (Reversed Layout) */}
+      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
+              </div>
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+                Craft the perfect tailored resume for every job
+              </h2>
+              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+                Use AI to tailor your resume to fit the job description, see your resume ATS score, and identify missing keywords, all in a few clicks.
+              </p>
+
+              {/* CTA Button */}
+              <Link
+                to="/waitlist"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+              >
+                Analyze Your Resume
+              </Link>
+            </motion.div>
+
+            {/* Right Visual - Resume Analyzer Mockup */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              {/* Tab Header */}
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-sm font-medium text-slate-700">Tailor Resumes</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-[#0463c7] flex items-center justify-center">
+                    <CheckCircle2 size={10} className="text-white" />
+                  </div>
+                  <span className="text-sm text-slate-500">Identify missing keywords</span>
+                </div>
+              </div>
+
+              {/* Browser Window */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                {/* Browser Header */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
+                  <div className="flex-1 flex items-center gap-2 ml-4">
+                    <div className="h-6 w-6 rounded bg-slate-200" />
+                    <div className="h-5 flex-1 max-w-xs rounded bg-slate-100" />
+                  </div>
+                </div>
+
+                {/* Browser Content */}
+                <div className="p-6">
+                  {/* Job Card Preview */}
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-lg bg-[#0077b5] flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">in</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-slate-900">Software Engineer</p>
+                      <p className="text-sm text-slate-500">LinkedIn • Remote</p>
+                    </div>
+                    {/* Keyword Match Indicator */}
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 text-xs text-slate-600">
+                        <BrainCircuit size={12} />
+                        Keyword Match
+                      </div>
+                      <div className="w-8 h-8 rounded-lg bg-[#0463c7] flex items-center justify-center">
+                        <ArrowRight size={14} className="text-white" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Resume Skeleton Content */}
+                  <div className="space-y-3">
+                    <div className="flex gap-3">
+                      <div className="h-3 w-32 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-24 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-48 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-20 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-36 bg-[#e8efff] rounded-full" />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="h-3 w-40 bg-[#e8efff] rounded-full" />
+                      <div className="h-3 w-16 bg-[#e8efff] rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section >
+
+      {/* Job Tracker Section - Simplify Style */}
+      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Visual - Job Tracker Mockup */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              {/* Main Browser Window */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                {/* Browser Header */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border-b border-slate-200">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
+                  <div className="flex-1 flex items-center gap-2 ml-4">
+                    <div className="h-6 w-6 rounded bg-slate-200" />
+                    <div className="h-5 flex-1 max-w-xs rounded bg-slate-100" />
+                  </div>
+                </div>
+
+                {/* Browser Content - Job Tracker */}
+                <div className="p-6">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold text-slate-900">My Job Tracker</h3>
+                    <div className="flex gap-2">
+                      <div className="h-8 w-20 rounded-full bg-[#e8efff]" />
+                      <div className="h-8 w-16 rounded-full bg-[#0463c7]" />
+                    </div>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="h-2 w-full bg-slate-100 rounded-full mb-6 overflow-hidden">
+                    <div className="h-full w-3/5 bg-gradient-to-r from-[#0463c7] to-[#0352a8] rounded-full" />
+                  </div>
+
+                  {/* Kanban Columns */}
+                  <div className="grid grid-cols-4 gap-3">
+                    {/* SCREEN Column */}
+                    <div>
+                      <div className="text-xs font-medium text-slate-500 mb-2">SCREEN (5)</div>
+                      <div className="space-y-2">
+                        {[
+                          { color: "bg-blue-500", name: "Business to Business Sale..." },
+                          { color: "bg-emerald-500", name: "Product Manager" },
+                          { color: "bg-violet-500", name: "Design Engineer" },
+                        ].map((job, i) => (
+                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-5 h-5 rounded ${job.color}`} />
+                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* INTERVIEWING Column */}
+                    <div>
+                      <div className="text-xs font-medium text-slate-500 mb-2">INTERVIEWING (4)</div>
+                      <div className="space-y-2">
+                        {[
+                          { color: "bg-teal-500", name: "Product Design Intern" },
+                          { color: "bg-blue-600", name: "Ingineer" },
+                          { color: "bg-indigo-500", name: "Product Designer" },
+                        ].map((job, i) => (
+                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-5 h-5 rounded ${job.color}`} />
+                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* OFFER Column */}
+                    <div>
+                      <div className="text-xs font-medium text-slate-500 mb-2">OFFER</div>
+                      <div className="space-y-2">
+                        {[
+                          { color: "bg-pink-500", name: "Product Mana..." },
+                          { color: "bg-cyan-500", name: "Product Designer" },
+                          { color: "bg-rose-500", name: "Software En..." },
+                        ].map((job, i) => (
+                          <div key={i} className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-5 h-5 rounded ${job.color}`} />
+                              <span className="text-[10px] text-slate-600 truncate">{job.name}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Empty Column for spacing */}
+                    <div className="opacity-50">
+                      <div className="text-xs font-medium text-slate-400 mb-2">REJECTED</div>
+                      <div className="space-y-2">
+                        <div className="bg-slate-50 rounded-lg p-2 border border-slate-100 opacity-60">
+                          <div className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded bg-slate-300" />
+                            <span className="text-[10px] text-slate-400">---</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary Card Overlay */}
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl border border-slate-200 shadow-lg p-4 w-56">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-slate-900">Your Job Search Summarized</span>
+                  <span className="text-green-500">↗</span>
+                </div>
+                <div className="text-xs text-slate-500 mb-2">Applications: <span className="font-semibold text-slate-700">156</span></div>
+                <div className="h-12 bg-gradient-to-r from-[#0463c7]/20 via-[#0463c7]/40 to-[#0463c7]/60 rounded-lg" />
+              </div>
+            </motion.div>
+
+            {/* Right Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <span className="text-[#0463c7] font-medium">Job Tracker</span>
+              </div>
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+                Bookmark jobs and track your search
+              </h2>
+              <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+                Goodbye spreadsheets. Bookmark job postings from 50+ job boards and manage your applications within our job tracker.
+              </p>
+
+              {/* CTA Button */}
+              <Link
+                to="/waitlist"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+              >
+                Track Your Applications
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section >
 
 
       {/* Categories Section */}
