@@ -88,7 +88,13 @@ export const TabletDisplay = () => {
                                 {/* Sidebar (Mini) */}
                                 <div className="w-16 bg-white border-r border-slate-100 flex flex-col items-center py-4 gap-4 relative overflow-hidden">
                                     <div className="absolute inset-0">
-                                        <img src={sidebarNew} alt="Menu" className="w-full h-full object-cover opacity-50 grayscale" />
+                                        <img
+                                            src={sidebarNew}
+                                            alt="Menu"
+                                            className="w-full h-full object-cover opacity-50 grayscale"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
                                     </div>
                                 </div>
 
@@ -100,6 +106,8 @@ export const TabletDisplay = () => {
                                             src={dashboardNew}
                                             alt="Dashboard"
                                             className="w-full h-full object-cover object-left-top scale-110 -translate-y-2 -translate-x-2"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
 
                                         {/* Floating UI Card Overlay for depth */}

@@ -187,6 +187,7 @@ h6 {
 
 .animate-marquee {
     animation: marquee 6s linear infinite;
+    will-change: transform;
 }
 
 /* ===== Premium Phone Display Animations ===== */
@@ -208,6 +209,7 @@ h6 {
 
 .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
+    will-change: transform, box-shadow;
 }
 
 /* Shimmer effect for premium glass surfaces */
@@ -228,6 +230,7 @@ h6 {
             transparent 100%);
     background-size: 200% 100%;
     animation: shimmer 2.5s ease-in-out infinite;
+    will-change: background-position;
 }
 
 /* Smooth float animation */
@@ -245,6 +248,7 @@ h6 {
 
 .animate-float {
     animation: float-smooth 4s ease-in-out infinite;
+    will-change: transform;
 }
 
 /* Gradient shift for dynamic backgrounds */
@@ -265,6 +269,7 @@ h6 {
 .animate-gradient-shift {
     background-size: 200% 200%;
     animation: gradient-shift 6s ease infinite;
+    will-change: background-position;
 }
 
 /* Screen glow ambient effect */
@@ -284,6 +289,7 @@ h6 {
 
 .animate-screen-glow {
     animation: screen-glow 4s ease-in-out infinite;
+    will-change: opacity, filter;
 }
 
 /* Notification slide-in */
@@ -301,6 +307,7 @@ h6 {
 
 .animate-slide-in-right {
     animation: slide-in-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
 }
 
 /* Dot pulse for notifications */
