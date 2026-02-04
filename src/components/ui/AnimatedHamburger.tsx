@@ -51,7 +51,7 @@ export const AnimatedHamburger: React.FC<AnimatedHamburgerProps> = ({ isOpen, on
                     variants={variants.top}
                     initial="closed"
                     animate={isOpen ? "open" : "closed"}
-                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="w-8 h-[2px] bg-current rounded-full origin-center block"
                 />
 
@@ -60,7 +60,7 @@ export const AnimatedHamburger: React.FC<AnimatedHamburgerProps> = ({ isOpen, on
                     variants={variants.bottom}
                     initial="closed"
                     animate={isOpen ? "open" : "closed"}
-                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="w-8 h-[2px] bg-current rounded-full origin-center block"
                 />
             </div>

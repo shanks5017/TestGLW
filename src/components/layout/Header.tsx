@@ -202,19 +202,9 @@ export function Header() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ ease: "easeOut", duration: 0.3 }}
-            className="fixed inset-2 bg-white/95 backdrop-blur-md rounded-[24px] overflow-hidden overflow-y-auto z-50 flex flex-col pointer-events-auto border border-white/20 shadow-2xl will-change-transform"
+            transition={{ ease: "easeOut", duration: 0.2 }}
+            className="fixed inset-2 bg-white/99 rounded-[24px] overflow-hidden overflow-y-auto z-50 flex flex-col pointer-events-auto border border-white/20 shadow-2xl will-change-transform"
           >
-            {/* Background Grid - Centered & Subtle on Glass */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-[0.03] flex items-center justify-center"
-              style={{
-                maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
-              }}
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#0463c7_1px,transparent_1px),linear-gradient(to_bottom,#0463c7_1px,transparent_1px)] bg-[size:4rem_4rem] bg-center" />
-            </div>
 
             {/* Header within Menu - TOP LEFT LOGO with minimal padding */}
             <div className="relative z-10 flex items-center justify-between px-4 py-4">
