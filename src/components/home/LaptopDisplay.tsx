@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Wifi, Battery } from 'lucide-react';
 import dashboardNew from '../../assets/dashboard-new.png';
@@ -15,22 +16,46 @@ export const LaptopDisplay = () => {
     const OPEN_DELAY = START_DELAY + 0.5;
     const OPEN_DURATION = 2.0;
 
+    // Mobile Detection
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            // 1024px is a common breakpoint for tablets/smaller laptops where performance might be an issue
+            // or where the 3D effect might be too much.
+            setIsMobile(window.innerWidth < 1024);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const desktopAnimation = {
+        rotateY: [360, 180, 150, 0],   // 1. Fast (180deg) -> 2. Slow (30deg) -> 3. Fast (150deg)
+        scale: [0.5, 0.9, 1.05, 1],    // Zoom from closer start
+        opacity: [0, 1, 1, 1],
+        z: [-500, 0, 50, 0]
+    };
+
+    const mobileAnimation = {
+        rotateY: 0,
+        scale: [0.8, 1],
+        opacity: [0, 1],
+        z: 0
+    };
+
     return (
         <div className="relative w-[640px] perspective-[2000px] group flex flex-col items-center justify-center">
 
             {/* 3D Container - Handles the Spin */}
             {/* Added flex flex-col items-center to fix screen/base misalignment */}
             <motion.div
-                initial={{ rotateY: 360, scale: 0.5, opacity: 0, z: -500 }} // Scale 0.5 = CLOSER start
-                animate={{
-                    rotateY: [360, 180, 150, 0],   // 1. Fast (180deg) -> 2. Slow (30deg) -> 3. Fast (150deg)
-                    scale: [0.5, 0.9, 1.05, 1],    // Zoom from closer start
-                    opacity: [0, 1, 1, 1],
-                    z: [-500, 0, 50, 0]
-                }}
+                initial={{ rotateY: isMobile ? 0 : 360, scale: 0.5, opacity: 0, z: -500 }} // Scale 0.5 = CLOSER start
+                animate={isMobile ? mobileAnimation : desktopAnimation}
                 transition={{
                     duration: CINEMATIC_DURATION,
-                    times: [0, 0.3, 0.75, 1],      // 30% first half, 45% slow drift, 25% snap
+                    times: isMobile ? [0, 1] : [0, 0.3, 0.75, 1],      // Simplified timing for mobile
                     ease: "easeInOut",
                     delay: START_DELAY
                 }}
