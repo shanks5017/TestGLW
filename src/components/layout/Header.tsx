@@ -202,8 +202,8 @@ export function Header() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            className="fixed inset-2 bg-white/80 backdrop-blur-xl rounded-[24px] overflow-hidden overflow-y-auto z-50 flex flex-col pointer-events-auto border border-white/40 shadow-xl"
+            transition={{ ease: "easeOut", duration: 0.3 }}
+            className="fixed inset-2 bg-white/95 backdrop-blur-md rounded-[24px] overflow-hidden overflow-y-auto z-50 flex flex-col pointer-events-auto border border-white/20 shadow-2xl will-change-transform"
           >
             {/* Background Grid - Centered & Subtle on Glass */}
             <div

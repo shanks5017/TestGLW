@@ -90,7 +90,7 @@ export const Preloader = () => {
                                 bounce: 0.4,
                                 delay: contentDelay
                             }}
-                            className="bg-white rounded-full p-3 shadow-2xl z-10 w-24 h-24 flex items-center justify-center"
+                            className="bg-white rounded-full p-2 md:p-3 shadow-2xl z-10 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center"
                         >
                             <img
                                 src={logo}
@@ -120,7 +120,7 @@ export const Preloader = () => {
                                             }
                                         }
                                     }}
-                                    className="text-5xl md:text-7xl font-bold text-white tracking-tight"
+                                    className="text-4xl md:text-7xl font-bold text-white tracking-tight"
                                 >
                                     {char}
                                 </motion.span>
