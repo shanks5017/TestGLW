@@ -3,22 +3,22 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { Layout } from './components/layout/Layout';
 
 // Pages
-// Pages - Code Splitting
-const Home = React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
-const Pricing = React.lazy(() => import('./pages/Pricing').then(module => ({ default: module.Pricing })));
-const About = React.lazy(() => import('./pages/About').then(module => ({ default: module.About })));
-const Blog = React.lazy(() => import('./pages/Blog').then(module => ({ default: module.Blog })));
-const Product = React.lazy(() => import('./pages/Product').then(module => ({ default: module.Product })));
-const Support = React.lazy(() => import('./pages/Support').then(module => ({ default: module.Support })));
-const Resources = React.lazy(() => import('./pages/Resources').then(module => ({ default: module.Resources })));
-const Waitlist = React.lazy(() => import('./pages/Waitlist').then(module => ({ default: module.Waitlist })));
-const Dashboard = React.lazy(() => import('./pages/Dashboard').then(module => ({ default: module.Dashboard })));
+import { Home } from './pages/Home';
+import { Pricing } from './pages/Pricing';
+import { About } from './pages/About';
+import { Blog } from './pages/Blog';
+import { Product } from './pages/Product';
+import { Support } from './pages/Support';
+import { Resources } from './pages/Resources';
+import { Waitlist } from './pages/Waitlist';
+import { Dashboard } from './pages/Dashboard';
+import { Contact } from './pages/Contact';
 
 // ScrollToTop component to reset scroll on route change
 import { Preloader } from './components/ui/Preloader';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { SmoothScroll } from './components/ui/SmoothScroll';
-import { SuspenseLoader } from './components/ui/SuspenseLoader';
+
 
 import { useLenis } from 'lenis/react';
 
@@ -54,22 +54,21 @@ function App() {
         <ScrollProgress />
         <Preloader />
         <ScrollToTopWrapper />
-        <React.Suspense fallback={<SuspenseLoader />}>
-          <Routes>
-            {/* Public routes with layout */}
-            <Route path="/" element={<Layout><Home /></Layout>} />
-            <Route path="/product" element={<Layout><Product /></Layout>} />
-            <Route path="/pricing" element={<Layout><Pricing /></Layout>} />
-            <Route path="/about" element={<Layout><About /></Layout>} />
-            <Route path="/blog" element={<Layout><Blog /></Layout>} />
-            <Route path="/support" element={<Layout><Support /></Layout>} />
-            <Route path="/resources" element={<Layout><Resources /></Layout>} />
-            <Route path="/waitlist" element={<Layout><Waitlist /></Layout>} />
+        <Routes>
+          {/* Public routes with layout */}
+          <Route path="/" element={<Layout><Home /></Layout>} />
+          <Route path="/product" element={<Layout><Product /></Layout>} />
+          <Route path="/pricing" element={<Layout><Pricing /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/blog" element={<Layout><Blog /></Layout>} />
+          <Route path="/support" element={<Layout><Support /></Layout>} />
+          <Route path="/resources" element={<Layout><Resources /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/waitlist" element={<Layout><Waitlist /></Layout>} />
 
-            {/* Dashboard Route - Standalone */}
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </React.Suspense>
+          {/* Dashboard Route - Standalone */}
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </SmoothScroll>
     </Router>
   );

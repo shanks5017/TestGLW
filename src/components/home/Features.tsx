@@ -265,37 +265,37 @@ const HeroFeatureCard = ({
 
 const features = [
     {
-        title: "Smart Job Match Browser Extension",
-        description: "Install our browser extension to instantly compare your resume with any job description you view online. Get clear insights on eligibility, skill gaps, and match accuracy—directly inside your browser, before you apply.",
+        title: "Smart Job Match Extension",
+        description: "Instant fit score and keyword analysis for any job posting.",
         Visual: JobSaveVisual,
         visualBg: "bg-gradient-to-br from-slate-50 to-slate-100"
     },
     {
-        title: "AI Resume & Cover Letter Builder",
-        description: "Create ATS‑optimized resumes and personalized cover letters in minutes. Our AI analyzes the job description and tailors your application for maximum fit.",
+        title: "AI Resume Builder",
+        description: "Tailor your resume for every application in seconds.",
         Visual: AnalysisVisual,
         visualBg: "bg-[#0F172A]",
         customCardClass: "!bg-[#e8efff]"
     },
     {
-        title: "Visa Sponsorship & Resume Fit Analyzer",
-        description: "Quickly verify if a posting offers visa sponsorship and see how well your profile matches each role.",
+        title: "Visa Sponsorship Analyzer",
+        description: "Instantly see H1B history and green card policies for over 500k companies.",
         Visual: VisaVisual,
         visualBg: "!bg-[#e8efff]",
         customCardClass: "!bg-[#e8efff]",
         customVisualClass: ""
     },
     {
-        title: "AI Mock Interviews & Coaching",
-        description: "Practice with realistic AI interviews that include role‑specific questions, STAR‑method feedback and video recordings.",
+        title: "AI Mock Interviews",
+        description: "Practice with realistic questions tailored to your target role.",
         Visual: InterviewVisual,
         visualBg: "!bg-[#e8efff]",
         customCardClass: "!bg-[#e8efff]",
         customVisualClass: ""
     },
     {
-        title: "Progress Tracking & Analytics",
-        description: "Monitor applications, track interview performance and visualize your job‑search journey with success metrics.",
+        title: "Progress Tracking",
+        description: "Visualize your job search funnel and identify bottlenecks.",
         Visual: AnalyticsVisual,
         visualBg: "!bg-[#e8efff]",
         customCardClass: "!bg-[#e8efff]",
@@ -415,13 +415,13 @@ export const Features = () => {
                             <span className="text-white font-bold text-xs tracking-widest uppercase">Join 2.3M+ students</span>
                             <div className="h-px w-8 bg-white/30"></div>
                         </div>
-                        <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Ready to take control of your career?</h3>
+                        <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Track every application in one place</h3>
                         <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-10">
-                            Join our early‑access waitlist and be among the first to experience the future of AI‑powered job search.
+                            Automatically save jobs from LinkedIn, Indeed, and more with a single click. Organize your search with a powerful Kanban board.
                         </p>
 
                         <button className="flex items-center gap-3 bg-white text-[#0463c7] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#E8F3FC] transition-all hover:scale-105 hover:shadow-xl duration-300 mx-auto group/btn">
-                            <span>Join Waitlist</span>
+                            <span>Start Tracking Free</span>
                             <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                         </button>
                     </div>

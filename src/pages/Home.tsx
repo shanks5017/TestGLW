@@ -16,18 +16,18 @@ const faqs = [
   },
   {
     id: 2,
-    question: 'Can I track jobs from any site?',
-    answer: 'Yes! Our browser extension works on LinkedIn, Indeed, Glassdoor, and most company career pages.'
+    question: 'Is there a free version?',
+    answer: 'Yes! Our Free Beta plan includes 25 job saves and basic resume scanning.'
   },
   {
     id: 3,
-    question: 'Is there a free trial?',
-    answer: 'We offer a Free Beta plan that includes unlimited job tracking and basic insights. No credit card required.'
+    question: 'Does it work for visa sponsorship jobs?',
+    answer: 'Absolutely. We specialize in helping international students find H1B and sponsorship-friendly roles.'
   },
   {
     id: 4,
-    question: 'Does it help with Visa Sponsorship?',
-    answer: 'Absolutely. We automatically flag jobs that are known to sponsor visas, saving you time.'
+    question: 'Which job boards do you support?',
+    answer: 'Currently we support LinkedIn, Indeed, Glassdoor, and 40+ other major job sites.'
   }
 ];
 

@@ -26,10 +26,9 @@ const plans: Plan[] = [
     description: 'Perfect for trying things out and getting started.',
     features: [
       'Track up to 25 applications',
-      'Basic Resume fit scoring',
-      'Visa sponsorship insights',
-      'One-click job saving',
-      'Basic deadline tracking'
+      'Basic Resume Scanner (5/mo)',
+      'Chrome Extension Access',
+      'Standard Support'
     ],
     cta: 'Get Started Free'
   },
@@ -37,34 +36,32 @@ const plans: Plan[] = [
     id: 'pro',
     name: 'Pro',
     badge: 'Most Popular',
-    price: { monthly: 12, yearly: 10 },
-    description: 'Everything you need to land your dream job faster.',
+    price: { monthly: 12, yearly: 9 },
+    description: 'For serious job seekers who want to land roles faster.',
     features: [
-      'Unlimited application tracking',
-      'Advanced AI resume optimization',
-      'Unlimited AI cover letters',
-      'Priority support',
-      'Advanced job matching',
-      'Interview preparation tools'
+      'Unlimited Application Tracking',
+      'AI Resume Tailoring (50/mo)',
+      'Visa Sponsorship Insights',
+      'LinkedIn Profile Optimizer',
+      'Priority Support'
     ],
     recommended: true,
-    cta: 'Start Pro Trial'
+    cta: 'Get Started'
   },
   {
     id: 'pro-plus',
     name: 'Pro Plus',
     badge: 'Best Value',
     price: { monthly: 29, yearly: 24 },
-    description: 'For power users who want white-glove service.',
+    description: 'Ultimate power for maximizing your career potential.',
     features: [
       'Everything in Pro',
-      '1-on-1 Career Coach session',
-      'Mock interview practice (Video)',
-      'LinkedIn profile audit',
-      'Salary negotiation support',
-      'Dedicated success manager'
+      'Unlimited AI Resume Tailoring',
+      'Mock Interview Practice (Unlimited)',
+      'Cover Letter Generator',
+      '1-on-1 Career Coaching session'
     ],
-    cta: 'Get Pro Plus'
+    cta: 'Get Started'
   }
 ];
 
@@ -76,18 +73,18 @@ const faqs = [
   },
   {
     id: 2,
-    question: 'Can I track jobs from any site?',
-    answer: 'Yes! Our browser extension works on LinkedIn, Indeed, Glassdoor, and most company career pages.'
+    question: 'Is there a free version?',
+    answer: 'Yes! Our Free Beta plan includes 25 job saves and basic resume scanning.'
   },
   {
     id: 3,
-    question: 'Is there a free trial?',
-    answer: 'We offer a Free Beta plan that includes unlimited job tracking and basic insights. No credit card required.'
+    question: 'Does it work for visa sponsorship jobs?',
+    answer: 'Absolutely. We specialize in helping international students find H1B and sponsorship-friendly roles.'
   },
   {
     id: 4,
-    question: 'Does it help with Visa Sponsorship?',
-    answer: 'Absolutely. We automatically flag jobs that are known to sponsor visas, saving you time.'
+    question: 'Which job boards do you support?',
+    answer: 'Currently we support LinkedIn, Indeed, Glassdoor, and 40+ other major job sites.'
   },
   {
     id: 5,
@@ -106,28 +103,36 @@ const testimonials = [
     uni: "Stanford '23"
   },
   {
-    name: "Marcus Johnson",
+    name: "Rahul Patel",
     role: "Product Manager",
-    company: "Stripe",
-    quote: "The AI cover letter generator saved me hours of work. I actually sounded like myself, but more professional.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
-    uni: "MIT '22"
+    company: "Microsoft",
+    quote: "Detailed information about visa sponsorship saved me so much time. Highly recommend for international students.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul",
+    uni: "Georgia Tech '22"
   },
   {
-    name: "Emma Rodriguez",
-    role: "Data Scientist",
-    company: "Netflix",
-    quote: "As an international student, the visa filter is worth every penny. It filtered out 80% of jobs I couldn't apply for.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma",
-    uni: "Berkeley '24"
+    name: "Emily Rodriguez",
+    role: "UX Designer",
+    company: "Spotify",
+    quote: "The Chrome extension makes saving jobs from LinkedIn incredibly fast. I love the kanban board.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
+    uni: "RISD '23"
   },
   {
     name: "David Kim",
-    role: "Frontend Dev",
-    company: "Airbnb",
-    quote: "I love how it organizes my applications. The Kanban board view is exactly what I needed to stay sane.",
+    role: "Data Scientist",
+    company: "Netflix",
+    quote: "Finally, a tool that actually helps with the job search rather than just listing jobs. The AI feedback is spot on.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-    uni: "Waterloo '23"
+    uni: "UC Berkeley '22"
+  },
+  {
+    name: "Priya Sharma",
+    role: "Business Analyst",
+    company: "Deloitte",
+    quote: "I landed my dream internship in 3 weeks using the networking tracker. It kept me accountable.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
+    uni: "NYU '24"
   }
 ];
 
@@ -318,7 +323,7 @@ export function Pricing() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 pt-24 pb-24">
 
         {/* Header */}
         <motion.div
@@ -344,7 +349,7 @@ export function Pricing() {
             Simple, transparent <br />
             <span className="text-[#0463c7] relative inline-block">
               pricing
-            </span> for everyone.
+            </span>
           </motion.h1>
 
           <motion.p
@@ -353,7 +358,7 @@ export function Pricing() {
             transition={{ delay: 0.2 }}
             className="text-xl text-slate-500 mb-12 max-w-2xl mx-auto"
           >
-            Choose the plan that fits your career journey. Upgrade, downgrade, or cancel anytime.
+            Start for free, upgrade when you need more power. No hidden fees.
           </motion.p>
 
           {/* Toggle */}
@@ -533,7 +538,7 @@ export function Pricing() {
         {/* Testimonials */}
         <div className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-medium text-slate-900 mb-6">Success Stories</h2>
+            <h2 className="text-4xl font-heading font-medium text-slate-900 mb-6">Trusted by students and professionals from top universities and companies</h2>
             <p className="text-slate-500">Join thousands of students landing top offers.</p>
           </div>
 
@@ -591,14 +596,14 @@ export function Pricing() {
           </div>
 
           <div className="relative z-10 max-w-2xl mx-auto text-white">
-            <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 tracking-tight">Ready to launch?</h2>
+            <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 tracking-tight">Ready to get hired?</h2>
             <p className="text-lg md:text-xl text-blue-50 mb-10 leading-relaxed">
-              Join over 10,000 students who are landing their dream jobs faster with GetLanded.
+              Join thousands of job seekers who are landing their dream roles faster with GetLanded.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button className="bg-white text-[#0463c7] px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
-                Get Started Free
+                Get Started Now
                 <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
               <button className="text-white px-10 py-4 rounded-full font-bold text-lg border border-white/20 hover:bg-white/10 transition-all duration-300">

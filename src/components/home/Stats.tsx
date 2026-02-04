@@ -119,7 +119,7 @@ export const Stats = () => {
                         <div className="mt-6 md:mt-8 relative z-10 text-center md:text-left">
                             <h3 className="text-3xl md:text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">500+ Offers Landed</h3>
                             <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm mx-auto md:mx-0">
-                                Students securing offers at top tech companies using our automated tracking.
+                                From top tech companies to specialized startups
                             </p>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ export const Stats = () => {
                             </div>
                             <h3 className="text-3xl md:text-[40px] font-normal text-slate-900 mb-3 tracking-tight leading-[1.1]">89% Interview Rate</h3>
                             <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm mx-auto md:mx-0">
-                                Success rate increase for users maximizing AI resume optimization.
+                                For users with optimized profiles.
                             </p>
                         </div>
 

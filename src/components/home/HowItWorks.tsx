@@ -88,21 +88,21 @@ export const HowItWorks = () => {
                         <StepCard
                             number="01"
                             title="Install the extension"
-                            description="Add GetLanded to your browser in seconds. Browse LinkedIn, Indeed, or handshake as you normally would."
+                            description="Add GetLanded to Chrome to save jobs and analyze listings instantly."
                             faIcon="fa-solid fa-download"
                             delay={0.1}
                         />
                         <StepCard
                             number="02"
                             title="AI analyzes every role"
-                            description="We automatically scan the JD, check for visa sponsorship, and score your resume against the requirements."
+                            description="Get instant match scores and keyword gaps based on your profile."
                             faIcon="fa-solid fa-magnifying-glass-chart"
                             delay={0.2}
                         />
                         <StepCard
                             number="03"
                             title="Apply smarter"
-                            description="Track your applications in one click, generate tailored resumes, and prepare for interviews with AI."
+                            description="Use AI-tailored resumes and tracking to land more interviews."
                             icon={Send}
                             delay={0.3}
                         />
