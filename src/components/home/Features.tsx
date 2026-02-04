@@ -401,7 +401,7 @@ export const Features = () => {
             </div>
 
             {/* CTA Section - Full Screen Width Transition */}
-            <div className="w-full mt-24 md:mt-32 flex justify-end overflow-hidden" ref={ctaRef}>
+            <div className="w-full mt-24 md:mt-32 flex justify-end overflow-hidden relative" ref={ctaRef}>
                 <motion.div
                     style={{ width: ctaWidth, opacity: ctaOpacity }}
                     className="w-full max-w-[1400px] bg-[#0463c7] rounded-none md:rounded-l-[15rem] md:rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group mx-auto md:ml-auto md:mr-0"

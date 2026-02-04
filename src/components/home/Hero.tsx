@@ -63,7 +63,7 @@ export function Hero() {
             {/* Bottom Banner Area - Infinite Marquee */}
             <div className="max-w-7xl mx-auto px-6 w-full mt-[-60px] md:mt-[-80px] lg:mt-[-110px] relative z-0">
                 <div className="w-full bg-[#0463c7] h-[250px] sm:h-[350px] md:h-[450px] relative overflow-hidden flex flex-col justify-center items-center rounded-[3rem]">
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+                    <div className="absolute top-0 left-0 w-full h-full opacity-20 mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
                     {/* Decorative Glows */}
                     <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0463c7] rounded-full blur-[120px] opacity-40 mix-blend-overlay" />

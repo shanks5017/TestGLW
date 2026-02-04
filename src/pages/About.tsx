@@ -781,7 +781,7 @@ export function About() {
                   <img
                     src={member.img}
                     alt={member.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105 will-change-transform"
                   />
                   {/* Hover Overlay with Expertise */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
@@ -789,13 +789,13 @@ export function About() {
                       <div className="text-sm font-bold text-blue-400 uppercase tracking-wider">Expertise</div>
                       <div className="text-white text-lg">{member.expertise}</div>
                       <div className="flex gap-4 pt-4">
-                        <a href={member.links.mail} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                        <a href={member.links.mail} className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
                           <Mail className="w-5 h-5" />
                         </a>
-                        <a href={member.links.linkedin} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                        <a href={member.links.linkedin} className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
                           <Linkedin className="w-5 h-5" />
                         </a>
-                        <a href={member.links.github} className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
+                        <a href={member.links.github} className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all">
                           <Github className="w-5 h-5" />
                         </a>
                       </div>
@@ -815,8 +815,8 @@ export function About() {
       {/* ========== SECTION 10: FOOTER CTA ========== */}
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-20 text-center">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
-          <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[150px] opacity-20" />
+          <div className="absolute top-0 left-0 w-full h-full opacity-20" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+          <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[80px] md:blur-[120px] opacity-20" />
 
           <div className="relative z-10 space-y-10">
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">
