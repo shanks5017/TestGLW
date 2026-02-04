@@ -41,7 +41,8 @@ export const AnimatedHamburger: React.FC<AnimatedHamburgerProps> = ({ isOpen, on
             onMouseLeave={handleMouseLeave}
             animate={{ x: position.x, y: position.y }}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-            className={`cursor-pointer group relative z-50 p-4 ${className}`}
+            className={`cursor-pointer group relative z-50 flex items-center justify-center bg-transparent rounded-[24px] ${className}`}
+            style={{ width: '48px', height: '48px' }} // Fixed size for the specific look
             onClick={onClick}
         >
             <div className="relative w-8 h-8 flex flex-col justify-center gap-[6px] items-center">

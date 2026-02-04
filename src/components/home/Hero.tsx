@@ -5,21 +5,21 @@ import { LaptopDisplay } from './LaptopDisplay';
 
 export function Hero() {
     return (
-        <section className="relative pt-24 lg:pt-32 pb-0 overflow-hidden bg-white selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col justify-between">
+        <section className="relative pt-20 lg:pt-24 pb-0 overflow-hidden bg-white selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col justify-between">
             {/* Background Grid - Fizens Style */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             {/* Main Content Area */}
             <div className="max-w-7xl mx-auto px-6 relative z-10 flex-grow w-full">
 
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-4 items-center h-full pt-4 relative">
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-4 items-center h-full relative">
 
                     {/* Left Column: Headline */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-5 flex flex-col items-start text-left relative z-20 mt-8 lg:mt-20"
+                        className="lg:col-span-5 flex flex-col items-start text-left relative z-20 lg:mt-20"
                     >
                         {/* Reduced Size to Fit: 64px max for longer copy */}
                         <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">

@@ -79,34 +79,7 @@ const articles: Article[] = [
 // --- Components ---
 
 // 1. Floating Particles (Background)
-function FloatingParticles() {
-    const particles = Array.from({ length: 30 });
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-            {particles.map((_, i) => (
-                <motion.div
-                    key={i}
-                    initial={{
-                        x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                        y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-                        opacity: 0,
-                    }}
-                    animate={{
-                        y: [null, Math.random() * -100],
-                        opacity: [0, 0.4, 0],
-                    }}
-                    transition={{
-                        duration: Math.random() * 10 + 10,
-                        repeat: Infinity,
-                        ease: "linear",
-                        delay: Math.random() * 5
-                    }}
-                    className="absolute w-1 h-1 bg-[#0463c7]/20 rounded-full"
-                />
-            ))}
-        </div>
-    );
-}
+
 
 export function Blog() {
     const [activeCategory, setActiveCategory] = useState("All");
@@ -132,10 +105,10 @@ export function Blog() {
             <div className="fixed inset-0 pointer-events-none z-0">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-                <FloatingParticles />
+
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10 pt-32 pb-32">
+            <div className="max-w-7xl mx-auto px-6 relative z-10 pt-24 pb-32">
 
                 {/* --- Hero Section --- */}
                 <motion.div

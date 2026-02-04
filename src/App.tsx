@@ -12,6 +12,7 @@ import { Support } from './pages/Support';
 import { Resources } from './pages/Resources';
 import { Waitlist } from './pages/Waitlist';
 import { Dashboard } from './pages/Dashboard';
+import { Contact } from './pages/Contact';
 
 // ScrollToTop component to reset scroll on route change
 import { Preloader } from './components/ui/Preloader';
@@ -62,6 +63,7 @@ function App() {
           <Route path="/blog" element={<Layout><Blog /></Layout>} />
           <Route path="/support" element={<Layout><Support /></Layout>} />
           <Route path="/resources" element={<Layout><Resources /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
           <Route path="/waitlist" element={<Layout><Waitlist /></Layout>} />
 
           {/* Dashboard Route - Standalone */}

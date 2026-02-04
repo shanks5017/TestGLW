@@ -1,20 +1,27 @@
 import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
-import { Bot, Check, FileText, Play, Search, Sparkles, UserCircle2 } from 'lucide-react';
+import { Bot, Check, FileText, Play, Sparkles, UserCircle2, BarChart3 } from 'lucide-react';
 
 const Card = ({
     title,
+    description,
     children,
     className,
-    hoverBlue = true
+    hoverBlue = true,
+    delay = 0
 }: {
     title: string;
+    description: string;
     children: React.ReactNode;
     className?: string;
     delay?: number;
     hoverBlue?: boolean;
 }) => (
     <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay }}
         className={cn(
             "rounded-[2rem] p-6 flex flex-col overflow-hidden relative group transition-all duration-300 hover:shadow-xl",
             "bg-[#e8efff]", // Default state
@@ -22,8 +29,11 @@ const Card = ({
             className
         )}
     >
-        <h3 className={cn("text-lg mb-4 z-10 transition-colors", hoverBlue && "group-hover:text-white")}>{title}</h3>
-        <div className="flex-1 relative z-10 w-full transition-colors">
+        <div className="z-10 mb-4 transition-colors">
+            <h3 className={cn("text-xl font-semibold mb-2", hoverBlue && "group-hover:text-white")}>{title}</h3>
+            <p className={cn("text-sm text-slate-600 leading-relaxed", hoverBlue && "group-hover:text-blue-100")}>{description}</p>
+        </div>
+        <div className="flex-1 relative z-10 w-full transition-colors flex items-center justify-center">
             {children}
         </div>
     </motion.div>
@@ -128,59 +138,6 @@ const CoverLetterVisual = () => (
     </div>
 );
 
-const NetworkingVisual = () => (
-    <div className="w-full h-full flex items-end justify-center px-4 overflow-hidden">
-        <div className="w-full bg-white rounded-t-xl border-x border-t border-slate-100 shadow-sm p-4">
-            {/* Header */}
-            <div className="flex items-center gap-8 mb-4 border-b border-slate-50 pb-2">
-                <div className="flex items-center gap-2">
-                    <Search size={12} className="text-slate-300" />
-                    <div className="h-1.5 w-16 bg-slate-50 rounded-full" />
-                </div>
-                <div className="h-4 w-4 rounded-full bg-slate-100 ml-auto" />
-            </div>
-
-            {/* Rows */}
-            <div className="space-y-2 relative">
-                {[1, 2, 3].map(i => (
-                    <div key={i} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-slate-100" />
-                        <div className="h-1.5 w-20 bg-slate-50 rounded-full" />
-                        <div className="h-1.5 w-12 bg-[#E8F3FC] rounded-full ml-auto" />
-                    </div>
-                ))}
-
-                {/* Chat Popover */}
-                <div className="absolute right-0 top-0 w-32 bg-white rounded-lg shadow-xl border border-slate-100 p-2 z-10">
-                    <div className="text-[8px] text-slate-400 mb-1">Hi John...</div>
-                    <div className="bg-slate-50 p-1 rounded mb-1">
-                        <div className="h-1 w-full bg-slate-200 rounded-full" />
-                    </div>
-                    <div className="bg-[#E8F3FC] p-1 rounded">
-                        <div className="h-1 w-2/3 bg-blue-200 rounded-full" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-);
-
-const ElevatorVisual = () => (
-    <div className="w-full h-full flex items-center justify-center p-4">
-        <div className="w-full bg-white rounded-xl shadow-sm border border-slate-100 p-3">
-            <div className="text-[10px] font-bold text-slate-900 mb-2">AI Elevator Pitch</div>
-            <div className="space-y-1.5">
-                <div className="text-[8px] text-slate-400">Hey myself John,</div>
-                <div className="h-1 w-full bg-slate-50 rounded-full" />
-                <div className="h-1 w-2/3 bg-slate-50 rounded-full" />
-                <div className="border-t border-slate-50 mt-2 pt-2 flex justify-end">
-                    <div className="text-[8px] text-[#0463c7] font-medium">expert in Js</div>
-                </div>
-            </div>
-        </div>
-    </div>
-);
-
 const SkillGapVisual = () => (
     <div className="w-full h-full flex flex-col justify-center items-center gap-2 p-2">
         <div className="flex gap-2 w-full">
@@ -204,21 +161,22 @@ const SkillGapVisual = () => (
     </div>
 );
 
-const TemplateVisual = () => (
-    <div className="w-full h-full flex items-center justify-center gap-2 overflow-hidden">
-        <div className="w-16 h-20 bg-yellow-100 rounded-lg p-1.5 relative top-2 rotate-[-5deg] shadow-sm">
-            <div className="text-[6px] font-serif font-bold text-slate-800 mb-1">Hello,</div>
-            <div className="space-y-0.5">
-                <div className="h-0.5 w-full bg-slate-800/20" />
-                <div className="h-0.5 w-full bg-slate-800/20" />
+const SalaryVisual = () => (
+    <div className="w-full h-full flex items-center justify-center p-4">
+        <div className="w-full bg-white rounded-xl shadow-sm border border-slate-100 p-4 relative">
+            <div className="flex items-center gap-2 mb-4">
+                <div className="w-6 h-6 rounded bg-green-50 flex items-center justify-center text-green-600">
+                    <BarChart3 size={14} />
+                </div>
+                <div className="text-[10px] font-bold text-slate-700">Market Rate</div>
             </div>
-        </div>
-        <div className="w-16 h-20 bg-slate-800 rounded-lg p-1.5 relative rotate-[5deg] shadow-lg z-10">
-            <div className="text-[6px] font-sans font-bold text-white mb-1 tracking-wider">PENELOPE</div>
-            <div className="space-y-0.5">
-                <div className="h-0.5 w-full bg-white/20" />
-                <div className="h-0.5 w-full bg-white/20" />
-                <div className="h-0.5 w-2/3 bg-white/20" />
+            <div className="flex items-end justify-between gap-1.5 h-12">
+                <div className="w-full bg-slate-50 rounded-t-sm h-[40%]" />
+                <div className="w-full bg-slate-100 rounded-t-sm h-[60%]" />
+                <div className="w-full bg-[#0463c7] rounded-t-sm h-[80%] relative">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] font-bold text-[#0463c7]">$120k</div>
+                </div>
+                <div className="w-full bg-slate-50 rounded-t-sm h-[50%]" />
             </div>
         </div>
     </div>
@@ -236,49 +194,70 @@ export function ToolsSection() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-[54px] tracking-tight leading-[1.1] mb-4"
                     >
-                        Explore our full suite of <br />
-                        <span className="text-[#0463c7]">AI tools & features</span>
+                        AI-Powered <span className="text-[#0463c7]">Tools</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-lg"
+                        className="text-lg text-slate-600"
                     >
                         Enhance your job-hunting experience with tools for every step
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[240px]">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[280px]">
                     {/* Row 1 */}
-                    <Card title="Linkedin Profile Optimizer" className="md:col-span-6" delay={0.1}>
+                    <Card
+                        title="LinkedIn Profile Optimizer"
+                        description="Stand out to recruiters with AI-enhanced headlines and summaries."
+                        className="md:col-span-6"
+                        delay={0.1}
+                    >
                         <LinkedInVisual />
                     </Card>
-                    <Card title="Chrome Extension" className="md:col-span-3" delay={0.2}>
+                    <Card
+                        title="Chrome Extension"
+                        description="Save jobs and get insights while you browse."
+                        className="md:col-span-3"
+                        delay={0.2}
+                    >
                         <ExtensionVisual />
                     </Card>
-                    <Card title="Interview Preparation" className="md:col-span-3" delay={0.3}>
+                    <Card
+                        title="Interview Prep"
+                        description="Practice questions specific to the company and role."
+                        className="md:col-span-3"
+                        delay={0.3}
+                    >
                         <InterviewVisual />
                     </Card>
 
                     {/* Row 2 */}
-                    <Card title="AI Cover Letter Generator" className="md:col-span-5" delay={0.4}>
+                    <Card
+                        title="Cover Letter Generator"
+                        description="Write personalized cover letters in seconds."
+                        className="md:col-span-4"
+                        delay={0.4}
+                    >
                         <CoverLetterVisual />
                     </Card>
-                    <Card title="Networking Tracker" className="md:col-span-7" delay={0.5}>
-                        <NetworkingVisual />
-                    </Card>
-
-                    {/* Row 3 */}
-                    <Card title="Elevator Pitch" className="md:col-span-4" delay={0.6}>
-                        <ElevatorVisual />
-                    </Card>
-                    <Card title="Skill gap analyzer" className="md:col-span-4" delay={0.7}>
+                    <Card
+                        title="Resume Scanner"
+                        description="Check your resume against ATS systems."
+                        className="md:col-span-4"
+                        delay={0.5}
+                    >
                         <SkillGapVisual />
                     </Card>
-                    <Card title="Resume Templates" className="md:col-span-4" delay={0.8}>
-                        <TemplateVisual />
+                    <Card
+                        title="Salary Insights"
+                        description="Real-time compensation data for your target roles."
+                        className="md:col-span-4"
+                        delay={0.6}
+                    >
+                        <SalaryVisual />
                     </Card>
                 </div>
             </div>

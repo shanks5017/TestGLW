@@ -36,6 +36,7 @@ export const FloatingNavbar = () => {
         { name: 'About', path: '/about' },
         { name: 'Pricing', path: '/pricing' },
         { name: 'Blog', path: '/blog' },
+        { name: 'Contact', path: '/contact' },
     ];
 
     return (
@@ -139,7 +140,7 @@ export const FloatingNavbar = () => {
                             <AnimatedHamburger
                                 isOpen={mobileMenuOpen}
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={mobileMenuOpen ? "text-white" : "text-slate-900"}
+                                className={cn(mobileMenuOpen ? "text-white" : "text-slate-900", "transition-colors duration-300")}
                             />
                         </div>
                     </div>
@@ -178,8 +179,8 @@ export const FloatingNavbar = () => {
                         {/* Menu Content Container */}
                         <div className="flex flex-col h-full relative z-10 px-6 pb-6 items-center justify-center text-center">
 
-                            {/* Navigation Links */}
-                            <nav className="flex flex-col gap-5 items-center w-full">
+                            {/* Navigation Links - Centered due to parent justify-center */}
+                            <nav className="flex flex-col gap-6 items-center justify-center w-full flex-1">
                                 {navLinks.map((link, i) => {
                                     return (
                                         <motion.div
@@ -196,7 +197,7 @@ export const FloatingNavbar = () => {
                                             <Link
                                                 to={link.path}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className="block text-[24px] font-medium text-white hover:text-white/80 transition-colors"
+                                                className="block text-[32px] font-bold text-white tracking-tight hover:text-white/80 transition-colors"
                                             >
                                                 {link.name}
                                             </Link>
@@ -204,9 +205,6 @@ export const FloatingNavbar = () => {
                                     );
                                 })}
                             </nav>
-
-                            {/* Spacer */}
-                            <div className="flex-1" />
 
                             {/* Divider Line */}
                             <div className="w-full h-[1px] bg-white/20 mb-8" />

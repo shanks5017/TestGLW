@@ -40,9 +40,8 @@ export function ValueProp() {
                         className="text-4xl md:text-[64px] font-normal text-[#0463c7] leading-[1.1] tracking-tight mb-10 md:mb-16"
                     >
                         Your all-in-one <br className="hidden md:block" />
-                        solution for managing <br className="hidden md:block" />
-                        your job search <br className="hidden md:block" />
-                        and career goals.
+                        solution for modern <br className="hidden md:block" />
+                        job search <br className="hidden md:block" />
                     </motion.h2>
 
                     <motion.div
@@ -50,7 +49,7 @@ export function ValueProp() {
                     >
                         <div className="h-[3px] w-12 md:w-32 bg-gradient-to-r from-transparent to-[#0463c7] mt-2.5 md:mt-3.5" />
                         <p className="text-black text-lg md:text-xl font-normal leading-tight max-w-xl mx-auto px-4">
-                            Experience the peace of mind that comes with having your career path under control.
+                            Stop juggling spreadsheets and generic advice. Get the tools you need to stand out and get hired.
                         </p>
                         <div className="h-[3px] w-12 md:w-32 bg-gradient-to-l from-transparent to-[#0463c7] mt-2.5 md:mt-3.5" />
                     </motion.div>

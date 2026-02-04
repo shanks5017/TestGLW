@@ -129,14 +129,7 @@ export const Preloader = () => {
                     </div>
 
                     {/* Subtext */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.6 }}
-                        transition={{ delay: contentDelay + 2.0, duration: 0.5 }}
-                        className="absolute bottom-12 text-white/50 font-medium tracking-[0.4em] uppercase text-xs"
-                    >
-                        Loading Experience
-                    </motion.div>
+
                 </motion.div>
             )}
         </AnimatePresence>

@@ -4,6 +4,7 @@ import { Button } from '../ui/Button';
 import { HamburgerButton } from '../ui/HamburgerButton';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 import logo from '../../assets/logo.png'; // Import the logo
 
 const NAVIGATION_ITEMS = [
@@ -12,6 +13,7 @@ const NAVIGATION_ITEMS = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
@@ -197,38 +199,69 @@ export function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="absolute top-24 left-4 right-4 bg-white/90 backdrop-blur-2xl border border-white/40 rounded-3xl shadow-2xl overflow-hidden p-6 z-50 ring-1 ring-black/5"
+            className="fixed inset-2 bg-white/60 backdrop-blur-3xl rounded-[24px] overflow-hidden z-50 flex flex-col pointer-events-auto border border-white/40 shadow-2xl"
           >
-            <div className="flex flex-col space-y-2">
-              {NAVIGATION_ITEMS.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "px-4 py-3 text-base font-medium rounded-xl transition-all duration-200",
-                    location.pathname === item.href
-                      ? "text-primary bg-primary-light"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-gray-50"
-                  )}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-6 mt-4 border-t border-gray-100 flex flex-col gap-4">
-                <Link to="/login" onClick={() => setIsMenuOpen(false)} className="w-full text-center py-2 font-semibold text-slate-600">
-                  Sign In
-                </Link>
-                <Link to="/waitlist" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full rounded-full h-12 text-lg shadow-xl shadow-primary/20">
-                    Get Started Free
-                  </Button>
-                </Link>
+            {/* Background Grid - Centered & Subtle on Glass */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-[0.03] flex items-center justify-center"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
+              }}
+            >
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#0463c7_1px,transparent_1px),linear-gradient(to_bottom,#0463c7_1px,transparent_1px)] bg-[size:4rem_4rem] bg-center" />
+            </div>
+
+            {/* Header within Menu - TOP LEFT LOGO with minimal padding */}
+            <div className="relative z-10 flex items-center justify-between px-4 py-4">
+              <div className="flex items-center gap-2">
+                <img
+                  src={logo}
+                  alt="GetLanded Logo"
+                  className="w-9 h-9 object-contain"
+                />
+                <span className="text-lg font-heading font-black text-slate-900 tracking-tighter">GetLanded</span>
               </div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-9 h-9 rounded-full bg-slate-100/50 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
+              >
+                <ChevronRight size={20} className="rotate-180" />
+              </button>
+            </div>
+
+            {/* Navigation Links with Dividers */}
+            <div className="flex-1 flex flex-col items-center justify-start mt-2 space-y-5 relative z-10 px-4">
+              {NAVIGATION_ITEMS.map((item, index) => (
+                <div key={item.name} className="flex flex-col w-full items-center">
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-2xl font-bold text-[#0463c7] hover:text-[#0352a8] transition-colors tracking-tight text-center w-full"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  {/* Divider - thin line between items */}
+                  {index < NAVIGATION_ITEMS.length - 1 && (
+                    <div className="w-12 h-[1px] bg-slate-200/50 mt-5"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Footer Actions */}
+            <div className="p-6 relative z-10 space-y-6">
+              {/* CTA Button */}
+              <Link to="/waitlist" onClick={() => setIsMenuOpen(false)}>
+                <Button className="w-full bg-[#0463c7] text-white hover:bg-[#0352a8] rounded-full h-12 text-lg font-bold shadow-lg shadow-blue-900/10">
+                  Get Started Now
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
