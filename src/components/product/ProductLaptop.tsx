@@ -4,10 +4,10 @@ import { Search, FileText, Briefcase, Wifi, Battery } from 'lucide-react';
 
 export const ProductLaptop = () => {
     // Custom Animation Config for Product Page - Faster and different feel
-    const START_DELAY = 0.5; // Starts almost immediately
-    const ROTATION_DURATION = 1.5;
-    const OPEN_DELAY = START_DELAY + 0.5;
-    const OPEN_DURATION = 1.2;
+    const START_DELAY = 0.2; // Starts immediately
+    const ROTATION_DURATION = 1.0;
+    const OPEN_DELAY = START_DELAY + 0.3;
+    const OPEN_DURATION = 1.0;
 
     return (
         <div className="relative w-[640px] perspective-[2000px] group flex flex-col items-center justify-center scale-[0.85] lg:scale-100 origin-center">
@@ -19,7 +19,7 @@ export const ProductLaptop = () => {
                 transition={{
                     duration: ROTATION_DURATION,
                     ease: [0.22, 1, 0.36, 1], // Premium easing
-                    delay: 0.2
+                    delay: START_DELAY
                 }}
                 className="relative transition-transform duration-500 transform-style-3d flex flex-col items-center"
             >

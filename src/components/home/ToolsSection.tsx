@@ -263,32 +263,32 @@ export function ToolsSection() {
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[240px]">
                     {/* Row 1 */}
-                    <Card title="Linkedin Profile Optimizer" className="md:col-span-6" delay={0.1}>
+                    <Card title="Linkedin Profile Optimizer" className="md:col-span-6" delay={0.0}>
                         <LinkedInVisual />
                     </Card>
-                    <Card title="Chrome Extension" className="md:col-span-3" delay={0.2}>
+                    <Card title="Chrome Extension" className="md:col-span-3" delay={0.05}>
                         <ExtensionVisual />
                     </Card>
-                    <Card title="Interview Preparation" className="md:col-span-3" delay={0.3}>
+                    <Card title="Interview Preparation" className="md:col-span-3" delay={0.1}>
                         <InterviewVisual />
                     </Card>
 
                     {/* Row 2 */}
-                    <Card title="AI Cover Letter Generator" className="md:col-span-5" delay={0.4}>
+                    <Card title="AI Cover Letter Generator" className="md:col-span-5" delay={0.15}>
                         <CoverLetterVisual />
                     </Card>
-                    <Card title="Networking Tracker" className="md:col-span-7" delay={0.5}>
+                    <Card title="Networking Tracker" className="md:col-span-7" delay={0.2}>
                         <NetworkingVisual />
                     </Card>
 
                     {/* Row 3 */}
-                    <Card title="Elevator Pitch" className="md:col-span-4" delay={0.6}>
+                    <Card title="Elevator Pitch" className="md:col-span-4" delay={0.25}>
                         <ElevatorVisual />
                     </Card>
-                    <Card title="Skill gap analyzer" className="md:col-span-4" delay={0.7}>
+                    <Card title="Skill gap analyzer" className="md:col-span-4" delay={0.3}>
                         <SkillGapVisual />
                     </Card>
-                    <Card title="Resume Templates" className="md:col-span-4" delay={0.8}>
+                    <Card title="Resume Templates" className="md:col-span-4" delay={0.35}>
                         <TemplateVisual />
                     </Card>
                 </div>

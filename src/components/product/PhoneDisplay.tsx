@@ -178,7 +178,7 @@ export function PhoneDisplay() {
                     ease: [0.16, 1, 0.3, 1],
                     delay: 0.2
                 }}
-                className="relative"
+                className="relative will-change-transform"
             >
                 {/* Ambient Glow Behind Phone */}
                 <motion.div

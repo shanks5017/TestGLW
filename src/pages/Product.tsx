@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Suspense, lazy, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
@@ -13,7 +13,8 @@ import {
   Search,
   Layout,
 } from 'lucide-react';
-import { PhoneDisplay } from '../components/product/PhoneDisplay';
+
+const PhoneDisplay = lazy(() => import('../components/product/PhoneDisplay').then(module => ({ default: module.PhoneDisplay })));
 import { ProductLaptop } from '../components/product/ProductLaptop';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
@@ -183,8 +184,8 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px]"
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px] will-change-transform"
             >
               <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
                 The AI Co-Pilot for your{' '}
@@ -265,7 +266,7 @@ export function Product() {
                       <img
                         src={logo.src}
                         alt={`${logo.name} logo`}
-                        className="h-9 w-auto hover:opacity-80 transition-opacity brightness-0 invert"
+                        loading="lazy"
                       />
                     </div>
                   ))}
@@ -300,7 +301,7 @@ export function Product() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
                 className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-[50px] bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
@@ -323,7 +324,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full will-change-transform"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <Search className="w-5 h-5 text-slate-600" />
@@ -348,8 +349,8 @@ export function Product() {
               initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative min-w-0 w-full"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative min-w-0 w-full will-change-transform"
             >
               <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6 max-w-full">
                 {/* Floating Company Logos */}
@@ -376,7 +377,7 @@ export function Product() {
                         logo.pos
                       )}
                     >
-                      <img src={logo.src} alt="Company logo" className="w-full h-full object-contain" />
+                      <img src={logo.src} alt="Company logo" className="w-full h-full object-contain" loading="lazy" />
                     </motion.div>
                   ))}
                 </div>
@@ -529,8 +530,8 @@ export function Product() {
               initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full will-change-transform"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <i className="fa-solid fa-meteor w-5 h-5 text-[#0463c7] flex items-center justify-center"></i>
@@ -583,7 +584,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full will-change-transform"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <i className="fa-solid fa-magnifying-glass-chart w-5 h-5 text-[#0463c7] flex items-center justify-center"></i>
@@ -610,7 +611,7 @@ export function Product() {
               initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="relative min-w-0 w-full"
             >
               {/* Tab Header */}
@@ -861,7 +862,9 @@ export function Product() {
               className="lg:col-span-5 flex justify-center items-center relative order-2 lg:order-1"
             >
               <div className="w-full max-w-[320px] md:max-w-[380px] scale-[0.65] sm:scale-[0.75] origin-center transform hover:scale-[0.7] sm:hover:scale-[0.8] transition-transform duration-500">
-                <PhoneDisplay />
+                <Suspense fallback={<div className="h-[600px] w-full flex items-center justify-center"><div className="w-8 h-8 border-2 border-[#0463c7] border-t-transparent rounded-full animate-spin"></div></div>}>
+                  <PhoneDisplay />
+                </Suspense>
               </div>
 
               {/* Decorative blob behind phone */}

@@ -4,17 +4,33 @@ import { motion } from 'framer-motion';
 import { Search, Wifi, Battery } from 'lucide-react';
 import dashboardNew from '../../assets/dashboard-new.png';
 import sidebarNew from '../../assets/sidebar-new.png';
+import { useLoading } from '../../context/LoadingContext';
 
 export const LaptopDisplay = () => {
     // Animation Config
-    // Preloader takes ~4.5s + 0.8s exit. We start after that.
-    const START_DELAY = 5.5;
-    const CINEMATIC_DURATION = 1.5; // Longer for the full effect
+    // Controlled by global LoadingContext
+    const { isLoading } = useLoading();
 
-    // OPEN_DELAY: Start opening the lid during the "Slow Showcase" phase
-    // 25% of 3.5s is ~0.9s. So consistent opening starts around there.
-    const OPEN_DELAY = START_DELAY + 0.5;
-    const OPEN_DURATION = 2.0;
+    // Internal state to trigger animation once loading is done + small buffer
+    const [startAnimation, setStartAnimation] = useState(false);
+
+    useEffect(() => {
+        if (!isLoading) {
+            // Tiny delay to allow Preloader to exit beautifully before we start (0.6s exit -> wait 0.4s or 0.5s)
+            const timeout = setTimeout(() => {
+                setStartAnimation(true);
+            }, 500);
+            return () => clearTimeout(timeout);
+        } else {
+            setStartAnimation(false);
+        }
+    }, [isLoading]);
+
+    const CINEMATIC_DURATION = 1.2; // Slightly faster entrance
+
+    // OPEN_DELAY: Start opening the lid shortly after the laptop appears
+    const OPEN_DELAY = 0.5; // Relative to startAnimation
+    const OPEN_DURATION = 1.5; // Snappier opening
 
     // Mobile Detection
     const [isMobile, setIsMobile] = useState(false);
@@ -32,8 +48,8 @@ export const LaptopDisplay = () => {
     }, []);
 
     const desktopAnimation = {
-        rotateY: [360, 180, 150, 0],   // 1. Fast (180deg) -> 2. Slow (30deg) -> 3. Fast (150deg)
-        scale: [0.5, 0.9, 1.05, 1],    // Zoom from closer start
+        rotateY: [360, 180, 150, 0],   // Smoother curve
+        scale: [0.6, 0.9, 1.05, 1],    // Zoom from closer start
         opacity: [0, 1, 1, 1],
         z: [-500, 0, 50, 0]
     };
@@ -52,12 +68,12 @@ export const LaptopDisplay = () => {
             {/* Added flex flex-col items-center to fix screen/base misalignment */}
             <motion.div
                 initial={{ rotateY: isMobile ? 0 : 360, scale: 0.5, opacity: 0, z: -500 }} // Scale 0.5 = CLOSER start
-                animate={isMobile ? mobileAnimation : desktopAnimation}
+                animate={startAnimation ? (isMobile ? mobileAnimation : desktopAnimation) : { rotateY: isMobile ? 0 : 360, scale: 0.5, opacity: 0, z: -500 }}
                 transition={{
                     duration: CINEMATIC_DURATION,
-                    times: isMobile ? [0, 1] : [0, 0.3, 0.75, 1],      // Simplified timing for mobile
+                    times: isMobile ? [0, 1] : [0, 0.4, 0.8, 1],      // Improved timing curve
                     ease: "easeInOut",
-                    delay: START_DELAY
+                    delay: 0 // Immediate start when ready
                 }}
                 className="relative transition-transform duration-500 transform-style-3d group-hover:rotate-x-2 flex flex-col items-center will-change-transform translate-z-0"
                 style={{ backfaceVisibility: 'hidden' }}
@@ -66,11 +82,11 @@ export const LaptopDisplay = () => {
                 {/* --- LID (SCREEN) --- */}
                 <motion.div
                     initial={{ rotateX: -90 }}
-                    animate={{ rotateX: 0 }}
+                    animate={{ rotateX: startAnimation ? 0 : -90 }}
                     transition={{
                         duration: OPEN_DURATION,
                         ease: [0.22, 1, 0.36, 1],
-                        delay: OPEN_DELAY
+                        delay: OPEN_DELAY + (startAnimation ? 0.3 : 0) // Relative delay
                     }}
                     style={{ transformStyle: 'preserve-3d', transformOrigin: 'bottom' }}
                     className="relative w-[600px] aspect-[16/10] bg-[#0d0d0d] rounded-t-[1.2rem] rounded-b-[0.5rem] p-[3px] shadow-2xl z-20"
@@ -104,7 +120,7 @@ export const LaptopDisplay = () => {
                         <motion.div
                             initial={{ filter: "brightness(0)" }}
                             animate={{ filter: "brightness(1)" }}
-                            transition={{ duration: 0.4, delay: OPEN_DELAY + 0.4 }}
+                            transition={{ duration: 0.4, delay: OPEN_DELAY + 0.4 + (startAnimation ? 0.2 : 0) }}
                             className="w-full h-full bg-slate-50 relative overflow-hidden flex flex-col font-sans"
                         >
 
@@ -133,6 +149,7 @@ export const LaptopDisplay = () => {
                                             src={sidebarNew}
                                             alt="Sidebar Navigation"
                                             className="w-full h-full object-cover object-left-top"
+                                            loading="lazy"
                                         />
                                     </div>
                                 </div>
@@ -154,6 +171,7 @@ export const LaptopDisplay = () => {
                                             src={dashboardNew}
                                             alt="Dashboard Stats"
                                             className="w-full h-full object-contain object-top"
+                                            loading="lazy"
                                         />
                                     </div>
 
@@ -170,8 +188,8 @@ export const LaptopDisplay = () => {
                 {/* --- BASE (KEYBOARD) --- */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: OPEN_DELAY + 0.2, duration: 1 }}
+                    animate={{ opacity: startAnimation ? 1 : 0 }}
+                    transition={{ delay: OPEN_DELAY + 0.2 + (startAnimation ? 0.3 : 0), duration: 0.8 }}
                     className="relative w-[640px] h-[16px] bg-[#c8c8c8] rounded-b-[1.5rem] rounded-t-[0.2rem] shadow-2xl mt-[-2px] z-10 flex justify-center items-start border-t border-white/50"
                     style={{
                         background: 'linear-gradient(to bottom, #d8d8d8 0%, #b0b0b0 100%)',
@@ -188,8 +206,8 @@ export const LaptopDisplay = () => {
                 {/* Drop Shadow */}
                 <motion.div
                     initial={{ width: "80%", opacity: 0 }}
-                    animate={{ width: "100%", opacity: 0.5 }}
-                    transition={{ delay: OPEN_DELAY + 0.2, duration: 1.5 }}
+                    animate={{ width: startAnimation ? "100%" : "80%", opacity: startAnimation ? 0.5 : 0 }}
+                    transition={{ delay: OPEN_DELAY + 0.2 + (startAnimation ? 0.4 : 0), duration: 1.5 }}
                     className="absolute -bottom-16 w-full h-12 bg-black/40 blur-3xl rounded-[100%]"
                 />
 

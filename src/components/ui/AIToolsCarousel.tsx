@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin, Chrome, MessageSquare, Users, User, FileText, Zap } from 'lucide-react';
 import { Card } from './Card';
 
-import { ResumeOptimizerMockup } from './ResumeOptimizerMockup';
+
 
 interface AITool {
   id: string;
@@ -155,8 +155,11 @@ const aiTools: AITool[] = [
     icon: FileText,
     bgColor: 'bg-gradient-to-br from-yellow-100 to-yellow-200',
     mockupContent: (
-      <div className="h-48 overflow-hidden">
-        <ResumeOptimizerMockup />
+      <div className="h-48 overflow-hidden bg-white p-4">
+        {/* Placeholder for removed mockup */}
+        <div className="w-full h-full bg-yellow-50 border border-yellow-100 rounded flex items-center justify-center text-yellow-700 text-xs">
+          Resume Template Preview
+        </div>
       </div>
     )
   }

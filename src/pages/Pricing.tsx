@@ -17,6 +17,38 @@ interface Plan {
   cta: string;
 }
 
+// Comparison Data
+type FeatureItem = {
+  name: string;
+  mobileName: string;
+  free: boolean | string;
+  pro: boolean | string;
+  plus: boolean | string;
+};
+
+const coreFeatures: FeatureItem[] = [
+  { name: "Private Job Dashboard", mobileName: "Job Dashboard", free: true, pro: true, plus: true },
+  { name: "Chrome Extension", mobileName: "Extension", free: true, pro: true, plus: true },
+  { name: "Visa Sponsorship Data", mobileName: "Visa Data", free: true, pro: true, plus: true },
+  { name: "Basic Resume Scoring", mobileName: "Resume Score", free: true, pro: true, plus: true },
+  { name: "Application Tracking", mobileName: "App Tracking", free: "25 Active", pro: "Unlimited", plus: "Unlimited" },
+];
+
+const advancedFeatures: FeatureItem[] = [
+  { name: "AI Resume Optimization", mobileName: "AI Resume", free: false, pro: true, plus: true },
+  { name: "Tailored Cover Letters", mobileName: "Cover Letters", free: false, pro: "Unlimited", plus: "Unlimited" },
+  { name: "LinkedIn Profile Audit", mobileName: "LinkedIn Audit", free: false, pro: false, plus: true },
+  { name: "Keyword Gap Analysis", mobileName: "Gap Analysis", free: false, pro: true, plus: true },
+  { name: "Auto-Fill Applications", mobileName: "Auto-Fill", free: false, pro: true, plus: true },
+];
+
+const supportFeatures: FeatureItem[] = [
+  { name: "Customer Support", mobileName: "Support", free: "Standard", pro: "Priority", plus: "Priority" },
+  { name: "1-on-1 Career Strategy", mobileName: "Career Strategy", free: false, pro: false, plus: true },
+  { name: "Mock Interview (Video)", mobileName: "Mock Interview", free: false, pro: false, plus: true },
+  { name: "Salary Negotiation", mobileName: "Negotiation", free: false, pro: false, plus: true },
+];
+
 // Data
 const plans: Plan[] = [
   {
@@ -408,126 +440,179 @@ export function Pricing() {
           </div>
 
           <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
-            {/* Table Header */}
-            <div className="grid grid-cols-4 bg-[#E8F3FC] p-6 md:p-8 text-center items-center">
-              <div className="text-left font-bold text-slate-900">Features</div>
-              <div className="font-bold text-[#0463c7] text-lg">Free Beta</div>
-              <div className="font-bold text-[#0463c7] text-lg">Pro</div>
-              <div className="font-bold text-[#0463c7] text-lg">Pro Plus</div>
-            </div>
 
-            {/* Core Features */}
-            <div className="p-6 md:p-8">
-              <h3 className="font-bold text-slate-900 mb-6 text-lg">Core Features</h3>
-              <div className="space-y-6">
-                {[
-                  { name: "Private Job Dashboard", free: true, pro: true, plus: true },
-                  { name: "Chrome Extension", free: true, pro: true, plus: true },
-                  { name: "Visa Sponsorship Data", free: true, pro: true, plus: true },
-                  { name: "Basic Resume Scoring", free: true, pro: true, plus: true },
-                  { name: "Application Tracking", free: "25 Active", pro: "Unlimited", plus: "Unlimited" },
-                ].map((feature, i) => (
-                  <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-50 pb-4 last:border-0 last:pb-0 hover:bg-slate-50/50 rounded-lg transition-colors">
-                    <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
-                    <div className="flex justify-center">
-                      {feature.free === true ? <CheckCircle2 size={20} className="text-blue-400" /> : <span className="text-slate-500 text-sm">{feature.free}</span>}
+            {/* Desktop View (lg+) */}
+            <div className="hidden lg:block">
+              {/* Table Header */}
+              <div className="grid grid-cols-4 bg-[#E8F3FC] p-8 text-center items-center">
+                <div className="text-left font-bold text-slate-900">Features</div>
+                <div className="font-bold text-[#0463c7] text-lg">Free Beta</div>
+                <div className="font-bold text-[#0463c7] text-lg">Pro</div>
+                <div className="font-bold text-[#0463c7] text-lg">Pro Plus</div>
+              </div>
+
+              {/* Core Features */}
+              <div className="p-8">
+                <h3 className="font-bold text-slate-900 mb-6 text-lg">Core Features</h3>
+                <div className="space-y-6">
+                  {coreFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-50 pb-4 last:border-0 last:pb-0 hover:bg-slate-50/50 rounded-lg transition-colors">
+                      <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
+                      <div className="flex justify-center">
+                        {feature.free === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-500 text-sm">{feature.free}</span>}
+                      </div>
+                      <div className="flex justify-center">
+                        {feature.pro === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.pro}</span>}
+                      </div>
+                      <div className="flex justify-center">
+                        {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.plus}</span>}
+                      </div>
                     </div>
-                    <div className="flex justify-center">
-                      {feature.pro === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.pro}</span>}
+                  ))}
+                </div>
+              </div>
+
+              {/* Advanced Features */}
+              <div className="p-8 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 mb-6 text-lg">Advanced AI Tools</h3>
+                <div className="space-y-6">
+                  {advancedFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                      <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
+                      <div className="flex justify-center">
+                        {feature.free ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <div className="w-5 h-5 rounded-full bg-slate-200" />}
+                      </div>
+                      <div className="flex justify-center">
+                        {feature.pro === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : feature.pro ? <span className="text-slate-900 font-medium text-sm">{feature.pro}</span> : <div className="w-5 h-5 rounded-full bg-slate-200" />}
+                      </div>
+                      <div className="flex justify-center">
+                        {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.plus}</span>}
+                      </div>
                     </div>
-                    <div className="flex justify-center">
-                      {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.plus}</span>}
+                  ))}
+                </div>
+              </div>
+
+              {/* Support */}
+              <div className="p-8">
+                <h3 className="font-bold text-slate-900 mb-6 text-lg">Support & Coaching</h3>
+                <div className="space-y-6">
+                  {supportFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-50 pb-4 last:border-0 last:pb-0">
+                      <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
+                      <div className="flex justify-center text-sm text-slate-500">
+                        {feature.free ? feature.free : <div className="w-5 h-5 rounded-full bg-slate-200" />}
+                      </div>
+                      <div className="flex justify-center text-sm font-medium text-slate-900">
+                        {feature.pro ? feature.pro : <div className="w-5 h-5 rounded-full bg-slate-200" />}
+                      </div>
+                      <div className="flex justify-center text-sm font-medium text-slate-900">
+                        {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : feature.plus}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Advanced Features - Blue Tint Background */}
-            <div className="p-6 md:p-8 bg-slate-50/50">
-              <h3 className="font-bold text-slate-900 mb-6 text-lg">Advanced AI Tools</h3>
-              <div className="space-y-6">
-                {[
-                  { name: "AI Resume Optimization", free: false, pro: true, plus: true },
-                  { name: "Tailored Cover Letters", free: false, pro: "Unlimited", plus: "Unlimited" },
-                  { name: "LinkedIn Profile Audit", free: false, pro: false, plus: true },
-                  { name: "Keyword Gap Analysis", free: false, pro: true, plus: true },
-                  { name: "Auto-Fill Applications", free: false, pro: true, plus: true },
-                ].map((feature, i) => (
-                  <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                    <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
-                    <div className="flex justify-center">
-                      {feature.free ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <div className="w-5 h-5 rounded-full bg-slate-200" />}
-                    </div>
-                    <div className="flex justify-center">
-                      {feature.pro === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : feature.pro ? <span className="text-slate-900 font-medium text-sm">{feature.pro}</span> : <div className="w-5 h-5 rounded-full bg-slate-200" />}
-                    </div>
-                    <div className="flex justify-center">
-                      {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : <span className="text-slate-900 font-medium text-sm">{feature.plus}</span>}
-                    </div>
-                  </div>
-                ))}
+            {/* Mobile/Tablet View (< lg) */}
+            <div className="block lg:hidden">
+              {/* Sticky Header */}
+              <div className="grid grid-cols-3 text-center bg-[#E8F3FC]/90 backdrop-blur-sm sticky top-0 z-20 py-4 px-4 sm:px-6 border-b border-blue-100">
+                <div className="font-bold text-[#0463c7] text-sm">Free</div>
+                <div className="font-bold text-[#0463c7] text-sm">Pro</div>
+                <div className="font-bold text-[#0463c7] text-sm">Plus</div>
               </div>
+
+              {/* Core Features */}
+              <div className="p-4 sm:p-6">
+                <h3 className="font-bold text-slate-900 mb-6 text-center text-lg">Core Features</h3>
+                <div className="space-y-8">
+                  {coreFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-3 text-center items-start group">
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.free === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <span className="text-slate-500 text-xs font-medium">{feature.free}</span>}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1 border-x border-slate-100">
+                        {feature.pro === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <span className="text-slate-900 text-xs font-bold">{feature.pro}</span>}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.plus === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <span className="text-slate-900 text-xs font-bold">{feature.plus}</span>}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Advanced Features */}
+              <div className="p-4 sm:p-6 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 mb-6 text-center text-lg">Advanced AI Tools</h3>
+                <div className="space-y-8">
+                  {advancedFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-3 text-center items-start group">
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.free ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mt-2" />}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1 border-x border-slate-100">
+                        {feature.pro === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : feature.pro ? <span className="text-slate-900 text-xs font-bold">{feature.pro}</span> : <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mt-2" />}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.plus === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <span className="text-slate-900 text-xs font-bold">{feature.plus}</span>}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Support */}
+              <div className="p-4 sm:p-6">
+                <h3 className="font-bold text-slate-900 mb-6 text-center text-lg">Support</h3>
+                <div className="space-y-8">
+                  {supportFeatures.map((feature, i) => (
+                    <div key={i} className="grid grid-cols-3 text-center items-start group">
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.free ? <span className="text-slate-900 text-xs font-bold">{feature.free}</span> : <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mt-2" />}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1 border-x border-slate-100">
+                        {feature.pro ? <span className="text-slate-900 text-xs font-bold">{feature.pro}</span> : <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mt-2" />}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 px-1">
+                        {feature.plus === true ? <CheckCircle2 size={18} className="text-[#0463c7]" /> : <span className="text-slate-900 text-xs font-bold">{feature.plus}</span>}
+                        <span className="text-[10px] text-slate-900 font-medium leading-tight group-hover:text-blue-600 transition-colors max-w-[80%] mx-auto">{feature.mobileName}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
-            {/* Support */}
-            <div className="p-6 md:p-8">
-              <h3 className="font-bold text-slate-900 mb-6 text-lg">Support & Coaching</h3>
+            {/* Pricing Footer (Shared with responsive grid adjustments) */}
+            <div className="p-4 sm:p-6 md:p-8 bg-[#F8FAFC]">
+              <h3 className="font-bold text-slate-900 mb-6 text-lg text-center md:text-left">Pricing</h3>
               <div className="space-y-6">
-                {[
-                  { name: "Customer Support", free: "Standard", pro: "Priority", plus: "Priority" },
-                  { name: "1-on-1 Career Strategy", free: false, pro: false, plus: true },
-                  { name: "Mock Interview (Video)", free: false, pro: false, plus: true },
-                  { name: "Salary Negotiation", free: false, pro: false, plus: true },
-                ].map((feature, i) => (
-                  <div key={i} className="grid grid-cols-4 text-center items-center border-b border-slate-50 pb-4 last:border-0 last:pb-0">
-                    <div className="text-left text-slate-600 font-medium pl-4">{feature.name}</div>
-                    <div className="flex justify-center text-sm text-slate-500">
-                      {feature.free ? feature.free : <div className="w-5 h-5 rounded-full bg-slate-200" />}
-                    </div>
-                    <div className="flex justify-center text-sm font-medium text-slate-900">
-                      {feature.pro ? feature.pro : <div className="w-5 h-5 rounded-full bg-slate-200" />}
-                    </div>
-                    <div className="flex justify-center text-sm font-medium text-slate-900">
-                      {feature.plus === true ? <CheckCircle2 size={20} className="text-[#0463c7]" /> : feature.plus}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Pricing Footer */}
-            <div className="p-6 md:p-8 bg-[#F8FAFC]">
-              <h3 className="font-bold text-slate-900 mb-6 text-lg">Pricing</h3>
-              <div className="space-y-6">
-                <div className="grid grid-cols-4 text-center items-center border-b border-slate-200 pb-6">
-                  <div className="text-left text-slate-600 font-medium pl-4">Monthly</div>
+                <div className="grid grid-cols-3 lg:grid-cols-4 text-center items-center border-b border-slate-200 pb-6">
+                  <div className="text-left text-slate-600 font-medium pl-4 hidden lg:block">Monthly</div>
                   <div className="text-slate-900 font-bold">Free</div>
-                  <div className="text-slate-900 font-bold">$12</div>
+                  <div className="text-slate-900 font-bold border-x border-slate-200 lg:border-x-0">$12</div>
                   <div className="text-slate-900 font-bold">$29</div>
                 </div>
-                <div className="grid grid-cols-4 text-center items-center mb-8">
-                  <div className="text-left text-slate-600 font-medium pl-4">Annually <span className="text-[#0463c7] text-xs font-bold bg-blue-50 px-2 py-0.5 rounded-full ml-2">Save 20%</span></div>
+                <div className="grid grid-cols-3 lg:grid-cols-4 text-center items-center mb-8">
+                  <div className="text-left text-slate-600 font-medium pl-4 hidden lg:block">Annually <span className="text-[#0463c7] text-xs font-bold bg-blue-50 px-2 py-0.5 rounded-full ml-2">Save 20%</span></div>
                   <div className="text-slate-900 font-bold">Free</div>
-                  <div className="text-slate-900 font-bold">$10<span className="text-xs font-normal text-slate-400">/mo</span></div>
-                  <div className="text-slate-900 font-bold">$24<span className="text-xs font-normal text-slate-400">/mo</span></div>
-                </div>
-
-                <div className="grid grid-cols-4 gap-4">
-                  <div className="col-start-2">
-                    <button className="w-full py-3 rounded-full border border-[#0463c7] text-[#0463c7] font-bold text-sm hover:bg-blue-50 transition-colors">
-                      Get Started
-                    </button>
+                  <div className="text-slate-900 font-bold border-x border-slate-200 lg:border-x-0">
+                    <span className="relative inline-block">$10<span className="absolute left-full top-0.5 text-xs font-normal text-slate-400">/mo</span></span>
                   </div>
-                  <div className="col-start-3">
-                    <button className="w-full py-3 rounded-full bg-[#0463c7] text-white font-bold text-sm shadow-lg shadow-blue-500/30 hover:bg-[#0352a8] transition-all transform hover:scale-105">
-                      Get Started
-                    </button>
-                  </div>
-                  <div className="col-start-4">
-                    <button className="w-full py-3 rounded-full border border-[#0463c7] text-[#0463c7] font-bold text-sm hover:bg-blue-50 transition-colors">
-                      Get Started
-                    </button>
+                  <div className="text-slate-900 font-bold">
+                    <span className="relative inline-block">$24<span className="absolute left-full top-0.5 text-xs font-normal text-slate-400">/mo</span></span>
                   </div>
                 </div>
               </div>
