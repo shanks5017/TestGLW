@@ -1,12 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLoading } from '../../context/LoadingContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 export const Preloader = () => {
     const location = useLocation();
-    const [isLoading, setIsLoading] = useState(location.pathname === '/');
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const { isLoading, setIsLoading, isInitialLoad, setIsInitialLoad } = useLoading();
 
     // Tracks if the component has just mounted (Page Load/Refresh)
     const isPageLoad = useRef(true);
@@ -25,10 +25,10 @@ export const Preloader = () => {
                 setIsInitialLoad(false);
             }
 
-            // Timer to dismiss preloader - increased to accommodate slower animations
+            // Timer to dismiss preloader - Reduced to 2.5s for faster feel
             const timer = setTimeout(() => {
                 setIsLoading(false);
-            }, 4500);
+            }, 2500);
 
             return () => clearTimeout(timer);
         } else {
@@ -36,7 +36,7 @@ export const Preloader = () => {
             setIsLoading(false);
             isPageLoad.current = false;
         }
-    }, [location.pathname]);
+    }, [location.pathname, setIsLoading, setIsInitialLoad]);
 
     // Conditional Variants based on load type
     const pageVariants = {

@@ -17,6 +17,7 @@ import { Contact } from './pages/Contact';
 // ScrollToTop component to reset scroll on route change
 import { Preloader } from './components/ui/Preloader';
 import { ScrollProgress } from './components/ui/ScrollProgress';
+import { LoadingProvider } from './context/LoadingContext';
 
 
 function ScrollToTopWrapper() {
@@ -41,7 +42,7 @@ function ScrollToTopWrapper() {
 function App() {
   return (
     <Router>
-      <>
+      <LoadingProvider>
         <ScrollProgress />
         <Preloader />
         <ScrollToTopWrapper />
@@ -60,7 +61,7 @@ function App() {
           {/* Dashboard Route - Standalone */}
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-      </>
+      </LoadingProvider>
     </Router>
   );
 }
