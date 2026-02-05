@@ -177,10 +177,10 @@ export const FloatingNavbar = () => {
                         </div>
 
                         {/* Menu Content Container */}
-                        <div className="flex flex-col h-full relative z-10 px-6 pb-6 items-center justify-center text-center">
+                        <div className="flex flex-col h-full relative z-10 px-6 pb-6 pt-4 items-center justify-start text-center">
 
                             {/* Navigation Links - Centered due to parent justify-center */}
-                            <nav className="flex flex-col gap-6 items-center justify-center w-full flex-1">
+                            <nav className="flex flex-col gap-6 items-center w-full mb-8">
                                 {navLinks.map((link, i) => {
                                     return (
                                         <motion.div
