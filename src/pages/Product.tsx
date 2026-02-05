@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { PhoneDisplay } from '../components/product/PhoneDisplay';
 import { ProductLaptop } from '../components/product/ProductLaptop';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 import { FAQAccordion } from '../components/ui/FAQAccordion';
 import { Section, FadeIn } from '../components/ui/Section';
@@ -146,6 +147,8 @@ export function Product() {
     target: ctaRef,
     offset: ["start end", "end start"]
   });
+
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   const ctaWidth = useTransform(scrollYProgress, [0, 0.5, 1], ["75%", "95%", "75%"]);
   const ctaOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
@@ -294,21 +297,22 @@ export function Product() {
         </div>
       </section >
       {/* Resume Builder Features Section - Simplify Style */}
-      < section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10" >
+      <section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
             >
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <Search className="w-5 h-5 text-slate-600" />
                 <span className="text-slate-600 font-medium">Job Matches</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
                 Get matched to relevant jobs, personalized to you
               </h2>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed">
@@ -316,7 +320,7 @@ export function Product() {
               </p>
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105 mx-auto lg:mx-0"
               >
                 Get Matched Now
               </Link>
@@ -324,13 +328,13 @@ export function Product() {
 
             {/* Right Visual - Job Matches Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative min-w-0 w-full"
             >
-              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6">
+              <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6 max-w-full">
                 {/* Floating Company Logos */}
                 <div className="relative h-24 mb-6">
                   {[
@@ -366,7 +370,7 @@ export function Product() {
                 </div>
 
                 {/* Job Category Cards - Marquee Animation */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden w-full max-w-full">
                   <div className="flex gap-4 animate-marquee">
                     {[
                       { title: "Entry Level Work from Home Jobs", logos: ["https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"] },
@@ -415,19 +419,19 @@ export function Product() {
       </section >
 
       {/* AI Copilot Extension Section - Simplify Style */}
-      < section className="py-20 px-6 bg-white relative z-10" >
+      <section className="py-20 px-6 bg-white relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Browser Mockup */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative min-w-0 w-full"
             >
               {/* Works On Badges */}
-              <div className="flex items-center gap-2 mb-6 flex-wrap">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-6 flex-wrap">
                 <span className="text-sm text-slate-500">Works on</span>
                 {["LinkedIn", "Indeed", "Glassdoor", "Lever", "+5 more"].map((platform, i) => (
                   <span
@@ -505,16 +509,17 @@ export function Product() {
 
             {/* Right Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
             >
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <Zap className="w-5 h-5 text-[#0463c7]" />
                 <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
                 Analyze jobs and track applications instantly
               </h2>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed">
@@ -522,7 +527,7 @@ export function Product() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
                 <Link
                   to="/waitlist"
                   className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
@@ -538,7 +543,7 @@ export function Product() {
               </div>
 
               {/* Stats */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center lg:justify-start gap-2">
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <span key={i} className="text-yellow-400 text-lg">★</span>
@@ -552,21 +557,22 @@ export function Product() {
       </section >
 
       {/* AI Resume Builder Section - Simplify Style (Reversed Layout) */}
-      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+      <section className="py-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
             >
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <FileText className="w-5 h-5 text-[#0463c7]" />
                 <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
                 Craft the perfect tailored resume for every job
               </h2>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed">
@@ -576,7 +582,7 @@ export function Product() {
               {/* CTA Button */}
               <Link
                 to="/waitlist"
-                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#0463c7] text-white px-6 py-3.5 rounded-full font-medium hover:bg-[#0352a8] transition-all duration-300 hover:scale-105 mx-auto lg:mx-0"
               >
                 Analyze Your Resume
               </Link>
@@ -584,14 +590,14 @@ export function Product() {
 
             {/* Right Visual - Resume Analyzer Mockup */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative min-w-0 w-full"
             >
               {/* Tab Header */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
                 <span className="text-sm font-medium text-slate-700">Tailor Resumes</span>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 rounded-full bg-[#0463c7] flex items-center justify-center">
@@ -665,16 +671,16 @@ export function Product() {
       </section >
 
       {/* Job Tracker Section - Simplify Style */}
-      < section className="py-20 px-6 bg-[#fafbfc] relative z-10" >
+      <section className="py-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Job Tracker Mockup */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative min-w-0 w-full"
             >
               {/* Main Browser Window */}
               <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
@@ -795,16 +801,17 @@ export function Product() {
 
             {/* Right Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-full"
             >
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="w-5 h-5 text-[#0463c7]" />
                 <span className="text-[#0463c7] font-medium">Job Tracker</span>
               </div>
-              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6">
+              <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
                 Bookmark jobs and track your search
               </h2>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed">

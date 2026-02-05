@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Code, Database, Globe, Zap, Target, Users } from 'lucide-react';
 
 const floatingElements = [

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface AudioTranscriptProps {
   text?: string;
   className?: string;
 }
 
-export function AudioTranscript({ 
+export function AudioTranscript({
   text = "GetLanded helps students track jobs, optimize resumes, and land their dream roles with AI-powered insights.",
-  className = '' 
+  className = ''
 }: AudioTranscriptProps) {
   const [progress, setProgress] = useState(0);
 
@@ -50,14 +50,14 @@ export function AudioTranscript({
             fill="none"
           />
         </defs>
-        
+
         {/* Dark curved band spanning full width */}
         <path
           d="M 0,90 Q 300,50 600,70 T 1200,60 L 1200,128 L 0,128 Z"
           fill="rgba(15, 23, 42, 0.8)"
           className="drop-shadow-lg"
         />
-        
+
         {/* Text following the curve */}
         <text className="fill-white/70 text-sm font-medium">
           <textPath href="#curve" startOffset={`${-progress * 2}%`}>

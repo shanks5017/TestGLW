@@ -19,7 +19,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-5 flex flex-col items-start text-left relative z-20 lg:mt-32"
+                        className="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left relative z-20 lg:mt-32"
                     >
                         {/* Reduced Size to Fit: 64px max for longer copy */}
                         <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
@@ -31,7 +31,7 @@ export function Hero() {
 
 
                         {/* Button with lead-in line */}
-                        <div className="mb-8 lg:mb-10 flex items-center gap-4">
+                        <div className="mb-8 lg:mb-10 flex items-center justify-center lg:justify-start gap-4">
                             <div className="w-12 lg:w-16 h-px bg-slate-300" />
                             <Link to="/waitlist" className="group block w-fit">
                                 <div className="inline-flex items-center bg-[#EFF6FF] rounded-full p-1.5 pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#0463c7]/10">
@@ -63,7 +63,7 @@ export function Hero() {
             {/* Bottom Banner Area - Infinite Marquee */}
             <div className="max-w-7xl mx-auto px-6 w-full mt-[-60px] md:mt-[-80px] lg:mt-[-120px] relative z-0">
                 <div className="w-full bg-[#0463c7] h-[250px] sm:h-[350px] md:h-[450px] relative overflow-hidden flex flex-col justify-center items-center rounded-[3rem]">
-                    <div className="absolute top-0 left-0 w-full h-full opacity-20 mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
 
                     {/* Decorative Glows */}
                     <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0463c7] rounded-full blur-[120px] opacity-40 mix-blend-overlay" />

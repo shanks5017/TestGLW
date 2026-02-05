@@ -1,12 +1,7 @@
-import React from 'react';
+
 import { ScrollReveal } from './ScrollReveal';
 
-const stats = [
-  { label: 'Students helped', value: '25,000+' },
-  { label: 'Offers landed', value: '500+' },
-  { label: 'Interview success rate', value: '89%' },
-  { label: 'Faster job search', value: '50%' }
-];
+
 
 export function SocialProof() {
   return (

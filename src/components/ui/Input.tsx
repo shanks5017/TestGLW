@@ -1,10 +1,11 @@
+
 import React from 'react';
-import { Video as LucideIcon } from 'lucide-react';
+
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
-  icon?: LucideIcon;
+  icon?: React.ElementType;
   iconPosition?: 'left' | 'right';
 }
 
@@ -28,11 +29,9 @@ export function Input({
           <Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
         )}
         <input
-          className={`block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors ${
-            Icon && iconPosition === 'left' ? 'pl-10' : ''
-          } ${
-            Icon && iconPosition === 'right' ? 'pr-10' : ''
-          } ${error ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''} ${className}`}
+          className={`block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors ${Icon && iconPosition === 'left' ? 'pl-10' : ''
+            } ${Icon && iconPosition === 'right' ? 'pr-10' : ''
+            } ${error ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''} ${className}`}
           {...props}
         />
         {Icon && iconPosition === 'right' && (

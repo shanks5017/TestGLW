@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import {
   Globe,
   Target,
@@ -24,7 +24,7 @@ import { Button } from '../components/ui/Button';
 import { TabletDisplay } from '../components/home/TabletDisplay';
 
 // --- Animation Variants ---
-const fadeUp: any = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -33,7 +33,7 @@ const fadeUp: any = {
   }
 };
 
-const staggerChildren: any = {
+const staggerChildren: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -41,7 +41,7 @@ const staggerChildren: any = {
   }
 };
 
-const scaleIn: any = {
+const scaleIn: Variants = {
   hidden: { scale: 0.9, opacity: 0 },
   visible: {
     scale: 1,
@@ -51,7 +51,17 @@ const scaleIn: any = {
 };
 
 // --- Timeline Phase Data ---
-const timelinePhases = [
+interface Phase {
+  id: number;
+  title: string;
+  description: string;
+  highlightWords: string[];
+  icon?: React.ElementType;
+  faIcon?: string;
+  color: string;
+}
+
+const timelinePhases: Phase[] = [
   {
     id: 1,
     title: "The Spark",
@@ -248,7 +258,7 @@ export function About() {
               initial="hidden"
               animate="visible"
               variants={staggerChildren}
-              className="lg:col-span-5 space-y-8 text-left order-1 lg:order-2"
+              className="lg:col-span-5 space-y-8 text-center lg:text-left order-1 lg:order-2"
             >
               <motion.div variants={fadeUp} className="hidden lg:flex items-center gap-2 mb-8">
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
@@ -256,18 +266,18 @@ export function About() {
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0">
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0 text-center lg:text-left">
                 Empowering every student to <br />
                 <span className="text-slate-400">launch their dream career.</span>
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="text-xl text-slate-500 font-medium leading-relaxed tracking-tight max-w-lg">
+              <motion.p variants={fadeUp} className="text-xl text-slate-500 font-medium leading-relaxed tracking-tight max-w-lg mx-auto lg:mx-0">
                 We’re building the co-pilot for the modern job search—transparent, intelligent, and fair.
               </motion.p>
 
               <motion.div
                 variants={fadeUp}
-                className="flex flex-col sm:flex-row items-start gap-5 pt-2"
+                className="flex flex-col sm:flex-row items-center justify-center lg:items-start lg:justify-start gap-5 pt-2"
               >
                 <Button className="h-14 px-8 rounded-full bg-[#0463c7] text-white hover:bg-[#0352a8] text-lg font-medium shadow-lg shadow-blue-500/20 transition-all">
                   Join the movement
@@ -439,10 +449,10 @@ export function About() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                    className={`relative flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                    className={`relative flex flex-col lg:flex-row items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
                   >
                     {/* Content Card */}
-                    <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right md:pr-20' : 'md:text-left md:pl-20'}`}>
+                    <div className={`flex-1 text-center ${i % 2 === 0 ? 'lg:text-right lg:pr-20' : 'lg:text-left lg:pl-20'}`}>
                       <motion.div
                         className="group bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 inline-block relative overflow-hidden cursor-default"
                         whileHover={{ y: -8, scale: 1.02 }}
@@ -456,15 +466,15 @@ export function About() {
 
                         <div className="relative z-10">
                           <motion.div
-                            className={`w-14 h-14 ${phase.color} rounded-[50px] flex items-center justify-center mb-6 ${i % 2 === 0 ? 'md:ml-auto' : ''} shadow-lg`}
+                            className={`w-14 h-14 ${phase.color} rounded-[50px] flex items-center justify-center mb-6 mx-auto ${i % 2 === 0 ? 'lg:ml-auto lg:mr-0' : 'lg:mx-0'} shadow-lg`}
                             whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                             transition={{ duration: 0.5 }}
                           >
-                            {((phase as any).faIcon) ? (
-                              <i className={`${(phase as any).faIcon} text-xl text-white`}></i>
+                            {phase.faIcon ? (
+                              <i className={`${phase.faIcon} text-xl text-white`}></i>
                             ) : (
                               (() => {
-                                const Icon = (phase as any).icon;
+                                const Icon = phase.icon;
                                 return Icon ? <Icon className="w-7 h-7 text-white" /> : null;
                               })()
                             )}
@@ -476,7 +486,7 @@ export function About() {
                     </div>
 
                     {/* Center Node - Enhanced with pulse animation */}
-                    <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center">
+                    <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center justify-center">
                       <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
@@ -497,7 +507,7 @@ export function About() {
                     </div>
 
                     {/* Spacer */}
-                    <div className="flex-1 hidden md:block" />
+                    <div className="flex-1 hidden lg:block" />
                   </motion.div>
                 );
               })}
@@ -815,7 +825,7 @@ export function About() {
       {/* ========== SECTION 10: FOOTER CTA ========== */}
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-20 text-center">
-          <div className="absolute top-0 left-0 w-full h-full opacity-20" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
           <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[80px] md:blur-[120px] opacity-20" />
 
           <div className="relative z-10 space-y-10">

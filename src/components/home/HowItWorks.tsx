@@ -11,13 +11,13 @@ const StepCard = ({
     className,
     delay
 }: {
-    number: string,
-    title: string,
-    description: string,
-    icon?: any,
-    faIcon?: string,
-    className?: string,
-    delay?: number
+    number: string;
+    title: string;
+    description: string;
+    icon?: React.ElementType;
+    faIcon?: string;
+    className?: string;
+    delay?: number;
 }) => {
     return (
         <motion.div
@@ -64,17 +64,17 @@ export const HowItWorks = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="flex items-center gap-2 mb-6">
+                            <div className="flex items-center justify-center lg:justify-start gap-2 mb-6">
                                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
                                 <span className="text-[#0463c7] font-bold text-xs tracking-widest uppercase">Introduction</span>
                                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
                             </div>
 
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.1]">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.1] text-center lg:text-left">
                                 Simplifying the <br />
                                 <span className="text-[#0463c7]">job hunt.</span>
                             </h2>
-                            <p className="text-lg text-slate-600 max-w-md leading-relaxed">
+                            <p className="text-lg text-slate-600 max-w-md leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
                                 Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box. <br /><br />
                                 GetLanded was created to simplify this experience by offering an AI‑powered copilot that lives in your browser and integrates with popular job boards. Our tool does the heavy lifting—matching your skills to open roles, optimizing your documents and ensuring you know whether a job can actually hire you.
                             </p>
