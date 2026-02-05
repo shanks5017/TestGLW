@@ -20,7 +20,7 @@ export function Contact() {
                         transition={{ duration: 0.6 }}
                         className="space-y-6 md:pt-8"
                     >
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-slate-900 tracking-tight leading-[0.9]">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-slate-900 tracking-tight leading-[0.9] text-center lg:text-left w-full">
                             Contact
                             <span className="block text-[#0463c7]">GetLanded</span>
                         </h1>
