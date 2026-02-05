@@ -17,14 +17,10 @@ import { Contact } from './pages/Contact';
 // ScrollToTop component to reset scroll on route change
 import { Preloader } from './components/ui/Preloader';
 import { ScrollProgress } from './components/ui/ScrollProgress';
-import { SmoothScroll } from './components/ui/SmoothScroll';
 
-
-import { useLenis } from 'lenis/react';
 
 function ScrollToTopWrapper() {
   const { pathname } = useLocation();
-  const lenis = useLenis();
   const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
@@ -36,13 +32,8 @@ function ScrollToTopWrapper() {
     }
 
     // On subsequent navigations, force instant scroll to top
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      // Fallback if lenis isn't ready
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, lenis]);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return null;
 }
@@ -50,7 +41,7 @@ function ScrollToTopWrapper() {
 function App() {
   return (
     <Router>
-      <SmoothScroll>
+      <>
         <ScrollProgress />
         <Preloader />
         <ScrollToTopWrapper />
@@ -69,7 +60,7 @@ function App() {
           {/* Dashboard Route - Standalone */}
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-      </SmoothScroll>
+      </>
     </Router>
   );
 }
