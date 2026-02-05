@@ -46,6 +46,23 @@ const faqs = [
 
 
 
+// Custom Internet Explorer Icon Wrapper
+const InternetExplorerIcon = ({ className }: { className?: string }) => (
+  <i className={cn("fa-brands fa-internet-explorer flex items-center justify-center text-xl", className)} />
+);
+
+const PenToSquareIcon = ({ className }: { className?: string }) => (
+  <i className={cn("fa-regular fa-pen-to-square flex items-center justify-center text-xl", className)} />
+);
+
+const ListCheckIcon = ({ className }: { className?: string }) => (
+  <i className={cn("fa-solid fa-list-check flex items-center justify-center text-xl", className)} />
+);
+
+const SearchEnginIcon = ({ className }: { className?: string }) => (
+  <i className={cn("fa-brands fa-searchengin flex items-center justify-center text-xl", className)} />
+);
+
 // Coming Soon features
 const comingSoonFeatures = [
   {
@@ -54,7 +71,7 @@ const comingSoonFeatures = [
     desc: "Practice with AI-powered feedback and company-specific questions.",
   },
   {
-    icon: BrainCircuit,
+    icon: InternetExplorerIcon,
     title: "AI Interview Prep",
     desc: "Comprehensive guides and resources.",
   },
@@ -64,17 +81,17 @@ const comingSoonFeatures = [
     desc: "Make AI-generated text sound more natural.",
   },
   {
-    icon: Zap,
+    icon: PenToSquareIcon,
     title: "Advanced Resume Rewriting",
     desc: "Deep restructuring of resume content.",
   },
   {
-    icon: Search,
+    icon: SearchEnginIcon,
     title: "Advanced Job Matching",
     desc: "Smarter algorithms for better job recommendations.",
   },
   {
-    icon: CheckCircle2,
+    icon: ListCheckIcon,
     title: "Plagiarism Checker",
     desc: "Ensure your content is unique.",
   },
@@ -286,7 +303,7 @@ export function Product() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
+                <div className="w-12 h-12 rounded-[50px] bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
                   {step.num}
                 </div>
                 <h3 className="text-lg font-medium text-slate-900 group-hover:text-white mb-2 transition-colors">{step.title}</h3>
@@ -354,7 +371,7 @@ export function Product() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                       className={cn(
-                        "absolute rounded-xl flex items-center justify-center shadow-md bg-white p-1.5",
+                        "absolute rounded-[50px] flex items-center justify-center shadow-md bg-white p-1.5",
                         logo.size,
                         logo.pos
                       )}
@@ -393,7 +410,7 @@ export function Product() {
                           {/* Logo Icons */}
                           <div className="flex flex-col gap-2">
                             {card.logos.map((logo, j) => (
-                              <div key={j} className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center p-1">
+                              <div key={j} className="w-7 h-7 rounded-[50px] bg-white border border-slate-200 flex items-center justify-center p-1">
                                 <img src={logo} alt="" className="w-full h-full object-contain" />
                               </div>
                             ))}
@@ -428,7 +445,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative min-w-0 w-full"
+              className="relative min-w-0 w-full order-last lg:order-none"
             >
               {/* Works On Badges */}
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-6 flex-wrap">
@@ -462,7 +479,7 @@ export function Product() {
                 <div className="p-6">
                   {/* Job Card Preview */}
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-[#0077b5] flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-[50px] bg-[#0077b5] flex items-center justify-center">
                       <span className="text-white font-bold text-lg">in</span>
                     </div>
                     <div>
@@ -516,7 +533,7 @@ export function Product() {
               className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                <Zap className="w-5 h-5 text-[#0463c7]" />
+                <i className="fa-solid fa-meteor w-5 h-5 text-[#0463c7] flex items-center justify-center"></i>
                 <span className="text-[#0463c7] font-medium">AI Copilot Extension</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
@@ -569,7 +586,7 @@ export function Product() {
               className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <i className="fa-solid fa-magnifying-glass-chart w-5 h-5 text-[#0463c7] flex items-center justify-center"></i>
                 <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
@@ -639,7 +656,7 @@ export function Product() {
                         <BrainCircuit size={12} />
                         Keyword Match
                       </div>
-                      <div className="w-8 h-8 rounded-lg bg-[#0463c7] flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-[50px] bg-[#0463c7] flex items-center justify-center">
                         <ArrowRight size={14} className="text-white" />
                       </div>
                     </div>
@@ -680,7 +697,7 @@ export function Product() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative min-w-0 w-full"
+              className="relative min-w-0 w-full order-last lg:order-none"
             >
               {/* Main Browser Window */}
               <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
@@ -808,7 +825,7 @@ export function Product() {
               className="max-w-full"
             >
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-[#0463c7]" />
+                <i className="fa-solid fa-right-to-bracket w-5 h-5 text-[#0463c7] flex items-center justify-center"></i>
                 <span className="text-[#0463c7] font-medium">Job Tracker</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
@@ -1156,7 +1173,7 @@ export function Product() {
                 </div>
                 <div className="p-4">
                   <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-[50px] bg-slate-100 flex items-center justify-center">
                       <span className="text-slate-600 font-bold text-xs">G</span>
                     </div>
                     <div>

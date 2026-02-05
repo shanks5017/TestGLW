@@ -155,7 +155,7 @@ export const FloatingNavbar = () => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-screen overflow-hidden"
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-screen overflow-y-auto"
                         style={{
                             background: 'linear-gradient(180deg, #1A56DB 0%, #3B82F6 100%)', // Blue gradient
                             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
@@ -197,7 +197,7 @@ export const FloatingNavbar = () => {
                                             <Link
                                                 to={link.path}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className="block text-[32px] font-bold text-white tracking-tight hover:text-white/80 transition-colors"
+                                                className="block text-4xl md:text-5xl tracking-tight font-medium text-white hover:text-white/80 transition-colors"
                                             >
                                                 {link.name}
                                             </Link>

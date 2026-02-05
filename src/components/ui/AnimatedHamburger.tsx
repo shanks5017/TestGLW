@@ -26,11 +26,15 @@ export const AnimatedHamburger: React.FC<AnimatedHamburgerProps> = ({ isOpen, on
     const variants = {
         top: {
             closed: { rotate: 0, y: 0 },
-            open: { rotate: 45, y: 6 },
+            open: { rotate: 45, y: 8 },
+        },
+        middle: {
+            closed: { opacity: 1 },
+            open: { opacity: 0 },
         },
         bottom: {
             closed: { rotate: 0, y: 0 },
-            open: { rotate: -45, y: -6 },
+            open: { rotate: -45, y: -8 },
         },
     };
 
@@ -49,6 +53,15 @@ export const AnimatedHamburger: React.FC<AnimatedHamburgerProps> = ({ isOpen, on
                 {/* Top Line */}
                 <motion.span
                     variants={variants.top}
+                    initial="closed"
+                    animate={isOpen ? "open" : "closed"}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="w-8 h-[2px] bg-current rounded-full origin-center block"
+                />
+
+                {/* Middle Line */}
+                <motion.span
+                    variants={variants.middle}
                     initial="closed"
                     animate={isOpen ? "open" : "closed"}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
