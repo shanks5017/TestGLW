@@ -12,7 +12,7 @@ export function Waitlist() {
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-20 h-20 bg-primary rounded-3xl mx-auto flex items-center justify-center text-white text-4xl font-bold mb-8 shadow-2xl shadow-primary/20"
+          className="w-20 h-20 bg-primary rounded-3xl mx-auto flex items-center justify-center text-white text-4xl font-bold mb-8 shadow-2xl shadow-primary/20 will-change-transform"
         >
           G
         </motion.div>
@@ -20,7 +20,7 @@ export function Waitlist() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 tracking-tight font-heading"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 mb-6 md:mb-8 tracking-tight font-heading will-change-transform"
         >
           Join the <br /><span className="text-primary">Inner Circle</span>
         </motion.h1>
@@ -28,7 +28,7 @@ export function Waitlist() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-gray-500 mb-12"
+          className="text-lg md:text-xl text-gray-500 mb-8 md:mb-12 max-w-lg mx-auto will-change-transform"
         >
           Get early access to our new AI Coaching features. Limited spots available for the beta program.
         </motion.p>
@@ -37,14 +37,14 @@ export function Waitlist() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="bg-gray-50 p-2 rounded-full border border-gray-100 flex shadow-lg"
+          className="bg-gray-50 p-2 rounded-2xl md:rounded-full border border-gray-100 flex flex-col md:flex-row shadow-lg gap-2 md:gap-0 will-change-transform"
         >
           <input
             type="email"
             placeholder="Enter your email address"
-            className="flex-1 bg-transparent border-none outline-none px-6 text-slate-900 placeholder:text-gray-400"
+            className="w-full md:flex-1 bg-transparent border-none outline-none px-4 md:px-6 py-3 md:py-0 text-slate-900 placeholder:text-gray-400 text-center md:text-left"
           />
-          <Button className="rounded-full px-8">Join Waitlist</Button>
+          <Button className="w-full md:w-auto rounded-xl md:rounded-full px-8 py-3 md:py-2">Join Waitlist</Button>
         </motion.form>
 
         <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-400">
