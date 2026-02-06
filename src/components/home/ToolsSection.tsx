@@ -174,10 +174,10 @@ const ElevatorVisual = () => (
                     <span>00:30</span>
                     <div className="flex-1 h-1 bg-slate-100 rounded-full overflow-hidden">
                         <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "100%" }}
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
                             transition={{ duration: 2, repeat: Infinity }}
-                            className="h-full bg-[#0463c7]"
+                            className="h-full bg-[#0463c7] origin-left"
                         />
                     </div>
                 </div>
