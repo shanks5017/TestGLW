@@ -223,7 +223,7 @@ export function About() {
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0" />
 
       {/* ========== SECTION 1: HERO ========== */}
-      <section className="relative pt-16 pb-12 lg:pt-20 lg:pb-20 px-6 overflow-hidden z-10 flex flex-col justify-center min-h-[70vh]">
+      <section className="relative pt-32 md:pt-36 lg:pt-20 pb-12 lg:pb-20 px-6 overflow-hidden z-10 flex flex-col justify-center min-h-[70vh]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
           <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply" />
@@ -266,7 +266,7 @@ export function About() {
                 <div className="h-px w-8 bg-[#0463c7]/30"></div>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0 text-center lg:text-left">
+              <motion.h1 variants={fadeUp} className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[64px] font-normal tracking-tight text-[#111827] leading-[1.1] mt-6 md:mt-8 lg:mt-0 text-center lg:text-left">
                 Empowering every student to <br />
                 <span className="text-slate-400">launch their dream career.</span>
               </motion.h1>

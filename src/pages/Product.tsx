@@ -199,7 +199,7 @@ export function Product() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="relative pt-20 lg:pt-24 pb-0 md:pb-16 overflow-hidden">
+      <section className="relative pt-32 md:pt-36 lg:pt-24 pb-0 md:pb-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-4 items-start relative">
             {/* Left: Content */}
@@ -209,7 +209,7 @@ export function Product() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px] will-change-transform"
             >
-              <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
+              <h1 className="text-4xl leading-[0.95] min-[400px]:text-5xl sm:text-6xl lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
                 The AI Copilot for your{' '}
                 <span className="text-[#0463c7] block sm:inline">Job Search</span>
               </h1>

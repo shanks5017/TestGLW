@@ -5,7 +5,7 @@ import { Linkedin, Twitter, Instagram, ArrowRight } from 'lucide-react';
 
 export function Contact() {
     return (
-        <div className="min-h-screen bg-white pt-20 pb-20 px-4 md:px-6 md:pt-28 relative overflow-hidden selection:bg-[#0463c7]/20 selection:text-[#0463c7]">
+        <div className="min-h-screen bg-white pt-32 pb-20 px-4 md:px-6 md:pt-36 relative overflow-hidden selection:bg-[#0463c7]/20 selection:text-[#0463c7]">
             {/* Background Grid */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]" />
@@ -20,7 +20,7 @@ export function Contact() {
                         transition={{ duration: 0.6 }}
                         className="space-y-6 md:pt-8"
                     >
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-slate-900 tracking-tight leading-[0.9] text-center lg:text-left w-full">
+                        <h1 className="text-4xl min-[400px]:text-5xl sm:text-6xl md:text-5xl lg:text-7xl font-heading font-black text-slate-900 tracking-tight leading-[0.9] text-center lg:text-left w-full">
                             Contact
                             <span className="block text-[#0463c7]">GetLanded</span>
                         </h1>

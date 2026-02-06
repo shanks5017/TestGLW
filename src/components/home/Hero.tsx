@@ -5,7 +5,7 @@ import { LaptopDisplay } from './LaptopDisplay';
 
 export function Hero() {
     return (
-        <section className="relative pt-20 lg:pt-24 pb-0 overflow-hidden bg-white selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col justify-between">
+        <section className="relative pt-32 md:pt-36 lg:pt-24 pb-0 overflow-hidden bg-white selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col justify-between">
             {/* Background Grid - Fizens Style */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
@@ -22,7 +22,7 @@ export function Hero() {
                         className="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left relative z-20 lg:mt-32"
                     >
                         {/* Reduced Size to Fit: 64px max for longer copy */}
-                        <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
+                        <h1 className="text-4xl leading-[0.95] min-[400px]:text-5xl sm:text-6xl lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
                             GetLanded – Your <br />
                             AI Career <br />
                             <span className="text-slate-400">Co‑Pilot</span>
@@ -32,14 +32,14 @@ export function Hero() {
 
                         {/* Button with lead-in line */}
                         <div className="mb-8 lg:mb-10 flex items-center justify-center lg:justify-start gap-4">
-                            <div className="w-12 lg:w-16 h-px bg-slate-300" />
+                            <div className="hidden lg:block w-16 h-px bg-slate-300" />
                             <Link to="/waitlist" className="group block w-fit">
-                                <div className="inline-flex items-center bg-[#EFF6FF] rounded-full p-1.5 pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#0463c7]/10">
-                                    <div className="bg-[#0463c7] text-white py-2.5 px-5 rounded-full shadow-lg shadow-[#0463c7]/20">
-                                        <span className="font-medium text-sm tracking-tight">Get Started Free</span>
+                                <div className="inline-flex items-center bg-[#EFF6FF] rounded-full py-3 px-6 lg:p-1.5 lg:pr-6 gap-4 transition-transform group-hover:scale-105 origin-left shadow-sm hover:shadow-md border border-[#0463c7]/10">
+                                    <div className="bg-transparent text-[#0463c7] p-0 shadow-none lg:bg-[#0463c7] lg:text-white lg:py-2.5 lg:px-5 lg:rounded-full lg:shadow-lg lg:shadow-[#0463c7]/20">
+                                        <span className="font-medium text-lg lg:text-sm tracking-tight">Get Started Free</span>
                                     </div>
-                                    <div className="w-8 h-8 rounded-full bg-[#0463c7] flex items-center justify-center text-white">
-                                        <ArrowUpRight size={16} />
+                                    <div className="w-10 h-10 lg:w-8 lg:h-8 rounded-full bg-[#0463c7] flex items-center justify-center text-white">
+                                        <ArrowUpRight size={20} className="lg:w-4 lg:h-4" />
                                     </div>
                                 </div>
                             </Link>

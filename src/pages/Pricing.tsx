@@ -355,7 +355,7 @@ export function Pricing() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 pt-24 pb-24">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 pt-32 md:pt-36 lg:pt-24 pb-24">
 
         {/* Header */}
         <motion.div
@@ -376,7 +376,7 @@ export function Pricing() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-6xl md:text-7xl font-heading font-medium tracking-tight text-slate-900 mb-8 leading-[1.1]"
+            className="text-4xl min-[400px]:text-5xl sm:text-6xl md:text-7xl font-heading font-medium tracking-tight text-slate-900 mb-8 leading-[1.1]"
           >
             Simple, transparent <br />
             <span className="text-[#0463c7] relative inline-block">

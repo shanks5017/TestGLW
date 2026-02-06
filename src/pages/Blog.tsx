@@ -108,7 +108,7 @@ export function Blog() {
 
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10 pt-24 pb-32">
+            <div className="max-w-7xl mx-auto px-6 relative z-10 pt-32 md:pt-36 lg:pt-24 pb-32">
 
                 {/* --- Hero Section --- */}
                 <motion.div
@@ -120,7 +120,7 @@ export function Blog() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-heading font-normal tracking-tight text-slate-900 leading-[1.1] mb-6">
+                        <h1 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[64px] font-heading font-normal tracking-tight text-slate-900 leading-[1.1] mb-6">
                             Career <span className="text-[#0463c7] font-medium tracking-tighter">Insights</span>
                         </h1>
                         <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-normal">
