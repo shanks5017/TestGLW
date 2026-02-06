@@ -676,8 +676,8 @@ export function Pricing() {
         <div className="relative rounded-[3rem] overflow-hidden p-12 md:p-24 text-center">
           <div className="absolute inset-0 bg-[#0463c7]" />
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-700" />
+
+
           </div>
 
           <div className="relative z-10 max-w-2xl mx-auto text-white">

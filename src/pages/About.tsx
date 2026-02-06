@@ -573,7 +573,7 @@ export function About() {
 
               <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1]">
                 Engineered for <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Precision.</span>
+                <span>Precision.</span>
               </motion.h2>
 
               <motion.p variants={fadeUp} className="text-xl text-slate-400 leading-relaxed">
@@ -826,7 +826,7 @@ export function About() {
       <section className="py-16 px-4 relative z-10">
         <div className="max-w-7xl mx-auto bg-[#0463c7] rounded-[3rem] overflow-hidden relative shadow-2xl shadow-blue-900/20 text-white p-12 lg:p-20 text-center">
 
-          <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[80px] md:blur-[120px] opacity-20" />
+
 
           <div className="relative z-10 space-y-10">
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">

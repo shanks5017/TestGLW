@@ -868,7 +868,7 @@ export function Product() {
               </div>
 
               {/* Decorative blob behind phone */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl -z-10 mix-blend-multiply" />
+
             </motion.div>
 
             {/* Right: Categories */}
@@ -1263,8 +1263,8 @@ export function Product() {
           className="bg-[#0463c7] rounded-none md:rounded-l-none md:rounded-r-[15rem] p-8 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group min-w-full md:min-w-0"
         >
           {/* Background Glows */}
-          <div className="hidden md:block absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-          <div className="hidden md:block absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
+
+
 
           <div className="relative z-10">
             <div className="flex items-center justify-center gap-2 mb-8">

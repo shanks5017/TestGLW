@@ -226,7 +226,7 @@ const HeroFeatureCard = ({
     >
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0463c7]/20 via-transparent to-[#0463c7]/10 opacity-50" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#0463c7] rounded-full blur-[120px] opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
+
 
         <div className="relative z-10 h-full flex flex-col md:flex-row">
             {/* Text Section */}
@@ -323,8 +323,8 @@ export const Features = () => {
     return (
         <section className="bg-slate-100/50 relative overflow-hidden py-24 md:py-32">
             {/* Background decorations */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0463c7] rounded-full blur-[200px] opacity-[0.03]" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#0463c7] rounded-full blur-[150px] opacity-[0.02]" />
+
+
 
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
@@ -406,8 +406,8 @@ export const Features = () => {
                     style={{ width: ctaWidth, opacity: ctaOpacity }}
                     className="w-full max-w-[1400px] bg-[#0463c7] rounded-none md:rounded-l-[15rem] md:rounded-r-none p-12 md:p-20 flex flex-col items-center justify-center text-center text-white relative overflow-hidden group mx-auto md:ml-auto md:mr-0"
                 >
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-                    <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
+
+
 
                     <div className="relative z-10">
                         <div className="flex items-center justify-center gap-2 mb-8">

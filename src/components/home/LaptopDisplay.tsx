@@ -204,12 +204,7 @@ export const LaptopDisplay = () => {
                 </motion.div>
 
                 {/* Drop Shadow */}
-                <motion.div
-                    initial={{ width: "80%", opacity: 0 }}
-                    animate={{ width: startAnimation ? "100%" : "80%", opacity: startAnimation ? 0.5 : 0 }}
-                    transition={{ delay: OPEN_DELAY + 0.2 + (startAnimation ? 0.4 : 0), duration: 1.5 }}
-                    className="absolute -bottom-16 w-full h-12 bg-black/40 blur-3xl rounded-[100%]"
-                />
+
 
             </motion.div>
         </div>

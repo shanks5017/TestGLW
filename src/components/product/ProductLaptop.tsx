@@ -168,12 +168,7 @@ export const ProductLaptop = () => {
             </motion.div>
 
             {/* Shadow */}
-            <motion.div
-                initial={{ width: "60%", opacity: 0 }}
-                animate={{ width: "90%", opacity: 0.4 }}
-                transition={{ delay: 0.5, duration: 1.5 }}
-                className="absolute -bottom-12 w-full h-12 bg-black/40 blur-[40px] rounded-[100%]"
-            />
+
         </div>
     );
 };

@@ -417,14 +417,7 @@ export function PhoneDisplay() {
             <MatchScoreFloat delay={2.2} />
 
             {/* Ambient Orbs */}
-            <motion.div
-                className="absolute -right-12 bottom-1/4 w-24 h-24 rounded-full bg-gradient-to-br from-[#0463c7]/30 to-transparent blur-2xl"
-                animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-            />
+
             <motion.div
                 className="absolute -left-10 top-1/3 w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400/20 to-transparent blur-2xl"
                 animate={{
