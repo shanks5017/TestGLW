@@ -210,7 +210,7 @@ export function Product() {
               className="lg:col-span-6 flex flex-col items-center text-center lg:items-start lg:text-left lg:translate-y-[120px] will-change-transform"
             >
               <h1 className="text-[3.5rem] leading-[0.95] min-[400px]:text-[4rem] sm:text-[5rem] lg:text-[64px] font-normal tracking-tight text-[#111827] mb-6 lg:mb-8">
-                The AI Co-Pilot for your{' '}
+                The AI Copilot for your{' '}
                 <span className="text-[#0463c7] block sm:inline">Job Search</span>
               </h1>
 
@@ -288,7 +288,8 @@ export function Product() {
                       <img
                         src={logo.src}
                         alt={`${logo.name} logo`}
-                        loading="lazy"
+                        className="h-8 md:h-10 w-auto object-contain"
+                        loading="eager"
                       />
                     </div>
                   ))}
@@ -622,7 +623,7 @@ export function Product() {
                 <span className="text-[#0463c7] font-medium">AI Resume Analyzer</span>
               </div>
               <h2 className="text-4xl md:text-[42px] font-medium tracking-tight text-slate-900 leading-tight mb-6 break-words">
-                Craft the perfect tailored resume for every job
+                Companies have recruiters, you have GetLanded
               </h2>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed">
                 Use AI to tailor your resume to fit the job description, see your resume ATS score, and identify missing keywords, all in a few clicks.
@@ -1088,10 +1089,10 @@ export function Product() {
                 <span className="text-[#0463c7] font-medium text-sm">Job Tracker</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 leading-tight mb-4">
-                One place to organize and manage your job search
+                a single platform to organise and manage your job search
               </h2>
               <p className="text-slate-500 text-base mb-8 leading-relaxed">
-                A free and easy way to keep track of all your job applications in one place. Bookmark jobs from any job board using our Chrome extension to create your master list.
+                A free and easy way to keep track of all your job applications in one platform. Bookmark jobs from any job board using our Chrome extension to create your master list.
               </p>
               <Link
                 to="/waitlist"
@@ -1124,7 +1125,7 @@ export function Product() {
                 Companies have recruiters, you have GetLanded
               </h2>
               <p className="text-slate-500 text-base mb-8 leading-relaxed">
-                Save time by discovering jobs perfectly matched to your profile and resume. Filter results based on company, location, visa sponsorship and more.
+                Save time by discovering jobs that perfectly match your profile. Filter results based on company, location, visa sponsorship and more.
               </p>
               <Link
                 to="/waitlist"

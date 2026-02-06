@@ -415,7 +415,7 @@ export const Features = () => {
                             <span className="text-white font-bold text-xs tracking-widest uppercase">Join 2.3M+ students</span>
                             <div className="h-px w-8 bg-white/30"></div>
                         </div>
-                        <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Track every application in one place</h3>
+                        <h3 className="text-4xl md:text-6xl font-normal mb-6 tracking-tight">Track all your applications in one place</h3>
                         <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-10">
                             Automatically save jobs from LinkedIn, Indeed, and more with a single click. Organize your search with a powerful Kanban board.
                         </p>

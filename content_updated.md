@@ -30,7 +30,7 @@ This document contains a comprehensive, verbatim record of all text content visi
 
 *Component: `src/components/home/Hero.tsx`*
 
-- **Main Headline:** GetLanded – Your AI Career Co-Pilot
+- **Main Headline:** GetLanded – Your AI Career Copilot
 - **Sub-headline:** The all-in-one platform to track applications, optimize resumes, and land your dream job 3x faster.
 - **Primary CTA Button:** Get Started Free
 - **Secondary Text:**
@@ -74,7 +74,7 @@ This document contains a comprehensive, verbatim record of all text content visi
     5. **Title:** Progress Tracking
         - **Description:** Visualize your job search funnel and identify bottlenecks.
 - **Hero Feature (Bottom):**
-    - **Title:** Track every application in one place
+    - **Title:** Track all your applications in one place
     - **Description:** Automatically save jobs from LinkedIn, Indeed, and more with a single click. Organize your search with a powerful Kanban board.
     - **CTA Button:** Start Tracking Free
 
@@ -83,8 +83,8 @@ This document contains a comprehensive, verbatim record of all text content visi
 *Component: `src/components/home/HowItWorks.tsx`*
 
 - **Section Title:** How it works
-- **Headline:** Your path to a better job
-- **Description:** Three simple steps to transform your job search.
+- **Headline:** Simplifying the job hunt.
+- **Description:** Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box.
 - **Step 1:**
     - **Title:** Install the extension
     - **Description:** Add GetLanded to Chrome to save jobs and analyze listings instantly.
@@ -93,7 +93,7 @@ This document contains a comprehensive, verbatim record of all text content visi
     - **Description:** Get instant match scores and keyword gaps based on your profile.
 - **Step 3:**
     - **Title:** Apply smarter
-    - **Description:** Use AI-tailored resumes and tracking to land more interviews.
+    - **Description:** Use auto tailored resumes and tracking to land more interviews.
 
 ### **2.6. AI Tools Section**
 
@@ -136,7 +136,7 @@ This document contains a comprehensive, verbatim record of all text content visi
 
 ### **3.1. Hero Section**
 
-- **Headline:** The AI Co-Pilot for your Job Search
+- **Headline:** The AI Copilot for your Job Search
 - **Sub-headline:** Stop applying blindly. Get real-time insights, auto-tailored resumes, and organized tracking—all in one place.
 - **Primary CTA Button:** Add to Chrome - It’s Free
 - **Secondary CTA Button:** Watch Demo
@@ -160,20 +160,20 @@ This document contains a comprehensive, verbatim record of all text content visi
 
 - **Feature 1 (Resume Builder):**
     - **Badge:** Resume Builder
-    - **Headline:** Quickly tailor your resume for each job with AI
+    - **Headline:** Companies have recruiters, you have GetLanded
     - **Description:** Use the right keywords from the job description to highlight your best experience on your resume. Get recommendations to improve your resume and land more interviews.
     - **Button:** Build a Resume with AI
     - **Visual Text:** “WeWork”, “32%”, “Tailor your resume to increase match score”, “True Match”
 - **Feature 2 (Job Tracker):**
     - **Badge:** Job Tracker
-    - **Headline:** One place to organize and manage your job search
-    - **Description:** A free and easy way to keep track of all your job applications in one place. Bookmark jobs from any job board using our Chrome extension to create your master list.
+    - **Headline:** a single platform to organise and manage your job search
+    - **Description:** A free and easy way to keep track of all your job applications in one platform. Bookmark jobs from any job board using our Chrome extension to create your master list.
     - **Button:** Start Organizing Now
     - **Visual Text:** “Job Position”, “Company”, “Location”, “Status”, “APPLIED”, “SCREEN”, “INTERVIEW”
 - **Feature 3 (Job Insights):**
     - **Badge:** Job Insights
-    - **Headline:** Companies have recruiters, and you have GetLanded
-    - **Description:** Save time by discovering jobs perfectly matched to your profile and resume. Filter results based on company, location, visa sponsorship and more.
+    - **Headline:** Companies have recruiters, you have GetLanded
+    - **Description:** Save time by discovering jobs that perfectly match your profile. Filter results based on company, location, visa sponsorship and more.
     - **Button:** Start Getting Insights
     - **Visual Text:** “Marketing Manager, Commerce Services”, “ADOBE • Austin, TX”, “$131,000 - $170,000”, “Jobs in profile”, “Sponsorship”, “Full-time”, “Hard Skills”
 - **Feature 4 (Bookmark Jobs):**
@@ -304,7 +304,7 @@ This document contains a comprehensive, verbatim record of all text content visi
 ### **5.1. Hero Section**
 
 - **Headline:** Empowering every student to launch their dream career.
-- **Sub-headline:** We’re building the co-pilot for the modern job search—transparent, intelligent, and fair.
+- **Sub-headline:** We’re building the Copilot for the modern job search—transparent, intelligent, and fair.
 
 ### **5.2. Origin Story**
 
@@ -318,13 +318,13 @@ This document contains a comprehensive, verbatim record of all text content visi
     - **Description:** A minimalist browser extension to help students save jobs from any site.
 - **Stage 2: The Expansion**
     - **Description:** Adding visa sponsorship insights to level the playing field.
-- **Stage 3: The Co-Pilot**
-    - **Description:** A full AI platform to guide candidates from application to offer.
+- **Stage 3: The Copilot**
+    - **Description:** a fully AI driven platform to guide candidates from application to offer.
 
 ### **5.4. Manifesto**
 
 - **Headline:** The job search is broken. We’re fixing it.
-- **Text:** We believe that finding a job shouldn’t be a full-time job. The current system is opaque, inefficient, and often unfair. We’re using AI not to replace the human element, but to empower candidates with the insights and tools they need to tell their story effectively.
+- **Text:** We believe that finding a job shouldn’t be a full-time job. The current system is opaque, inefficient, and often unfair. We’re using AI not to replace the human element, but to empower candidates with the insights and tools they need to tell their story efficiently.
 
 ### **5.5. Core Pillars**
 

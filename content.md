@@ -42,7 +42,7 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 **Component:** `src/components/home/Hero.tsx`
 
 * **Main Headline:**
-  GetLanded – Your AI Career Co-Pilot
+  GetLanded – Your AI Career Copilot
 
 * **Sub-headline:**
   The all-in-one platform to track applications, optimize resumes, and land your dream job 3x faster.
@@ -129,8 +129,8 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 **Component:** `src/components/home/HowItWorks.tsx`
 
 * **Section Title:** How it works
-* **Headline:** Your path to a better job
-* **Description:** Three simple steps to transform your job search.
+* **Headline:** Simplifying the job hunt.
+* **Description:** Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box.
 
 #### Step 1
 
@@ -145,7 +145,7 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 #### Step 3
 
 * **Title:** Apply smarter
-* **Description:** Use AI-tailored resumes and tracking to land more interviews.
+* **Description:** Use auto tailored resumes and tracking to land more interviews.
 
 ---
 
@@ -205,7 +205,7 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 
 ### 3.1 Hero Section
 
-* **Headline:** The AI Co-Pilot for your Job Search
+* **Headline:** The AI Copilot for your Job Search
 * **Sub-headline:** Stop applying blindly. Get real-time insights, auto-tailored resumes, and organized tracking—all in one place.
 * **Primary CTA:** Add to Chrome - It's Free
 * **Secondary CTA:** Watch Demo
@@ -231,7 +231,7 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 #### Feature 1 — Resume Builder
 
 * **Badge:** Resume Builder
-* **Headline:** Quickly tailor your resume for each job with AI
+* **Headline:** Companies have recruiters, you have GetLanded
 * **Description:** Use the right keywords from the job description to highlight your best experience on your resume. Get recommendations to improve your resume and land more interviews.
 * **Button:** Build a Resume with AI
 * **Visual Text:** WeWork · 32% · Tailor your resume to increase match score · True Match
@@ -239,16 +239,16 @@ Got it. I **did not change a single word**—only cleaned up the **formatting an
 #### Feature 2 — Job Tracker
 
 * **Badge:** Job Tracker
-* **Headline:** One place to organize and manage your job search
-* **Description:** A free and easy way to keep track of all your job applications in one place. Bookmark jobs from any job board using our Chrome extension to create your master list.
+* **Headline:** a single platform to organise and manage your job search
+* **Description:** A free and easy way to keep track of all your job applications in one platform. Bookmark jobs from any job board using our Chrome extension to create your master list.
 * **Button:** Start Organizing Now
 * **Visual Text:** Job Position · Company · Location · Status · APPLIED · SCREEN · INTERVIEW
 
 #### Feature 3 — Job Insights
 
 * **Badge:** Job Insights
-* **Headline:** Companies have recruiters, and you have GetLanded
-* **Description:** Save time by discovering jobs perfectly matched to your profile and resume. Filter results based on company, location, visa sponsorship and more.
+* **Headline:** Companies have recruiters, you have GetLanded
+* **Description:** Save time by discovering jobs that perfectly match your profile. Filter results based on company, location, visa sponsorship and more.
 * **Button:** Start Getting Insights
 * **Visual Text:** Marketing Manager, Commerce Services · ADOBE • Austin, TX · $131,000 - $170,000 · Jobs in profile · Sponsorship · Full-time · Hard Skills
 

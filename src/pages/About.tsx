@@ -80,8 +80,8 @@ const timelinePhases: Phase[] = [
   },
   {
     id: 3,
-    title: "The Co-Pilot",
-    description: "A full AI platform to guide candidates from application to offer.",
+    title: "The Copilot",
+    description: "A fully AI driven platform to guide candidates from application to offer.",
     highlightWords: ["AI-driven platform", "job search journey"],
     icon: Bot,
     color: "bg-[#0463c7]"
@@ -272,7 +272,7 @@ export function About() {
               </motion.h1>
 
               <motion.p variants={fadeUp} className="text-xl text-slate-500 font-medium leading-relaxed tracking-tight max-w-lg mx-auto lg:mx-0">
-                We’re building the co-pilot for the modern job search—transparent, intelligent, and fair.
+                We’re building the Copilot for the modern job search—transparent, intelligent, and fair.
               </motion.p>
 
               <motion.div
@@ -375,7 +375,7 @@ export function About() {
           >
             <h2 className="text-4xl md:text-6xl font-bold text-slate-950 tracking-tight">The Evolution</h2>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              What started as a browser extension evolved into a comprehensive co-pilot for your job search journey.
+              What started as a browser extension evolved into a comprehensive Copilot for your job search journey.
             </p>
           </motion.div>
 
@@ -547,7 +547,7 @@ export function About() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-xl md:text-2xl text-blue-200/80 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            We believe that finding a job shouldn’t be a full-time job. The current system is opaque, inefficient, and often unfair. We’re using AI not to replace the human element, but to empower candidates with the insights and tools they need to tell their story effectively.
+            We believe that finding a job shouldn’t be a full-time job. The current system is opaque, inefficient, and often unfair. We’re using AI not to replace the human element, but to empower candidates with the insights and tools they need to tell their story efficiently.
           </motion.p>
         </div>
       </section>
