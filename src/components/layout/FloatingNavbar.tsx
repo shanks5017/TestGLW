@@ -39,14 +39,27 @@ export const FloatingNavbar = () => {
         { name: 'Contact', path: '/contact' },
     ];
 
+    // Determine Hamburger Color based on route & state
+    const getHamburgerColor = () => {
+        if (mobileMenuOpen) return "text-[#0463c7]"; // Always blue when open (against white menu)
+
+        // Add specific routes here that might have dark backgrounds
+        // For now, defaulting to standard behavior:
+        // Scrolled = Black/Dark (on white blur nav)
+        // Top of page = potentially varying, but sticking to slate-900 for general visibility
+        // If specific pages need white, we can add: if (location.pathname === '/some-dark-page' && !scrolled) return "text-white";
+
+        return "text-slate-900";
+    };
+
     return (
         <React.Fragment>
 
 
             <header className={cn(
                 "fixed left-0 right-0 transition-all duration-300 pointer-events-none",
-                scrolled ? "top-4" : "top-6",
-                mobileMenuOpen ? "z-[61]" : "z-50"
+                // Lock header style or keep it consistent when menu is open
+                mobileMenuOpen ? "z-[61] top-0 py-4" : (scrolled ? "top-4 z-50" : "top-6 z-50"),
             )}>
                 <div className="w-full px-6 md:px-12 flex items-center justify-between mx-auto">
 
@@ -54,7 +67,7 @@ export const FloatingNavbar = () => {
                     <div className={cn("pointer-events-auto flex w-[200px] transition-opacity duration-200", mobileMenuOpen ? "opacity-0" : "opacity-100")}>
                         <Link to="/" className="flex items-center gap-2.5">
                             <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
-                            <span className="text-xl font-bold text-slate-900 tracking-tight font-heading">
+                            <span className="text-xl font-bold text-[#0463c7] tracking-tight font-heading">
                                 GetLanded
                             </span>
                         </Link>
@@ -73,7 +86,7 @@ export const FloatingNavbar = () => {
                                     key={link.name}
                                     to={link.path}
                                     onMouseEnter={() => setHoveredTab(link.name)}
-                                    className="relative px-6 py-3 block z-10 group"
+                                    className="relative px-4 lg:px-6 py-3 block z-10 group"
                                 >
                                     {/* Active Background Pill (Lightest Blue) */}
                                     {isActive && (
@@ -103,7 +116,7 @@ export const FloatingNavbar = () => {
                                         <RollingText3D
                                             text={link.name}
                                             className={cn(
-                                                "text-[16px] tracking-wide",
+                                                "text-[15px] lg:text-[16px] tracking-wide",
                                                 isActive ? "text-[#0463c7] font-medium" : "text-black font-normal"
                                             )}
                                         />
@@ -127,7 +140,9 @@ export const FloatingNavbar = () => {
                     </nav>
 
                     {/* Right: CTA */}
-                    <div className="flex items-center justify-end w-[200px] gap-3 pointer-events-auto">
+                    <div className="flex items-center justify-end w-[200px] gap-3 pointer-events-auto relative z-[62]">
+                        {/* z-[62] ensures this container is above everything including the menu overlay */}
+
                         <div className="hidden min-[1100px]:block">
                             <Link to="/waitlist">
                                 <Button className="rounded-full font-semibold h-[48px] px-8 text-[15px] bg-[#0463c7] text-white shadow-lg shadow-[#0463c7]/20 hover:bg-[#0352a8] hover:shadow-[#0463c7]/30 transition-all hover:-translate-y-0.5">
@@ -140,7 +155,7 @@ export const FloatingNavbar = () => {
                             <AnimatedHamburger
                                 isOpen={mobileMenuOpen}
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={cn(mobileMenuOpen ? "text-white" : "text-slate-900", "transition-colors duration-300")}
+                                className={cn(getHamburgerColor(), "transition-colors duration-300 relative z-50")}
                             />
                         </div>
                     </div>
@@ -151,36 +166,36 @@ export const FloatingNavbar = () => {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-screen overflow-y-auto"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white"
                         style={{
-                            background: 'linear-gradient(180deg, #1A56DB 0%, #3B82F6 100%)', // Blue gradient
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                            // Ensure it covers full screen
                         }}
                     >
-                        {/* Background Grain Texture - Optional, keeping minimal for now to match reference */}
+                        {/* Background Grain Texture - Optional */}
                         {/* <div className="absolute inset-0 pointer-events-none opacity-[0.03]" ... /> */}
 
-                        {/* Top Bar with Logo and Close Button */}
-                        <div className="flex items-center justify-between p-6">
-                            <div className="flex items-center gap-2.5 text-white">
-                                <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain brightness-0 invert" />
+                        {/* Top Bar with Logo (Close button is handled by the fixed header hamburger) */}
+                        <div className="flex items-center justify-between p-6 shrink-0">
+                            <div className="flex items-center gap-2.5 text-[#0463c7]">
+                                <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
                                 <span className="text-xl font-bold tracking-tight font-heading">
                                     GetLanded
                                 </span>
                             </div>
 
-
+                            {/* Placeholder to balance the layout if needed, or just leave empty since Hamburger is fixed */}
+                            <div className="w-[48px]"></div>
                         </div>
 
-                        {/* Menu Content Container */}
-                        <div className="flex flex-col h-full relative z-10 px-6 pb-6 pt-4 items-center justify-start text-center">
+                        {/* Menu Content Container - Centered */}
+                        <div className="flex flex-col flex-1 relative z-10 px-6 pb-8 items-center justify-center text-center overflow-y-auto">
 
-                            {/* Navigation Links - Centered due to parent justify-center */}
-                            <nav className="flex flex-col gap-6 items-center w-full mb-8">
+                            {/* Navigation Links */}
+                            <nav className="flex flex-col gap-4 md:gap-6 items-center w-full">
                                 {navLinks.map((link, i) => {
                                     return (
                                         <motion.div
@@ -197,7 +212,7 @@ export const FloatingNavbar = () => {
                                             <Link
                                                 to={link.path}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className="block text-4xl md:text-5xl tracking-tight font-medium text-white hover:text-white/80 transition-colors"
+                                                className="block text-3xl md:text-5xl tracking-tight font-medium text-[#0463c7] hover:text-[#0463c7]/80 transition-colors"
                                             >
                                                 {link.name}
                                             </Link>
@@ -207,17 +222,17 @@ export const FloatingNavbar = () => {
                             </nav>
 
                             {/* Divider Line */}
-                            <div className="w-full h-[1px] bg-white/20 mb-8" />
+                            <div className="w-24 h-[1px] bg-[#0463c7]/20 my-8 shrink-0" />
 
                             {/* Social Icons */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="flex items-center gap-6 mb-8"
+                                className="flex items-center gap-6 mb-8 shrink-0"
                             >
                                 {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors cursor-pointer">
+                                    <div key={i} className="w-10 h-10 rounded-full border border-[#0463c7]/20 flex items-center justify-center text-[#0463c7] hover:bg-[#0463c7]/10 transition-colors cursor-pointer">
                                         <Icon size={18} />
                                     </div>
                                 ))}
@@ -228,13 +243,13 @@ export const FloatingNavbar = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="w-full max-w-sm"
+                                className="w-full max-w-sm shrink-0"
                             >
                                 <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                                    <Button className="w-full rounded-full py-4 text-lg bg-white hover:bg-gray-50 border-none shadow-xl flex items-center justify-center">
+                                    <Button className="w-full rounded-full py-4 text-lg bg-[#0463c7] hover:bg-[#0352a8] border-none shadow-xl flex items-center justify-center">
                                         <RollingText3D
                                             text="Get Template now"
-                                            className="text-[18px] font-medium text-[#0040C1]"
+                                            className="text-[18px] font-medium text-white"
                                         />
                                     </Button>
                                 </Link>
