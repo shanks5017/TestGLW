@@ -66,7 +66,7 @@ export function Hero() {
 
 
                     {/* Decorative Glows */}
-                    <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0463c7] rounded-full blur-[120px] opacity-40 mix-blend-overlay" />
+                    <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0463c7] rounded-full blur-[60px] md:blur-[120px] opacity-40 mix-blend-overlay" />
 
                     {/* Marquee Container */}
                     <div className="relative w-full overflow-hidden py-4 mb-2 [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">

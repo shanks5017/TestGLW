@@ -52,6 +52,49 @@ export const FloatingNavbar = () => {
         return "text-slate-900";
     };
 
+    // Animation Variants
+    const menuVariants = {
+        initial: {
+            clipPath: "circle(0% at calc(100% - 48px) 35px)",
+            transition: {
+                clipPath: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } // Faster exit
+            }
+        },
+        animate: {
+            clipPath: "circle(150% at calc(100% - 48px) 35px)",
+            transition: {
+                clipPath: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
+                staggerChildren: 0.1,
+                delayChildren: 0.1
+            }
+        },
+        exit: {
+            clipPath: "circle(0% at calc(100% - 48px) 35px)",
+            transition: {
+                clipPath: { duration: 0.6, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
+                staggerChildren: 0.05,
+                staggerDirection: -1
+            }
+        }
+    };
+
+    const itemVariants = {
+        initial: { opacity: 0, y: 40, filter: "blur(4px)" },
+        animate: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+        },
+        exit: {
+            opacity: 0,
+            y: 20,
+            filter: "blur(4px)",
+            transition: { duration: 0.4, ease: [0.42, 0, 1, 1] as [number, number, number, number] }
+        }
+    };
+
+
     return (
         <React.Fragment>
 
@@ -163,14 +206,14 @@ export const FloatingNavbar = () => {
             </header>
 
             {/* Cinematic Mobile Menu Overlay */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white"
+                        variants={menuVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white will-change-[clip-path]"
                         style={{
                             // Ensure it covers full screen
                         }}
@@ -180,12 +223,15 @@ export const FloatingNavbar = () => {
 
                         {/* Top Bar with Logo (Close button is handled by the fixed header hamburger) */}
                         <div className="flex items-center justify-between p-6 shrink-0">
-                            <div className="flex items-center gap-2.5 text-[#0463c7]">
+                            <motion.div
+                                variants={itemVariants}
+                                className="flex items-center gap-2.5 text-[#0463c7]"
+                            >
                                 <img src={logo} alt="GetLanded" className="w-8 h-8 object-contain" />
                                 <span className="text-xl font-bold tracking-tight font-heading">
                                     GetLanded
                                 </span>
-                            </div>
+                            </motion.div>
 
                             {/* Placeholder to balance the layout if needed, or just leave empty since Hamburger is fixed */}
                             <div className="w-[48px]"></div>
@@ -200,14 +246,8 @@ export const FloatingNavbar = () => {
                                     return (
                                         <motion.div
                                             key={link.name}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 10 }}
-                                            transition={{
-                                                duration: 0.5,
-                                                delay: 0.1 + (i * 0.05),
-                                                ease: [0.22, 1, 0.36, 1]
-                                            }}
+                                            variants={itemVariants}
+                                            custom={i}
                                         >
                                             <Link
                                                 to={link.path}
@@ -222,13 +262,14 @@ export const FloatingNavbar = () => {
                             </nav>
 
                             {/* Divider Line */}
-                            <div className="w-24 h-[1px] bg-[#0463c7]/20 my-8 shrink-0" />
+                            <motion.div
+                                variants={itemVariants}
+                                className="w-24 h-[1px] bg-[#0463c7]/20 my-8 shrink-0"
+                            />
 
                             {/* Social Icons */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
+                                variants={itemVariants}
                                 className="flex items-center gap-6 mb-8 shrink-0"
                             >
                                 {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
@@ -240,9 +281,7 @@ export const FloatingNavbar = () => {
 
                             {/* CTA */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5 }}
+                                variants={itemVariants}
                                 className="w-full max-w-sm shrink-0"
                             >
                                 <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>

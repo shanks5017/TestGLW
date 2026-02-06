@@ -193,7 +193,9 @@ export const LaptopDisplay = () => {
                     className="relative w-[640px] h-[16px] bg-[#c8c8c8] rounded-b-[1.5rem] rounded-t-[0.2rem] shadow-2xl mt-[-2px] z-10 flex justify-center items-start border-t border-white/50"
                     style={{
                         background: 'linear-gradient(to bottom, #d8d8d8 0%, #b0b0b0 100%)',
-                        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4)'
+                        boxShadow: isMobile
+                            ? 'none'
+                            : '0 25px 50px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4)'
                     }}
                 >
                     {/* Trackpad Notch */}
@@ -205,10 +207,10 @@ export const LaptopDisplay = () => {
 
                 {/* Drop Shadow */}
                 <motion.div
-                    initial={{ width: "80%", opacity: 0 }}
-                    animate={{ width: startAnimation ? "100%" : "80%", opacity: startAnimation ? 0.5 : 0 }}
+                    initial={{ scaleX: 0.8, opacity: 0 }}
+                    animate={{ scaleX: startAnimation ? 1 : 0.8, opacity: startAnimation ? 0.5 : 0 }}
                     transition={{ delay: OPEN_DELAY + 0.2 + (startAnimation ? 0.4 : 0), duration: 1.5 }}
-                    className="absolute -bottom-16 w-full h-12 bg-black/40 blur-3xl rounded-[100%]"
+                    className="absolute -bottom-16 w-full h-12 bg-black/40 blur-xl md:blur-3xl rounded-[100%]"
                 />
 
             </motion.div>
