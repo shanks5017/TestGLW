@@ -57,40 +57,38 @@ export const FloatingNavbar = () => {
         initial: {
             clipPath: "circle(0% at calc(100% - 48px) 35px)",
             transition: {
-                clipPath: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } // Faster exit
+                clipPath: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } // Faster exit
             }
         },
         animate: {
             clipPath: "circle(150% at calc(100% - 48px) 35px)",
             transition: {
-                clipPath: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
-                staggerChildren: 0.1,
-                delayChildren: 0.1
+                clipPath: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
+                staggerChildren: 0.05,
+                delayChildren: 0.05
             }
         },
         exit: {
             clipPath: "circle(0% at calc(100% - 48px) 35px)",
             transition: {
-                clipPath: { duration: 0.6, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
-                staggerChildren: 0.05,
+                clipPath: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
+                staggerChildren: 0.02,
                 staggerDirection: -1
             }
         }
     };
 
     const itemVariants = {
-        initial: { opacity: 0, y: 40, filter: "blur(4px)" },
+        initial: { opacity: 0, y: 20 },
         animate: {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
         },
         exit: {
             opacity: 0,
-            y: 20,
-            filter: "blur(4px)",
-            transition: { duration: 0.4, ease: [0.42, 0, 1, 1] as [number, number, number, number] }
+            y: 10,
+            transition: { duration: 0.2, ease: [0.42, 0, 1, 1] as [number, number, number, number] }
         }
     };
 
@@ -213,7 +211,7 @@ export const FloatingNavbar = () => {
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white will-change-[clip-path]"
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white will-change-[clip-path] backface-invisible transform-gpu"
                         style={{
                             // Ensure it covers full screen
                         }}

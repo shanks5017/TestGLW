@@ -14,6 +14,28 @@ import {
   Layout,
 } from 'lucide-react';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
+
+
 const PhoneDisplay = lazy(() => import('../components/product/PhoneDisplay').then(module => ({ default: module.PhoneDisplay })));
 import { ProductLaptop } from '../components/product/ProductLaptop';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -239,7 +261,7 @@ export function Product() {
 
               {/* Logos */}
               <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10rem, black calc(100% - 10rem), transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10rem, black calc(100% - 10rem), transparent)' }}>
-                <div className="flex gap-16 animate-marquee whitespace-nowrap pr-16" style={{ animationDuration: '40s' }}>
+                <div className="flex gap-16 animate-marquee whitespace-nowrap pr-16 will-change-transform" style={{ animationDuration: '40s' }}>
                   {[
                     { name: "Google", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6720f0e821d2faa9faa65fed_google%20logo.svg" },
                     { name: "Meta", src: "https://cdn.prod.website-files.com/635c591378332f38be25d45f/6811c93cc92136775a2cec23_Meta-logo.svg" },
@@ -294,14 +316,17 @@ export function Product() {
             <p className="text-slate-500">Browse → AI Reads → Insights → Save & Track</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-4">
+          <motion.div
+            className="grid md:grid-cols-4 gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {howItWorksSteps.map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
+                variants={itemVariants}
                 className="group p-6 rounded-[2rem] bg-[#e8efff] hover:bg-[#0463c7] hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-[50px] bg-white/80 flex items-center justify-center text-black font-bold text-lg mb-4">
@@ -311,7 +336,7 @@ export function Product() {
                 <p className="text-sm text-slate-500 group-hover:text-white/80 transition-colors">{step.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section >
       {/* Resume Builder Features Section - Simplify Style */}
@@ -322,7 +347,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full will-change-transform"
             >
@@ -348,13 +373,19 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative min-w-0 w-full will-change-transform"
             >
               <div className="bg-white rounded-[20px] border border-[hsl(220,10%,92%)] shadow-lg overflow-hidden p-6 max-w-full">
                 {/* Floating Company Logos */}
-                <div className="relative h-24 mb-6">
+                <motion.div
+                  className="relative h-24 mb-6"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                >
                   {[
                     { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", pos: "top-0 left-[5%]", size: "w-10 h-10" },
                     { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg", pos: "top-2 left-[25%]", size: "w-9 h-9" },
@@ -367,20 +398,20 @@ export function Product() {
                   ].map((logo, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0 },
+                        visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 260, damping: 20 } }
+                      }}
                       className={cn(
                         "absolute rounded-[50px] flex items-center justify-center shadow-md bg-white p-1.5",
                         logo.size,
                         logo.pos
                       )}
                     >
-                      <img src={logo.src} alt="Company logo" className="w-full h-full object-contain" loading="lazy" />
+                      <img src={logo.src} alt="Company logo" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                     </motion.div>
                   ))}
-                </div>
+                </motion.div>
 
                 {/* Personalized Job Matches Label */}
                 <div className="text-center mb-4">
@@ -444,7 +475,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: isDesktop ? -30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="relative min-w-0 w-full order-last lg:order-none"
             >
@@ -529,7 +560,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: isDesktop ? 30 : 0, y: isDesktop ? 0 : 30 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-full will-change-transform"
             >
@@ -876,7 +907,7 @@ export function Product() {
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-10%" }}
                 className="text-4xl md:text-5xl tracking-tight mb-12 text-slate-900"
               >
                 Explore <span className="text-[#0463c7]">Features</span>
@@ -927,7 +958,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="max-w-lg"
             >
@@ -957,7 +988,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               {/* Browser Window Mockup */}
@@ -1004,7 +1035,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
@@ -1048,7 +1079,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="max-w-lg"
             >
@@ -1079,7 +1110,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="max-w-lg"
             >
@@ -1109,7 +1140,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
@@ -1158,7 +1189,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
@@ -1206,7 +1237,7 @@ export function Product() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6 }}
               className="max-w-lg"
             >
@@ -1239,7 +1270,7 @@ export function Product() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-10%" }}
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl tracking-tight mb-4">Coming soon</h2>

@@ -25,7 +25,7 @@ export const ProductLaptop = () => {
             >
                 {/* Floating Animation Wrapper (Static) */}
                 <motion.div
-                    className="transform-style-3d relative flex flex-col items-center"
+                    className="transform-style-3d relative flex flex-col items-center will-change-transform"
                 >
 
                     {/* --- LID (SCREEN) --- */}
@@ -37,8 +37,9 @@ export const ProductLaptop = () => {
                             ease: [0.22, 1, 0.36, 1],
                             delay: OPEN_DELAY
                         }}
+
                         style={{ transformStyle: 'preserve-3d', transformOrigin: 'bottom' }}
-                        className="relative w-[600px] aspect-[16/10] bg-[#0d0d0d] rounded-t-[1.2rem] rounded-b-[0.5rem] p-[3px] shadow-2xl z-20"
+                        className="relative w-[600px] aspect-[16/10] bg-[#0d0d0d] rounded-t-[1.2rem] rounded-b-[0.5rem] p-[3px] shadow-2xl z-20 will-change-transform"
                     >
                         {/* Lid Edge Highlight */}
                         <div className="absolute inset-0 rounded-[inherit] border border-white/10 pointer-events-none z-50"></div>
@@ -169,6 +170,6 @@ export const ProductLaptop = () => {
 
             {/* Shadow */}
 
-        </div>
+        </div >
     );
 };
