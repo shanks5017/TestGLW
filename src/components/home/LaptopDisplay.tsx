@@ -193,7 +193,9 @@ export const LaptopDisplay = () => {
                     className="relative w-[640px] h-[16px] bg-[#c8c8c8] rounded-b-[1.5rem] rounded-t-[0.2rem] shadow-2xl mt-[-2px] z-10 flex justify-center items-start border-t border-white/50"
                     style={{
                         background: 'linear-gradient(to bottom, #d8d8d8 0%, #b0b0b0 100%)',
-                        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4)'
+                        boxShadow: isMobile
+                            ? 'none'
+                            : '0 25px 50px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4)'
                     }}
                 >
                     {/* Trackpad Notch */}

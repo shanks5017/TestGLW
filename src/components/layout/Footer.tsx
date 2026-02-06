@@ -30,7 +30,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-3 space-y-4">
             <Link to="/" className="flex items-center gap-2 group">
               <img src={logo} alt="GetLanded Logo" className="w-8 h-8 object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" />
-              <span className="text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors">GetLanded</span>
+              <span className="text-2xl font-bold text-[#0463c7] tracking-tight group-hover:text-primary transition-colors">GetLanded</span>
             </Link>
             <p className="text-slate-500 text-sm leading-relaxed">
               Your AI copilot for the modern job search. Land your dream role faster.

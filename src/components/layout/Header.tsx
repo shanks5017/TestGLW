@@ -117,7 +117,7 @@ export function Header() {
                   }}
                   className={cn(
                     "text-xl tracking-tighter inline-block font-heading select-none perspective-1000",
-                    i < 3 ? "font-semibold text-slate-900" : "font-black"
+                    i < 3 ? "font-semibold text-[#0463c7]" : "font-black"
                   )}
                   style={{
                     transformStyle: "preserve-3d",
@@ -214,7 +214,7 @@ export function Header() {
                   alt="GetLanded Logo"
                   className="w-9 h-9 object-contain"
                 />
-                <span className="text-lg font-heading font-black text-slate-900 tracking-tighter">GetLanded</span>
+                <span className="text-lg font-heading font-black text-[#0463c7] tracking-tighter">GetLanded</span>
               </div>
               <button
                 onClick={() => setIsMenuOpen(false)}
