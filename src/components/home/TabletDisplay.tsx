@@ -140,8 +140,6 @@ export const TabletDisplay = () => {
             </motion.div>
 
 
-            {/* Ambient Shadow */}
-            <div className="absolute -bottom-8 w-[240px] h-[25px] bg-black/40 blur-lg md:blur-2xl rounded-[100%] opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
 
         </div>
     );
