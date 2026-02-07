@@ -79,7 +79,7 @@ const InterviewVisual = () => (
 
 export const Stats = () => {
     return (
-        <section className="pt-0 pb-32 bg-white relative">
+        <section className="pt-0 pb-6 md:pb-32 bg-white relative">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Header */}

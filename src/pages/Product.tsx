@@ -303,7 +303,7 @@ export function Product() {
 
 
       {/* How It Works Section */}
-      <section className="py-20 px-6 bg-slate-50/50 relative z-10">
+      <section className="pt-20 pb-10 md:pb-20 px-6 bg-slate-50/50 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -341,7 +341,7 @@ export function Product() {
         </div>
       </section >
       {/* Resume Builder Features Section - Simplify Style */}
-      <section className="py-20 px-6 bg-[hsl(220,10%,98%)] relative z-10 overflow-hidden">
+      <section className="pt-10 pb-20 md:pt-20 px-6 bg-[hsl(220,10%,98%)] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -607,7 +607,7 @@ export function Product() {
       </section >
 
       {/* AI Resume Builder Section - Simplify Style (Reversed Layout) */}
-      <section className="py-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
+      <section className="pt-20 pb-10 md:pb-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -721,7 +721,7 @@ export function Product() {
       </section >
 
       {/* Job Tracker Section - Simplify Style */}
-      <section className="py-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
+      <section className="pt-10 pb-20 md:pt-20 px-6 bg-[#fafbfc] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Visual - Job Tracker Mockup */}
@@ -882,7 +882,7 @@ export function Product() {
 
 
       {/* Categories Section */}
-      < section className="py-12 md:py-20 px-4 sm:px-6 bg-white relative z-10 overflow-hidden" >
+      <section className="pt-12 pb-6 md:py-20 px-4 sm:px-6 bg-white relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: Phone Display (Moved from Hero) */}
@@ -955,7 +955,7 @@ export function Product() {
         {/* Feature 1: Resume Builder - Left Content, Right Visual */}
         < div className="grid lg:grid-cols-2" >
           {/* Left Content */}
-          < div className="py-20 px-6 lg:px-16 flex items-center" >
+          <div className="pt-6 pb-20 md:py-20 px-6 lg:px-16 flex items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}

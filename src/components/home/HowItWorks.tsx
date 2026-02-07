@@ -51,7 +51,7 @@ const StepCard = ({
 
 export const HowItWorks = () => {
     return (
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="pt-10 pb-10 md:pb-24 md:pt-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
 
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -75,8 +75,8 @@ export const HowItWorks = () => {
                                 <span className="text-[#0463c7]">job hunt.</span>
                             </h2>
                             <p className="text-lg text-slate-600 max-w-md leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
-                                Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box. 
-                                <br /> GetLanded was created to simplify this experience by offering an AI-powered Copilot that lives 
+                                Job hunting today is complex and often confusing. Many candidates spend hours tailoring resumes, checking whether a position sponsors visas and crafting cover letters, only to submit applications into a black box.
+                                <br /> GetLanded was created to simplify this experience by offering an AI-powered Copilot that lives
                                 in your browser and integrates with popular job boards .Our tools do the heavy lifting by
                                 matching your skills to open roles ,optimising your documents ,and ensuring you know whether
                                 a job can actually hire you.

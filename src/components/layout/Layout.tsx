@@ -17,7 +17,7 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-[#D6EAFF] selection:text-[#2A74C9]">
       <GradientBlur position="top" />
-      <GradientBlur position="bottom" />
+      <GradientBlur position="bottom" className="hidden md:block" />
       <FloatingNavbar />
       <main className="flex-1 relative z-10 w-full">
         {children}

@@ -22,11 +22,26 @@ export const FloatingNavbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            if (!mobileMenuOpen) {
+                setScrolled(window.scrollY > 20);
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [mobileMenuOpen]);
+
+    // Lock body scroll when menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+            // Also ensure it's not scrollable via touch if possible, though overflow hidden usually works
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
 
 
 
@@ -36,12 +51,12 @@ export const FloatingNavbar = () => {
         { name: 'About', path: '/about' },
         { name: 'Pricing', path: '/pricing' },
         { name: 'Blog', path: '/blog' },
-        { name: 'Contact', path: '/contact' },
+
     ];
 
     // Determine Hamburger Color based on route & state
     const getHamburgerColor = () => {
-        if (mobileMenuOpen) return "text-[#0463c7]"; // Always blue when open (against white menu)
+        if (mobileMenuOpen) return "text-black"; // Always black when open (against white menu)
 
         // Add specific routes here that might have dark backgrounds
         // For now, defaulting to standard behavior:
@@ -55,25 +70,32 @@ export const FloatingNavbar = () => {
     // Animation Variants
     const menuVariants = {
         initial: {
-            clipPath: "circle(0% at calc(100% - 48px) 35px)",
+            opacity: 0,
+            y: -20,
+            scale: 0.95,
             transition: {
-                clipPath: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } // Faster exit
+                duration: 0.2,
+                ease: [0.4, 0, 0.2, 1] as [number, number, number, number]
             }
         },
         animate: {
-            clipPath: "circle(150% at calc(100% - 48px) 35px)",
+            opacity: 1,
+            y: 0,
+            scale: 1,
             transition: {
-                clipPath: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
+                duration: 0.3,
+                ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
                 staggerChildren: 0.05,
                 delayChildren: 0.05
             }
         },
         exit: {
-            clipPath: "circle(0% at calc(100% - 48px) 35px)",
+            opacity: 0,
+            y: -10,
+            scale: 0.95,
             transition: {
-                clipPath: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
-                staggerChildren: 0.02,
-                staggerDirection: -1
+                duration: 0.2,
+                ease: [0.4, 0, 0.2, 1] as [number, number, number, number]
             }
         }
     };
@@ -83,12 +105,15 @@ export const FloatingNavbar = () => {
         animate: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+            transition: {
+                duration: 0.3, // Faster
+                ease: [0.4, 0, 0.2, 1] as [number, number, number, number] // Simple easing
+            }
         },
         exit: {
             opacity: 0,
             y: 10,
-            transition: { duration: 0.2, ease: [0.42, 0, 1, 1] as [number, number, number, number] }
+            transition: { duration: 0.2, ease: [0.4, 0, 1, 1] as [number, number, number, number] }
         }
     };
 
@@ -204,14 +229,14 @@ export const FloatingNavbar = () => {
             </header>
 
             {/* Cinematic Mobile Menu Overlay */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
                         variants={menuVariants}
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white will-change-[clip-path] backface-invisible transform-gpu"
+                        className="fixed inset-0 z-[60] flex flex-col min-[1100px]:hidden h-[100dvh] overflow-hidden bg-white/95 backdrop-blur-md"
                         style={{
                             // Ensure it covers full screen
                         }}
@@ -239,57 +264,58 @@ export const FloatingNavbar = () => {
                         <div className="flex flex-col flex-1 relative z-10 px-6 pb-8 items-center justify-center text-center overflow-y-auto">
 
                             {/* Navigation Links */}
-                            <nav className="flex flex-col gap-4 md:gap-6 items-center w-full">
-                                {navLinks.map((link, i) => {
+                            {/* Navigation Links - Grouped Animation */}
+                            <motion.nav
+                                className="flex flex-col gap-4 md:gap-6 items-center w-full"
+                                variants={itemVariants} // Animate as one block
+                            >
+                                {/* Top Divider Line */}
+                                <div className="w-24 h-[1px] bg-[#0463c7]/40 mb-2 shrink-0" />
+
+                                {navLinks.map((link) => {
+                                    const isActive = location.pathname === link.path;
                                     return (
-                                        <motion.div
-                                            key={link.name}
-                                            variants={itemVariants}
-                                            custom={i}
-                                        >
+                                        <div key={link.name}>
                                             <Link
                                                 to={link.path}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className="block text-3xl md:text-5xl tracking-tight font-medium text-[#0463c7] hover:text-[#0463c7]/80 transition-colors"
+                                                className={cn(
+                                                    "block text-3xl md:text-5xl tracking-tight transition-colors",
+                                                    isActive ? "font-bold text-[#0463c7]" : "font-medium text-black hover:text-black/70"
+                                                )}
                                             >
                                                 {link.name}
                                             </Link>
-                                        </motion.div>
+                                        </div>
                                     );
                                 })}
-                            </nav>
+                            </motion.nav>
 
-                            {/* Divider Line */}
+                            {/* Footer Content - Grouped Animation */}
                             <motion.div
-                                variants={itemVariants}
-                                className="w-24 h-[1px] bg-[#0463c7]/20 my-8 shrink-0"
-                            />
-
-                            {/* Social Icons */}
-                            <motion.div
-                                variants={itemVariants}
-                                className="flex items-center gap-6 mb-8 shrink-0"
+                                className="flex flex-col items-center w-full"
+                                variants={itemVariants} // Animate as one block
                             >
-                                {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full border border-[#0463c7]/20 flex items-center justify-center text-[#0463c7] hover:bg-[#0463c7]/10 transition-colors cursor-pointer">
-                                        <Icon size={18} />
-                                    </div>
-                                ))}
-                            </motion.div>
+                                {/* Divider Line */}
+                                <div className="w-24 h-[1px] bg-[#0463c7]/40 my-8 shrink-0" />
 
-                            {/* CTA */}
-                            <motion.div
-                                variants={itemVariants}
-                                className="w-full max-w-sm shrink-0"
-                            >
-                                <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                                    <Button className="w-full rounded-full py-4 text-lg bg-[#0463c7] hover:bg-[#0352a8] border-none shadow-xl flex items-center justify-center">
-                                        <RollingText3D
-                                            text="Get Template now"
-                                            className="text-[18px] font-medium text-white"
-                                        />
-                                    </Button>
-                                </Link>
+                                {/* Social Icons */}
+                                <div className="flex items-center gap-6 mb-8 shrink-0">
+                                    {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+                                        <div key={i} className="w-10 h-10 rounded-full border border-[#0463c7]/20 flex items-center justify-center text-[#0463c7] hover:bg-[#0463c7]/10 transition-colors cursor-pointer">
+                                            <Icon size={18} />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* CTA */}
+                                <div className="w-full max-w-sm shrink-0">
+                                    <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                                        <Button className="w-full rounded-full py-4 text-lg bg-[#0463c7] hover:bg-[#0352a8] border-none shadow-md flex items-center justify-center transform-gpu">
+                                            <span className="text-[18px] font-medium text-white">Get Template now</span>
+                                        </Button>
+                                    </Link>
+                                </div>
                             </motion.div>
                         </div>
                     </motion.div>

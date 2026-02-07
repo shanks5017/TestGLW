@@ -621,7 +621,7 @@ export function Pricing() {
         </div>
 
         {/* Testimonials */}
-        <div className="mb-32">
+        <div className="mb-12 md:mb-32">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-heading font-medium text-slate-900 mb-6">Trusted by students and professionals from top universities and companies</h2>
             <p className="text-slate-500">Join thousands of students landing top offers.</p>
@@ -661,7 +661,7 @@ export function Pricing() {
       </div>
 
       {/* FAQ - Full Width */}
-      <Section width="full" className="py-24 bg-white relative z-10">
+      <Section width="full" className="py-12 md:py-24 bg-white relative z-10">
         <FadeIn className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6 tracking-tight">Frequently Asked Questions</h2>
           <p className="text-xl text-slate-500 text-center mb-16 max-w-2xl mx-auto">Everything you need to know about our plans.</p>

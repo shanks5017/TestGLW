@@ -321,7 +321,7 @@ export const Features = () => {
     const ctaOpacity = isMobile ? 1 : ctaOpacityRaw;
 
     return (
-        <section className="bg-slate-100/50 relative overflow-hidden py-24 md:py-32">
+        <section className="bg-slate-100/50 relative overflow-hidden pt-6 pb-6 md:py-32">
             {/* Background decorations */}
 
 

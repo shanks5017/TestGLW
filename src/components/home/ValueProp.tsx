@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function ValueProp() {
     return (
-        <section className="py-20 md:py-32 bg-white relative overflow-hidden">
+        <section className="pt-10 pb-6 md:py-32 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative h-full min-h-[500px] md:min-h-[600px] flex flex-col justify-center">
 
                 {/* Floating Icons - Decorative */}
